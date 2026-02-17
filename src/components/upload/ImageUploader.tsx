@@ -1,17 +1,61 @@
 import { useCallback, useRef, useState } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { sessionStorage } from '../../utils/sessionStorage';
 
 export function ImageUploader() {
   const loadImage = useAppStore((s) => s.loadImage);
   const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = useCallback(
+  const handleImageFile = useCallback(
     async (file: File) => {
-      if (!file.type.startsWith('image/')) return;
       await loadImage(file);
     },
     [loadImage]
+  );
+
+  const handleSessionFile = useCallback(async (file: File) => {
+    try {
+      const session = await sessionStorage.importFromFile(file);
+
+      // Load image from base64
+      const img = new Image();
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) throw new Error('Failed to create canvas');
+
+        ctx.drawImage(img, 0, 0);
+        const imageData = ctx.getImageData(0, 0, img.width, img.height);
+
+        // Set state
+        const url = canvas.toDataURL('image/png');
+        useAppStore.setState({
+          sourceImageUrl: url,
+          sourceImageData: imageData,
+          processedWidth: imageData.width,
+          processedHeight: imageData.height,
+          settings: session.settings,
+          result: session.result,
+        });
+      };
+      img.src = session.sourceImageBase64;
+    } catch (err) {
+      alert(`Failed to load session: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    }
+  }, []);
+
+  const handleFile = useCallback(
+    async (file: File) => {
+      if (file.type.startsWith('image/')) {
+        await handleImageFile(file);
+      } else if (file.name.endsWith('.json') || file.type === 'application/json') {
+        await handleSessionFile(file);
+      }
+    },
+    [handleImageFile, handleSessionFile]
   );
 
   const onDrop = useCallback(
@@ -37,12 +81,12 @@ export function ImageUploader() {
       for (const item of items) {
         if (item.type.startsWith('image/')) {
           const file = item.getAsFile();
-          if (file) handleFile(file);
+          if (file) handleImageFile(file);
           break;
         }
       }
     },
-    [handleFile]
+    [handleImageFile]
   );
 
   const onChange = useCallback(
@@ -81,15 +125,15 @@ export function ImageUploader() {
         />
       </svg>
       <p className="text-gray-600 font-medium mb-1">
-        Drop an image here, or click to browse
+        Drop an image or saved session here, or click to browse
       </p>
       <p className="text-gray-400 text-sm">
-        Supports JPEG, PNG, WebP. You can also paste from clipboard.
+        Images: JPEG, PNG, WebP. Sessions: .json files. You can also paste images from clipboard.
       </p>
       <input
         ref={inputRef}
         type="file"
-        accept="image/*"
+        accept="image/*,.json"
         className="hidden"
         onChange={onChange}
       />

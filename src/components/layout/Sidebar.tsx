@@ -25,14 +25,11 @@ export function Sidebar() {
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < history.length - 1;
 
-  // Show minimal sidebar with session controls even without image
+  // Show minimal sidebar even without image - removed session controls from initial screen
   if (!sourceImageData) {
     return (
       <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
-        <div className="p-4 border-b border-gray-200">
-          <h2 className="text-sm font-semibold text-gray-800 mb-3">Session</h2>
-          <SessionControls />
-        </div>
+        {/* Empty sidebar on start - user can drop image or session to main area */}
       </div>
     );
   }
