@@ -10,6 +10,7 @@ export function CanvasPreview() {
   const zoom = useAppStore((s) => s.ui.zoom);
   const panX = useAppStore((s) => s.ui.panX);
   const panY = useAppStore((s) => s.ui.panY);
+  const borderWidth = useAppStore((s) => s.settings.borderWidth);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -76,6 +77,40 @@ export function CanvasPreview() {
       ctx.stroke();
     }
 
+    // Draw color bleeding prevention borders (white borders around regions)
+    if (borderWidth > 0) {
+      for (const contour of contours) {
+        const { outerRing, holes } = contour;
+        if (outerRing.length < 3) continue;
+
+        ctx.lineWidth = borderWidth;
+        ctx.strokeStyle = 'white';
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Outer ring border
+        ctx.beginPath();
+        ctx.moveTo(outerRing[0].x, outerRing[0].y);
+        for (let i = 1; i < outerRing.length; i++) {
+          ctx.lineTo(outerRing[i].x, outerRing[i].y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+
+        // Hole borders
+        for (const hole of holes) {
+          if (hole.length < 3) continue;
+          ctx.beginPath();
+          ctx.moveTo(hole[0].x, hole[0].y);
+          for (let i = 1; i < hole.length; i++) {
+            ctx.lineTo(hole[i].x, hole[i].y);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        }
+      }
+    }
+
     // Draw labels
     for (const label of labels) {
       const fontSize = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
@@ -87,7 +122,7 @@ export function CanvasPreview() {
     }
 
     ctx.restore();
-  }, [result, viewMode, selectedColor, hoveredRegion]);
+  }, [result, viewMode, selectedColor, hoveredRegion, borderWidth]);
 
   useEffect(() => {
     draw();

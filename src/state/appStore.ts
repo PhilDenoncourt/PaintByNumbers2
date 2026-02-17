@@ -57,6 +57,7 @@ const defaultSettings: PipelineSettings = {
   brightness: 0,
   contrast: 0,
   saturation: 0,
+  borderWidth: 0,
 };
 
 const defaultPipeline: PipelineState = {

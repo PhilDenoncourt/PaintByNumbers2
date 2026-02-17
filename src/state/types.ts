@@ -50,6 +50,8 @@ export interface PipelineSettings {
   brightness: number; // -100 to 100
   contrast: number;   // -100 to 100
   saturation: number; // -100 to 100
+  // Color bleeding prevention
+  borderWidth: number; // 0 to 5 pixels
 }
 
 export interface PipelineState {
