@@ -4,6 +4,7 @@ import { DetailControls } from '../controls/DetailControls';
 import { ExportButton } from '../controls/ExportButton';
 import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
+import { RegionStatistics } from '../statistics/RegionStatistics';
 
 export function Sidebar() {
   const sourceImageData = useAppStore((s) => s.sourceImageData);
@@ -90,6 +91,8 @@ export function Sidebar() {
           <PaletteLegend />
         </div>
       )}
+
+      {result && <RegionStatistics />}
 
       {result && (
         <div className="p-4 border-b border-gray-200">
