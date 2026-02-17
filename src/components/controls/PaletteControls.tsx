@@ -10,11 +10,11 @@ export function PaletteControls() {
   const disabled = pipelineStatus === 'running';
 
   const isPreset = settings.presetPaletteId !== null;
-  const isCustom = settings.customPalette !== null && settings.customPalette.length > 0;
+  const isCustomSelected = settings.customPalette !== null;
 
   let paletteMode: 'auto' | 'preset' | 'custom' = 'auto';
   if (isPreset) paletteMode = 'preset';
-  if (isCustom) paletteMode = 'custom';
+  if (isCustomSelected) paletteMode = 'custom';
 
   return (
     <div className="space-y-3">
@@ -25,12 +25,14 @@ export function PaletteControls() {
           value={paletteMode}
           onChange={(e) => {
             if (e.target.value === 'auto') {
-              updateSettings({ presetPaletteId: null });
+              updateSettings({ presetPaletteId: null, customPalette: null });
             } else if (e.target.value === 'preset') {
-              updateSettings({ presetPaletteId: `crayola-${crayolaPalettes[0].size}` });
+              updateSettings({ presetPaletteId: `crayola-${crayolaPalettes[0].size}`, customPalette: null });
+            } else if (e.target.value === 'custom') {
+              updateSettings({ presetPaletteId: null, customPalette: [] });
             }
           }}
-          disabled={disabled || isCustom}
+          disabled={disabled}
           className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
         >
           <option value="auto">Auto-detect</option>
@@ -79,10 +81,10 @@ export function PaletteControls() {
       )}
 
       {/* Custom palette controls */}
-      {isCustom && <CustomPaletteControls />}
+      {isCustomSelected && <CustomPaletteControls />}
 
       {/* Palette size slider (only for auto mode) */}
-      {!isPreset && !isCustom && (
+      {!isPreset && !isCustomSelected && (
         <div>
           <label className="flex items-center justify-between text-sm font-medium text-gray-700">
             <span>Palette Size</span>
@@ -103,9 +105,6 @@ export function PaletteControls() {
           </div>
         </div>
       )}
-
-      {/* Show custom palette upload when not in custom mode */}
-      {!isCustom && <CustomPaletteControls />}
     </div>
   );
 }
