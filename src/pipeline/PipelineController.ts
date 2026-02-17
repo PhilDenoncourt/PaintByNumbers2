@@ -2,6 +2,7 @@ import type { PipelineSettings, PipelineStage, PipelineResult } from '../state/t
 import type { QuantizeOutput, SegmentOutput, MergeOutput, ContourOutput, LabelOutput } from './types';
 import { runWorker } from '../utils/workerHelper';
 import { crayolaPalettes } from '../data/crayolaPalettes';
+import { applyPreprocessing } from '../utils/preprocessImage';
 import QuantizeWorker from '../workers/quantize.worker?worker';
 import SegmentWorker from '../workers/segment.worker?worker';
 import MergeWorker from '../workers/merge.worker?worker';
@@ -16,6 +17,16 @@ export async function runPipeline(
   onProgress: (stage: PipelineStage, percent: number) => void
 ): Promise<PipelineResult> {
   const { width, height } = imageData;
+
+  // Apply preprocessing adjustments
+  const hasPreprocessing = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0;
+  if (hasPreprocessing) {
+    applyPreprocessing(imageData, {
+      brightness: settings.brightness,
+      contrast: settings.contrast,
+      saturation: settings.saturation,
+    });
+  }
 
   // Make a copy of pixel data since we transfer ownership
   const pixelsCopy = new Uint8ClampedArray(imageData.data);

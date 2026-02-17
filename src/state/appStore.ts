@@ -53,6 +53,9 @@ const defaultSettings: PipelineSettings = {
   simplificationEpsilon: 1.5,
   presetPaletteId: null,
   customPalette: null,
+  brightness: 0,
+  contrast: 0,
+  saturation: 0,
 };
 
 const defaultPipeline: PipelineState = {

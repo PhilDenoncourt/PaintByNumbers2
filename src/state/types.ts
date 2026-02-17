@@ -46,6 +46,10 @@ export interface PipelineSettings {
   simplificationEpsilon: number;
   presetPaletteId: string | null; // e.g. 'crayola-8', null = auto
   customPalette: [number, number, number][] | null; // custom RGB palette
+  // Image preprocessing
+  brightness: number; // -100 to 100
+  contrast: number;   // -100 to 100
+  saturation: number; // -100 to 100
 }
 
 export interface PipelineState {

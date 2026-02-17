@@ -1,6 +1,7 @@
 import { useAppStore } from '../../state/appStore';
 import { PaletteControls } from '../controls/PaletteControls';
 import { DetailControls } from '../controls/DetailControls';
+import { PreprocessingControls } from '../controls/PreprocessingControls';
 import { ExportButton } from '../controls/ExportButton';
 import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
@@ -38,7 +39,10 @@ export function Sidebar() {
       <div className="p-4 border-b border-gray-200">
         <h2 className="text-sm font-semibold text-gray-800 mb-3">Settings</h2>
         <PaletteControls />
-        <div className="mt-4">
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <PreprocessingControls />
+        </div>
+        <div className="mt-4 pt-4 border-t border-gray-200">
           <DetailControls />
         </div>
       </div>

@@ -3,6 +3,7 @@ import { ImageUploader } from '../upload/ImageUploader';
 import { Sidebar } from './Sidebar';
 import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { SideBySideView } from '../preview/SideBySideView';
+import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
 
 export function AppShell() {
   const sourceImageData = useAppStore((s) => s.sourceImageData);
@@ -59,6 +60,7 @@ export function AppShell() {
           {sourceImageData && pipelineStatus === 'idle' && (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
+                <PreprocessedImagePreview />
                 {sourceImageUrl && (
                   <img
                     src={sourceImageUrl}
