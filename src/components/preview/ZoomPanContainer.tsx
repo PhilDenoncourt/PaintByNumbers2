@@ -52,7 +52,7 @@ export function ZoomPanContainer({ children }: Props) {
   return (
     <div
       ref={containerRef}
-      className="overflow-hidden w-full h-full cursor-grab active:cursor-grabbing bg-gray-100 rounded-lg"
+      className="overflow-hidden w-full h-full cursor-grab active:cursor-grabbing bg-gray-100 rounded-lg flex items-center justify-center"
       onWheel={onWheel}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}

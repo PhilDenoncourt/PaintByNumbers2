@@ -103,7 +103,7 @@ export function CanvasPreview() {
         transformOrigin: 'top left',
         imageRendering: zoom > 2 ? 'pixelated' : 'auto',
       }}
-      className="block"
+      className="block max-w-full max-h-full"
     />
   );
 }
