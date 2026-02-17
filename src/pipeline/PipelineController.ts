@@ -1,6 +1,7 @@
 import type { PipelineSettings, PipelineStage, PipelineResult } from '../state/types';
 import type { QuantizeOutput, SegmentOutput, MergeOutput, ContourOutput, LabelOutput } from './types';
 import { runWorker } from '../utils/workerHelper';
+import { crayolaPalettes } from '../data/crayolaPalettes';
 import QuantizeWorker from '../workers/quantize.worker?worker';
 import SegmentWorker from '../workers/segment.worker?worker';
 import MergeWorker from '../workers/merge.worker?worker';
@@ -19,6 +20,17 @@ export async function runPipeline(
   // Make a copy of pixel data since we transfer ownership
   const pixelsCopy = new Uint8ClampedArray(imageData.data);
 
+  // Resolve preset palette if selected
+  let fixedPalette: [number, number, number][] | undefined;
+  if (settings.presetPaletteId) {
+    const preset = crayolaPalettes.find(
+      (p) => `crayola-${p.size}` === settings.presetPaletteId
+    );
+    if (preset) {
+      fixedPalette = preset.colors.map((c) => c.rgb);
+    }
+  }
+
   // Stage 1: Quantize
   onProgress('quantize', 0);
   const quantized = await runWorker<unknown, QuantizeOutputExt>(
@@ -27,8 +39,9 @@ export async function runPipeline(
       pixels: pixelsCopy,
       width,
       height,
-      paletteSize: settings.paletteSize,
+      paletteSize: fixedPalette ? fixedPalette.length : settings.paletteSize,
       algorithm: settings.algorithm,
+      fixedPalette,
     },
     [pixelsCopy.buffer],
     (pct) => onProgress('quantize', pct)

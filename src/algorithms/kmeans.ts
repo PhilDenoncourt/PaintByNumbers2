@@ -209,3 +209,82 @@ export function kmeansQuantize(
 
   return { indexMap, palette, labPalette };
 }
+
+/**
+ * Quantize an image using a pre-defined fixed palette.
+ * Instead of computing centroids, we just map every pixel to the nearest
+ * color in the provided palette using a 3D LUT in LAB space.
+ */
+export function fixedPaletteQuantize(
+  pixels: Uint8ClampedArray,
+  width: number,
+  height: number,
+  fixedPalette: [number, number, number][],
+  onProgress?: (percent: number) => void
+): { indexMap: Uint8Array; palette: [number, number, number][]; labPalette: [number, number, number][] } {
+  const totalPixels = width * height;
+  const k = fixedPalette.length;
+
+  // Convert the fixed palette to LAB
+  const centL = new Float64Array(k);
+  const centA = new Float64Array(k);
+  const centB = new Float64Array(k);
+  const labPalette: [number, number, number][] = [];
+
+  for (let c = 0; c < k; c++) {
+    const [l, a, b] = rgbToLab(fixedPalette[c][0], fixedPalette[c][1], fixedPalette[c][2]);
+    centL[c] = l;
+    centA[c] = a;
+    centB[c] = b;
+    labPalette.push([l, a, b]);
+  }
+
+  onProgress?.(20);
+
+  // Build 3D RGB lookup table for fast assignment
+  const LUT_SIZE = 32;
+  const lut = new Uint8Array(LUT_SIZE * LUT_SIZE * LUT_SIZE);
+
+  for (let ri = 0; ri < LUT_SIZE; ri++) {
+    for (let gi = 0; gi < LUT_SIZE; gi++) {
+      for (let bi = 0; bi < LUT_SIZE; bi++) {
+        const r = Math.round((ri / (LUT_SIZE - 1)) * 255);
+        const g = Math.round((gi / (LUT_SIZE - 1)) * 255);
+        const b = Math.round((bi / (LUT_SIZE - 1)) * 255);
+        const [l, a, bv] = rgbToLab(r, g, b);
+
+        let bestDist = Infinity;
+        let bestC = 0;
+        for (let c = 0; c < k; c++) {
+          const d = labDistanceSq(l, a, bv, centL[c], centA[c], centB[c]);
+          if (d < bestDist) {
+            bestDist = d;
+            bestC = c;
+          }
+        }
+        lut[ri * LUT_SIZE * LUT_SIZE + gi * LUT_SIZE + bi] = bestC;
+      }
+    }
+  }
+
+  onProgress?.(60);
+
+  // Map all pixels using LUT
+  const indexMap = new Uint8Array(totalPixels);
+  const scale = (LUT_SIZE - 1) / 255;
+
+  for (let i = 0; i < totalPixels; i++) {
+    const off = i * 4;
+    const ri = Math.round(pixels[off] * scale);
+    const gi = Math.round(pixels[off + 1] * scale);
+    const bi = Math.round(pixels[off + 2] * scale);
+    indexMap[i] = lut[ri * LUT_SIZE * LUT_SIZE + gi * LUT_SIZE + bi];
+  }
+
+  onProgress?.(100);
+
+  // Use the original RGB values as the palette (not re-derived from LAB)
+  const palette: [number, number, number][] = fixedPalette.map((c) => [...c] as [number, number, number]);
+
+  return { indexMap, palette, labPalette };
+}

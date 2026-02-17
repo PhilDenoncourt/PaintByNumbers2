@@ -1,5 +1,6 @@
 import type { PipelineResult } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
+import { crayolaPalettes } from '../data/crayolaPalettes';
 
 function polygonToPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return '';
@@ -11,11 +12,22 @@ function polygonToPath(points: { x: number; y: number }[]): string {
   return parts.join(' ');
 }
 
-export function generateSvg(result: PipelineResult, includeColor: boolean = false): string {
+export function generateSvg(result: PipelineResult, includeColor: boolean = false, presetPaletteId: string | null = null): string {
   const { width, height, contours, labels, palette } = result;
 
   const legendHeight = palette.length * 25 + 40;
   const totalHeight = height + legendHeight;
+
+  // Resolve preset palette for crayon names
+  let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
+  if (presetPaletteId) {
+    const preset = crayolaPalettes.find(
+      (p) => `crayola-${p.size}` === presetPaletteId
+    );
+    if (preset) {
+      presetColors = preset.colors;
+    }
+  }
 
   const lines: string[] = [];
   lines.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${totalHeight}" width="${width}" height="${totalHeight}">`);
@@ -53,10 +65,18 @@ export function generateSvg(result: PipelineResult, includeColor: boolean = fals
   lines.push(`    <text x="10" y="15" font-size="14" font-weight="bold" font-family="Arial,Helvetica,sans-serif">Color Legend</text>`);
   for (let i = 0; i < palette.length; i++) {
     const [r, g, b] = palette[i];
-    const hex = rgbToHex(r, g, b);
     const yOff = 30 + i * 25;
+    let labelText: string;
+    if (presetColors) {
+      const match = presetColors.find(
+        (c) => c.rgb[0] === r && c.rgb[1] === g && c.rgb[2] === b
+      );
+      labelText = match ? `${i + 1} - ${match.name}` : `${i + 1} - ${rgbToHex(r, g, b)}`;
+    } else {
+      labelText = `${i + 1} - ${rgbToHex(r, g, b)}`;
+    }
     lines.push(`    <rect x="10" y="${yOff}" width="20" height="20" fill="rgb(${r},${g},${b})" stroke="black" stroke-width="0.5"/>`);
-    lines.push(`    <text x="40" y="${yOff + 14}" font-size="12" font-family="Arial,Helvetica,sans-serif" dominant-baseline="auto">${i + 1} - ${hex}</text>`);
+    lines.push(`    <text x="40" y="${yOff + 14}" font-size="12" font-family="Arial,Helvetica,sans-serif" dominant-baseline="auto">${labelText}</text>`);
   }
   lines.push(`  </g>`);
 

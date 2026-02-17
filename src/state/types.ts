@@ -44,6 +44,7 @@ export interface PipelineSettings {
   minRegionSize: number;
   detailLevel: number;
   simplificationEpsilon: number;
+  presetPaletteId: string | null; // e.g. 'crayola-8', null = auto
 }
 
 export interface PipelineState {

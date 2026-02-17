@@ -38,6 +38,7 @@ const defaultSettings: PipelineSettings = {
   minRegionSize: 50,
   detailLevel: 30,
   simplificationEpsilon: 1.5,
+  presetPaletteId: null,
 };
 
 const defaultPipeline: PipelineState = {

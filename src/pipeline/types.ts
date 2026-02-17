@@ -6,6 +6,7 @@ export interface QuantizeInput {
   height: number;
   paletteSize: number;
   algorithm: 'kmeans' | 'mediancut';
+  fixedPalette?: [number, number, number][]; // preset RGB palette – skip k-means
 }
 
 export interface QuantizeOutput {

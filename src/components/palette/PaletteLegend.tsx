@@ -1,13 +1,24 @@
 import { useAppStore } from '../../state/appStore';
 import { rgbToHex } from '../../algorithms/colorUtils';
+import { crayolaPalettes } from '../../data/crayolaPalettes';
 
 export function PaletteLegend() {
   const result = useAppStore((s) => s.result);
   const selectedColor = useAppStore((s) => s.ui.selectedColor);
   const hoveredRegion = useAppStore((s) => s.ui.hoveredRegion);
   const setSelectedColor = useAppStore((s) => s.setSelectedColor);
+  const presetPaletteId = useAppStore((s) => s.settings.presetPaletteId);
 
   if (!result) return null;
+
+  // Resolve preset palette for crayon names
+  const presetColors = (() => {
+    if (!presetPaletteId) return null;
+    const preset = crayolaPalettes.find(
+      (p) => `crayola-${p.size}` === presetPaletteId
+    );
+    return preset?.colors ?? null;
+  })();
 
   // Find which color is hovered via region
   let hoveredColorIndex: number | null = null;
@@ -31,6 +42,15 @@ export function PaletteLegend() {
             (selectedColor !== null && !isSelected) ||
             (hoveredColorIndex !== null && !isHovered);
 
+          // Look up crayon name by matching the RGB value
+          let crayonName: string | null = null;
+          if (presetColors) {
+            const match = presetColors.find(
+              (c) => c.rgb[0] === r && c.rgb[1] === g && c.rgb[2] === b
+            );
+            if (match) crayonName = match.name;
+          }
+
           return (
             <button
               key={idx}
@@ -48,7 +68,9 @@ export function PaletteLegend() {
                 style={{ backgroundColor: `rgb(${r},${g},${b})` }}
               />
               <span className="font-mono text-gray-700 w-5 text-right">{idx + 1}</span>
-              <span className="text-gray-400 text-xs">{hex}</span>
+              <span className="text-gray-400 text-xs truncate">
+                {crayonName ?? hex}
+              </span>
             </button>
           );
         })}

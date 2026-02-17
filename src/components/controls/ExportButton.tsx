@@ -4,18 +4,19 @@ import { downloadPdf } from '../../export/pdfExporter';
 
 export function ExportButton() {
   const result = useAppStore((s) => s.result);
+  const presetPaletteId = useAppStore((s) => s.settings.presetPaletteId);
 
   if (!result) return null;
 
   const handleSvgExport = (includeColor: boolean) => {
-    const svg = generateSvg(result, includeColor);
+    const svg = generateSvg(result, includeColor, presetPaletteId);
     const suffix = includeColor ? 'colored' : 'outline';
     downloadSvg(svg, `paint-by-numbers-${suffix}.svg`);
   };
 
   const handlePdfExport = (includeColor: boolean) => {
     const suffix = includeColor ? 'colored' : 'outline';
-    downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`);
+    downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`, presetPaletteId);
   };
 
   return (

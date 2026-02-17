@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf';
 import type { PipelineResult, ContourData, LabelPlacement } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
+import { crayolaPalettes } from '../data/crayolaPalettes';
 
 // --- Layout constants ---
 const MARGIN_MM = 10;
@@ -147,6 +148,7 @@ function drawLegend(
   doc: jsPDF,
   palette: [number, number, number][],
   layout: Layout,
+  presetPaletteId: string | null = null,
 ): void {
   const { pageW, pageH, imageBottomY } = layout;
   const availableW = pageW - 2 * MARGIN_MM;
@@ -171,6 +173,17 @@ function drawLegend(
   // Grid
   const cols = Math.max(1, Math.floor(availableW / LEGEND_ENTRY_WIDTH));
 
+  // Resolve preset palette for crayon names
+  let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
+  if (presetPaletteId) {
+    const preset = crayolaPalettes.find(
+      (p) => `crayola-${p.size}` === presetPaletteId
+    );
+    if (preset) {
+      presetColors = preset.colors;
+    }
+  }
+
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
   doc.setLineWidth(0.2);
@@ -189,9 +202,17 @@ function drawLegend(
 
     // Label text
     doc.setTextColor(0, 0, 0);
-    const hex = rgbToHex(r, g, b);
+    let labelText: string;
+    if (presetColors) {
+      const match = presetColors.find(
+        (c) => c.rgb[0] === r && c.rgb[1] === g && c.rgb[2] === b
+      );
+      labelText = match ? `${i + 1} - ${match.name}` : `${i + 1} - ${rgbToHex(r, g, b)}`;
+    } else {
+      labelText = `${i + 1} - ${rgbToHex(r, g, b)}`;
+    }
     doc.text(
-      `${i + 1} - ${hex}`,
+      labelText,
       x + SWATCH_SIZE + 2,
       y + SWATCH_SIZE / 2,
       { baseline: 'middle' },
@@ -201,7 +222,7 @@ function drawLegend(
 
 // --- Public API ---
 
-export function generatePdf(result: PipelineResult, includeColor: boolean): jsPDF {
+export function generatePdf(result: PipelineResult, includeColor: boolean, presetPaletteId: string | null = null): jsPDF {
   const layout = calculateLayout(result.width, result.height, result.palette.length);
 
   const doc = new jsPDF({
@@ -216,7 +237,7 @@ export function generatePdf(result: PipelineResult, includeColor: boolean): jsPD
 
   drawRegions(doc, result.contours, result.palette, includeColor, layout);
   drawLabels(doc, result.labels, result.palette, includeColor, layout);
-  drawLegend(doc, result.palette, layout);
+  drawLegend(doc, result.palette, layout, presetPaletteId);
 
   return doc;
 }
@@ -225,7 +246,8 @@ export function downloadPdf(
   result: PipelineResult,
   includeColor: boolean,
   filename: string = 'paint-by-numbers.pdf',
+  presetPaletteId: string | null = null,
 ): void {
-  const doc = generatePdf(result, includeColor);
+  const doc = generatePdf(result, includeColor, presetPaletteId);
   doc.save(filename);
 }
