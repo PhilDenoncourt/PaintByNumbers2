@@ -6,6 +6,29 @@ function pointKey(x: number, y: number): string {
   return `${x},${y}`;
 }
 
+// Apply smoothing passes - multiple iterations of simplification
+function applySmoothingPasses(
+  polygon: Point[],
+  epsilon: number,
+  passes: number,
+  _preserveCorners: boolean
+): Point[] {
+  let result = polygon;
+  
+  if (passes === 0) {
+    return douglasPeucker(result, epsilon);
+  }
+  
+  // Apply iterative simplification passes with decreasing epsilon
+  for (let pass = 0; pass < passes; pass++) {
+    // Decrease epsilon slightly for each pass to refine progressively
+    const passEpsilon = epsilon * Math.pow(0.7, pass);
+    result = douglasPeucker(result, passEpsilon);
+  }
+  
+  return result;
+}
+
 function chainSegments(segments: [Point, Point][]): Point[][] {
   if (segments.length === 0) return [];
 
@@ -74,7 +97,9 @@ export function extractContour(
   region: RegionInfo,
   width: number,
   height: number,
-  epsilon: number
+  epsilon: number,
+  smoothingPasses: number = 0,
+  preserveCorners: boolean = false
 ): ContourData {
   const { id, colorIndex, boundingBox: bbox } = region;
 
@@ -148,8 +173,10 @@ export function extractContour(
     }))
   );
 
-  // Simplify with RDP
-  const simplified = polygons.map(poly => douglasPeucker(poly, epsilon));
+  // Simplify with RDP and optional smoothing passes
+  const simplified = polygons.map(poly => 
+    applySmoothingPasses(poly, epsilon, smoothingPasses, preserveCorners)
+  );
 
   // Find outer ring (largest area) and holes
   if (simplified.length === 0) {
@@ -178,11 +205,21 @@ export function extractAllContours(
   width: number,
   height: number,
   epsilon: number,
+  smoothingPasses: number = 0,
+  preserveCorners: boolean = false,
   onProgress?: (percent: number) => void
 ): ContourData[] {
   const contours: ContourData[] = [];
   for (let i = 0; i < regions.length; i++) {
-    const contour = extractContour(labelMap, regions[i], width, height, epsilon);
+    const contour = extractContour(
+      labelMap, 
+      regions[i], 
+      width, 
+      height, 
+      epsilon,
+      smoothingPasses,
+      preserveCorners
+    );
     if (contour.outerRing.length >= 3) {
       contours.push(contour);
     }

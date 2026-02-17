@@ -3,6 +3,7 @@ import { PaletteControls } from '../controls/PaletteControls';
 import { DetailControls } from '../controls/DetailControls';
 import { PreprocessingControls } from '../controls/PreprocessingControls';
 import { RenderingControls } from '../controls/RenderingControls';
+import { ContourSmoothingControls } from '../controls/ContourSmoothingControls';
 import { ExportButton } from '../controls/ExportButton';
 import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
@@ -48,6 +49,9 @@ export function Sidebar() {
         </div>
         <div className="mt-4 pt-4 border-t border-gray-200">
           <RenderingControls />
+        </div>
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <ContourSmoothingControls />
         </div>
       </div>
 

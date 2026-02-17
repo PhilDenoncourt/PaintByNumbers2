@@ -45,6 +45,8 @@ export interface ContourInput {
   width: number;
   height: number;
   simplificationEpsilon: number;
+  smoothingPasses: number;
+  preserveCorners: boolean;
 }
 
 export interface ContourOutput {

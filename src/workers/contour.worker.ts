@@ -12,6 +12,8 @@ self.onmessage = (e: MessageEvent) => {
       input.width,
       input.height,
       input.simplificationEpsilon,
+      input.smoothingPasses,
+      input.preserveCorners,
       (percent) => {
         self.postMessage({ type: 'progress', percent, message: 'Tracing outlines...' });
       }

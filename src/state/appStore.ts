@@ -58,6 +58,8 @@ const defaultSettings: PipelineSettings = {
   contrast: 0,
   saturation: 0,
   borderWidth: 0,
+  smoothingPasses: 0,
+  preserveCorners: false,
 };
 
 const defaultPipeline: PipelineState = {

@@ -99,6 +99,8 @@ export async function runPipeline(
       width,
       height,
       simplificationEpsilon: settings.simplificationEpsilon,
+      smoothingPasses: settings.smoothingPasses,
+      preserveCorners: settings.preserveCorners,
     },
     [merged.labelMap.buffer],
     (pct) => onProgress('contour', pct)

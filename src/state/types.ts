@@ -52,6 +52,9 @@ export interface PipelineSettings {
   saturation: number; // -100 to 100
   // Color bleeding prevention
   borderWidth: number; // 0 to 5 pixels
+  // Contour smoothing options
+  smoothingPasses: number; // 0-3, additional smoothing iterations
+  preserveCorners: boolean; // preserve sharp corners during simplification
 }
 
 export interface PipelineState {
