@@ -4,6 +4,7 @@ import { DetailControls } from '../controls/DetailControls';
 import { PreprocessingControls } from '../controls/PreprocessingControls';
 import { RenderingControls } from '../controls/RenderingControls';
 import { ContourSmoothingControls } from '../controls/ContourSmoothingControls';
+import { RegionMergeControls } from '../controls/RegionMergeControls';
 import { ExportButton } from '../controls/ExportButton';
 import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
@@ -101,6 +102,12 @@ export function Sidebar() {
             </button>
           </div>
           <PaletteLegend />
+        </div>
+      )}
+
+      {result && (
+        <div className="border-b border-gray-200">
+          <RegionMergeControls />
         </div>
       )}
 

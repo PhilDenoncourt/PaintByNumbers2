@@ -6,9 +6,25 @@ import type {
   PipelineStage,
   UIState,
   ViewMode,
+  MergeMode,
 } from './types';
 import { loadImageFromFile, imageToImageData } from '../utils/imageLoader';
 import { runPipeline } from '../pipeline/PipelineController';
+import { runRegionOpsWorker, runWorker } from '../utils/workerHelper';
+import type {
+  SuggestMergeInput,
+  SuggestMergeOutput,
+  PerformMergeInput,
+  PerformMergeOutput,
+  SplitCandidatesInput,
+  SplitCandidatesOutput,
+  PerformSplitInput,
+  PerformSplitOutput,
+  ContourInput,
+  ContourOutput,
+} from '../pipeline/types';
+import RegionOpsWorker from '../workers/regionOps.worker?worker';
+import ContourWorker from '../workers/contour.worker?worker';
 
 interface HistoryEntry {
   settings: PipelineSettings;
@@ -43,6 +59,13 @@ interface AppState {
   redo: () => void;
   reorderPalette: (oldIndex: number, newIndex: number) => void;
   changeRegionColor: (regionId: number, newColorIndex: number) => void;
+  setMergeMode: (mode: MergeMode) => void;
+  toggleRegionSelection: (regionId: number) => void;
+  clearRegionSelection: () => void;
+  suggestMergeTargets: (sourceRegionId: number) => Promise<void>;
+  performMerge: (regionAId: number, regionBId: number) => Promise<void>;
+  analyzeSplitCandidates: (regionId: number) => Promise<void>;
+  performSplit: (regionId: number, splitX: number, splitY: number) => Promise<void>;
   reset: () => void;
 }
 
@@ -76,6 +99,10 @@ const defaultUI: UIState = {
   zoom: 1,
   panX: 0,
   panY: 0,
+  mergeMode: 'browse',
+  selectedRegions: [],
+  mergeSuggestions: [],
+  splitAnalysis: null,
 };
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -227,6 +254,241 @@ export const useAppStore = create<AppState>((set, get) => ({
 
       return { result: newResult };
     });
+  },
+
+  setMergeMode: (mode) => set((s) => ({ ui: { ...s.ui, mergeMode: mode, selectedRegions: [] } })),
+
+  toggleRegionSelection: (regionId) => {
+    set((s) => {
+      const selected = [...s.ui.selectedRegions];
+      const idx = selected.indexOf(regionId);
+      if (idx >= 0) {
+        selected.splice(idx, 1);
+      } else {
+        selected.push(regionId);
+      }
+      return { ui: { ...s.ui, selectedRegions: selected } };
+    });
+  },
+
+  clearRegionSelection: () => {
+    set((s) => ({ ui: { ...s.ui, selectedRegions: [] } }));
+  },
+
+  suggestMergeTargets: async (sourceRegionId) => {
+    const { result } = get();
+    if (!result) return;
+
+    try {
+      const input: SuggestMergeInput = {
+        sourceRegionId,
+        regions: result.regions,
+        labelMap: result.labelMap,
+        palette: result.palette,
+        labPalette: result.palette, // Would need separate LAB palette in real implementation
+        width: result.width,
+        height: result.height,
+        topN: 5,
+      };
+
+      const output = await runRegionOpsWorker<SuggestMergeInput, SuggestMergeOutput>(
+        RegionOpsWorker,
+        'suggest-merge',
+        input,
+        []
+      );
+
+      set((s) => ({
+        ui: {
+          ...s.ui,
+          mergeSuggestions: output.suggestions,
+        },
+      }));
+    } catch (err) {
+      console.error('Failed to suggest merge targets:', err);
+    }
+  },
+
+  performMerge: async (regionAId, regionBId) => {
+    const { result, settings } = get();
+    if (!result) return;
+
+    try {
+      const input: PerformMergeInput = {
+        regionAId,
+        regionBId,
+        labelMap: result.labelMap,
+        regions: result.regions,
+      };
+
+      const output = await runRegionOpsWorker<PerformMergeInput, PerformMergeOutput>(
+        RegionOpsWorker,
+        'perform-merge',
+        input,
+        [result.labelMap.buffer]
+      );
+
+      // Recompute contours after merge to reflect new merged geometry
+      const contourInput: ContourInput = {
+        labelMap: output.labelMap,
+        regions: output.regions,
+        width: result.width,
+        height: result.height,
+        simplificationEpsilon: settings.simplificationEpsilon,
+        smoothingPasses: settings.smoothingPasses,
+        preserveCorners: settings.preserveCorners,
+      };
+
+      const contourOutput = await runWorker<ContourInput, ContourOutput>(
+        ContourWorker,
+        contourInput,
+        [output.labelMap.buffer],
+        () => {}
+      );
+
+      set((s) => {
+        if (!s.result) return {};
+
+        // Update result with new labelMap, regions, and recomputed contours
+        const newResult = {
+          ...s.result,
+          labelMap: output.labelMap,
+          regions: output.regions,
+          contours: contourOutput.contours,
+        };
+
+        // Update labels to remove labels from merged region
+        newResult.labels = newResult.labels.filter((l) => l.regionId !== regionAId);
+
+        // Add to history
+        const newHistory = s.history.slice(0, s.historyIndex + 1);
+        newHistory.push({
+          settings: { ...s.settings },
+          result: newResult,
+          timestamp: Date.now(),
+        });
+
+        return {
+          result: newResult,
+          history: newHistory,
+          historyIndex: newHistory.length - 1,
+          ui: {
+            ...s.ui,
+            selectedRegions: [],
+            mergeSuggestions: [],
+          },
+        };
+      });
+    } catch (err) {
+      console.error('Failed to perform merge:', err);
+    }
+  },
+
+  analyzeSplitCandidates: async (regionId) => {
+    const { result } = get();
+    if (!result) return;
+
+    try {
+      const input: SplitCandidatesInput = {
+        regionId,
+        labelMap: result.labelMap,
+        palette: result.palette,
+        width: result.width,
+        height: result.height,
+      };
+
+      const output = await runRegionOpsWorker<SplitCandidatesInput, SplitCandidatesOutput>(
+        RegionOpsWorker,
+        'split-candidates',
+        input,
+        []
+      );
+
+      set((s) => ({
+        ui: {
+          ...s.ui,
+          splitAnalysis: output.analysis,
+        },
+      }));
+    } catch (err) {
+      console.error('Failed to analyze split candidates:', err);
+    }
+  },
+
+  performSplit: async (regionId, splitX, splitY) => {
+    const { result, sourceImageData, settings } = get();
+    if (!result || !sourceImageData) return;
+
+    try {
+      const input: PerformSplitInput = {
+        regionId,
+        splitX,
+        splitY,
+        labelMap: result.labelMap,
+        regions: result.regions,
+        imageData: sourceImageData,
+        colorThreshold: 30,
+        width: result.width,
+        height: result.height,
+      };
+
+      const output = await runRegionOpsWorker<PerformSplitInput, PerformSplitOutput>(
+        RegionOpsWorker,
+        'perform-split',
+        input,
+        [result.labelMap.buffer]
+      );
+
+      // Recompute contours after split to get correct geometry for both new regions
+      const contourInput: ContourInput = {
+        labelMap: output.labelMap,
+        regions: output.regions,
+        width: result.width,
+        height: result.height,
+        simplificationEpsilon: settings.simplificationEpsilon,
+        smoothingPasses: settings.smoothingPasses,
+        preserveCorners: settings.preserveCorners,
+      };
+
+      const contourOutput = await runWorker<ContourInput, ContourOutput>(
+        ContourWorker,
+        contourInput,
+        [output.labelMap.buffer],
+        () => {}
+      );
+
+      set((s) => {
+        if (!s.result) return {};
+
+        const newResult = {
+          ...s.result,
+          labelMap: output.labelMap,
+          regions: output.regions,
+          contours: contourOutput.contours,
+        };
+
+        // Add to history
+        const newHistory = s.history.slice(0, s.historyIndex + 1);
+        newHistory.push({
+          settings: { ...s.settings },
+          result: newResult,
+          timestamp: Date.now(),
+        });
+
+        return {
+          result: newResult,
+          history: newHistory,
+          historyIndex: newHistory.length - 1,
+          ui: {
+            ...s.ui,
+            splitAnalysis: null,
+            selectedRegions: [],
+          },
+        };
+      });
+    } catch (err) {
+      console.error('Failed to perform split:', err);
+    }
   },
 
   reset: () => {

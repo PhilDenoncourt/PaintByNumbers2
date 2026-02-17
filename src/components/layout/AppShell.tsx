@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAppStore } from '../../state/appStore';
 import { ImageUploader } from '../upload/ImageUploader';
 import { Sidebar } from './Sidebar';
@@ -14,6 +15,32 @@ export function AppShell() {
   const processedHeight = useAppStore((s) => s.processedHeight);
   const regionCount = result?.regions.length ?? 0;
   const hoveredRegion = useAppStore((s) => s.ui.hoveredRegion);
+  const mergeMode = useAppStore((s) => s.ui.mergeMode);
+  const setMergeMode = useAppStore((s) => s.setMergeMode);
+
+  // Keyboard shortcuts for merge/split modes
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'm' || e.key === 'M') {
+        if (mergeMode === 'merge') {
+          setMergeMode('browse');
+        } else {
+          setMergeMode('merge');
+        }
+      } else if (e.key === 's' || e.key === 'S') {
+        if (mergeMode === 'split') {
+          setMergeMode('browse');
+        } else {
+          setMergeMode('split');
+        }
+      } else if (e.key === 'Escape') {
+        setMergeMode('browse');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mergeMode, setMergeMode]);
 
   // Find hovered region info for tooltip
   let tooltipText = '';

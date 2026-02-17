@@ -2,6 +2,8 @@ export type PipelineStage = 'quantize' | 'segment' | 'merge' | 'contour' | 'labe
 
 export type ViewMode = 'colored' | 'print' | 'sidebyside' | 'overlay';
 
+export type MergeMode = 'browse' | 'merge' | 'split';
+
 export type Algorithm = 'kmeans' | 'mediancut';
 
 export interface BBox {
@@ -81,4 +83,24 @@ export interface UIState {
   zoom: number;
   panX: number;
   panY: number;
+  // Region merge/split state
+  mergeMode: MergeMode;
+  selectedRegions: number[]; // regions selected for merge
+  mergeSuggestions: Array<{
+    targetRegionId: number;
+    colorDistance: number;
+    isAdjacent: boolean;
+    edgeCoherence: number;
+    contextScore: number;
+  }>;
+  splitAnalysis: {
+    regionId: number;
+    hasSubregions: boolean;
+    estimatedVariance: number;
+    splitCandidates: Array<{
+      x: number;
+      y: number;
+      strength: number;
+    }>;
+  } | null;
 }
