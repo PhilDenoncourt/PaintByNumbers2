@@ -251,3 +251,128 @@ export function downloadPdf(
   const doc = generatePdf(result, includeColor, presetPaletteId);
   doc.save(filename);
 }
+export function generateColorLegendPdf(
+  result: PipelineResult,
+  presetPaletteId: string | null = null,
+): jsPDF {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+
+  // White background
+  doc.setFillColor(255, 255, 255);
+  doc.rect(0, 0, pageW, pageH, 'F');
+
+  let startY = MARGIN_MM;
+
+  // Title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Paint by Numbers - Color Legend', MARGIN_MM, startY);
+
+  startY += 12;
+
+  // Resolve preset palette for crayon names
+  let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
+  if (presetPaletteId) {
+    const preset = crayolaPalettes.find(
+      (p) => `crayola-${p.size}` === presetPaletteId
+    );
+    if (preset) {
+      presetColors = preset.colors;
+    }
+  }
+
+  const palette = result.palette;
+  const availableW = pageW - 2 * MARGIN_MM;
+  const cols = Math.max(1, Math.floor(availableW / LEGEND_ENTRY_WIDTH));
+
+  // Count regions per color
+  const regionsPerColor = new Map<number, number>();
+  for (const label of result.labels) {
+    regionsPerColor.set(label.colorIndex, (regionsPerColor.get(label.colorIndex) || 0) + 1);
+  }
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setLineWidth(0.3);
+
+  for (let i = 0; i < palette.length; i++) {
+    const [r, g, b] = palette[i];
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const x = MARGIN_MM + col * LEGEND_ENTRY_WIDTH;
+    const y = startY + row * LEGEND_ENTRY_HEIGHT;
+
+    // Check if we need a new page
+    if (y + LEGEND_ENTRY_HEIGHT > pageH - MARGIN_MM) {
+      doc.addPage('a4', 'portrait');
+      startY = MARGIN_MM;
+      // Swatch
+      doc.setFillColor(r, g, b);
+      doc.setDrawColor(0, 0, 0);
+      doc.rect(x, startY, SWATCH_SIZE, SWATCH_SIZE, 'FD');
+
+      // Label and region count
+      doc.setTextColor(0, 0, 0);
+      let labelText: string;
+      if (presetColors) {
+        const match = presetColors.find(
+          (c) => c.rgb[0] === r && c.rgb[1] === g && c.rgb[2] === b
+        );
+        labelText = match ? `${i + 1} - ${match.name}` : `${i + 1} - ${rgbToHex(r, g, b)}`;
+      } else {
+        labelText = `${i + 1} - ${rgbToHex(r, g, b)}`;
+      }
+      const regionCount = regionsPerColor.get(i) || 0;
+      doc.text(
+        `${labelText} (${regionCount} regions)`,
+        x + SWATCH_SIZE + 2,
+        startY + SWATCH_SIZE / 2,
+        { baseline: 'middle' },
+      );
+      continue;
+    }
+
+    // Swatch
+    doc.setFillColor(r, g, b);
+    doc.setDrawColor(0, 0, 0);
+    doc.rect(x, y, SWATCH_SIZE, SWATCH_SIZE, 'FD');
+
+    // Label and region count
+    doc.setTextColor(0, 0, 0);
+    let labelText: string;
+    if (presetColors) {
+      const match = presetColors.find(
+        (c) => c.rgb[0] === r && c.rgb[1] === g && c.rgb[2] === b
+      );
+      labelText = match ? `${i + 1} - ${match.name}` : `${i + 1} - ${rgbToHex(r, g, b)}`;
+    } else {
+      labelText = `${i + 1} - ${rgbToHex(r, g, b)}`;
+    }
+    const regionCount = regionsPerColor.get(i) || 0;
+    doc.text(
+      `${labelText} (${regionCount} regions)`,
+      x + SWATCH_SIZE + 2,
+      y + SWATCH_SIZE / 2,
+      { baseline: 'middle' },
+    );
+  }
+
+  return doc;
+}
+
+export function downloadColorLegendPdf(
+  result: PipelineResult,
+  presetPaletteId: string | null = null,
+  filename: string = 'paint-by-numbers-color-guide.pdf',
+): void {
+  const doc = generateColorLegendPdf(result, presetPaletteId);
+  doc.save(filename);
+}

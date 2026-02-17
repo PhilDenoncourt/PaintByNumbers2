@@ -45,6 +45,7 @@ export interface PipelineSettings {
   detailLevel: number;
   simplificationEpsilon: number;
   presetPaletteId: string | null; // e.g. 'crayola-8', null = auto
+  customPalette: [number, number, number][] | null; // custom RGB palette
 }
 
 export interface PipelineState {

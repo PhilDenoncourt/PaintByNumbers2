@@ -1,5 +1,6 @@
 import { useAppStore } from '../../state/appStore';
 import { crayolaPalettes } from '../../data/crayolaPalettes';
+import { CustomPaletteControls } from './CustomPaletteControls';
 
 export function PaletteControls() {
   const settings = useAppStore((s) => s.settings);
@@ -9,6 +10,11 @@ export function PaletteControls() {
   const disabled = pipelineStatus === 'running';
 
   const isPreset = settings.presetPaletteId !== null;
+  const isCustom = settings.customPalette !== null && settings.customPalette.length > 0;
+
+  let paletteMode: 'auto' | 'preset' | 'custom' = 'auto';
+  if (isPreset) paletteMode = 'preset';
+  if (isCustom) paletteMode = 'custom';
 
   return (
     <div className="space-y-3">
@@ -16,19 +22,20 @@ export function PaletteControls() {
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Palette Mode</label>
         <select
-          value={isPreset ? 'preset' : 'auto'}
+          value={paletteMode}
           onChange={(e) => {
             if (e.target.value === 'auto') {
               updateSettings({ presetPaletteId: null });
-            } else {
+            } else if (e.target.value === 'preset') {
               updateSettings({ presetPaletteId: `crayola-${crayolaPalettes[0].size}` });
             }
           }}
-          disabled={disabled}
-          className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none"
+          disabled={disabled || isCustom}
+          className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
         >
           <option value="auto">Auto-detect</option>
           <option value="preset">Crayola Preset</option>
+          <option value="custom">Custom Palette</option>
         </select>
       </div>
 
@@ -71,8 +78,11 @@ export function PaletteControls() {
         </div>
       )}
 
+      {/* Custom palette controls */}
+      {isCustom && <CustomPaletteControls />}
+
       {/* Palette size slider (only for auto mode) */}
-      {!isPreset && (
+      {!isPreset && !isCustom && (
         <div>
           <label className="flex items-center justify-between text-sm font-medium text-gray-700">
             <span>Palette Size</span>
@@ -93,6 +103,9 @@ export function PaletteControls() {
           </div>
         </div>
       )}
+
+      {/* Show custom palette upload when not in custom mode */}
+      {!isCustom && <CustomPaletteControls />}
     </div>
   );
 }

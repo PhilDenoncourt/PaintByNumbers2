@@ -10,6 +10,12 @@ import type {
 import { loadImageFromFile, imageToImageData } from '../utils/imageLoader';
 import { runPipeline } from '../pipeline/PipelineController';
 
+interface HistoryEntry {
+  settings: PipelineSettings;
+  result: PipelineResult | null;
+  timestamp: number;
+}
+
 interface AppState {
   sourceImage: HTMLImageElement | null;
   sourceImageUrl: string | null;
@@ -22,6 +28,10 @@ interface AppState {
   result: PipelineResult | null;
   ui: UIState;
 
+  history: HistoryEntry[];
+  historyIndex: number;
+  paletteColorOrder: number[] | null; // null = original order, else: [newIndex0, newIndex1, ...]
+
   loadImage: (file: File) => Promise<void>;
   updateSettings: (partial: Partial<PipelineSettings>) => void;
   startPipeline: () => Promise<void>;
@@ -29,6 +39,9 @@ interface AppState {
   setSelectedColor: (idx: number | null) => void;
   setViewMode: (mode: ViewMode) => void;
   setZoomPan: (zoom: number, panX: number, panY: number) => void;
+  undo: () => void;
+  redo: () => void;
+  reorderPalette: (oldIndex: number, newIndex: number) => void;
   reset: () => void;
 }
 
@@ -39,6 +52,7 @@ const defaultSettings: PipelineSettings = {
   detailLevel: 30,
   simplificationEpsilon: 1.5,
   presetPaletteId: null,
+  customPalette: null,
 };
 
 const defaultPipeline: PipelineState = {
@@ -68,6 +82,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   pipeline: { ...defaultPipeline },
   result: null,
   ui: { ...defaultUI },
+
+  history: [],
+  historyIndex: -1,
+  paletteColorOrder: null,
 
   loadImage: async (file: File) => {
     const oldUrl = get().sourceImageUrl;
@@ -108,9 +126,16 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     try {
       const result = await runPipeline(sourceImageData, settings, onProgress);
-      set({
-        pipeline: { status: 'complete', currentStage: null, stageProgress: 100, error: null },
-        result,
+      set((s) => {
+        // Add to history after successful pipeline
+        const newHistory = s.history.slice(0, s.historyIndex + 1);
+        newHistory.push({ settings: { ...settings }, result, timestamp: Date.now() });
+        return {
+          pipeline: { status: 'complete', currentStage: null, stageProgress: 100, error: null },
+          result,
+          history: newHistory,
+          historyIndex: newHistory.length - 1,
+        };
       });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Pipeline failed';
@@ -125,6 +150,47 @@ export const useAppStore = create<AppState>((set, get) => ({
   setViewMode: (mode) => set((s) => ({ ui: { ...s.ui, viewMode: mode } })),
   setZoomPan: (zoom, panX, panY) => set((s) => ({ ui: { ...s.ui, zoom, panX, panY } })),
 
+  undo: () => {
+    set((s) => {
+      if (s.historyIndex <= 0) return {};
+      const newIndex = s.historyIndex - 1;
+      const entry = s.history[newIndex];
+      return {
+        historyIndex: newIndex,
+        settings: { ...entry.settings },
+        result: entry.result,
+      };
+    });
+  },
+
+  redo: () => {
+    set((s) => {
+      if (s.historyIndex >= s.history.length - 1) return {};
+      const newIndex = s.historyIndex + 1;
+      const entry = s.history[newIndex];
+      return {
+        historyIndex: newIndex,
+        settings: { ...entry.settings },
+        result: entry.result,
+      };
+    });
+  },
+
+  reorderPalette: (oldIndex: number, newIndex: number) => {
+    set((s) => {
+      if (!s.result) return {};
+      
+      // Create new color order or use existing
+      let order = s.paletteColorOrder ? [...s.paletteColorOrder] : Array.from({ length: s.result.palette.length }, (_, i) => i);
+      
+      // Remove from oldIndex and insert at newIndex
+      const [moved] = order.splice(oldIndex, 1);
+      order.splice(newIndex, 0, moved);
+      
+      return { paletteColorOrder: order };
+    });
+  },
+
   reset: () => {
     const oldUrl = get().sourceImageUrl;
     if (oldUrl) URL.revokeObjectURL(oldUrl);
@@ -138,6 +204,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       pipeline: { ...defaultPipeline },
       result: null,
       ui: { ...defaultUI },
+      history: [],
+      historyIndex: -1,
+      paletteColorOrder: null,
     });
   },
 }));

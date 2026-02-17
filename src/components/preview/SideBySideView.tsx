@@ -42,20 +42,28 @@ export function SideBySideView() {
     return (
       <div className="flex flex-col h-full">
         <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />
-        <div className="px-4 pb-2 flex items-center gap-3">
-          <span className="text-xs text-gray-500">Original</span>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.05}
-            value={overlayOpacity}
-            onChange={(e) => setOverlayOpacity(Number(e.target.value))}
-            className="flex-1 accent-blue-600"
-          />
-          <span className="text-xs text-gray-500">PBN</span>
+        <div className="px-4 pb-3 space-y-2 bg-white border-b border-gray-200">
+          <div className="text-xs font-medium text-gray-700">Before/After Slider</div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-500 font-medium min-w-12">Before</span>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={overlayOpacity}
+              onChange={(e) => setOverlayOpacity(Number(e.target.value))}
+              className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              style={{
+                WebkitAppearance: 'slider-horizontal',
+              }}
+              aria-label="Before/After slider"
+            />
+            <span className="text-xs text-gray-500 font-medium min-w-12 text-right">After</span>
+          </div>
+          <div className="text-xs text-gray-400">Drag to compare original photo with paint-by-numbers</div>
         </div>
-        <div className="flex-1 relative min-h-0 overflow-hidden rounded-lg">
+        <div className="flex-1 relative min-h-0 overflow-hidden rounded-lg bg-gray-100">
           {sourceImageUrl && (
             <img
               src={sourceImageUrl}

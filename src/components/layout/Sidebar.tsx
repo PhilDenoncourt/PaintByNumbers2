@@ -2,6 +2,7 @@ import { useAppStore } from '../../state/appStore';
 import { PaletteControls } from '../controls/PaletteControls';
 import { DetailControls } from '../controls/DetailControls';
 import { ExportButton } from '../controls/ExportButton';
+import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
 
 export function Sidebar() {
@@ -11,8 +12,25 @@ export function Sidebar() {
   const startPipeline = useAppStore((s) => s.startPipeline);
   const reset = useAppStore((s) => s.reset);
   const pipelineError = useAppStore((s) => s.pipeline.error);
+  const undo = useAppStore((s) => s.undo);
+  const redo = useAppStore((s) => s.redo);
+  const historyIndex = useAppStore((s) => s.historyIndex);
+  const history = useAppStore((s) => s.history);
 
-  if (!sourceImageData) return null;
+  const canUndo = historyIndex > 0;
+  const canRedo = historyIndex < history.length - 1;
+
+  // Show minimal sidebar with session controls even without image
+  if (!sourceImageData) {
+    return (
+      <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
+        <div className="p-4 border-b border-gray-200">
+          <h2 className="text-sm font-semibold text-gray-800 mb-3">Session</h2>
+          <SessionControls />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
@@ -43,7 +61,39 @@ export function Sidebar() {
 
       {result && (
         <div className="p-4 border-b border-gray-200">
+          <div className="flex gap-2 mb-3">
+            <button
+              onClick={undo}
+              disabled={!canUndo}
+              className={`flex-1 py-1.5 px-3 rounded text-xs font-medium transition-colors ${
+                canUndo
+                  ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              title="Undo (Ctrl+Z)"
+            >
+              ↶ Undo
+            </button>
+            <button
+              onClick={redo}
+              disabled={!canRedo}
+              className={`flex-1 py-1.5 px-3 rounded text-xs font-medium transition-colors ${
+                canRedo
+                  ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              title="Redo (Ctrl+Y)"
+            >
+              ↷ Redo
+            </button>
+          </div>
           <PaletteLegend />
+        </div>
+      )}
+
+      {result && (
+        <div className="p-4 border-b border-gray-200">
+          <SessionControls />
         </div>
       )}
 
