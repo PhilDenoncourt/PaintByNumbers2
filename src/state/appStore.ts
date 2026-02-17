@@ -42,6 +42,7 @@ interface AppState {
   undo: () => void;
   redo: () => void;
   reorderPalette: (oldIndex: number, newIndex: number) => void;
+  changeRegionColor: (regionId: number, newColorIndex: number) => void;
   reset: () => void;
 }
 
@@ -191,6 +192,37 @@ export const useAppStore = create<AppState>((set, get) => ({
       order.splice(newIndex, 0, moved);
       
       return { paletteColorOrder: order };
+    });
+  },
+
+  changeRegionColor: (regionId: number, newColorIndex: number) => {
+    set((s) => {
+      if (!s.result) return {};
+
+      const newResult = { ...s.result };
+
+      // Update contours
+      newResult.contours = newResult.contours.map((contour) =>
+        contour.regionId === regionId
+          ? { ...contour, colorIndex: newColorIndex }
+          : contour
+      );
+
+      // Update labels
+      newResult.labels = newResult.labels.map((label) =>
+        label.regionId === regionId
+          ? { ...label, colorIndex: newColorIndex }
+          : label
+      );
+
+      // Update regions
+      newResult.regions = newResult.regions.map((region) =>
+        region.id === regionId
+          ? { ...region, colorIndex: newColorIndex }
+          : region
+      );
+
+      return { result: newResult };
     });
   },
 

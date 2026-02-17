@@ -37,8 +37,11 @@ export function PaletteLegend() {
     if (label) hoveredColorIndex = label.colorIndex;
   }
 
-  const handleDragStart = (idx: number) => {
+  const handleDragStart = (idx: number, e: React.DragEvent) => {
     setDraggedFrom(idx);
+    // Set data for dragging color to regions
+    e.dataTransfer.effectAllowed = 'copy';
+    e.dataTransfer.setData('application/x-color-index', String(idx));
   };
 
   const handleDragOver = (e: React.DragEvent, idx: number) => {
@@ -100,10 +103,11 @@ export function PaletteLegend() {
             <div
               key={colorIdx}
               draggable
-              onDragStart={() => handleDragStart(displayOrder)}
+              onDragStart={(e) => handleDragStart(displayOrder, e)}
               onDragOver={(e) => handleDragOver(e, displayOrder)}
               onDrop={(e) => handleDrop(e, displayOrder)}
               onDragEnd={handleDragEnd}
+              title="Drag to palette to reorder, or drag to a region to change its color"
               className={`flex items-center gap-2 w-full px-2 py-1 rounded text-sm transition-all cursor-move ${
                 draggedFrom === displayOrder
                   ? 'opacity-50 bg-gray-200'
