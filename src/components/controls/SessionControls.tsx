@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { sessionStorage } from '../../utils/sessionStorage';
 
 export function SessionControls() {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const sourceImageUrl = useAppStore((s) => s.sourceImageUrl);
@@ -14,7 +16,7 @@ export function SessionControls() {
 
   const handleAutoSave = () => {
     sessionStorage.autoSave(settings, result, sourceImageUrl);
-    alert('Session auto-saved to browser storage!');
+    alert(t('export.autoSaveMessage'));
   };
 
   const handleExport = () => {
@@ -87,12 +89,12 @@ export function SessionControls() {
         onClick={handleLoadClick}
         className="w-full py-2 px-4 rounded-lg font-medium text-sm transition-colors bg-purple-500 text-white hover:bg-purple-600"
       >
-        Load Session
+        {t('export.loadSession')}
       </button>
 
       {canSave && (
         <>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">Save</p>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">{t('common.save')}</p>
           <button
             onClick={handleAutoSave}
             disabled={!canSave}
@@ -102,7 +104,7 @@ export function SessionControls() {
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
-            Save to Browser
+            {t('export.saveToBrowser')}
           </button>
 
           <button
@@ -114,7 +116,7 @@ export function SessionControls() {
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
-            Export Session
+            {t('export.exportSession')}
           </button>
         </>
       )}

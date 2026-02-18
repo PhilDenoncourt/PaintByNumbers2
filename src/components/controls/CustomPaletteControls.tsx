@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { rgbToHex } from '../../algorithms/colorUtils';
 
 export function CustomPaletteControls() {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textInputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -55,12 +57,12 @@ export function CustomPaletteControls() {
 
         if (palette && palette.length > 0) {
           updateSettings({ customPalette: palette, paletteSize: palette.length });
-          alert(`Loaded custom palette with ${palette.length} colors`);
+          alert(`${t('controls.loadedPalette').replace('{{count}}', palette.length.toString())}`);
         } else {
-          alert('Failed to parse palette file');
+          alert(t("controls.failedParse"));
         }
       } catch (err) {
-        alert(`Error reading file: ${err instanceof Error ? err.message : 'Unknown error'}`);
+        alert(`${t('controls.errorReading')}: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }
     };
     reader.readAsText(file);
@@ -76,9 +78,9 @@ export function CustomPaletteControls() {
 
     if (palette && palette.length > 0) {
       updateSettings({ customPalette: palette, paletteSize: palette.length });
-      alert(`Loaded custom palette with ${palette.length} colors`);
+      alert(`${t('controls.loadedPalette').replace('{{count}}', palette.length.toString())}`);
     } else {
-      alert('No valid hex colors found');
+      alert(t('controls.noValidHex'));
     }
   };
 
@@ -88,12 +90,12 @@ export function CustomPaletteControls() {
 
   return (
     <div className="space-y-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-      <h4 className="text-sm font-medium text-gray-700">Custom Palette</h4>
+      <h4 className="text-sm font-medium text-gray-700">{t('controls.customPalette')}</h4>
 
       {hasCustomPalette && settings.customPalette && (
         <div className="space-y-2">
           <div className="text-xs text-gray-600">
-            Current: {settings.customPalette.length} colors
+            {t('controls.currentColors')}: {settings.customPalette.length} {t('controls.colorPlural')}
           </div>
           <div className="flex flex-wrap gap-1">
             {settings.customPalette.map((color, idx) => (
@@ -114,7 +116,7 @@ export function CustomPaletteControls() {
                 : 'bg-red-100 text-red-600 hover:bg-red-200'
             }`}
           >
-            Clear
+            {t('controls.clear')}
           </button>
         </div>
       )}
@@ -138,13 +140,13 @@ export function CustomPaletteControls() {
                 : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
             }`}
           >
-            Upload Palette File
+            {t('controls.uploadPaletteFile')}
           </button>
 
-          <div className="text-xs text-gray-500">or paste hex colors:</div>
+          <div className="text-xs text-gray-500">{t('controls.orPasteHex')}</div>
           <textarea
             ref={textInputRef}
-            placeholder="#FF0000 #00FF00 #0000FF"
+            placeholder={t('controls.paletteExample')}
             disabled={disabled}
             className="w-full text-xs px-2 py-1 border border-gray-300 rounded resize-none"
             rows={2}
@@ -158,11 +160,11 @@ export function CustomPaletteControls() {
                 : 'bg-green-100 text-green-600 hover:bg-green-200'
             }`}
           >
-            Load from Text
+            {t('controls.loadFromText')}
           </button>
 
           <p className="text-xs text-gray-400 leading-tight">
-            Supports: JSON arrays, hex codes separated by spaces/newlines
+            {t('controls.paletteSupports')}
           </p>
         </div>
       )}

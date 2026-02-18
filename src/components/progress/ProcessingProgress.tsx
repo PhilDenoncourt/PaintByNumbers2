@@ -1,18 +1,20 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import type { PipelineStage } from '../../state/types';
 
-const stageLabels: Record<PipelineStage, string> = {
-  quantize: 'Quantizing colors',
-  segment: 'Finding regions',
-  merge: 'Merging small regions',
-  contour: 'Tracing outlines',
-  label: 'Placing labels',
-};
-
-const stageOrder: PipelineStage[] = ['quantize', 'segment', 'merge', 'contour', 'label'];
-
 export function ProcessingProgress() {
+  const { t } = useTranslation();
   const pipeline = useAppStore((s) => s.pipeline);
+
+  const stageLabels: Record<PipelineStage, string> = {
+    quantize: t('processing.quantizing'),
+    segment: t('processing.findingRegions'),
+    merge: t('processing.merging'),
+    contour: t('processing.tracingOutlines'),
+    label: t('processing.placingLabels'),
+  };
+
+  const stageOrder: PipelineStage[] = ['quantize', 'segment', 'merge', 'contour', 'label'];
 
   if (pipeline.status !== 'running') return null;
 
@@ -22,7 +24,7 @@ export function ProcessingProgress() {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-      <h3 className="text-sm font-medium text-gray-700 mb-4">Processing...</h3>
+      <h3 className="text-sm font-medium text-gray-700 mb-4">{t('processing.processing')}</h3>
       <div className="space-y-3">
         {stageOrder.map((stage, idx) => {
           const isComplete = idx < currentIdx;

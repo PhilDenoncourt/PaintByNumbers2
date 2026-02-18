@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { rgbToHex } from '../../algorithms/colorUtils';
 import { crayolaPalettes } from '../../data/crayolaPalettes';
 
 export function PaletteLegend() {
+  const { t } = useTranslation();
   const [draggedFrom, setDraggedFrom] = useState<number | null>(null);
   const [draggedOver, setDraggedOver] = useState<number | null>(null);
 
@@ -73,10 +75,10 @@ export function PaletteLegend() {
   return (
     <div className="space-y-1">
       <h3 className="text-sm font-medium text-gray-700 mb-2">
-        Colors ({result.palette.length})
+        {t('palette.title')} ({result.palette.length})
       </h3>
       <div className="text-xs text-gray-400 mb-1">
-        💡 Drag colors to reorder
+        {t('palette.dragToReorder')}
       </div>
       <div className="max-h-64 overflow-y-auto space-y-1">
         {displayIndices.map((colorIdx, displayOrder) => {
@@ -107,7 +109,7 @@ export function PaletteLegend() {
               onDragOver={(e) => handleDragOver(e, displayOrder)}
               onDrop={(e) => handleDrop(e, displayOrder)}
               onDragEnd={handleDragEnd}
-              title="Drag to palette to reorder, or drag to a region to change its color"
+              title={t('palette.dragTip')}
               className={`flex items-center gap-2 w-full px-2 py-1 rounded text-sm transition-all cursor-move ${
                 draggedFrom === displayOrder
                   ? 'opacity-50 bg-gray-200'

@@ -1,6 +1,8 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 
 export function ContourSmoothingControls() {
+  const { t } = useTranslation();
   const settings = useAppStore((s) => s.settings);
   const updateSettings = useAppStore((s) => s.updateSettings);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
@@ -9,12 +11,12 @@ export function ContourSmoothingControls() {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-semibold text-gray-800 mb-3">Contour Smoothing</h3>
+      <h3 className="text-sm font-semibold text-gray-800 mb-3">{t('controls.contourSmoothing')}</h3>
       
       {/* Smoothing Strength */}
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
-          <span>Smoothing Strength</span>
+          <span>{t('controls.smoothingStrength')}</span>
           <span className="text-gray-500 font-mono text-xs">{settings.simplificationEpsilon.toFixed(1)}px</span>
         </label>
         <input
@@ -28,18 +30,18 @@ export function ContourSmoothingControls() {
           className="w-full accent-blue-600"
         />
         <div className="flex justify-between text-xs text-gray-400 mt-1">
-          <span>Sharp edges</span>
-          <span>Smooth curves</span>
+          <span>{t('controls.sharpEdges')}</span>
+          <span>{t('controls.smoothCurves')}</span>
         </div>
         <p className="text-xs text-gray-500 mt-2">
-          Controls how much to simplify contour lines. Lower values preserve more detail.
+          {t('controls.simplifyDescription')}
         </p>
       </div>
 
       {/* Smoothing Passes */}
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
-          <span>Smoothing Passes</span>
+          <span>{t('controls.smoothingPasses')}</span>
           <span className="text-gray-500 font-mono text-xs">{settings.smoothingPasses}</span>
         </label>
         <input
@@ -53,18 +55,18 @@ export function ContourSmoothingControls() {
           className="w-full accent-blue-600"
         />
         <div className="flex justify-between text-xs text-gray-400 mt-1">
-          <span>None</span>
-          <span>Heavy</span>
+          <span>{t('common.none')}</span>
+          <span>{t('controls.heavyLabel')}</span>
         </div>
         <p className="text-xs text-gray-500 mt-2">
-          Applies additional smoothing iterations. Higher values create rounder curves.
+          {t('controls.heavySmoothing')}
         </p>
       </div>
 
       {/* Preserve Corners */}
       <div className="flex items-center justify-between">
         <label className="text-sm font-medium text-gray-700">
-          Preserve Sharp Corners
+          {t('controls.preserveCorners')}
         </label>
         <input
           type="checkbox"
@@ -75,17 +77,17 @@ export function ContourSmoothingControls() {
         />
       </div>
       <p className="text-xs text-gray-500">
-        When enabled, keeps sharp corners intact instead of rounding them.
+        {t('controls.cornerDescription')}
       </p>
 
       {/* Visual Example */}
       <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
-        <p className="text-xs font-medium text-blue-900 mb-2">Smoothing Guide:</p>
+        <p className="text-xs font-medium text-blue-900 mb-2">{t('controls.smoothingGuide')}</p>
         <ul className="text-xs text-blue-800 space-y-1">
-          <li>• <strong>Low strength</strong> (0.5-1.0): Detailed, accurate outlines</li>
-          <li>• <strong>Medium strength</strong> (1.5-2.5): Balanced detail and smoothness</li>
-          <li>• <strong>High strength</strong> (3.0-5.0): Very smooth, simplified outlines</li>
-          <li>• <strong>Passes</strong>: Use 1-2 for moderate smoothing, 3+ for heavy smoothing</li>
+          <li>• <strong>{t('controls.lowStrength')}</strong> (0.5-1.0): {t('controls.detailedOutlines')}</li>
+          <li>• <strong>{t('controls.mediumStrength')}</strong> (1.5-2.5): {t('controls.balancedDetail')}</li>
+          <li>• <strong>{t('controls.highStrength')}</strong> (3.0-5.0): {t('controls.smoothOutlines')}</li>
+          <li>• <strong>Passes</strong>: {t('controls.passesDescription')}</li>
         </ul>
       </div>
     </div>

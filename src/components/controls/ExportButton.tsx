@@ -1,9 +1,11 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { generateSvg, downloadSvg } from '../../export/svgExporter';
 import { downloadPdf, downloadColorLegendPdf } from '../../export/pdfExporter';
 import { downloadPng, downloadColorLegendPng } from '../../export/pngExporter';
 
 export function ExportButton() {
+  const { t } = useTranslation();
   const result = useAppStore((s) => s.result);
   const presetPaletteId = useAppStore((s) => s.settings.presetPaletteId);
 
@@ -43,13 +45,13 @@ export function ExportButton() {
         onClick={() => handleSvgExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
       >
-        Export SVG (Outline)
+        {t('export.exportSvgOutline')}
       </button>
       <button
         onClick={() => handleSvgExport(true)}
         className="w-full py-2 px-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium text-sm"
       >
-        Export SVG (Colored)
+        {t('export.exportSvgColored')}
       </button>
 
       <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">PNG</p>
@@ -57,13 +59,13 @@ export function ExportButton() {
         onClick={() => handlePngExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
       >
-        Export PNG (Outline)
+        {t('export.exportPngOutline')}
       </button>
       <button
         onClick={() => handlePngExport(true)}
         className="w-full py-2 px-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium text-sm"
       >
-        Export PNG (Colored)
+        {t('export.exportPngColored')}
       </button>
 
       <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">PDF (Print-Ready)</p>
@@ -71,27 +73,27 @@ export function ExportButton() {
         onClick={() => handlePdfExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
       >
-        Export PDF (Outline)
+        {t('export.exportPdfOutline')}
       </button>
       <button
         onClick={() => handlePdfExport(true)}
         className="w-full py-2 px-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium text-sm"
       >
-        Export PDF (Colored)
+        {t('export.exportPdfColored')}
       </button>
 
-      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">Color Guide</p>
+      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">{t('export.colorGuide')}</p>
       <button
         onClick={() => handleColorGuideExport('pdf')}
         className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-sm"
       >
-        Color Guide (PDF)
+        {t('export.colorGuidePdf')}
       </button>
       <button
         onClick={() => handleColorGuideExport('png')}
         className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-sm"
       >
-        Color Guide (PNG)
+        {t('export.colorGuidePng')}
       </button>
     </div>
   );

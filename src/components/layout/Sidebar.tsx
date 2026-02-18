@@ -1,4 +1,5 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { PaletteControls } from '../controls/PaletteControls';
 import { DetailControls } from '../controls/DetailControls';
 import { PreprocessingControls } from '../controls/PreprocessingControls';
@@ -11,6 +12,7 @@ import { PaletteLegend } from '../palette/PaletteLegend';
 import { RegionStatistics } from '../statistics/RegionStatistics';
 
 export function Sidebar() {
+  const { t } = useTranslation();
   const sourceImageData = useAppStore((s) => s.sourceImageData);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
   const result = useAppStore((s) => s.result);
@@ -39,7 +41,7 @@ export function Sidebar() {
       {/* Quick Settings Section */}
       <div className="p-4 border-b border-gray-200">
         <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-4">
-          Palette
+          {t('sidebar.palette')}
         </h2>
         <PaletteControls />
       </div>
@@ -48,20 +50,20 @@ export function Sidebar() {
       <details className="border-b border-gray-200">
         <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
           <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
-            ⚙ Advanced Settings
+            ⚙ {t('sidebar.advancedSettings')}
           </h2>
         </summary>
         <div className="px-4 pb-4 space-y-4 bg-gray-50">
           <div>
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">Image</h3>
+            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.image')}</h3>
             <PreprocessingControls />
           </div>
           <div className="pt-3 border-t border-gray-200">
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">Quality</h3>
+            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.quality')}</h3>
             <DetailControls />
           </div>
           <div className="pt-3 border-t border-gray-200">
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">Output</h3>
+            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.output')}</h3>
             <RenderingControls />
           </div>
           <div className="pt-3 border-t border-gray-200">
@@ -81,7 +83,7 @@ export function Sidebar() {
               : 'bg-green-600 text-white hover:bg-green-700 shadow-sm'
           }`}
         >
-          {pipelineStatus === 'running' ? 'Processing...' : '✨ Generate'}
+          {pipelineStatus === 'running' ? t('sidebar.stop') : `✨ ${t('sidebar.generate')}`}
         </button>
         {pipelineError && (
           <p className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded">{pipelineError}</p>
@@ -94,7 +96,7 @@ export function Sidebar() {
           <details className="border-b border-gray-200">
             <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
               <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
-                ✏️ Edit
+                ✏️ {t('sidebar.edit')}
               </h2>
             </summary>
             <div className="px-4 pb-4 space-y-3 bg-gray-50">
@@ -109,7 +111,7 @@ export function Sidebar() {
                   }`}
                   title="Undo (Ctrl+Z)"
                 >
-                  ↶ Undo
+                  ↶ {t('sidebar.undo')}
                 </button>
                 <button
                   onClick={redo}
@@ -121,11 +123,11 @@ export function Sidebar() {
                   }`}
                   title="Redo (Ctrl+Y)"
                 >
-                  ↷ Redo
+                  ↷ {t('sidebar.redo')}
                 </button>
               </div>
               <div className="pt-2 border-t border-gray-200">
-                <h3 className="text-xs font-semibold text-gray-700 mb-2 uppercase">Colors</h3>
+                <h3 className="text-xs font-semibold text-gray-700 mb-2 uppercase">{t('palette.legend')}</h3>
                 <PaletteLegend />
               </div>
             </div>
@@ -134,7 +136,7 @@ export function Sidebar() {
           <details className="border-b border-gray-200">
             <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
               <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
-                🎯 Refine
+                🎯 {t('controls.regionMerging')}
               </h2>
             </summary>
             <div className="px-4 pb-4 bg-gray-50">
@@ -145,7 +147,7 @@ export function Sidebar() {
           <details className="border-b border-gray-200">
             <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
               <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
-                📊 Stats
+                📊 {t('statistics.title')}
               </h2>
             </summary>
             <div className="px-4 pb-4 bg-gray-50">
@@ -156,7 +158,7 @@ export function Sidebar() {
           <details className="border-b border-gray-200">
             <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
               <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
-                📤 Export & Save
+                📤 {t('sidebar.exportSave')}
               </h2>
             </summary>
             <div className="px-4 pb-4 space-y-3 bg-gray-50">
@@ -173,7 +175,7 @@ export function Sidebar() {
           onClick={reset}
           className="w-full py-2 px-4 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors font-medium"
         >
-          ↺ Upload New Image
+          ↺ {t('sidebar.uploadNewImage')}
         </button>
       </div>
     </div>

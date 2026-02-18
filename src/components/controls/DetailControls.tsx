@@ -1,4 +1,5 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 
 const DIFFICULTY_PRESETS = {
   simple: { detailLevel: 0, minRegionSize: 510 },
@@ -7,6 +8,7 @@ const DIFFICULTY_PRESETS = {
 };
 
 export function DetailControls() {
+  const { t } = useTranslation();
   const settings = useAppStore((s) => s.settings);
   const updateSettings = useAppStore((s) => s.updateSettings);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
@@ -32,7 +34,7 @@ export function DetailControls() {
     <div className="space-y-3">
       <div>
         <label className="text-sm font-medium text-gray-700 block mb-2">
-          Difficulty Level
+          {t('controls.difficultyLevel')}
         </label>
         <div className="flex gap-2">
           {(['simple', 'medium', 'complex'] as const).map((preset) => (
@@ -46,7 +48,7 @@ export function DetailControls() {
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              {preset.charAt(0).toUpperCase() + preset.slice(1)}
+              {t(`controls.${preset}`)}
             </button>
           ))}
         </div>
@@ -54,7 +56,7 @@ export function DetailControls() {
 
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-700">
-          <span>Detail Level (Fine Tune)</span>
+          <span>{t('controls.detailLevelFineTune')}</span>
           <span className="text-gray-500 font-mono">{settings.detailLevel}</span>
         </label>
         <input
@@ -80,7 +82,7 @@ export function DetailControls() {
 
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-700">
-          <span>Line Smoothing</span>
+          <span>{t('controls.lineSmoothing')}</span>
           <span className="text-gray-500 font-mono">{settings.simplificationEpsilon.toFixed(1)}</span>
         </label>
         <input

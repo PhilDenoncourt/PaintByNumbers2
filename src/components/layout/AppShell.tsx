@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { ImageUploader } from '../upload/ImageUploader';
 import { Sidebar } from './Sidebar';
+import { LanguageSelector } from './LanguageSelector';
 import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { SideBySideView } from '../preview/SideBySideView';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
 import { ErrorBoundary } from './ErrorBoundary';
 
 export function AppShell() {
+  const { t } = useTranslation();
   const sourceImageData = useAppStore((s) => s.sourceImageData);
   const sourceImageUrl = useAppStore((s) => s.sourceImageUrl);
   const result = useAppStore((s) => s.result);
@@ -58,18 +61,21 @@ export function AppShell() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold text-gray-800">Paint by Numbers</h1>
+          <h1 className="text-lg font-bold text-gray-800">{t('header.title')}</h1>
           {result && (
             <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
-              {processedWidth}x{processedHeight} &middot; {regionCount} regions
+              {processedWidth}x{processedHeight} &middot; {regionCount} {t('header.regions')}
             </span>
           )}
         </div>
-        {tooltipText && (
-          <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-lg">
-            {tooltipText}
-          </div>
-        )}
+        <div className="flex items-center gap-4">
+          {tooltipText && (
+            <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-lg">
+              {tooltipText}
+            </div>
+          )}
+          <LanguageSelector />
+        </div>
       </header>
 
       {/* Body */}
@@ -77,8 +83,8 @@ export function AppShell() {
         <ErrorBoundary fallback={
           <div className="w-64 bg-white border-r border-gray-200 p-4 flex items-center justify-center">
             <div className="text-sm text-red-600 text-center">
-              <p className="font-medium">Controls unavailable</p>
-              <p className="text-xs mt-1">Try refreshing the page</p>
+              <p className="font-medium">{t('sidebar.controlsUnavailable')}</p>
+              <p className="text-xs mt-1">{t('sidebar.tryRefreshing')}</p>
             </div>
           </div>
         }>
@@ -91,8 +97,8 @@ export function AppShell() {
               <div className="max-w-lg w-full">
                 <ErrorBoundary fallback={
                   <div className="bg-white rounded-lg shadow p-6">
-                    <p className="text-red-600 font-medium">Failed to load image uploader</p>
-                    <p className="text-sm text-gray-600 mt-2">Please refresh the page</p>
+                    <p className="text-red-600 font-medium">{t('sidebar.failedToLoadUploader')}</p>
+                    <p className="text-sm text-gray-600 mt-2">{t('errors.refreshPage')}</p>
                   </div>
                 }>
                   <ImageUploader />
@@ -106,7 +112,7 @@ export function AppShell() {
               <div className="text-center">
                 <ErrorBoundary fallback={
                   <div className="bg-white rounded-lg shadow p-6">
-                    <p className="text-red-600 font-medium">Preview unavailable</p>
+                    <p className="text-red-600 font-medium">{t('sidebar.previewUnavailable')}</p>
                   </div>
                 }>
                   <PreprocessedImagePreview />
@@ -119,7 +125,7 @@ export function AppShell() {
                   />
                 )}
                 <p className="text-gray-500 text-sm">
-                  Adjust settings on the left, then click "Generate Paint-by-Numbers"
+                  {t('sidebar.adjustSettings')}
                 </p>
               </div>
             </div>
@@ -142,7 +148,7 @@ export function AppShell() {
           {pipelineStatus === 'error' && (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center text-red-600">
-                <p className="font-medium">Processing failed</p>
+                <p className="font-medium">{t('sidebar.processingFailed')}</p>
                 <p className="text-sm mt-1">{useAppStore.getState().pipeline.error}</p>
               </div>
             </div>
@@ -152,8 +158,8 @@ export function AppShell() {
             <ErrorBoundary fallback={
               <div className="flex items-center justify-center h-full">
                 <div className="bg-white rounded-lg shadow p-8">
-                  <p className="text-red-600 font-medium">Failed to display result</p>
-                  <p className="text-sm text-gray-600 mt-2">Try regenerating the image</p>
+                  <p className="text-red-600 font-medium">{t('sidebar.failedToDisplay')}</p>
+                  <p className="text-sm text-gray-600 mt-2">{t('sidebar.tryRegenerate')}</p>
                 </div>
               </div>
             }>

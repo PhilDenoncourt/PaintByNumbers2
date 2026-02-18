@@ -1,8 +1,10 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { crayolaPalettes } from '../../data/crayolaPalettes';
 import { CustomPaletteControls } from './CustomPaletteControls';
 
 export function PaletteControls() {
+  const { t } = useTranslation();
   const settings = useAppStore((s) => s.settings);
   const updateSettings = useAppStore((s) => s.updateSettings);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
@@ -20,7 +22,7 @@ export function PaletteControls() {
     <div className="space-y-3">
       {/* Palette mode selector */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Palette Mode</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">{t('controls.paletteModeLabel')}</label>
         <select
           value={paletteMode}
           onChange={(e) => {
@@ -35,16 +37,16 @@ export function PaletteControls() {
           disabled={disabled}
           className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
         >
-          <option value="auto">Auto-detect</option>
-          <option value="preset">Crayola Preset</option>
-          <option value="custom">Custom Palette</option>
+          <option value="auto">{t('controls.autoDetect')}</option>
+          <option value="preset">{t('controls.crayolaPreset')}</option>
+          <option value="custom">{t('controls.customPalette')}</option>
         </select>
       </div>
 
       {/* Preset palette selector */}
       {isPreset && (
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Crayon Set</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('controls.crayonSet')}</label>
           <select
             value={settings.presetPaletteId ?? ''}
             onChange={(e) => updateSettings({ presetPaletteId: e.target.value })}
@@ -87,7 +89,7 @@ export function PaletteControls() {
       {!isPreset && !isCustomSelected && (
         <div>
           <label className="flex items-center justify-between text-sm font-medium text-gray-700">
-            <span>Palette Size</span>
+            <span>{t('controls.paletteSize')}</span>
             <span className="text-gray-500 font-mono">{settings.paletteSize}</span>
           </label>
           <input

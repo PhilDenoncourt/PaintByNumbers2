@@ -1,8 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import { sessionStorage } from '../../utils/sessionStorage';
 
 export function ImageUploader() {
+  const { t } = useTranslation();
   const loadImage = useAppStore((s) => s.loadImage);
   const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -125,10 +127,10 @@ export function ImageUploader() {
         />
       </svg>
       <p className="text-gray-600 font-medium mb-1">
-        Drop an image or saved session here, or click to browse
+        {t('uploader.dragDrop')}
       </p>
       <p className="text-gray-400 text-sm">
-        Images: JPEG, PNG, WebP. Sessions: .json files. You can also paste images from clipboard.
+        {t('uploader.supportedFormats')}
       </p>
       <input
         ref={inputRef}

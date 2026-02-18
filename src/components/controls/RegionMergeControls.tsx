@@ -1,7 +1,9 @@
 import { useAppStore } from '../../state/appStore';
+import { useTranslation } from 'react-i18next';
 import type { MergeMode } from '../../state/types';
 
 export function RegionMergeControls() {
+  const { t } = useTranslation();
   const mergeMode = useAppStore((s) => s.ui.mergeMode);
   const setMergeMode = useAppStore((s) => s.setMergeMode);
   const selectedRegions = useAppStore((s) => s.ui.selectedRegions);
@@ -35,9 +37,9 @@ export function RegionMergeControls() {
               ? 'bg-blue-500 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
-          title="Browse regions without modifications"
+          title={t('merge.browseDescription')}
         >
-          👁️ Browse
+          👁️ {t('merge.browse')}
         </button>
         <button
           onClick={() => handleModeChange('merge')}
@@ -46,9 +48,9 @@ export function RegionMergeControls() {
               ? 'bg-blue-500 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
-          title="Click regions to select and merge them"
+          title={t('merge.mergeDescription')}
         >
-          🔗 Merge
+          🔗 {t('controls.merge')}
         </button>
         <button
           onClick={() => handleModeChange('split')}
@@ -57,9 +59,9 @@ export function RegionMergeControls() {
               ? 'bg-blue-500 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
-          title="Click a region to analyze and split it"
+          title={t('merge.splitDescription')}
         >
-          ✂️ Split
+          ✂️ {t('controls.split')}
         </button>
       </div>
 
@@ -67,17 +69,17 @@ export function RegionMergeControls() {
       {mergeMode === 'merge' && (
         <div className="space-y-2 rounded bg-blue-50 p-2">
           <div className="text-sm text-gray-700">
-            <strong>Merge Mode:</strong> Click on two regions to merge them.
+            <strong>{t('merge.modeLabel')}:</strong> {t('merge.modeDescription')}
           </div>
           {selectedRegions.length > 0 && (
             <div className="text-sm">
               <div className="mb-2">
-                Selected regions: <span className="font-mono">{selectedRegions.join(', ')}</span>
+                {t('merge.selectedRegions')} <span className="font-mono">{selectedRegions.join(', ')}</span>
               </div>
 
               {selectedRegions.length === 1 && mergeSuggestions.length > 0 && (
                 <div className="space-y-2">
-                  <div className="text-xs font-semibold text-gray-600">Suggested merge targets:</div>
+                  <div className="text-xs font-semibold text-gray-600">{t('merge.suggestedMergeTargets')}</div>
                   {mergeSuggestions.slice(0, 3).map((sug) => (
                     <button
                       key={sug.targetRegionId}
@@ -86,9 +88,9 @@ export function RegionMergeControls() {
                       }}
                       className="block w-full rounded bg-white px-2 py-1 text-left text-xs hover:bg-blue-100"
                     >
-                      <div className="font-mono">Region {sug.targetRegionId}</div>
+                      <div className="font-mono">{t('merge.regionLabel')} {sug.targetRegionId}</div>
                       <div className="text-gray-600">
-                        Score: {(sug.contextScore * 100).toFixed(0)}%
+                        {t('merge.score')}: {(sug.contextScore * 100).toFixed(0)}%
                       </div>
                     </button>
                   ))}
@@ -101,13 +103,13 @@ export function RegionMergeControls() {
                     onClick={handleConfirmMerge}
                     className="flex-1 rounded bg-green-500 px-2 py-2 text-sm text-white hover:bg-green-600"
                   >
-                    ✓ Confirm Merge
+                    {t('merge.confirmMerge')}
                   </button>
                   <button
                     onClick={clearRegionSelection}
                     className="flex-1 rounded bg-gray-300 px-2 py-2 text-sm text-gray-700 hover:bg-gray-400"
                   >
-                    ✕ Cancel
+                    {t('common.cancel')}
                   </button>
                 </div>
               )}
@@ -120,24 +122,24 @@ export function RegionMergeControls() {
       {mergeMode === 'split' && (
         <div className="space-y-2 rounded bg-orange-50 p-2">
           <div className="text-sm text-gray-700">
-            <strong>Split Mode:</strong> Click on a region to analyze and split it.
+            <strong>{t('merge.splitMode')}:</strong> {t('merge.splitModeDescription')}
           </div>
           {splitAnalysis && (
             <div className="space-y-2 text-sm">
               <div className="rounded bg-white p-2">
                 <div className="mb-2">
-                  <strong>Region {splitAnalysis.regionId}</strong>
+                  <strong>{t('merge.regionLabel')} {splitAnalysis.regionId}</strong>
                 </div>
                 <div className="mb-2 text-xs text-gray-600">
-                  Can be split: {splitAnalysis.hasSubregions ? '✓ Yes' : '✗ No'}
+                  {t('merge.canBeSplit')} {splitAnalysis.hasSubregions ? `✓ ${t('merge.yes')}` : `✗ ${t('merge.no')}`}
                 </div>
                 <div className="mb-2 text-xs text-gray-600">
-                  Color variance: {(splitAnalysis.estimatedVariance * 100).toFixed(0)}%
+                  {t('merge.colorVariance')} {(splitAnalysis.estimatedVariance * 100).toFixed(0)}%
                 </div>
 
                 {splitAnalysis.splitCandidates.length > 0 && (
                   <div className="space-y-1">
-                    <div className="text-xs font-semibold text-gray-600">Split candidates:</div>
+                    <div className="text-xs font-semibold text-gray-600">{t('merge.splitCandidates')}</div>
                     {splitAnalysis.splitCandidates.map((cand, idx) => (
                       <button
                         key={idx}
@@ -147,7 +149,7 @@ export function RegionMergeControls() {
                         className="block w-full rounded bg-white px-2 py-1 text-left text-xs hover:bg-orange-100"
                       >
                         <div>
-                          Position: ({cand.x}, {cand.y}) — Strength: {(cand.strength * 100).toFixed(0)}%
+                          {t('merge.position')}: ({cand.x}, {cand.y}) — {t('merge.strength')}: {(cand.strength * 100).toFixed(0)}%
                         </div>
                       </button>
                     ))}
@@ -163,7 +165,7 @@ export function RegionMergeControls() {
                   }}
                   className="mt-2 w-full rounded bg-gray-300 px-2 py-1 text-xs text-gray-700 hover:bg-gray-400"
                 >
-                  ✕ Cancel
+                  {t('common.cancel')}
                 </button>
               </div>
             </div>
@@ -175,17 +177,17 @@ export function RegionMergeControls() {
       {mergeMode === 'browse' && (
         <div className="text-xs text-gray-600">
           <p className="mb-1">
-            <strong>Keyboard shortcuts:</strong>
+            <strong>{t('merge.keyboardShortcuts')}:</strong>
           </p>
           <ul className="list-inside space-y-0.5">
             <li>
-              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">M</kbd> — Toggle merge mode
+              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">M</kbd> — {t('merge.toggleMerge')}
             </li>
             <li>
-              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">S</kbd> — Toggle split mode
+              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">S</kbd> — {t('merge.toggleSplit')}
             </li>
             <li>
-              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">Esc</kbd> — Return to browse mode
+              <kbd className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs">Esc</kbd> — {t('merge.returnBrowse')}
             </li>
           </ul>
         </div>
