@@ -60,6 +60,7 @@ interface AppState {
   reorderPalette: (oldIndex: number, newIndex: number) => void;
   changeRegionColor: (regionId: number, newColorIndex: number) => void;
   setMergeMode: (mode: MergeMode) => void;
+  toggleDarkMode: () => void;
   toggleRegionSelection: (regionId: number) => void;
   clearRegionSelection: () => void;
   suggestMergeTargets: (sourceRegionId: number) => Promise<void>;
@@ -99,6 +100,9 @@ const defaultUI: UIState = {
   zoom: 1,
   panX: 0,
   panY: 0,
+  darkMode: localStorage.getItem('darkMode') !== null
+    ? localStorage.getItem('darkMode') === 'true'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches,
   mergeMode: 'browse',
   selectedRegions: [],
   mergeSuggestions: [],
@@ -257,6 +261,11 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setMergeMode: (mode) => set((s) => ({ ui: { ...s.ui, mergeMode: mode, selectedRegions: [] } })),
+  toggleDarkMode: () => set((s) => {
+    const next = !s.ui.darkMode;
+    localStorage.setItem('darkMode', String(next)); // explicit user choice
+    return { ui: { ...s.ui, darkMode: next } };
+  }),
 
   toggleRegionSelection: (regionId) => {
     set((s) => {

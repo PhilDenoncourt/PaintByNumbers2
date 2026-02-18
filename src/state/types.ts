@@ -83,6 +83,7 @@ export interface UIState {
   zoom: number;
   panX: number;
   panY: number;
+  darkMode: boolean;
   // Region merge/split state
   mergeMode: MergeMode;
   selectedRegions: number[]; // regions selected for merge

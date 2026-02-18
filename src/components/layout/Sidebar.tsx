@@ -30,50 +30,50 @@ export function Sidebar() {
   // Show minimal sidebar even without image - removed session controls from initial screen
   if (!sourceImageData) {
     return (
-      <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
+      <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
         {/* Empty sidebar on start - user can drop image or session to main area */}
       </div>
     );
   }
 
   return (
-    <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
+    <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
       {/* Quick Settings Section */}
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-4">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide mb-4">
           {t('sidebar.palette')}
         </h2>
         <PaletteControls />
       </div>
 
       {/* Advanced Settings - Collapsible */}
-      <details className="border-b border-gray-200">
-        <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-          <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
+      <details className="border-b border-gray-200 dark:border-gray-700">
+        <summary className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+          <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide inline">
             ⚙ {t('sidebar.advancedSettings')}
           </h2>
         </summary>
-        <div className="px-4 pb-4 space-y-4 bg-gray-50">
+        <div className="px-4 pb-4 space-y-4 bg-gray-50 dark:bg-gray-900/50">
           <div>
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.image')}</h3>
+            <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase">{t('sidebar.image')}</h3>
             <PreprocessingControls />
           </div>
-          <div className="pt-3 border-t border-gray-200">
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.quality')}</h3>
+          <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+            <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase">{t('sidebar.quality')}</h3>
             <DetailControls />
           </div>
-          <div className="pt-3 border-t border-gray-200">
-            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase">{t('sidebar.output')}</h3>
+          <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+            <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase">{t('sidebar.output')}</h3>
             <RenderingControls />
           </div>
-          <div className="pt-3 border-t border-gray-200">
+          <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
             <ContourSmoothingControls />
           </div>
         </div>
       </details>
 
       {/* Generate Section */}
-      <div className="p-4 border-b border-gray-200 bg-green-50">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-950/30">
         <button
           onClick={startPipeline}
           disabled={pipelineStatus === 'running'}
@@ -86,28 +86,28 @@ export function Sidebar() {
           {pipelineStatus === 'running' ? t('sidebar.stop') : `✨ ${t('sidebar.generate')}`}
         </button>
         {pipelineError && (
-          <p className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded">{pipelineError}</p>
+          <p className="mt-2 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 p-2 rounded">{pipelineError}</p>
         )}
       </div>
 
       {/* Results Section */}
       {result && (
         <>
-          <details className="border-b border-gray-200">
-            <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
+          <details className="border-b border-gray-200 dark:border-gray-700">
+            <summary className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide inline">
                 ✏️ {t('sidebar.edit')}
               </h2>
             </summary>
-            <div className="px-4 pb-4 space-y-3 bg-gray-50">
+            <div className="px-4 pb-4 space-y-3 bg-gray-50 dark:bg-gray-900/50">
               <div className="flex gap-2">
                 <button
                   onClick={undo}
                   disabled={!canUndo}
                   className={`flex-1 py-1.5 px-3 rounded text-xs font-medium transition-colors ${
                     canUndo
-                      ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      ? 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   }`}
                   title="Undo (Ctrl+Z)"
                 >
@@ -118,50 +118,50 @@ export function Sidebar() {
                   disabled={!canRedo}
                   className={`flex-1 py-1.5 px-3 rounded text-xs font-medium transition-colors ${
                     canRedo
-                      ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      ? 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   }`}
                   title="Redo (Ctrl+Y)"
                 >
                   ↷ {t('sidebar.redo')}
                 </button>
               </div>
-              <div className="pt-2 border-t border-gray-200">
-                <h3 className="text-xs font-semibold text-gray-700 mb-2 uppercase">{t('palette.legend')}</h3>
+              <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
+                <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase">{t('palette.legend')}</h3>
                 <PaletteLegend />
               </div>
             </div>
           </details>
 
-          <details className="border-b border-gray-200">
-            <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
+          <details className="border-b border-gray-200 dark:border-gray-700">
+            <summary className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide inline">
                 🎯 {t('controls.regionMerging')}
               </h2>
             </summary>
-            <div className="px-4 pb-4 bg-gray-50">
+            <div className="px-4 pb-4 bg-gray-50 dark:bg-gray-900/50">
               <RegionMergeControls />
             </div>
           </details>
 
-          <details className="border-b border-gray-200">
-            <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
+          <details className="border-b border-gray-200 dark:border-gray-700">
+            <summary className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide inline">
                 📊 {t('statistics.title')}
               </h2>
             </summary>
-            <div className="px-4 pb-4 bg-gray-50">
+            <div className="px-4 pb-4 bg-gray-50 dark:bg-gray-900/50">
               <RegionStatistics />
             </div>
           </details>
 
-          <details className="border-b border-gray-200">
-            <summary className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <h2 className="text-xs font-bold text-gray-600 uppercase tracking-wide inline">
+          <details className="border-b border-gray-200 dark:border-gray-700">
+            <summary className="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide inline">
                 📤 {t('sidebar.exportSave')}
               </h2>
             </summary>
-            <div className="px-4 pb-4 space-y-3 bg-gray-50">
+            <div className="px-4 pb-4 space-y-3 bg-gray-50 dark:bg-gray-900/50">
               <SessionControls />
               <ExportButton />
             </div>
@@ -170,10 +170,10 @@ export function Sidebar() {
       )}
 
       {/* Footer */}
-      <div className="p-4 mt-auto border-t border-gray-200">
+      <div className="p-4 mt-auto border-t border-gray-200 dark:border-gray-700">
         <button
           onClick={reset}
-          className="w-full py-2 px-4 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors font-medium"
+          className="w-full py-2 px-4 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors font-medium"
         >
           ↺ {t('sidebar.uploadNewImage')}
         </button>
