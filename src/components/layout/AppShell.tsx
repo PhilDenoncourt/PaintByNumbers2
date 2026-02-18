@@ -7,6 +7,7 @@ import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { SideBySideView } from '../preview/SideBySideView';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
 import { ErrorBoundary } from './ErrorBoundary';
+import { PrivacyFooter } from './PrivacyFooter';
 
 export function AppShell() {
   const { t } = useTranslation();
@@ -166,6 +167,7 @@ export function AppShell() {
           )}
         </main>
       </div>
+      <PrivacyFooter />
     </div>
   );
 }

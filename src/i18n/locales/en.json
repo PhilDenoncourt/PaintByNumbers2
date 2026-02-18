@@ -266,5 +266,19 @@
     "noSplitCandidates": "No split candidates found",
     "split": "Split",
     "analyzing": "Analyzing..."
+  },
+  "privacy": {
+    "tagline": "Your images are processed entirely in your browser — nothing is uploaded or stored on any server.",
+    "learnMore": "Privacy & Legal",
+    "seeLess": "Close",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "No data collection.",
+    "noDataBody": "This application does not collect, transmit, or share any personal data. No analytics, no tracking, no cookies.",
+    "localStorageTitle": "Browser storage.",
+    "localStorageBody": "Your current session (settings and image) may be saved to your browser's localStorage for convenience. This data never leaves your device and can be cleared at any time through your browser settings.",
+    "imagesTitle": "Image processing.",
+    "imagesBody": "All image processing is performed locally in your browser using Web Workers. Your images are never sent to a server.",
+    "copyrightTitle": "Your responsibility.",
+    "copyrightBody": "You are responsible for ensuring you have the necessary rights to use any images you upload. Do not upload images you do not own or have permission to use."
   }
 }
