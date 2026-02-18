@@ -20,6 +20,8 @@ import ukLocale from './locales/uk.json';
 import huLocale from './locales/hu.json';
 import svLocale from './locales/sv.json';
 import elLocale from './locales/el.json';
+import pcmLocale from './locales/pcm.json';
+import caLocale from './locales/ca.json';
 
 const resources = {
   en: { translation: enLocale },
@@ -42,6 +44,8 @@ const resources = {
   hu: { translation: huLocale },
   sv: { translation: svLocale },
   el: { translation: elLocale },
+  pcm: { translation: pcmLocale },
+  ca: { translation: caLocale },
 };
 
 // Auto-detect language from browser regional settings
@@ -76,6 +80,8 @@ const detectLanguage = () => {
     'hu': 'hu',
     'sv': 'sv',
     'el': 'el',
+    'pcm': 'pcm',
+    'ca': 'ca',
   };
   
   const detectedLang = langMap[baseLang];
