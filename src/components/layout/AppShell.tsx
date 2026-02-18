@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { ImageUploader } from '../upload/ImageUploader';
 import { Sidebar } from './Sidebar';
-import { LanguageSelector } from './LanguageSelector';
 import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { SideBySideView } from '../preview/SideBySideView';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
@@ -74,7 +73,6 @@ export function AppShell() {
               {tooltipText}
             </div>
           )}
-          <LanguageSelector />
         </div>
       </header>
 
