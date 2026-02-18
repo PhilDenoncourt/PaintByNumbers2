@@ -26,18 +26,20 @@ describe('sessionStorage', () => {
   };
 
   const mockResult: PipelineResult = {
-    paletteRGB: [[255, 0, 0], [0, 255, 0], [0, 0, 255]],
+    palette: [[255, 0, 0], [0, 255, 0], [0, 0, 255]],
+    labelMap: new Int32Array(1000),
     regions: [
       {
+        id: 0,
         colorIndex: 0,
         pixelCount: 1000,
-        localBounds: { x: 0, y: 0, w: 10, h: 100 },
-        polygonPoints: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 100 }],
+        boundingBox: { x: 0, y: 0, w: 10, h: 100 },
       },
     ],
-    indexMap: new Uint8Array(1000),
-    contourMap: new Uint8Array(1000),
-    labelMap: new Uint8Array(1000),
+    contours: [],
+    labels: [],
+    width: 100,
+    height: 100,
   };
 
   describe('load', () => {

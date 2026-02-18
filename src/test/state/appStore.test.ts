@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { useAppStore } from '../../state/appStore';
-import type { PipelineSettings, UIState, PipelineState } from '../../state/types';
 
 // Mock the dependencies
 vi.mock('../../utils/imageLoader', () => ({
@@ -125,12 +124,12 @@ describe('appStore', () => {
     it('should change view mode', () => {
       const store = useAppStore.getState();
       expect(store.ui.viewMode).toBe('colored');
-      store.setViewMode('regions');
+      store.setViewMode('print');
       let updated = useAppStore.getState();
-      expect(updated.ui.viewMode).toBe('regions');
-      store.setViewMode('contours');
+      expect(updated.ui.viewMode).toBe('print');
+      store.setViewMode('sidebyside');
       updated = useAppStore.getState();
-      expect(updated.ui.viewMode).toBe('contours');
+      expect(updated.ui.viewMode).toBe('sidebyside');
     });
   });
 
@@ -188,7 +187,7 @@ describe('appStore', () => {
       const store = useAppStore.getState();
       store.updateSettings({ paletteSize: 24 });
       store.setHoveredRegion(5);
-      store.setViewMode('regions');
+      store.setViewMode('print');
       store.toggleRegionSelection(1);
 
       store.reset();
@@ -230,7 +229,7 @@ describe('appStore', () => {
   describe('setMergeMode', () => {
     it('should set merge mode', () => {
       const store = useAppStore.getState();
-      store.setMergeMode('suggest');
+      store.setMergeMode('merge');
       let updated = useAppStore.getState();
       expect(updated.ui.mergeMode).toBe('suggest');
       

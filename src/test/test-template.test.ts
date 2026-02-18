@@ -10,7 +10,7 @@
  * Naming convention: {original-filename}.test.ts or .test.tsx
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, vi } from 'vitest';
 
 // ============================================================================
 // TEMPLATE 1: Testing a Pure Function (Utility or Algorithm)
@@ -28,8 +28,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 describe('myFunction', () => {
   it('should perform basic operation', () => {
     // Arrange: Set up test data
-    const input = 5;
-    const expected = 10;
+    // const input = 5;
+    // const expected = 10;
 
     // Act: Call the function
     // const result = myFunction(input);
@@ -78,11 +78,11 @@ describe('geometryFunction', () => {
 // ============================================================================
 
 describe('appStore - State Management', () => {
-  beforeEach(() => {
-    // Reset store to clean state before each test
-    // const store = useAppStore.getState();
-    // store.reset();
-  });
+  // beforeEach(() => {
+  //   // Reset store to clean state before each test
+  //   // const store = useAppStore.getState();
+  //   // store.reset();
+  // });
 
   it('should initialize with default values', () => {
     // const store = useAppStore.getState();
@@ -116,8 +116,8 @@ describe('appStore - State Management', () => {
 // TEMPLATE 4: Testing React Components
 // ============================================================================
 
-import { render, screen, fireEvent } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+// import { render, screen, fireEvent } from '@testing-library/react';
+// import { userEvent } from '@testing-library/user-event';
 
 // Mock dependencies
 vi.mock('../../state/appStore', () => ({
@@ -125,12 +125,12 @@ vi.mock('../../state/appStore', () => ({
 }));
 
 describe('MyComponent', () => {
-  const mockFunction = vi.fn();
+  // const mockFunction = vi.fn();
 
-  beforeEach(() => {
-    mockFunction.mockClear();
-    // Reset mocks before each test
-  });
+  // beforeEach(() => {
+  //   mockFunction.mockClear();
+  //   // Reset mocks before each test
+  // });
 
   it('should render with required elements', () => {
     // render(<MyComponent />);
@@ -200,9 +200,9 @@ vi.mock('../../modules/external', () => ({
 }));
 
 describe('Function Using External Dependency', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
+  // beforeEach(() => {
+  //   vi.clearAllMocks();
+  // });
 
   it('should call external function', async () => {
     // import { externalFunction } from '../../modules/external';

@@ -16,10 +16,10 @@ describe('statisticsCalculator', () => {
     it('should calculate statistics for single region', () => {
       const regions: RegionInfo[] = [
         {
+          id: 0,
           colorIndex: 0,
           pixelCount: 100,
-          localBounds: { x: 0, y: 0, w: 10, h: 10 },
-          polygonPoints: [],
+          boundingBox: { x: 0, y: 0, w: 10, h: 10 },
         },
       ];
       const stats = calculateRegionStatistics(regions);
@@ -32,9 +32,9 @@ describe('statisticsCalculator', () => {
 
     it('should identify largest and smallest regions', () => {
       const regions: RegionInfo[] = [
-        { colorIndex: 0, pixelCount: 50, localBounds: { x: 0, y: 0, w: 5, h: 10 }, polygonPoints: [] },
-        { colorIndex: 1, pixelCount: 200, localBounds: { x: 0, y: 0, w: 10, h: 20 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 100, localBounds: { x: 0, y: 0, w: 10, h: 10 }, polygonPoints: [] },
+        { id: 0, colorIndex: 0, pixelCount: 50, boundingBox: { x: 0, y: 0, w: 5, h: 10 } },
+        { id: 1, colorIndex: 1, pixelCount: 200, boundingBox: { x: 0, y: 0, w: 10, h: 20 } },
+        { id: 2, colorIndex: 0, pixelCount: 100, boundingBox: { x: 0, y: 0, w: 10, h: 10 } },
       ];
       const stats = calculateRegionStatistics(regions);
       expect(stats.largestRegion?.pixelCount).toBe(200);
@@ -43,9 +43,9 @@ describe('statisticsCalculator', () => {
 
     it('should count regions per color', () => {
       const regions: RegionInfo[] = [
-        { colorIndex: 0, pixelCount: 100, localBounds: { x: 0, y: 0, w: 10, h: 10 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 150, localBounds: { x: 0, y: 0, w: 10, h: 15 }, polygonPoints: [] },
-        { colorIndex: 1, pixelCount: 75, localBounds: { x: 0, y: 0, w: 5, h: 15 }, polygonPoints: [] },
+        { id: 0, colorIndex: 0, pixelCount: 100, boundingBox: { x: 0, y: 0, w: 10, h: 10 } },
+        { id: 1, colorIndex: 0, pixelCount: 150, boundingBox: { x: 0, y: 0, w: 10, h: 15 } },
+        { id: 2, colorIndex: 1, pixelCount: 75, boundingBox: { x: 0, y: 0, w: 5, h: 15 } },
       ];
       const stats = calculateRegionStatistics(regions);
       expect(stats.regionsPerColor.get(0)).toBe(2);
@@ -54,9 +54,9 @@ describe('statisticsCalculator', () => {
 
     it('should calculate average region size', () => {
       const regions: RegionInfo[] = [
-        { colorIndex: 0, pixelCount: 100, localBounds: { x: 0, y: 0, w: 10, h: 10 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 200, localBounds: { x: 0, y: 0, w: 10, h: 20 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 300, localBounds: { x: 0, y: 0, w: 10, h: 30 }, polygonPoints: [] },
+        { id: 0, colorIndex: 0, pixelCount: 100, boundingBox: { x: 0, y: 0, w: 10, h: 10 } },
+        { id: 1, colorIndex: 0, pixelCount: 200, boundingBox: { x: 0, y: 0, w: 10, h: 20 } },
+        { id: 2, colorIndex: 0, pixelCount: 300, boundingBox: { x: 0, y: 0, w: 10, h: 30 } },
       ];
       const stats = calculateRegionStatistics(regions);
       expect(stats.averageRegionSize).toBe(200);
@@ -64,10 +64,9 @@ describe('statisticsCalculator', () => {
 
     it('should build color sizes array sorted by pixel count', () => {
       const regions: RegionInfo[] = [
-        { colorIndex: 0, pixelCount: 50, localBounds: { x: 0, y: 0, w: 5, h: 10 }, polygonPoints: [] },
-        { colorIndex: 1, pixelCount: 300, localBounds: { x: 0, y: 0, w: 10, h: 30 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 100, localBounds: { x: 0, y: 0, w: 10, h: 10 }, polygonPoints: [] },
-        { colorIndex: 2, pixelCount: 200, localBounds: { x: 0, y: 0, w: 10, h: 20 }, polygonPoints: [] },
+        { id: 0, colorIndex: 0, pixelCount: 100, boundingBox: { x: 0, y: 0, w: 10, h: 10 } },
+        { id: 1, colorIndex: 1, pixelCount: 150, boundingBox: { x: 0, y: 0, w: 10, h: 15 } },
+        { id: 2, colorIndex: 2, pixelCount: 200, boundingBox: { x: 0, y: 0, w: 10, h: 20 } },
       ];
       const stats = calculateRegionStatistics(regions);
       expect(stats.colorSizes).toHaveLength(3);
@@ -78,9 +77,9 @@ describe('statisticsCalculator', () => {
 
     it('should calculate average pixels per region for each color', () => {
       const regions: RegionInfo[] = [
-        { colorIndex: 0, pixelCount: 100, localBounds: { x: 0, y: 0, w: 10, h: 10 }, polygonPoints: [] },
-        { colorIndex: 0, pixelCount: 200, localBounds: { x: 0, y: 0, w: 10, h: 20 }, polygonPoints: [] },
-        { colorIndex: 1, pixelCount: 150, localBounds: { x: 0, y: 0, w: 10, h: 15 }, polygonPoints: [] },
+        { id: 0, colorIndex: 0, pixelCount: 100, boundingBox: { x: 0, y: 0, w: 10, h: 10 } },
+        { id: 1, colorIndex: 0, pixelCount: 200, boundingBox: { x: 0, y: 0, w: 10, h: 20 } },
+        { id: 2, colorIndex: 1, pixelCount: 150, boundingBox: { x: 0, y: 0, w: 10, h: 15 } },
       ];
       const stats = calculateRegionStatistics(regions);
       const color0 = stats.colorSizes.find(c => c.colorIndex === 0);

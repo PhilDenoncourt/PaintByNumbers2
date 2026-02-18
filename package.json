@@ -1,8 +1,11 @@
 {
-  "name": "paintbynumbers2-temp",
-  "private": true,
-  "version": "0.0.0",
+  "name": "paintbynumbers.build",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
+  "description": "Transform images into paint-by-numbers artwork with AI-powered region detection, smart color quantization, and interactive editing. Create printable or digital coloring pages with customizable palettes, region merging, and export to SVG, PNG, or PDF.",
+  "author": "Phil Denoncourt III",
+  "homepage": "https://www.linkedin.com/in/phildenoncourt/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

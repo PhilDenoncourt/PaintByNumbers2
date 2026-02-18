@@ -5,6 +5,7 @@ import { Sidebar } from './Sidebar';
 import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { SideBySideView } from '../preview/SideBySideView';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
+import { ErrorBoundary } from './ErrorBoundary';
 
 export function AppShell() {
   const sourceImageData = useAppStore((s) => s.sourceImageData);
@@ -73,13 +74,29 @@ export function AppShell() {
 
       {/* Body */}
       <div className="flex-1 flex min-h-0">
-        <Sidebar />
+        <ErrorBoundary fallback={
+          <div className="w-64 bg-white border-r border-gray-200 p-4 flex items-center justify-center">
+            <div className="text-sm text-red-600 text-center">
+              <p className="font-medium">Controls unavailable</p>
+              <p className="text-xs mt-1">Try refreshing the page</p>
+            </div>
+          </div>
+        }>
+          <Sidebar />
+        </ErrorBoundary>
 
         <main className="flex-1 flex flex-col min-h-0 p-4">
           {!sourceImageData && (
             <div className="flex-1 flex items-center justify-center">
               <div className="max-w-lg w-full">
-                <ImageUploader />
+                <ErrorBoundary fallback={
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <p className="text-red-600 font-medium">Failed to load image uploader</p>
+                    <p className="text-sm text-gray-600 mt-2">Please refresh the page</p>
+                  </div>
+                }>
+                  <ImageUploader />
+                </ErrorBoundary>
               </div>
             </div>
           )}
@@ -87,7 +104,13 @@ export function AppShell() {
           {sourceImageData && pipelineStatus === 'idle' && (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
-                <PreprocessedImagePreview />
+                <ErrorBoundary fallback={
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <p className="text-red-600 font-medium">Preview unavailable</p>
+                  </div>
+                }>
+                  <PreprocessedImagePreview />
+                </ErrorBoundary>
                 {sourceImageUrl && (
                   <img
                     src={sourceImageUrl}
@@ -105,7 +128,13 @@ export function AppShell() {
           {pipelineStatus === 'running' && (
             <div className="flex-1 flex items-center justify-center">
               <div className="w-80">
-                <ProcessingProgress />
+                <ErrorBoundary fallback={
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <p className="text-gray-600 font-medium">Processing...</p>
+                  </div>
+                }>
+                  <ProcessingProgress />
+                </ErrorBoundary>
               </div>
             </div>
           )}
@@ -120,7 +149,16 @@ export function AppShell() {
           )}
 
           {result && pipelineStatus === 'complete' && (
-            <SideBySideView />
+            <ErrorBoundary fallback={
+              <div className="flex items-center justify-center h-full">
+                <div className="bg-white rounded-lg shadow p-8">
+                  <p className="text-red-600 font-medium">Failed to display result</p>
+                  <p className="text-sm text-gray-600 mt-2">Try regenerating the image</p>
+                </div>
+              </div>
+            }>
+              <SideBySideView />
+            </ErrorBoundary>
           )}
         </main>
       </div>

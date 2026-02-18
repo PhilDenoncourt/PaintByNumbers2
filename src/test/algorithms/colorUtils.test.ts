@@ -18,7 +18,7 @@ describe('colorUtils', () => {
     });
 
     it('should convert red RGB to LAB', () => {
-      const [L, a, b] = rgbToLab(255, 0, 0);
+      const [L, a] = rgbToLab(255, 0, 0);
       expect(L).toBeGreaterThan(50);
       expect(a).toBeGreaterThan(0);
     });
