@@ -1,6 +1,7 @@
 import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
 import { PaletteControls } from '../controls/PaletteControls';
+import { AlgorithmControls } from '../controls/AlgorithmControls';
 import { DetailControls } from '../controls/DetailControls';
 import { PreprocessingControls } from '../controls/PreprocessingControls';
 import { RenderingControls } from '../controls/RenderingControls';
@@ -44,6 +45,9 @@ export function Sidebar() {
           {t('sidebar.palette')}
         </h2>
         <PaletteControls />
+        <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+          <AlgorithmControls />
+        </div>
       </div>
 
       {/* Advanced Settings - Collapsible */}

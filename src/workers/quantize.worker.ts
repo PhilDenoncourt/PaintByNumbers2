@@ -1,4 +1,5 @@
 import { kmeansQuantize, fixedPaletteQuantize } from '../algorithms/kmeans';
+import { medianCutQuantize } from '../algorithms/mediancut';
 import type { QuantizeInput, QuantizeOutput } from '../pipeline/types';
 
 self.onmessage = (e: MessageEvent) => {
@@ -22,14 +23,25 @@ self.onmessage = (e: MessageEvent) => {
         onProgress
       );
     } else {
-      // Auto-generate palette with k-means
-      result = kmeansQuantize(
-        input.pixels,
-        input.width,
-        input.height,
-        input.paletteSize,
-        onProgress
-      );
+      // Auto-generate palette with selected algorithm
+      if (input.algorithm === 'mediancut') {
+        result = medianCutQuantize(
+          input.pixels,
+          input.width,
+          input.height,
+          input.paletteSize,
+          onProgress
+        );
+      } else {
+        // K-means (default)
+        result = kmeansQuantize(
+          input.pixels,
+          input.width,
+          input.height,
+          input.paletteSize,
+          onProgress
+        );
+      }
     }
 
     const output: QuantizeOutput & { labPalette: [number, number, number][] } = result;
