@@ -19,6 +19,23 @@
     "color": "Color",
     "regionInfo": "{{width}}x{{height}} · {{count}} regions"
   },
+  "welcome": {
+    "tagline": "Turn any photo into a paint-by-numbers masterpiece",
+    "description": "Upload a photo and this tool will analyse the colours, simplify the image into numbered regions, and generate a ready-to-print paint-by-numbers template — all inside your browser, with no data ever leaving your device.",
+    "feature1Title": "Smart colour quantization",
+    "feature1Body": "Choose from K-Means or Median Cut algorithms to reduce your photo to the perfect set of colours.",
+    "feature2Title": "Custom palettes",
+    "feature2Body": "Use a Crayola crayon preset or build your own palette from scratch.",
+    "feature3Title": "Region editing",
+    "feature3Body": "Merge or split colour regions on the result to fine-tune the complexity of your painting.",
+    "feature4Title": "Export anywhere",
+    "feature4Body": "Download the finished template as a PDF, PNG, or scalable SVG.",
+    "howToBegin": "How to get started",
+    "step1": "Drag and drop an image below, click to browse, or paste from clipboard.",
+    "step2": "Adjust the palette size and other settings in the left-hand panel.",
+    "step3": "Click \"Generate Paint by Numbers\" to process the image.",
+    "step4": "Review and refine the result, then export your template."
+  },
   "uploader": {
     "title": "Upload Image",
     "dragDrop": "Drop an image or saved session here, or click to browse",

@@ -123,8 +123,10 @@ export function AppShell() {
 
         <main className="flex-1 flex flex-col min-h-0 p-4">
           {!sourceImageData && (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="max-w-lg w-full">
+            <div className="flex-1 overflow-y-auto">
+              <div className="max-w-2xl mx-auto py-8 px-4 flex flex-col gap-8">
+
+                {/* Uploader */}
                 <ErrorBoundary fallback={
                   <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <p className="text-red-600 dark:text-red-400 font-medium">{t('sidebar.failedToLoadUploader')}</p>
@@ -133,6 +135,53 @@ export function AppShell() {
                 }>
                   <ImageUploader />
                 </ErrorBoundary>
+
+                {/* Welcome hero */}
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-3">
+                    {t('welcome.tagline')}
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                    {t('welcome.description')}
+                  </p>
+                </div>
+
+                {/* Feature grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {([
+                    { title: t('welcome.feature1Title'), body: t('welcome.feature1Body'), icon: '🎨' },
+                    { title: t('welcome.feature2Title'), body: t('welcome.feature2Body'), icon: '🖍️' },
+                    { title: t('welcome.feature3Title'), body: t('welcome.feature3Body'), icon: '✏️' },
+                    { title: t('welcome.feature4Title'), body: t('welcome.feature4Body'), icon: '📄' },
+                  ] as const).map(({ title, body, icon }) => (
+                    <div
+                      key={title}
+                      className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4"
+                    >
+                      <div className="text-2xl mb-2">{icon}</div>
+                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1">{title}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{body}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* How to get started */}
+                <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+                  <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">
+                    {t('welcome.howToBegin')}
+                  </h3>
+                  <ol className="space-y-2">
+                    {[t('welcome.step1'), t('welcome.step2'), t('welcome.step3'), t('welcome.step4')].map((step, i) => (
+                      <li key={i} className="flex gap-3 text-xs text-gray-600 dark:text-gray-400">
+                        <span className="shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 flex items-center justify-center font-semibold text-xs">
+                          {i + 1}
+                        </span>
+                        <span className="leading-relaxed pt-0.5">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
               </div>
             </div>
           )}
