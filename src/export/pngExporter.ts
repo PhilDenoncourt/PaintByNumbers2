@@ -144,7 +144,7 @@ export function generateColorLegendPng(
   let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
   if (presetPaletteId) {
     const preset = crayolaPalettes.find(
-      (p: any) => `crayola-${p.size}` === presetPaletteId
+      (p: { size: number }) => `crayola-${p.size}` === presetPaletteId
     );
     if (preset) presetColors = preset.colors;
   }

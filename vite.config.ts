@@ -11,4 +11,5 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     exclude: ['node_modules', 'dist'],
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as any)

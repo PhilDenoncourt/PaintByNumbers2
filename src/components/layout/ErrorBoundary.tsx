@@ -12,6 +12,7 @@ interface State {
   errorInfo: React.ErrorInfo | null;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 function ErrorFallback({ error, errorInfo, onReset }: { error: Error | null; errorInfo: React.ErrorInfo | null; onReset: () => void }) {
   const { t } = useTranslation();
   

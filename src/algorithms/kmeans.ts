@@ -38,7 +38,7 @@ export function kmeansQuantize(
   const centB = new Float64Array(k);
 
   // First centroid: random sample
-  let idx = Math.floor(Math.random() * nSamples);
+  const idx = Math.floor(Math.random() * nSamples);
   centL[0] = samplesL[idx];
   centA[0] = samplesA[idx];
   centB[0] = samplesB[idx];
@@ -58,7 +58,7 @@ export function kmeansQuantize(
     }
 
     // Weighted random selection
-    let threshold = Math.random() * totalWeight;
+    const threshold = Math.random() * totalWeight;
     let cumulative = 0;
     let chosen = 0;
     for (let i = 0; i < nSamples; i++) {

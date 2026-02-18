@@ -40,12 +40,13 @@ export function CustomPaletteControls() {
         let palette: [number, number, number][] | null = null;
 
         if (file.name.endsWith('.json')) {
-          const data = JSON.parse(event.target?.result as string);
+          const data = JSON.parse(event.target?.result as string) as unknown[];
           if (Array.isArray(data)) {
-            palette = data.map((c: any) => {
+            palette = data.map((c: unknown) => {
               if (Array.isArray(c) && c.length === 3) return c as [number, number, number];
-              if (c.r !== undefined && c.g !== undefined && c.b !== undefined) {
-                return [c.r, c.g, c.b] as [number, number, number];
+              const obj = c as Record<string, unknown>;
+              if (obj.r !== undefined && obj.g !== undefined && obj.b !== undefined) {
+                return [obj.r as number, obj.g as number, obj.b as number] as [number, number, number];
               }
               return null;
             }).filter((p): p is [number, number, number] => p !== null);

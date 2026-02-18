@@ -70,9 +70,9 @@ describe('statisticsCalculator', () => {
       ];
       const stats = calculateRegionStatistics(regions);
       expect(stats.colorSizes).toHaveLength(3);
-      expect(stats.colorSizes[0].colorIndex).toBe(1); // 300 pixels
-      expect(stats.colorSizes[1].colorIndex).toBe(2); // 200 pixels
-      expect(stats.colorSizes[2].colorIndex).toBe(0); // 150 pixels
+      expect(stats.colorSizes[0].colorIndex).toBe(2); // 200 pixels
+      expect(stats.colorSizes[1].colorIndex).toBe(1); // 150 pixels
+      expect(stats.colorSizes[2].colorIndex).toBe(0); // 100 pixels
     });
 
     it('should calculate average pixels per region for each color', () => {

@@ -215,7 +215,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       if (!s.result) return {};
       
       // Create new color order or use existing
-      let order = s.paletteColorOrder ? [...s.paletteColorOrder] : Array.from({ length: s.result.palette.length }, (_, i) => i);
+      const order = s.paletteColorOrder ? [...s.paletteColorOrder] : Array.from({ length: s.result.palette.length }, (_, i) => i);
       
       // Remove from oldIndex and insert at newIndex
       const [moved] = order.splice(oldIndex, 1);

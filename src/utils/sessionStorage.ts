@@ -116,7 +116,7 @@ export const sessionStorage = {
         try {
           const session = JSON.parse(e.target?.result as string) as Session;
           resolve(session);
-        } catch (error) {
+        } catch {
           reject(new Error('Invalid session file'));
         }
       };

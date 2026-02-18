@@ -10,8 +10,7 @@ function pointKey(x: number, y: number): string {
 function applySmoothingPasses(
   polygon: Point[],
   epsilon: number,
-  passes: number,
-  _preserveCorners: boolean
+  passes: number
 ): Point[] {
   let result = polygon;
   
@@ -98,8 +97,7 @@ export function extractContour(
   width: number,
   height: number,
   epsilon: number,
-  smoothingPasses: number = 0,
-  preserveCorners: boolean = false
+  smoothingPasses: number = 0
 ): ContourData {
   const { id, colorIndex, boundingBox: bbox } = region;
 
@@ -175,7 +173,7 @@ export function extractContour(
 
   // Simplify with RDP and optional smoothing passes
   const simplified = polygons.map(poly => 
-    applySmoothingPasses(poly, epsilon, smoothingPasses, preserveCorners)
+    applySmoothingPasses(poly, epsilon, smoothingPasses)
   );
 
   // Find outer ring (largest area) and holes
@@ -206,7 +204,6 @@ export function extractAllContours(
   height: number,
   epsilon: number,
   smoothingPasses: number = 0,
-  preserveCorners: boolean = false,
   onProgress?: (percent: number) => void
 ): ContourData[] {
   const contours: ContourData[] = [];
@@ -217,8 +214,7 @@ export function extractAllContours(
       width, 
       height, 
       epsilon,
-      smoothingPasses,
-      preserveCorners
+      smoothingPasses
     );
     if (contour.outerRing.length >= 3) {
       contours.push(contour);

@@ -350,7 +350,7 @@ export function performSplit(
   }
 
   // Find max region ID to assign new ID
-  let maxId = Math.max(...regions.map((r) => r.id), 0);
+  const maxId = Math.max(...regions.map((r) => r.id), 0);
   const newRegionId = maxId + 1;
 
   // Get pixel values for the starting point

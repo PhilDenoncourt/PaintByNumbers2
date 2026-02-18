@@ -2,6 +2,15 @@ import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+// Mock react-i18next
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: { language: 'en', changeLanguage: vi.fn() },
+  }),
+  initReactI18next: { type: '3rdParty', init: vi.fn() },
+}));
+
 // Cleanup after each test
 afterEach(() => {
   cleanup();
@@ -16,11 +25,11 @@ global.Worker = vi.fn(() => ({
   dispatchEvent: vi.fn(),
   onmessage: null,
   onerror: null,
-})) as any;
+})) as unknown as typeof Worker;
 
 // Mock ImageData if not available
 if (typeof ImageData === 'undefined') {
-  (global as any).ImageData = class ImageData {
+  (global as unknown as { ImageData: typeof ImageData }).ImageData = class ImageData {
     data: Uint8ClampedArray;
     width: number;
     height: number;
@@ -29,12 +38,12 @@ if (typeof ImageData === 'undefined') {
       if (typeof data === 'number') {
         this.width = data;
         this.height = width;
-        this.data = new Uint8ClampedArray((data as any) * (width as any) * 4);
+        this.data = new Uint8ClampedArray(data * width * (height ?? 1) * 4);
       } else {
         this.data = new Uint8ClampedArray(data);
         this.width = width;
         this.height = height || 0;
       }
     }
-  };
+  } as unknown as typeof ImageData;
 }

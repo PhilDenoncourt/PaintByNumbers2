@@ -31,14 +31,9 @@ export function LanguageSelector() {
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('preferredLanguage', lng);
-    
-    // Apply RTL to document
-    const isRTL = isRTLLanguage(lng);
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-    document.documentElement.lang = lng;
   };
 
-  // Apply RTL on initial load
+  // Apply RTL on initial load and when language changes
   useEffect(() => {
     const isRTL = isRTLLanguage(i18n.language);
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';

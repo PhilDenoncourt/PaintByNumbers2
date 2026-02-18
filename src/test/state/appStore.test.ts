@@ -231,7 +231,7 @@ describe('appStore', () => {
       const store = useAppStore.getState();
       store.setMergeMode('merge');
       let updated = useAppStore.getState();
-      expect(updated.ui.mergeMode).toBe('suggest');
+      expect(updated.ui.mergeMode).toBe('merge');
       
       store.setMergeMode('browse');
       updated = useAppStore.getState();
