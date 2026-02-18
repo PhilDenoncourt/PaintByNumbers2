@@ -267,4 +267,36 @@
     "split": "Aufteilen",
     "analyzing": "Wird analysiert..."
   }
+,
+  "welcome": {
+    "tagline": "Verwandle jedes Foto in ein Malen-nach-Zahlen-Meisterwerk",
+    "description": "Lade ein Foto hoch und dieses Tool analysiert die Farben, vereinfacht das Bild in nummerierte Bereiche und erstellt eine druckfertige Malen-nach-Zahlen-Vorlage  alles in deinem Browser, ohne dass Daten das Gerät verlassen.",
+    "feature1Title": "Intelligente Farbquantisierung",
+    "feature1Body": "Wähle zwischen den Algorithmen K-Means oder Median Cut, um dein Foto auf die perfekte Farbpalette zu reduzieren.",
+    "feature2Title": "Eigene Paletten",
+    "feature2Body": "Verwende eine Crayola-Buntstift-Voreinstellung oder erstelle deine eigene Palette von Grund auf.",
+    "feature3Title": "Bereiche bearbeiten",
+    "feature3Body": "Farbregionen im Ergebnis zusammenführen oder aufteilen, um die Komplexität deines Gemäldes fein abzustimmen.",
+    "feature4Title": "Export überall",
+    "feature4Body": "Lade die fertige Vorlage als PDF, PNG oder skalierbares SVG herunter.",
+    "howToBegin": "So fängst du an",
+    "step1": "Ziehe ein Bild hierher, klicke zum Durchsuchen oder füge es aus der Zwischenablage ein.",
+    "step2": "Passe die Palettengröße und andere Einstellungen im linken Bereich an.",
+    "step3": "Klicke auf \"Malen nach Zahlen erstellen\", um das Bild zu verarbeiten.",
+    "step4": "Überprüfe und verfeinere das Ergebnis, dann exportiere deine Vorlage."
+  },
+  "privacy": {
+    "tagline": "Deine Bilder werden vollständig in deinem Browser verarbeitet  nichts wird hochgeladen oder auf einem Server gespeichert.",
+    "learnMore": "Datenschutz & Rechtliches",
+    "seeLess": "Schließen",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Keine Datenerfassung.",
+    "noDataBody": "Diese Anwendung erfasst, überträgt oder teilt keine personenbezogenen Daten. Keine Analysen, kein Tracking, keine Cookies.",
+    "localStorageTitle": "Browser-Speicher.",
+    "localStorageBody": "Deine aktuelle Sitzung (Einstellungen und Bild) kann zur Bequemlichkeit im localStorage deines Browsers gespeichert werden. Diese Daten verlassen dein Gerät niemals und können jederzeit über die Browsereinstellungen gelöscht werden.",
+    "imagesTitle": "Bildverarbeitung.",
+    "imagesBody": "Die gesamte Bildverarbeitung erfolgt lokal in deinem Browser mit Web Workers. Deine Bilder werden niemals an einen Server gesendet.",
+    "copyrightTitle": "Deine Verantwortung.",
+    "copyrightBody": "Du bist dafür verantwortlich sicherzustellen, dass du die erforderlichen Rechte zur Nutzung aller hochgeladenen Bilder besitzt. Lade keine Bilder hoch, die du nicht besitzt oder für deren Verwendung du keine Berechtigung hast."
+  }
 }

@@ -267,4 +267,36 @@
     "split": "Diviser",
     "analyzing": "Analyse en cours..."
   }
+,
+  "welcome": {
+    "tagline": "Transformez n'importe quelle photo en un chef-d'œuvre de peinture par numéros",
+    "description": "Téléversez une photo et cet outil analysera les couleurs, simplifiera l'image en régions numérotées et générera un modèle de peinture par numéros prêt à imprimer  le tout dans votre navigateur, sans qu'aucune donnée ne quitte votre appareil.",
+    "feature1Title": "Quantification intelligente des couleurs",
+    "feature1Body": "Choisissez entre les algorithmes K-Means ou Median Cut pour réduire votre photo à l'ensemble de couleurs idéal.",
+    "feature2Title": "Palettes personnalisées",
+    "feature2Body": "Utilisez un préréglage de crayons Crayola ou créez votre propre palette à partir de rien.",
+    "feature3Title": "Édition de régions",
+    "feature3Body": "Fusionnez ou divisez des régions de couleur sur le résultat pour affiner la complexité de votre peinture.",
+    "feature4Title": "Exportation partout",
+    "feature4Body": "Téléchargez le modèle final en PDF, PNG ou SVG vectoriel.",
+    "howToBegin": "Comment commencer",
+    "step1": "Glissez-déposez une image ci-dessous, cliquez pour parcourir ou collez depuis le presse-papiers.",
+    "step2": "Ajustez la taille de la palette et les autres paramètres dans le panneau de gauche.",
+    "step3": "Cliquez sur  Générer la peinture par numéros  pour traiter l'image.",
+    "step4": "Vérifiez et affinez le résultat, puis exportez votre modèle."
+  },
+  "privacy": {
+    "tagline": "Vos images sont traitées entièrement dans votre navigateur  rien n'est téléversé ni stocké sur un serveur.",
+    "learnMore": "Confidentialité & Mentions légales",
+    "seeLess": "Fermer",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Aucune collecte de données.",
+    "noDataBody": "Cette application ne collecte, ne transmet et ne partage aucune donnée personnelle. Aucune analyse, aucun suivi, aucun cookie.",
+    "localStorageTitle": "Stockage du navigateur.",
+    "localStorageBody": "Votre session actuelle (paramètres et image) peut être enregistrée dans le localStorage de votre navigateur pour plus de commodité. Ces données ne quittent jamais votre appareil et peuvent être supprimées à tout moment via les paramètres du navigateur.",
+    "imagesTitle": "Traitement des images.",
+    "imagesBody": "Tout le traitement des images est effectué localement dans votre navigateur via des Web Workers. Vos images ne sont jamais envoyées à un serveur.",
+    "copyrightTitle": "Votre responsabilité.",
+    "copyrightBody": "Vous êtes responsable de vous assurer que vous disposez des droits nécessaires pour utiliser les images que vous téléversez. Ne téléversez pas d'images que vous ne possédez pas ou pour lesquelles vous n'avez pas l'autorisation de les utiliser."
+  }
 }

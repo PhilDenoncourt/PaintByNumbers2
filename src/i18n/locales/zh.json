@@ -267,4 +267,36 @@
     "split": "分割",
     "analyzing": "分析中..."
   }
+,
+  "welcome": {
+    "tagline": "将任何照片变成数字油画杰作",
+    "description": "上传一张照片，这个工具将分析颜色，将图像简化为编号区域，并生成可打印的数字油画模板——全部在您的浏览器中完成，没有任何数据离开您的设备。",
+    "feature1Title": "智能颜色量化",
+    "feature1Body": "从 K-Means 或 Median Cut 算法中选择，将您的照片缩减为完美的颜色集合。",
+    "feature2Title": "自定义调色板",
+    "feature2Body": "使用 Crayola 蜡笔预设，或从头开始创建自己的调色板。",
+    "feature3Title": "区域编辑",
+    "feature3Body": "在结果中合并或拆分颜色区域，以微调画作的复杂程度。",
+    "feature4Title": "随处导出",
+    "feature4Body": "将完成的模板下载为 PDF、PNG 或可缩放的 SVG。",
+    "howToBegin": "如何开始",
+    "step1": "将图片拖放到下方，点击浏览，或从剪贴板粘贴。",
+    "step2": "在左侧面板中调整调色板大小和其他设置。",
+    "step3": "点击\"生成数字油画\"以处理图像。",
+    "step4": "查看并优化结果，然后导出您的模板。"
+  },
+  "privacy": {
+    "tagline": "您的图片完全在浏览器中处理——不会上传或存储到任何服务器。",
+    "learnMore": "隐私与法律信息",
+    "seeLess": "关闭",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "不收集数据。",
+    "noDataBody": "此应用程序不收集、传输或共享任何个人数据。没有分析、没有跟踪、没有 Cookie。",
+    "localStorageTitle": "浏览器存储。",
+    "localStorageBody": "您的当前会话（设置和图片）可能会保存在浏览器的 localStorage 中以方便使用。这些数据永远不会离开您的设备，可随时通过浏览器设置清除。",
+    "imagesTitle": "图片处理。",
+    "imagesBody": "所有图片处理均使用 Web Workers 在浏览器中本地完成。您的图片永远不会发送到服务器。",
+    "copyrightTitle": "您的责任。",
+    "copyrightBody": "您有责任确保对上传的任何图片有必要的使用权。请勿上传您未拥有或未获授权使用的图片。"
+  }
 }

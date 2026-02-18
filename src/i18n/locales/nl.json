@@ -267,4 +267,36 @@
     "split": "Splitsen",
     "analyzing": "Analyseren..."
   }
+,
+  "welcome": {
+    "tagline": "Verander elke foto in een schilderen-op-nummer meesterwerk",
+    "description": "Upload een foto en dit hulpmiddel analyseert de kleuren, vereenvoudigt de afbeelding tot genummerde gebieden en genereert een printklaar schilderen-op-nummer sjabloon  alles in je browser, zonder dat er ooit gegevens je apparaat verlaten.",
+    "feature1Title": "Slimme kleurkwantisatie",
+    "feature1Body": "Kies uit K-Means of Median Cut algoritmen om je foto te reduceren tot de perfecte set kleuren.",
+    "feature2Title": "Aangepaste paletten",
+    "feature2Body": "Gebruik een Crayola kleurpotlood voorinstelling of maak je eigen palet van nul.",
+    "feature3Title": "Gebieden bewerken",
+    "feature3Body": "Kleurgebieden in het resultaat samenvoegen of splitsen om de complexiteit van je schilderij fijn af te stellen.",
+    "feature4Title": "Overal exporteren",
+    "feature4Body": "Download het afgeronde sjabloon als PDF, PNG of schaalbare SVG.",
+    "howToBegin": "Zo begin je",
+    "step1": "Sleep een afbeelding hieronder, klik om te bladeren of plak vanuit het klembord.",
+    "step2": "Pas de paletgrootte en andere instellingen aan in het linker paneel.",
+    "step3": "Klik op \"Schilderen op nummer genereren\" om de afbeelding te verwerken.",
+    "step4": "Controleer en verfijn het resultaat, exporteer dan je sjabloon."
+  },
+  "privacy": {
+    "tagline": "Je afbeeldingen worden volledig in je browser verwerkt  er wordt niets geüpload of opgeslagen op een server.",
+    "learnMore": "Privacy & Juridisch",
+    "seeLess": "Sluiten",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Geen gegevensverzameling.",
+    "noDataBody": "Deze applicatie verzamelt, verzendt of deelt geen persoonlijke gegevens. Geen analyses, geen tracking, geen cookies.",
+    "localStorageTitle": "Browseropslag.",
+    "localStorageBody": "Je huidige sessie (instellingen en afbeelding) kan voor het gemak worden opgeslagen in de localStorage van je browser. Deze gegevens verlaten je apparaat nooit en kunnen op elk moment worden gewist via de browserinstellingen.",
+    "imagesTitle": "Afbeeldingsverwerking.",
+    "imagesBody": "Alle afbeeldingsverwerking wordt lokaal in je browser uitgevoerd met behulp van Web Workers. Je afbeeldingen worden nooit naar een server verzonden.",
+    "copyrightTitle": "Jouw verantwoordelijkheid.",
+    "copyrightBody": "Je bent verantwoordelijk voor het waarborgen dat je de nodige rechten hebt om de afbeeldingen die je uploadt te gebruiken. Upload geen afbeeldingen die je niet bezit of waarvoor je geen toestemming hebt."
+  }
 }

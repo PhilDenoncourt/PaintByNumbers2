@@ -267,4 +267,36 @@
     "split": "Rozdělit",
     "analyzing": "Analýza..."
   }
+,
+  "welcome": {
+    "tagline": "Proměňte jakoukoli fotografii v malování podle čísel",
+    "description": "Nahrajte fotografii a tento nástroj analyzuje barvy, zjednoduší obrázek do číslovaných oblastí a vygeneruje šablonu malování podle čísel připravenou k tisku  vše ve vašem prohlížeči, přičemž žádná data nikdy neopustí vaše zařízení.",
+    "feature1Title": "Inteligentní kvantizace barev",
+    "feature1Body": "Vyberte si z algoritmů K-Means nebo Median Cut pro redukci fotografie na dokonalou sadu barev.",
+    "feature2Title": "Vlastní palety",
+    "feature2Body": "Použijte předvolbu pastelek Crayola nebo si sestavte vlastní paletu od základu.",
+    "feature3Title": "Úprava oblastí",
+    "feature3Body": "Slučujte nebo rozdělujte barevné oblasti ve výsledku pro doladění složitosti vaší malby.",
+    "feature4Title": "Export kamkoli",
+    "feature4Body": "Stáhněte hotovou šablonu jako PDF, PNG nebo škálovatelné SVG.",
+    "howToBegin": "Jak začít",
+    "step1": "Přetáhněte obrázek dolů, klikněte pro procházení nebo vložte ze schránky.",
+    "step2": "Upravte velikost palety a další nastavení v levém panelu.",
+    "step3": "Klikněte na \"Vytvořit malování podle čísel\" pro zpracování obrázku.",
+    "step4": "Zkontrolujte a upřesněte výsledek, poté exportujte svou šablonu."
+  },
+  "privacy": {
+    "tagline": "Vaše obrázky jsou zpracovávány výhradně ve vašem prohlížeči  nic se nenahrává ani neukládá na žádný server.",
+    "learnMore": "Ochrana soukromí a právní informace",
+    "seeLess": "Zavřít",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Žádný sběr dat.",
+    "noDataBody": "Tato aplikace neshromažďuje, nepřenáší ani nesdílí žádné osobní údaje. Žádné analytiky, žádné sledování, žádné cookies.",
+    "localStorageTitle": "Úložiště prohlížeče.",
+    "localStorageBody": "Vaše aktuální relace (nastavení a obrázek) může být pro pohodlí uložena do localStorage vašeho prohlížeče. Tato data nikdy neopustí vaše zařízení a lze je kdykoli vymazat prostřednictvím nastavení prohlížeče.",
+    "imagesTitle": "Zpracování obrázků.",
+    "imagesBody": "Veškeré zpracování obrázků probíhá lokálně ve vašem prohlížeči pomocí Web Workers. Vaše obrázky nejsou nikdy odeslány na server.",
+    "copyrightTitle": "Vaše odpovědnost.",
+    "copyrightBody": "Jste zodpovědní za zajištění, že máte potřebná práva k používání jakýchkoli obrázků, které nahráváte. Nenahrávejte obrázky, které nevlastníte nebo k jejichž použití nemáte oprávnění."
+  }
 }

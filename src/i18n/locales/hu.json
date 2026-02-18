@@ -267,4 +267,36 @@
     "split": "Felosztás",
     "analyzing": "Elemzése..."
   }
+,
+  "welcome": {
+    "tagline": "Alakíts bármilyen fotót számok szerint festendő remekművé",
+    "description": "Tölts fel egy fotót, és ez az eszköz elemzi a színeket, egyszerűsíti a képet sorszámozott területekre, és létrehoz egy nyomtatásra kész számozósablon-sablont  mindezt a böngésződben, anélkül, hogy bármilyen adat elhagyná az eszközödet.",
+    "feature1Title": "Intelligens színkvantálás",
+    "feature1Body": "Válassz a K-Means vagy Median Cut algoritmusok közül, hogy a fényképedet a tökéletes színkészletre csökkentsd.",
+    "feature2Title": "Egyedi palettás",
+    "feature2Body": "Használj Crayola zsírkréta előbeállítást, vagy hozd létre a saját palettádat a nulláról.",
+    "feature3Title": "Területek szerkesztése",
+    "feature3Body": "Egyesítsd vagy osztd fel a színterületeket az eredményen a festményed összetettségének finomhangolásához.",
+    "feature4Title": "Exportálás bárhova",
+    "feature4Body": "Töltsd le a kész sablont PDF, PNG vagy méretezhető SVG formátumban.",
+    "howToBegin": "Hogyan kezdj hozzá",
+    "step1": "Húzd és ejtsd le a képet az alábbiakban, kattints a böngészéshez, vagy illesztd be a vágólapról.",
+    "step2": "Állítsd be a paletta méretét és egyéb beállításokat a bal oldali panelen.",
+    "step3": "Kattints a \"Számok szerint festés generálása\" gombra a kép feldolgozásához.",
+    "step4": "Ellenőrizd és finomítsd az eredményt, majd exportáld a sablonod."
+  },
+  "privacy": {
+    "tagline": "A képeid teljes egészében a böngésződben kerülnek feldolgozásra  semmi sem töltődik fel vagy tárolódik semmilyen szerveren.",
+    "learnMore": "Adatvédelem és jogi információk",
+    "seeLess": "Bezárás",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Nincs adatgyűjtés.",
+    "noDataBody": "Ez az alkalmazás nem gyűjt, továbbít vagy oszt meg személyes adatokat. Nincs elemzés, nincs nyomon követés, nincsenek sütik.",
+    "localStorageTitle": "Böngésző tárhelye.",
+    "localStorageBody": "Jelenlegi munkameneted (beállítások és kép) kényelmi célból elmentésre kerülhet a böngésző localStorage tárhelyére. Ezek az adatok soha nem hagyják el az eszközödet, és bármikor törölhetők a böngésző beállításain keresztül.",
+    "imagesTitle": "Képfeldolgozás.",
+    "imagesBody": "Minden képfeldolgozás helyben, a böngésződben zajlik Web Workers segítségével. A képeid soha nem kerülnek szerverre küldésre.",
+    "copyrightTitle": "A te felelősséged.",
+    "copyrightBody": "Te vagy a felelős annak biztosításáért, hogy rendelkezz a szükséges jogokkal a feltöltött képek használatához. Ne tölts fel olyan képeket, amelyeket nem te tulajdonolsz, vagy amelyek használatára nincs engedélyed."
+  }
 }

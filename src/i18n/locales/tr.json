@@ -267,4 +267,36 @@
     "split": "Böl",
     "analyzing": "Analiz ediliyor..."
   }
+,
+  "welcome": {
+    "tagline": "Herhangi bir fotoğrafı sayılarla boyama şaheserine dönüştürün",
+    "description": "Bir fotoğraf yükleyin; bu araç renkleri analiz edecek, görüntüyü numaralı bölgelere basitleştirecek ve yazdırmaya hazır bir sayılarla boyama şablonu oluşturacak — tüm bunlar tarayıcınızda, hiçbir veri cihazınızı terk etmeden.",
+    "feature1Title": "Akıllı renk niceleme",
+    "feature1Body": "Fotoğrafınızı mükemmel renk setine indirgemek için K-Means veya Median Cut algoritmalarından birini seçin.",
+    "feature2Title": "Özel paletler",
+    "feature2Body": "Bir Crayola boya kalemi önayarı kullanın veya sıfırdan kendi paletinizi oluşturun.",
+    "feature3Title": "Bölge düzenleme",
+    "feature3Body": "Resminizin karmaşıklığını ince ayarlamak için sonuçtaki renk bölgelerini birleştirin ya da ayırın.",
+    "feature4Title": "Her yere dışa aktarın",
+    "feature4Body": "Bitmiş şablonu PDF, PNG veya ölçeklenebilir SVG olarak indirin.",
+    "howToBegin": "Nasıl başlanır",
+    "step1": "Aşağıya bir görüntü sürükleyip bırakın, göz atmak için tıklayın veya panodan yapıştırın.",
+    "step2": "Sol panelde palet boyutunu ve diğer ayarları düzenleyin.",
+    "step3": "Görüntüyü işlemek için \"Sayılarla Boyama Oluştur\" seçeneğine tıklayın.",
+    "step4": "Sonucu gözden geçirip düzeltin, ardından şablonunuzu dışa aktarın."
+  },
+  "privacy": {
+    "tagline": "Görüntüleriniz tamamen tarayıcınızda işlenir — hiçbir şey hiçbir sunucuya yüklenmez veya depolanmaz.",
+    "learnMore": "Gizlilik ve Yasal Bilgiler",
+    "seeLess": "Kapat",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Veri toplama yok.",
+    "noDataBody": "Bu uygulama herhangi bir kişisel veri toplamaz, iletmez veya paylaşmaz. Analitik yok, izleme yok, çerez yok.",
+    "localStorageTitle": "Tarayıcı depolama.",
+    "localStorageBody": "Mevcut oturumunuz (ayarlar ve görüntü) kolaylık sağlamak için tarayıcınızın localStorage bölümüne kaydedilebilir. Bu veriler asla cihazınızı terk etmez ve tarayıcı ayarları aracılığıyla her zaman temizlenebilir.",
+    "imagesTitle": "Görüntü işleme.",
+    "imagesBody": "Tüm görüntü işleme, Web Workers kullanılarak tarayıcınızda yerel olarak gerçekleştirilir. Görüntüleriniz asla bir sunucuya gönderilmez.",
+    "copyrightTitle": "Sizin sorumluluğunuz.",
+    "copyrightBody": "Yüklediğiniz görüntüleri kullanmak için gerekli haklara sahip olduğunuzdan emin olmak sizin sorumluluğunuzdadır. Sahip olmadığınız veya kullanma izninizin bulunmadığı görüntüleri yüklemeyin."
+  }
 }

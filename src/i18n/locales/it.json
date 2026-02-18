@@ -267,4 +267,36 @@
     "split": "Dividi",
     "analyzing": "Analisi in corso..."
   }
+,
+  "welcome": {
+    "tagline": "Trasforma qualsiasi foto in un capolavoro da dipingere per numeri",
+    "description": "Carica una foto e questo strumento analizzerà i colori, semplificherà l'immagine in regioni numerate e genererà un modello di pittura per numeri pronto per la stampa  tutto nel tuo browser, senza che alcun dato lasci il tuo dispositivo.",
+    "feature1Title": "Quantizzazione intelligente dei colori",
+    "feature1Body": "Scegli tra gli algoritmi K-Means o Median Cut per ridurre la foto al set di colori perfetto.",
+    "feature2Title": "Palette personalizzate",
+    "feature2Body": "Usa un preset di pastelli Crayola o crea la tua palette da zero.",
+    "feature3Title": "Modifica delle regioni",
+    "feature3Body": "Unisci o dividi le regioni di colore nel risultato per affinare la complessità del tuo dipinto.",
+    "feature4Title": "Esporta ovunque",
+    "feature4Body": "Scarica il modello finito come PDF, PNG o SVG scalabile.",
+    "howToBegin": "Come iniziare",
+    "step1": "Trascina e rilascia un'immagine qui sotto, fai clic per sfogliare o incolla dagli appunti.",
+    "step2": "Regola le dimensioni della palette e altre impostazioni nel pannello di sinistra.",
+    "step3": "Fai clic su \"Genera pittura per numeri\" per elaborare l'immagine.",
+    "step4": "Esamina e perfeziona il risultato, poi esporta il tuo modello."
+  },
+  "privacy": {
+    "tagline": "Le tue immagini vengono elaborate interamente nel tuo browser  niente viene caricato o archiviato su alcun server.",
+    "learnMore": "Privacy e note legali",
+    "seeLess": "Chiudi",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Nessuna raccolta di dati.",
+    "noDataBody": "Questa applicazione non raccoglie, trasmette o condivide dati personali. Nessuna analisi, nessun tracciamento, nessun cookie.",
+    "localStorageTitle": "Archiviazione del browser.",
+    "localStorageBody": "La sessione corrente (impostazioni e immagine) potrebbe essere salvata nel localStorage del browser per comodità. Questi dati non lasciano mai il tuo dispositivo e possono essere eliminati in qualsiasi momento tramite le impostazioni del browser.",
+    "imagesTitle": "Elaborazione delle immagini.",
+    "imagesBody": "Tutta l'elaborazione delle immagini viene eseguita localmente nel tuo browser tramite Web Workers. Le tue immagini non vengono mai inviate a un server.",
+    "copyrightTitle": "La tua responsabilità.",
+    "copyrightBody": "Sei responsabile di assicurarti di avere i diritti necessari per utilizzare le immagini che carichi. Non caricare immagini che non possiedi o per cui non hai il permesso di utilizzo."
+  }
 }

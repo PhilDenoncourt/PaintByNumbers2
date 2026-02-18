@@ -267,4 +267,36 @@
     "split": "Pisah",
     "analyzing": "Menganalisis..."
   }
+,
+  "welcome": {
+    "tagline": "Ubah foto apa pun menjadi karya mewarnai berdasarkan angka",
+    "description": "Unggah foto dan alat ini akan menganalisis warna, menyederhanakan gambar menjadi wilayah bernomor, dan menghasilkan templat mewarnai berdasarkan angka yang siap dicetak  semuanya di dalam browser Anda, tanpa data apa pun yang meninggalkan perangkat Anda.",
+    "feature1Title": "Kuantisasi warna cerdas",
+    "feature1Body": "Pilih dari algoritma K-Means atau Median Cut untuk mereduksi foto Anda ke kumpulan warna yang sempurna.",
+    "feature2Title": "Palet kustom",
+    "feature2Body": "Gunakan prasetel krayon Crayola atau buat palet Anda sendiri dari awal.",
+    "feature3Title": "Pengeditan wilayah",
+    "feature3Body": "Gabungkan atau pisahkan wilayah warna pada hasil untuk menyempurnakan kompleksitas lukisan Anda.",
+    "feature4Title": "Ekspor ke mana saja",
+    "feature4Body": "Unduh templat yang sudah selesai sebagai PDF, PNG, atau SVG yang dapat diskalakan.",
+    "howToBegin": "Cara memulai",
+    "step1": "Seret dan lepas gambar di bawah, klik untuk menelusuri, atau tempel dari clipboard.",
+    "step2": "Sesuaikan ukuran palet dan pengaturan lainnya di panel kiri.",
+    "step3": "Klik \"Buat Mewarnai Berdasarkan Angka\" untuk memproses gambar.",
+    "step4": "Tinjau dan sempurnakan hasilnya, lalu ekspor templat Anda."
+  },
+  "privacy": {
+    "tagline": "Gambar Anda diproses sepenuhnya di browser Anda  tidak ada yang diunggah atau disimpan di server mana pun.",
+    "learnMore": "Privasi & Hukum",
+    "seeLess": "Tutup",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Tidak ada pengumpulan data.",
+    "noDataBody": "Aplikasi ini tidak mengumpulkan, mengirimkan, atau berbagi data pribadi apa pun. Tidak ada analitik, tidak ada pelacakan, tidak ada cookie.",
+    "localStorageTitle": "Penyimpanan browser.",
+    "localStorageBody": "Sesi Anda saat ini (pengaturan dan gambar) mungkin disimpan di localStorage browser Anda untuk kenyamanan. Data ini tidak pernah meninggalkan perangkat Anda dan dapat dihapus kapan saja melalui pengaturan browser.",
+    "imagesTitle": "Pemrosesan gambar.",
+    "imagesBody": "Semua pemrosesan gambar dilakukan secara lokal di browser Anda menggunakan Web Workers. Gambar Anda tidak pernah dikirim ke server.",
+    "copyrightTitle": "Tanggung jawab Anda.",
+    "copyrightBody": "Anda bertanggung jawab untuk memastikan bahwa Anda memiliki hak yang diperlukan untuk menggunakan gambar apa pun yang Anda unggah. Jangan unggah gambar yang tidak Anda miliki atau tidak memiliki izin untuk digunakan."
+  }
 }

@@ -267,4 +267,36 @@
     "split": "Dela",
     "analyzing": "Analyserar..."
   }
+,
+  "welcome": {
+    "tagline": "Förvandla vilket foto som helst till ett mästerverk att måla efter siffror",
+    "description": "Ladda upp ett foto så analyserar det här verktyget färgerna, förenklar bilden till numrerade regioner och genererar en utskriftsklar mall för måla-efter-siffror — allt i din webbläsare utan att någon data lämnar din enhet.",
+    "feature1Title": "Smart färgkvantisering",
+    "feature1Body": "Välj mellan K-Means eller Median Cut-algoritmer för att reducera ditt foto till den perfekta uppsättningen färger.",
+    "feature2Title": "Anpassade paletter",
+    "feature2Body": "Använd en förinställning för Crayola-kritor eller skapa din egen palett från grunden.",
+    "feature3Title": "Redigering av regioner",
+    "feature3Body": "Sammanfoga eller dela upp färgregioner i resultatet för att finjustera komplexiteten i din målning.",
+    "feature4Title": "Exportera var som helst",
+    "feature4Body": "Ladda ner den färdiga mallen som PDF, PNG eller skalbar SVG.",
+    "howToBegin": "Hur du kommer igång",
+    "step1": "Dra och släpp en bild nedan, klicka för att bläddra eller klistra in från urklipp.",
+    "step2": "Justera palettstorleken och andra inställningar i vänsterpanelen.",
+    "step3": "Klicka på \"Generera måla-efter-siffror\" för att bearbeta bilden.",
+    "step4": "Granska och förfina resultatet, exportera sedan din mall."
+  },
+  "privacy": {
+    "tagline": "Dina bilder bearbetas helt och hållet i din webbläsare — inget laddas upp eller lagras på någon server.",
+    "learnMore": "Integritet & Juridisk information",
+    "seeLess": "Stäng",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Ingen datainsamling.",
+    "noDataBody": "Denna applikation samlar inte in, överför eller delar några personuppgifter. Ingen analys, ingen spårning, inga cookies.",
+    "localStorageTitle": "Webbläsarlagring.",
+    "localStorageBody": "Din nuvarande session (inställningar och bild) kan sparas i webbläsarens localStorage för bekvämlighets skull. Denna data lämnar aldrig din enhet och kan raderas när som helst via webbläsarens inställningar.",
+    "imagesTitle": "Bildbehandling.",
+    "imagesBody": "All bildbehandling utförs lokalt i din webbläsare med Web Workers. Dina bilder skickas aldrig till en server.",
+    "copyrightTitle": "Ditt ansvar.",
+    "copyrightBody": "Du ansvarar för att säkerställa att du har de nödvändiga rättigheterna att använda de bilder du laddar upp. Ladda inte upp bilder som du inte äger eller har tillstånd att använda."
+  }
 }

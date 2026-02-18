@@ -267,4 +267,36 @@
     "split": "Podziel",
     "analyzing": "Analizowanie..."
   }
+,
+  "welcome": {
+    "tagline": "Zamień dowolne zdjęcie w arcydzieło malowania po numerach",
+    "description": "Prześlij zdjęcie, a to narzędzie przeanalizuje kolory, uprości obraz do numerowanych obszarów i wygeneruje gotowy do wydruku szablon malowania po numerach  wszystko w Twojej przeglądarce, bez wysyłania jakichkolwiek danych poza urządzenie.",
+    "feature1Title": "Inteligentna kwantyzacja kolorów",
+    "feature1Body": "Wybierz algorytm K-Means lub Median Cut, aby zredukować zdjęcie do idealnego zestawu kolorów.",
+    "feature2Title": "Niestandardowe palety",
+    "feature2Body": "Użyj predefiniowanej palety kredek Crayola lub stwórz własną paletę od podstaw.",
+    "feature3Title": "Edycja obszarów",
+    "feature3Body": "Scalaj lub dziel obszary kolorów w wyniku, aby dostroić złożoność swojego obrazu.",
+    "feature4Title": "Eksportuj wszędzie",
+    "feature4Body": "Pobierz gotowy szablon jako PDF, PNG lub skalowalny SVG.",
+    "howToBegin": "Jak zacząć",
+    "step1": "Przeciągnij i upuść obraz poniżej, kliknij, aby go znaleźć, lub wklej ze schowka.",
+    "step2": "Dostosuj rozmiar palety i inne ustawienia w lewym panelu.",
+    "step3": "Kliknij \"Generuj malowanie po numerach\", aby przetworzyć obraz.",
+    "step4": "Przejrzyj i dopracuj wynik, a następnie wyeksportuj szablon."
+  },
+  "privacy": {
+    "tagline": "Twoje obrazy są przetwarzane wyłącznie w Twojej przeglądarce — nic nie jest przesyłane ani przechowywane na żadnym serwerze.",
+    "learnMore": "Prywatność i informacje prawne",
+    "seeLess": "Zamknij",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Brak zbierania danych.",
+    "noDataBody": "Ta aplikacja nie zbiera, nie przesyła ani nie udostępnia żadnych danych osobowych. Brak analityki, brak śledzenia, brak plików cookie.",
+    "localStorageTitle": "Pamięć przeglądarki.",
+    "localStorageBody": "Twoja bieżąca sesja (ustawienia i obraz) może być zapisana w localStorage przeglądarki dla wygody. Te dane nigdy nie opuszczają Twojego urządzenia i można je w każdej chwili usunąć w ustawieniach przeglądarki.",
+    "imagesTitle": "Przetwarzanie obrazów.",
+    "imagesBody": "Całe przetwarzanie obrazów odbywa się lokalnie w Twojej przeglądarce przy użyciu Web Workers. Twoje obrazy nigdy nie są wysyłane na serwer.",
+    "copyrightTitle": "Twoja odpowiedzialność.",
+    "copyrightBody": "Jesteś odpowiedzialny za zapewnienie, że posiadasz niezbędne prawa do korzystania z przesyłanych obrazów. Nie przesyłaj obrazów, których nie jesteś właścicielem lub do których używania nie masz zgody."
+  }
 }

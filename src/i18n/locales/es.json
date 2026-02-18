@@ -267,4 +267,36 @@
     "split": "Dividir",
     "analyzing": "Analizando..."
   }
+,
+  "welcome": {
+    "tagline": "Convierte cualquier foto en una obra maestra de pintura por números",
+    "description": "Sube una foto y esta herramienta analizará los colores, simplificará la imagen en regiones numeradas y generará una plantilla de pintura por números lista para imprimir  todo dentro de tu navegador, sin que ningún dato abandone tu dispositivo.",
+    "feature1Title": "Cuantización de color inteligente",
+    "feature1Body": "Elige entre los algoritmos K-Means o Median Cut para reducir tu foto al conjunto de colores perfecto.",
+    "feature2Title": "Paletas personalizadas",
+    "feature2Body": "Usa un preajuste de crayones Crayola o crea tu propia paleta desde cero.",
+    "feature3Title": "Edición de regiones",
+    "feature3Body": "Combina o divide regiones de color en el resultado para ajustar la complejidad de tu pintura.",
+    "feature4Title": "Exporta donde quieras",
+    "feature4Body": "Descarga la plantilla terminada como PDF, PNG o SVG escalable.",
+    "howToBegin": "Cómo empezar",
+    "step1": "Arrastra y suelta una imagen abajo, haz clic para explorar o pega desde el portapapeles.",
+    "step2": "Ajusta el tamaño de la paleta y otros parámetros en el panel izquierdo.",
+    "step3": "Haz clic en Generar pintura por números para procesar la imagen.",
+    "step4": "Revisa y ajusta el resultado, luego exporta tu plantilla."
+  },
+  "privacy": {
+    "tagline": "Tus imágenes se procesan íntegramente en tu navegador  nada se sube ni se almacena en ningún servidor.",
+    "learnMore": "Privacidad y legal",
+    "seeLess": "Cerrar",
+    "author": "Phil Denoncourt III",
+    "noDataTitle": "Sin recopilación de datos.",
+    "noDataBody": "Esta aplicación no recopila, transmite ni comparte ningún dato personal. Sin análisis, sin seguimiento, sin cookies.",
+    "localStorageTitle": "Almacenamiento del navegador.",
+    "localStorageBody": "Tu sesión actual (configuración e imagen) puede guardarse en el localStorage de tu navegador por comodidad. Estos datos nunca abandonan tu dispositivo y pueden borrarse en cualquier momento desde la configuración del navegador.",
+    "imagesTitle": "Procesamiento de imágenes.",
+    "imagesBody": "Todo el procesamiento de imágenes se realiza localmente en tu navegador mediante Web Workers. Tus imágenes nunca se envían a un servidor.",
+    "copyrightTitle": "Tu responsabilidad.",
+    "copyrightBody": "Eres responsable de asegurarte de tener los derechos necesarios para usar las imágenes que subes. No subas imágenes que no poseas o para las que no tengas permiso de uso."
+  }
 }
