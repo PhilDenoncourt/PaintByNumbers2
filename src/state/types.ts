@@ -54,6 +54,7 @@ export interface PipelineSettings {
   brightness: number; // -100 to 100
   contrast: number;   // -100 to 100
   saturation: number; // -100 to 100
+  sharpness: number;  // -100 (blur) to 100 (sharpen)
   // Crop & rotate
   cropRect: { x: number; y: number; w: number; h: number } | null; // normalized 0–1, in post-rotation space
   rotation: RotationAngle; // degrees clockwise, applied before crop

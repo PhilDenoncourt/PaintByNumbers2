@@ -19,12 +19,13 @@ export async function runPipeline(
   const { width, height } = imageData;
 
   // Apply preprocessing adjustments
-  const hasPreprocessing = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0;
+  const hasPreprocessing = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0 || settings.sharpness !== 0;
   if (hasPreprocessing) {
     applyPreprocessing(imageData, {
       brightness: settings.brightness,
       contrast: settings.contrast,
       saturation: settings.saturation,
+      sharpness: settings.sharpness,
     });
   }
 

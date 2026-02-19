@@ -1,11 +1,12 @@
 /**
- * Image preprocessing utilities for brightness, contrast, and saturation adjustments
+ * Image preprocessing utilities for brightness, contrast, saturation, and sharpness adjustments
  */
 
 export interface PreprocessingSettings {
   brightness: number; // -100 to 100
   contrast: number;   // -100 to 100
   saturation: number; // -100 to 100
+  sharpness: number;  // -100 (blur) to 100 (sharpen)
 }
 
 /**
@@ -16,27 +17,135 @@ export function applyPreprocessing(
   imageData: ImageData,
   settings: PreprocessingSettings
 ): void {
+  // Apply sharpness/blur first (spatial operation requiring neighbor access)
+  if (settings.sharpness !== 0) {
+    applySharpness(imageData, settings.sharpness);
+  }
+
   const { data } = imageData;
-  
+
   for (let i = 0; i < data.length; i += 4) {
     const r = data[i];
     const g = data[i + 1];
     const b = data[i + 2];
-    
+
     // Apply brightness
     let [nr, ng, nb] = applyBrightness(r, g, b, settings.brightness);
-    
+
     // Apply contrast
     [nr, ng, nb] = applyContrast(nr, ng, nb, settings.contrast);
-    
+
     // Apply saturation
     [nr, ng, nb] = applySaturation(nr, ng, nb, settings.saturation);
-    
+
     data[i] = nr;
     data[i + 1] = ng;
     data[i + 2] = nb;
     // Alpha channel (i + 3) remains unchanged
   }
+}
+
+/**
+ * Apply sharpness adjustment (blur or sharpen) via convolution
+ * @param imageData - ImageData to modify in-place
+ * @param sharpness - -100 (max blur) to 100 (max sharpen)
+ */
+function applySharpness(imageData: ImageData, sharpness: number): void {
+  if (sharpness < 0) {
+    // Blur: separable box blur with strength-based radius, blended with original
+    const strength = Math.abs(sharpness) / 100;
+    const radius = Math.max(1, Math.ceil(strength * 3));
+    const original = new Uint8ClampedArray(imageData.data);
+    applyBoxBlur(imageData, radius);
+    // Blend: lerp between original and blurred by strength for smooth gradation
+    const { data } = imageData;
+    for (let i = 0; i < data.length; i += 4) {
+      data[i]     = Math.round(original[i]     + (data[i]     - original[i])     * strength);
+      data[i + 1] = Math.round(original[i + 1] + (data[i + 1] - original[i + 1]) * strength);
+      data[i + 2] = Math.round(original[i + 2] + (data[i + 2] - original[i + 2]) * strength);
+    }
+  } else {
+    // Sharpen: Laplacian cross kernel with strength-scaled center weight
+    const k = (sharpness / 100) * 1.5; // 0 to 1.5
+    applySharpenKernel(imageData, k);
+  }
+}
+
+/**
+ * Separable box blur (horizontal + vertical pass) for performance
+ */
+function applyBoxBlur(imageData: ImageData, radius: number): void {
+  const { data, width, height } = imageData;
+  const tmp = new Uint8ClampedArray(data.length);
+  const diameter = 2 * radius + 1;
+
+  // Horizontal pass: data -> tmp
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let r = 0, g = 0, b = 0;
+      for (let dx = -radius; dx <= radius; dx++) {
+        const nx = Math.min(Math.max(x + dx, 0), width - 1);
+        const idx = (y * width + nx) * 4;
+        r += data[idx];
+        g += data[idx + 1];
+        b += data[idx + 2];
+      }
+      const i = (y * width + x) * 4;
+      tmp[i]     = r / diameter;
+      tmp[i + 1] = g / diameter;
+      tmp[i + 2] = b / diameter;
+      tmp[i + 3] = data[i + 3];
+    }
+  }
+
+  // Vertical pass: tmp -> data
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let r = 0, g = 0, b = 0;
+      for (let dy = -radius; dy <= radius; dy++) {
+        const ny = Math.min(Math.max(y + dy, 0), height - 1);
+        const idx = (ny * width + x) * 4;
+        r += tmp[idx];
+        g += tmp[idx + 1];
+        b += tmp[idx + 2];
+      }
+      const i = (y * width + x) * 4;
+      data[i]     = r / diameter;
+      data[i + 1] = g / diameter;
+      data[i + 2] = b / diameter;
+    }
+  }
+}
+
+/**
+ * Laplacian cross-shaped sharpen kernel:
+ *   [ 0, -k,  0]
+ *   [-k, 1+4k,-k]
+ *   [ 0, -k,  0]
+ */
+function applySharpenKernel(imageData: ImageData, k: number): void {
+  const { data, width, height } = imageData;
+  const result = new Uint8ClampedArray(data.length);
+  const center = 1 + 4 * k;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      const n = (Math.max(y - 1, 0) * width + x) * 4;
+      const s = (Math.min(y + 1, height - 1) * width + x) * 4;
+      const w = (y * width + Math.max(x - 1, 0)) * 4;
+      const e = (y * width + Math.min(x + 1, width - 1)) * 4;
+
+      for (let c = 0; c < 3; c++) {
+        result[i + c] = clamp(
+          center * data[i + c] - k * (data[n + c] + data[s + c] + data[w + c] + data[e + c]),
+          0, 255
+        );
+      }
+      result[i + 3] = data[i + 3];
+    }
+  }
+  data.set(result);
 }
 
 /**

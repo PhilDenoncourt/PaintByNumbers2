@@ -11,7 +11,7 @@ export function PreprocessedImagePreview() {
   const pipelineStatus  = useAppStore((s) => s.pipeline.status);
 
   const hasCropRotate  = settings.cropRect !== null || settings.rotation !== 0;
-  const hasColorAdjust = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0;
+  const hasColorAdjust = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0 || settings.sharpness !== 0;
   const hasAnyEffect   = hasCropRotate || hasColorAdjust;
 
   useEffect(() => {
@@ -46,6 +46,7 @@ export function PreprocessedImagePreview() {
         brightness: settings.brightness,
         contrast:   settings.contrast,
         saturation: settings.saturation,
+        sharpness:  settings.sharpness,
       });
       baseData = copy;
     }
