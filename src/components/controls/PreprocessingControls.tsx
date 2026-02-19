@@ -14,10 +14,11 @@ export function PreprocessingControls() {
       brightness: 0,
       contrast: 0,
       saturation: 0,
+      sharpness: 0,
     });
   };
 
-  const hasAdjustments = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0;
+  const hasAdjustments = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0 || settings.sharpness !== 0;
 
   return (
     <div className="space-y-4">
@@ -97,6 +98,28 @@ export function PreprocessingControls() {
         <div className="flex justify-between text-xs text-gray-500">
           <span>{t('controls.desaturated')}</span>
           <span>{t('controls.saturated')}</span>
+        </div>
+      </div>
+
+      {/* Sharpness Control */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <label className="text-xs font-medium text-gray-600">{t('controls.sharpness')}</label>
+          <span className="text-xs font-mono text-gray-500">{settings.sharpness > 0 ? '+' : ''}{settings.sharpness}</span>
+        </div>
+        <input
+          type="range"
+          min="-100"
+          max="100"
+          step="1"
+          value={settings.sharpness}
+          onChange={(e) => updateSettings({ sharpness: parseInt(e.target.value) })}
+          disabled={disabled}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        />
+        <div className="flex justify-between text-xs text-gray-500">
+          <span>{t('controls.blurry')}</span>
+          <span>{t('controls.sharpened')}</span>
         </div>
       </div>
     </div>
