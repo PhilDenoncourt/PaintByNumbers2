@@ -11,13 +11,16 @@
     "save": "Enregistrer",
     "export": "Exporter",
     "import": "Importer",
-    "home": "Accueil"
+    "home": "Accueil",
+    "unknownError": "Erreur inconnue"
   },
   "header": {
     "title": "Peindre par Nombres",
     "regions": "régions",
     "color": "Couleur",
-    "regionInfo": "{{width}}x{{height}} · {{count}} régions"
+    "regionInfo": "{{width}}x{{height}} · {{count}} régions",
+    "lightMode": "Passer au mode clair",
+    "darkMode": "Passer au mode sombre"
   },
   "uploader": {
     "title": "Charger une image",
@@ -51,7 +54,12 @@
     "adjustSettings": "Ajustez les paramètres à gauche, puis cliquez sur Générer",
     "processingFailed": "Échec du traitement",
     "failedToDisplay": "Échec de l'affichage du résultat",
-    "tryRegenerate": "Essayez de régénérer l'image"
+    "tryRegenerate": "Essayez de régénérer l'image",
+    "settings": "Paramètres",
+    "closeSidebar": "Fermer la barre latérale",
+    "openSettings": "Ouvrir les paramètres",
+    "undoTooltip": "Annuler (Ctrl+Z)",
+    "redoTooltip": "Rétablir (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Taille de la palette",
@@ -82,6 +90,9 @@
     "medium": "Moyen",
     "complex": "Complexe",
     "detailLevelFineTune": "Niveau de détail (Ajustement fin)",
+    "detailed": "Détaillé",
+    "sharp": "Net",
+    "smooth": "Lisse",
     "lineSmoothing": "Lissage des lignes",
     "smoothingStrength": "Force de lissage",
     "sharpEdges": "Bords nets",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Guide des couleurs (PNG)",
     "saveToBrowser": "Enregistrer dans le navigateur",
     "exportSession": "Exporter la session",
-    "loadSession": "Charger la session",
     "filename": "Nom du fichier",
     "cancel": "Annuler",
     "download": "Télécharger",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Légende des couleurs"
+    "legendTitle": "Légende des couleurs",
+    "pdfPrintReady": "PDF (Prêt à imprimer)",
+    "failedImportSession": "Échec de l'importation de la session : {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Passer à {{name}}"
   },
   "palette": {
     "legend": "Légende de la palette",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Aucun candidat de division trouvé",
     "split": "Diviser",
     "analyzing": "Analyse en cours..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Transformez n'importe quelle photo en un chef-d'œuvre de peinture par numéros",
     "description": "Téléversez une photo et cet outil analysera les couleurs, simplifiera l'image en régions numérotées et générera un modèle de peinture par numéros prêt à imprimer  le tout dans votre navigateur, sans qu'aucune donnée ne quitte votre appareil.",

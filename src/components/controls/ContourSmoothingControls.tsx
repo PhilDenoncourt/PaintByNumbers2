@@ -87,7 +87,7 @@ export function ContourSmoothingControls() {
           <li>• <strong>{t('controls.lowStrength')}</strong> (0.5-1.0): {t('controls.detailedOutlines')}</li>
           <li>• <strong>{t('controls.mediumStrength')}</strong> (1.5-2.5): {t('controls.balancedDetail')}</li>
           <li>• <strong>{t('controls.highStrength')}</strong> (3.0-5.0): {t('controls.smoothOutlines')}</li>
-          <li>• <strong>Passes</strong>: {t('controls.passesDescription')}</li>
+          <li>• <strong>{t('controls.smoothingPasses')}</strong>: {t('controls.passesDescription')}</li>
         </ul>
       </div>
     </div>

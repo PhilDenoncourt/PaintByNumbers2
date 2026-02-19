@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ZoomPanContainer } from './ZoomPanContainer';
 import { CanvasPreview } from './CanvasPreview';
 import { RegionHoverOverlay } from './RegionHoverOverlay';
+import { CompactPaletteLegend } from '../palette/CompactPaletteLegend';
 
 export function SideBySideView() {
   const { t } = useTranslation();
@@ -24,7 +25,7 @@ export function SideBySideView() {
             {sourceImageUrl && (
               <img
                 src={sourceImageUrl}
-                alt="Original"
+                alt={t('preview.original')}
                 className="max-w-full max-h-full object-contain"
               />
             )}
@@ -36,6 +37,7 @@ export function SideBySideView() {
             <RegionHoverOverlay />
           </div>
         </div>
+        <CompactPaletteLegend />
       </div>
     );
   }
@@ -59,7 +61,7 @@ export function SideBySideView() {
               style={{
                 WebkitAppearance: 'slider-horizontal',
               }}
-              aria-label="Before/After slider"
+              aria-label={t('preview.beforeAfterSlider')}
             />
             <span className="text-xs text-gray-500 font-medium min-w-12 text-right">{t('preview.after')}</span>
           </div>
@@ -69,7 +71,7 @@ export function SideBySideView() {
           {sourceImageUrl && (
             <img
               src={sourceImageUrl}
-              alt="Original"
+              alt={t('preview.original')}
               className="absolute inset-0 w-full h-full object-contain"
               style={{ opacity: 1 - overlayOpacity }}
             />
@@ -81,6 +83,7 @@ export function SideBySideView() {
           </div>
           <RegionHoverOverlay />
         </div>
+        <CompactPaletteLegend />
       </div>
     );
   }
@@ -95,6 +98,7 @@ export function SideBySideView() {
         </ZoomPanContainer>
         <RegionHoverOverlay />
       </div>
+      <CompactPaletteLegend />
     </div>
   );
 }

@@ -11,13 +11,16 @@
     "save": "Kaydet",
     "export": "Dış Aktar",
     "import": "İçe Aktar",
-    "home": "Ana Sayfa"
+    "home": "Ana Sayfa",
+    "unknownError": "Bilinmeyen hata"
   },
   "header": {
     "title": "Numaralara Göre Boyama",
     "regions": "bölgeler",
     "color": "Renk",
-    "regionInfo": "{{width}}x{{height}} · {{count}} bölge"
+    "regionInfo": "{{width}}x{{height}} · {{count}} bölge",
+    "lightMode": "Açık moda geç",
+    "darkMode": "Karanlık moda geç"
   },
   "uploader": {
     "title": "Resim Yükle",
@@ -51,7 +54,12 @@
     "adjustSettings": "Sol taraftaki ayarları yapın, ardından Oluştur'a tıklayın",
     "processingFailed": "İşlem başarısız",
     "failedToDisplay": "Sonuç gösterilemiyor",
-    "tryRegenerate": "Resmi yeniden oluşturmayı deneyin"
+    "tryRegenerate": "Resmi yeniden oluşturmayı deneyin",
+    "settings": "Ayarlar",
+    "closeSidebar": "Yan çubuğu kapat",
+    "openSettings": "Ayarları aç",
+    "undoTooltip": "Geri al (Ctrl+Z)",
+    "redoTooltip": "Yinele (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Palet Boyutu",
@@ -82,6 +90,9 @@
     "medium": "Orta",
     "complex": "Karmaşık",
     "detailLevelFineTune": "Detay Seviyesi (İnce Ayarlama)",
+    "detailed": "Ayrıntılı",
+    "sharp": "Keskin",
+    "smooth": "Pürüzsüz",
     "lineSmoothing": "Çizgi Düzleştirme",
     "smoothingStrength": "Düzleştirme Gücü",
     "sharpEdges": "Keskin Kenarlar",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Renk Rehberi (PNG)",
     "saveToBrowser": "Tarayıcıya Kaydet",
     "exportSession": "Oturumu Dış Aktar",
-    "loadSession": "Oturumu Yükle",
     "filename": "Dosya Adı",
     "cancel": "İptal",
     "download": "İndir",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Renk Efsanesi"
+    "legendTitle": "Renk Efsanesi",
+    "pdfPrintReady": "PDF (Yazdırmaya hazır)",
+    "failedImportSession": "Oturum içe aktarılamadı: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "{{name}} diline geç"
   },
   "palette": {
     "legend": "Palet Efsanesi",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Bölme adayı bulunamadı",
     "split": "Böl",
     "analyzing": "Analiz ediliyor..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Herhangi bir fotoğrafı sayılarla boyama şaheserine dönüştürün",
     "description": "Bir fotoğraf yükleyin; bu araç renkleri analiz edecek, görüntüyü numaralı bölgelere basitleştirecek ve yazdırmaya hazır bir sayılarla boyama şablonu oluşturacak — tüm bunlar tarayıcınızda, hiçbir veri cihazınızı terk etmeden.",

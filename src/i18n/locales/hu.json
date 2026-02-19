@@ -11,13 +11,16 @@
     "save": "Mentés",
     "export": "Exportálás",
     "import": "Importálás",
-    "home": "Kezdőlap"
+    "home": "Kezdőlap",
+    "unknownError": "Ismeretlen hiba"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "régió",
     "color": "Szín",
-    "regionInfo": "{{width}}x{{height}} · {{count}} régió"
+    "regionInfo": "{{width}}x{{height}} · {{count}} régió",
+    "lightMode": "Váltás világos módra",
+    "darkMode": "Váltás sötét módra"
   },
   "uploader": {
     "title": "Kép feltöltése",
@@ -51,7 +54,12 @@
     "adjustSettings": "Módosítsa a beállításokat a bal oldalon, majd kattintson a Generálás gombra",
     "processingFailed": "A feldolgozás sikertelen",
     "failedToDisplay": "Nem sikerült az eredmény megjelenítése",
-    "tryRegenerate": "Próbálja meg újra generálni a képet"
+    "tryRegenerate": "Próbálja meg újra generálni a képet",
+    "settings": "Beállítások",
+    "closeSidebar": "Oldalsáv bezárása",
+    "openSettings": "Beállítások megnyitása",
+    "undoTooltip": "Visszavonás (Ctrl+Z)",
+    "redoTooltip": "Újra (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Paletta mérete",
@@ -82,6 +90,9 @@
     "medium": "Közepes",
     "complex": "Összetett",
     "detailLevelFineTune": "Részletességi szint (finom hangolás)",
+    "detailed": "Részletes",
+    "sharp": "Éles",
+    "smooth": "Sima",
     "lineSmoothing": "Vonal simítása",
     "smoothingStrength": "Simítási erősség",
     "sharpEdges": "Éles élek",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Szín útmutató (PNG)",
     "saveToBrowser": "Mentés böngészőbe",
     "exportSession": "Munkamenet exportálása",
-    "loadSession": "Munkamenet betöltése",
     "filename": "Fájlnév",
     "cancel": "Mégse",
     "download": "Letöltés",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Szín jelmagyarázat"
+    "legendTitle": "Szín jelmagyarázat",
+    "pdfPrintReady": "PDF (Nyomtatásra kész)",
+    "failedImportSession": "A munkamenet importálása sikertelen: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Váltás: {{name}}"
   },
   "palette": {
     "legend": "Paletta jelmagyarázat",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Nincs felosztás jelölt",
     "split": "Felosztás",
     "analyzing": "Elemzése..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Alakíts bármilyen fotót számok szerint festendő remekművé",
     "description": "Tölts fel egy fotót, és ez az eszköz elemzi a színeket, egyszerűsíti a képet sorszámozott területekre, és létrehoz egy nyomtatásra kész számozósablon-sablont  mindezt a böngésződben, anélkül, hogy bármilyen adat elhagyná az eszközödet.",

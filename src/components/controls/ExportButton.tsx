@@ -40,7 +40,7 @@ export function ExportButton() {
 
   return (
     <div className="space-y-2">
-      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">SVG</p>
+      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{t('export.svgTitle')}</p>
       <button
         onClick={() => handleSvgExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
@@ -54,7 +54,7 @@ export function ExportButton() {
         {t('export.exportSvgColored')}
       </button>
 
-      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">PNG</p>
+      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">{t('export.pngTitle')}</p>
       <button
         onClick={() => handlePngExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
@@ -68,7 +68,7 @@ export function ExportButton() {
         {t('export.exportPngColored')}
       </button>
 
-      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">PDF (Print-Ready)</p>
+      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide pt-2">{t('export.pdfPrintReady')}</p>
       <button
         onClick={() => handlePdfExport(false)}
         className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"

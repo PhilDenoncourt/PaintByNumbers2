@@ -34,11 +34,11 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
       <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
         {/* Mobile close bar */}
         <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
-          <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings', 'Settings')}</span>
+          <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings')}</span>
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Close sidebar"
+            aria-label={t('sidebar.closeSidebar')}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -53,11 +53,11 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
     <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
       {/* Mobile close bar — sticky at top when scrolling */}
       <div className="md:hidden sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shrink-0">
-        <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings', 'Settings')}</span>
+        <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings')}</span>
         <button
           onClick={onClose}
           className="p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          aria-label="Close sidebar"
+          aria-label={t('sidebar.closeSidebar')}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -137,7 +137,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
                       ? 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   }`}
-                  title="Undo (Ctrl+Z)"
+                  title={t('sidebar.undoTooltip')}
                 >
                   ↶ {t('sidebar.undo')}
                 </button>
@@ -149,7 +149,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
                       ? 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   }`}
-                  title="Redo (Ctrl+Y)"
+                  title={t('sidebar.redoTooltip')}
                 >
                   ↷ {t('sidebar.redo')}
                 </button>

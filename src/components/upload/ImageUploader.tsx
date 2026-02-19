@@ -45,9 +45,9 @@ export function ImageUploader() {
       };
       img.src = session.sourceImageBase64;
     } catch (err) {
-      alert(`Failed to load session: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      alert(`${t('uploader.errorLoadingSession')}: ${err instanceof Error ? err.message : t('common.unknownError')}`);
     }
-  }, []);
+  }, [t]);
 
   const handleFile = useCallback(
     async (file: File) => {

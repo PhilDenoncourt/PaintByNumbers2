@@ -88,7 +88,7 @@ export function AppShell() {
           <button
             onClick={() => setMobileSidebarOpen(true)}
             className="md:hidden p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Open settings"
+            aria-label={t('sidebar.openSettings')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -110,8 +110,8 @@ export function AppShell() {
           <button
             onClick={toggleDarkMode}
             className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            title={darkMode ? t('header.lightMode', 'Switch to light mode') : t('header.darkMode', 'Switch to dark mode')}
-            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={darkMode ? t('header.lightMode') : t('header.darkMode')}
+            aria-label={darkMode ? t('header.lightMode') : t('header.darkMode')}
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
@@ -240,7 +240,7 @@ export function AppShell() {
               <div className="w-80">
                 <ErrorBoundary fallback={
                   <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <p className="text-gray-600 dark:text-gray-300 font-medium">Processing...</p>
+                    <p className="text-gray-600 dark:text-gray-300 font-medium">{t('processing.processing')}</p>
                   </div>
                 }>
                   <ProcessingProgress />

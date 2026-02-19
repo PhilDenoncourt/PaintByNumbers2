@@ -11,13 +11,16 @@
     "save": "Salva",
     "export": "Esporta",
     "import": "Importa",
-    "home": "Home"
+    "home": "Home",
+    "unknownError": "Errore sconosciuto"
   },
   "header": {
     "title": "Dipingi per Numeri",
     "regions": "regioni",
     "color": "Colore",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regioni"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regioni",
+    "lightMode": "Passa alla modalità chiara",
+    "darkMode": "Passa alla modalità scura"
   },
   "uploader": {
     "title": "Carica Immagine",
@@ -51,7 +54,12 @@
     "adjustSettings": "Regola le impostazioni a sinistra, quindi fai clic su Genera",
     "processingFailed": "Elaborazione non riuscita",
     "failedToDisplay": "Errore nella visualizzazione del risultato",
-    "tryRegenerate": "Prova a rigenerare l'immagine"
+    "tryRegenerate": "Prova a rigenerare l'immagine",
+    "settings": "Impostazioni",
+    "closeSidebar": "Chiudi la barra laterale",
+    "openSettings": "Apri le impostazioni",
+    "undoTooltip": "Annulla (Ctrl+Z)",
+    "redoTooltip": "Ripristina (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Dimensione Tavolozza",
@@ -82,6 +90,9 @@
     "medium": "Medio",
     "complex": "Complesso",
     "detailLevelFineTune": "Livello di Dettaglio (Ottimizzazione)",
+    "detailed": "Dettagliato",
+    "sharp": "Nitido",
+    "smooth": "Liscio",
     "lineSmoothing": "Levigatura Linee",
     "smoothingStrength": "Intensità Levigatura",
     "sharpEdges": "Bordi Affilati",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Guida dei Colori (PNG)",
     "saveToBrowser": "Salva nel Browser",
     "exportSession": "Esporta Sessione",
-    "loadSession": "Carica Sessione",
     "filename": "Nome File",
     "cancel": "Annulla",
     "download": "Scarica",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Legenda dei Colori"
+    "legendTitle": "Legenda dei Colori",
+    "pdfPrintReady": "PDF (Pronto per la stampa)",
+    "failedImportSession": "Importazione sessione non riuscita: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Passa a {{name}}"
   },
   "palette": {
     "legend": "Legenda Tavolozza",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Nessun candidato divisione trovato",
     "split": "Dividi",
     "analyzing": "Analisi in corso..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Trasforma qualsiasi foto in un capolavoro da dipingere per numeri",
     "description": "Carica una foto e questo strumento analizzerà i colori, semplificherà l'immagine in regioni numerate e genererà un modello di pittura per numeri pronto per la stampa  tutto nel tuo browser, senza che alcun dato lasci il tuo dispositivo.",

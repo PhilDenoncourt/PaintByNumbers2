@@ -63,11 +63,11 @@ export function SessionControls() {
           result: session.result,
         });
         
-        alert('Session loaded successfully!');
+        alert(t('export.sessionLoaded'));
       };
       img.src = session.sourceImageBase64;
     } catch (err) {
-      alert(`Failed to import session: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      alert(t('export.failedImportSession', { message: err instanceof Error ? err.message : t('common.unknownError') }));
     }
 
     if (fileInputRef.current) {

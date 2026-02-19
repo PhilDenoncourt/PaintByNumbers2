@@ -55,7 +55,7 @@ export function PaletteControls() {
           >
             {crayolaPalettes.map((p) => (
               <option key={p.size} value={`crayola-${p.size}`}>
-                {p.label} ({p.size} colors)
+                {p.label} ({p.size} {t('controls.colorPlural')})
               </option>
             ))}
           </select>

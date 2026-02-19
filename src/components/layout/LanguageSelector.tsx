@@ -26,7 +26,7 @@ const languages = [
 ];
 
 export function LanguageSelector() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -52,7 +52,7 @@ export function LanguageSelector() {
               : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
           }`}
           title={lang.name}
-          aria-label={`Switch to ${lang.name}`}
+          aria-label={t('layout.switchToLanguage', { name: lang.name })}
         >
           {lang.code === 'pt-BR' ? 'PT-BR' : lang.code.toUpperCase()}
         </button>

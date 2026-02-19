@@ -11,13 +11,16 @@
     "save": "Save",
     "export": "Export",
     "import": "Import",
-    "home": "Home"
+    "home": "Home",
+    "unknownError": "Unknown error"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "regions",
     "color": "Color",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regions"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regions",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode"
   },
   "welcome": {
     "tagline": "Turn any photo into a paint-by-numbers masterpiece",
@@ -68,7 +71,12 @@
     "adjustSettings": "Adjust settings on the left, then click Generate",
     "processingFailed": "Processing failed",
     "failedToDisplay": "Failed to display result",
-    "tryRegenerate": "Try regenerating the image"
+    "tryRegenerate": "Try regenerating the image",
+    "settings": "Settings",
+    "closeSidebar": "Close sidebar",
+    "openSettings": "Open settings",
+    "undoTooltip": "Undo (Ctrl+Z)",
+    "redoTooltip": "Redo (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Palette Size",
@@ -99,6 +107,9 @@
     "medium": "Medium",
     "complex": "Complex",
     "detailLevelFineTune": "Detail Level (Fine Tune)",
+    "detailed": "Detailed",
+    "sharp": "Sharp",
+    "smooth": "Smooth",
     "lineSmoothing": "Line Smoothing",
     "smoothingStrength": "Smoothing Strength",
     "sharpEdges": "Sharp edges",
@@ -204,14 +215,18 @@
     "colorGuidePng": "Color Guide (PNG)",
     "saveToBrowser": "Save to Browser",
     "exportSession": "Export Session",
-    "loadSession": "Load Session",
     "filename": "Filename",
     "cancel": "Cancel",
     "download": "Download",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Color Legend"
+    "pdfPrintReady": "PDF (Print-Ready)",
+    "legendTitle": "Color Legend",
+    "failedImportSession": "Failed to import session: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Switch to {{name}}"
   },
   "palette": {
     "legend": "Palette Legend",

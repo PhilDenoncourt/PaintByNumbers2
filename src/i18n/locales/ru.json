@@ -11,13 +11,16 @@
     "save": "Сохранить",
     "export": "Экспорт",
     "import": "Импорт",
-    "home": "Главная"
+    "home": "Главная",
+    "unknownError": "Неизвестная ошибка"
   },
   "header": {
     "title": "Раскраска по номерам",
     "regions": "области",
     "color": "Цвет",
-    "regionInfo": "{{width}}x{{height}} · {{count}} областей"
+    "regionInfo": "{{width}}x{{height}} · {{count}} областей",
+    "lightMode": "Переключить на светлый режим",
+    "darkMode": "Переключить на тёмный режим"
   },
   "uploader": {
     "title": "Загрузить изображение",
@@ -51,7 +54,12 @@
     "adjustSettings": "Отрегулируйте параметры слева, затем нажмите Создать",
     "processingFailed": "Обработка не выполнена",
     "failedToDisplay": "Ошибка при отображении результата",
-    "tryRegenerate": "Попробуйте повторно создать изображение"
+    "tryRegenerate": "Попробуйте повторно создать изображение",
+    "settings": "Настройки",
+    "closeSidebar": "Закрыть боковую панель",
+    "openSettings": "Открыть настройки",
+    "undoTooltip": "Отменить (Ctrl+Z)",
+    "redoTooltip": "Повторить (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Размер палитры",
@@ -82,6 +90,9 @@
     "medium": "Средний",
     "complex": "Сложный",
     "detailLevelFineTune": "Уровень деталей (тонкая настройка)",
+    "detailed": "Детальный",
+    "sharp": "Чёткий",
+    "smooth": "Плавный",
     "lineSmoothing": "Сглаживание линий",
     "smoothingStrength": "Интенсивность сглаживания",
     "sharpEdges": "Острые края",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Руководство по цветам (PNG)",
     "saveToBrowser": "Сохранить в браузер",
     "exportSession": "Экспортировать сеанс",
-    "loadSession": "Загрузить сеанс",
     "filename": "Имя файла",
     "cancel": "Отмена",
     "download": "Загрузить",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Легенда цветов"
+    "legendTitle": "Легенда цветов",
+    "pdfPrintReady": "PDF (Готов к печати)",
+    "failedImportSession": "Ошибка импорта сессии: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Переключить на {{name}}"
   },
   "palette": {
     "legend": "Легенда палитры",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Кандидаты на разделение не найдены",
     "split": "Разделить",
     "analyzing": "Анализ..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Превратите любую фотографию в шедевр рисования по номерам",
     "description": "Загрузите фотографию, и этот инструмент проанализирует цвета, упростит изображение до пронумерованных областей и создаст готовый к печати шаблон рисования по номерам — всё в вашем браузере, без отправки каких-либо данных за пределы устройства.",

@@ -11,13 +11,16 @@
     "save": "Save am",
     "export": "Download",
     "import": "Bring in",
-    "home": "Home"
+    "home": "Home",
+    "unknownError": "Dem no sabi di error"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "regions",
     "color": "Colour",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regions"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regions",
+    "lightMode": "Change to light mode",
+    "darkMode": "Change to dark mode"
   },
   "welcome": {
     "tagline": "Turn any photo turn to paint-by-numbers something wey fine",
@@ -68,7 +71,12 @@
     "adjustSettings": "Adjust settings for left, den press Generate",
     "processingFailed": "E fail for process",
     "failedToDisplay": "No fit show result",
-    "tryRegenerate": "Try generate am again"
+    "tryRegenerate": "Try generate am again",
+    "settings": "Settings",
+    "closeSidebar": "Close di sidebar",
+    "openSettings": "Open settings",
+    "undoTooltip": "Undo (Ctrl+Z)",
+    "redoTooltip": "Redo (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Palette Size",
@@ -99,6 +107,9 @@
     "medium": "Middle",
     "complex": "Extra hard",
     "detailLevelFineTune": "Detail Level (Fine Tune)",
+    "detailed": "Detailed",
+    "sharp": "Sharp",
+    "smooth": "Smooth",
     "lineSmoothing": "Line Smoothing",
     "smoothingStrength": "Smoothing Strength",
     "sharpEdges": "Sharp edges",
@@ -204,14 +215,18 @@
     "colorGuidePng": "Colour Guide (PNG)",
     "saveToBrowser": "Save for Browser",
     "exportSession": "Download Session",
-    "loadSession": "Load Session",
     "filename": "Filename",
     "cancel": "Forget am",
     "download": "Download",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Colour Legend"
+    "legendTitle": "Colour Legend",
+    "pdfPrintReady": "PDF (Ready to print)",
+    "failedImportSession": "E no fit import session: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Change to {{name}}"
   },
   "palette": {
     "legend": "Palette Legend",

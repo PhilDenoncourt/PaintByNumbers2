@@ -11,13 +11,16 @@
     "save": "Desar",
     "export": "Exportar",
     "import": "Importar",
-    "home": "Inici"
+    "home": "Inici",
+    "unknownError": "Error desconegut"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "regions",
     "color": "Color",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regions"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regions",
+    "lightMode": "Canvia al mode clar",
+    "darkMode": "Canvia al mode fosc"
   },
   "welcome": {
     "tagline": "Converteix qualsevol foto en una meravella de paint-by-numbers",
@@ -68,7 +71,12 @@
     "adjustSettings": "Ajusta les configuracions a l'esquerra, després fes clic a Genera",
     "processingFailed": "Error en processar",
     "failedToDisplay": "Error al mostrar el resultat",
-    "tryRegenerate": "Prova a regenerar la imatge"
+    "tryRegenerate": "Prova a regenerar la imatge",
+    "settings": "Configuració",
+    "closeSidebar": "Tanca la barra lateral",
+    "openSettings": "Obre la configuració",
+    "undoTooltip": "Desfes (Ctrl+Z)",
+    "redoTooltip": "Refés (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Mida de la Paleta",
@@ -99,6 +107,9 @@
     "medium": "Mitjà",
     "complex": "Complex",
     "detailLevelFineTune": "Nivell de Detall (Ajust Fi)",
+    "detailed": "Detallat",
+    "sharp": "Nítid",
+    "smooth": "Suau",
     "lineSmoothing": "Suavitzat de Línies",
     "smoothingStrength": "Força de Suavitzat",
     "sharpEdges": "Vores afilades",
@@ -204,14 +215,18 @@
     "colorGuidePng": "Guia de Colors (PNG)",
     "saveToBrowser": "Desar al Navegador",
     "exportSession": "Exportar Sessió",
-    "loadSession": "Carregar Sessió",
     "filename": "Nom del Fitxer",
     "cancel": "Cancel·lar",
     "download": "Descarregar",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Llegenda de Colors"
+    "legendTitle": "Llegenda de Colors",
+    "pdfPrintReady": "PDF (A punt per imprimir)",
+    "failedImportSession": "Error en importar la sessió: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Canvia a {{name}}"
   },
   "palette": {
     "legend": "Llegenda de Paleta",

@@ -11,13 +11,16 @@
     "save": "Zapisz",
     "export": "Eksportuj",
     "import": "Importuj",
-    "home": "Strona główna"
+    "home": "Strona główna",
+    "unknownError": "Nieznany błąd"
   },
   "header": {
     "title": "Malowanie po Numerach",
     "regions": "regiony",
     "color": "Kolor",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regiony"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regiony",
+    "lightMode": "Przełącz na tryb jasny",
+    "darkMode": "Przełącz na tryb ciemny"
   },
   "uploader": {
     "title": "Prześlij Obraz",
@@ -51,7 +54,12 @@
     "adjustSettings": "Dostosuj ustawienia po lewej stronie, następnie kliknij Wygeneruj",
     "processingFailed": "Przetwarzanie nie powiodło się",
     "failedToDisplay": "Błąd podczas wyświetlania wyniku",
-    "tryRegenerate": "Spróbuj ponownie wygenerować obraz"
+    "tryRegenerate": "Spróbuj ponownie wygenerować obraz",
+    "settings": "Ustawienia",
+    "closeSidebar": "Zamknij pasek boczny",
+    "openSettings": "Otwórz ustawienia",
+    "undoTooltip": "Cofnij (Ctrl+Z)",
+    "redoTooltip": "Ponów (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Rozmiar Palety",
@@ -82,6 +90,9 @@
     "medium": "Średnie",
     "complex": "Złożone",
     "detailLevelFineTune": "Poziom Szczegółów (Dopasowanie)",
+    "detailed": "Szczegółowy",
+    "sharp": "Ostry",
+    "smooth": "Gładki",
     "lineSmoothing": "Wygładzanie Linii",
     "smoothingStrength": "Siła Wygładzania",
     "sharpEdges": "Ostre Krawędzie",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Przewodnik Kolorów (PNG)",
     "saveToBrowser": "Zapisz w Przeglądarce",
     "exportSession": "Eksportuj Sesję",
-    "loadSession": "Załaduj Sesję",
     "filename": "Nazwa Pliku",
     "cancel": "Anuluj",
     "download": "Pobierz",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Legenda Kolorów"
+    "legendTitle": "Legenda Kolorów",
+    "pdfPrintReady": "PDF (Gotowy do druku)",
+    "failedImportSession": "Błąd importu sesji: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Przełącz na {{name}}"
   },
   "palette": {
     "legend": "Legenda Palety",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Nie znaleziono kandydatów do podziału",
     "split": "Podziel",
     "analyzing": "Analizowanie..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Zamień dowolne zdjęcie w arcydzieło malowania po numerach",
     "description": "Prześlij zdjęcie, a to narzędzie przeanalizuje kolory, uprości obraz do numerowanych obszarów i wygeneruje gotowy do wydruku szablon malowania po numerach  wszystko w Twojej przeglądarce, bez wysyłania jakichkolwiek danych poza urządzenie.",

@@ -11,13 +11,16 @@
     "save": "Speichern",
     "export": "Exportieren",
     "import": "Importieren",
-    "home": "Startseite"
+    "home": "Startseite",
+    "unknownError": "Unbekannter Fehler"
   },
   "header": {
     "title": "Malen nach Zahlen",
     "regions": "Regionen",
     "color": "Farbe",
-    "regionInfo": "{{width}}x{{height}} · {{count}} Regionen"
+    "regionInfo": "{{width}}x{{height}} · {{count}} Regionen",
+    "lightMode": "Zum hellen Modus wechseln",
+    "darkMode": "Zum dunklen Modus wechseln"
   },
   "uploader": {
     "title": "Bild hochladen",
@@ -51,7 +54,12 @@
     "adjustSettings": "Passen Sie die Einstellungen auf der linken Seite an und klicken Sie auf Generieren",
     "processingFailed": "Verarbeitung fehlgeschlagen",
     "failedToDisplay": "Fehler beim Anzeigen des Ergebnisses",
-    "tryRegenerate": "Versuchen Sie, das Bild neu zu generieren"
+    "tryRegenerate": "Versuchen Sie, das Bild neu zu generieren",
+    "settings": "Einstellungen",
+    "closeSidebar": "Seitenleiste schließen",
+    "openSettings": "Einstellungen öffnen",
+    "undoTooltip": "Rückgängig (Ctrl+Z)",
+    "redoTooltip": "Wiederholen (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Palettengröße",
@@ -82,6 +90,9 @@
     "medium": "Mittel",
     "complex": "Komplex",
     "detailLevelFineTune": "Detailebene (Feinabstimmung)",
+    "detailed": "Detailliert",
+    "sharp": "Scharf",
+    "smooth": "Glatt",
     "lineSmoothing": "Linienverlauf",
     "smoothingStrength": "Glättungsstärke",
     "sharpEdges": "Scharfe Kanten",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Farbführer (PNG)",
     "saveToBrowser": "Im Browser speichern",
     "exportSession": "Sitzung exportieren",
-    "loadSession": "Sitzung laden",
     "filename": "Dateiname",
     "cancel": "Abbrechen",
     "download": "Herunterladen",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Farbumfang"
+    "legendTitle": "Farbumfang",
+    "pdfPrintReady": "PDF (Druckfertig)",
+    "failedImportSession": "Sitzungsimport fehlgeschlagen: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Zu {{name}} wechseln"
   },
   "palette": {
     "legend": "Palettenumfang",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Keine Kandidaten zum Aufteilen gefunden",
     "split": "Aufteilen",
     "analyzing": "Wird analysiert..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Verwandle jedes Foto in ein Malen-nach-Zahlen-Meisterwerk",
     "description": "Lade ein Foto hoch und dieses Tool analysiert die Farben, vereinfacht das Bild in nummerierte Bereiche und erstellt eine druckfertige Malen-nach-Zahlen-Vorlage  alles in deinem Browser, ohne dass Daten das Gerät verlassen.",

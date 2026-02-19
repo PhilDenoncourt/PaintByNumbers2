@@ -11,13 +11,16 @@
     "save": "Uložit",
     "export": "Exportovat",
     "import": "Importovat",
-    "home": "Domů"
+    "home": "Domů",
+    "unknownError": "Neznámá chyba"
   },
   "header": {
     "title": "Malování podle čísel",
     "regions": "oblastí",
     "color": "Barva",
-    "regionInfo": "{{width}}x{{height}} · {{count}} oblastí"
+    "regionInfo": "{{width}}x{{height}} · {{count}} oblastí",
+    "lightMode": "Přepnout na světlý režim",
+    "darkMode": "Přepnout na tmavý režim"
   },
   "uploader": {
     "title": "Nahrát Obrázek",
@@ -51,7 +54,12 @@
     "adjustSettings": "Upravte nastavení vlevo a poté klikněte na Vytvořit",
     "processingFailed": "Zpracování selhalo",
     "failedToDisplay": "Chyba při zobrazení výsledku",
-    "tryRegenerate": "Zkuste obrázek znovu vytvořit"
+    "tryRegenerate": "Zkuste obrázek znovu vytvořit",
+    "settings": "Nastavení",
+    "closeSidebar": "Zavřít postranní panel",
+    "openSettings": "Otevřít nastavení",
+    "undoTooltip": "Zpět (Ctrl+Z)",
+    "redoTooltip": "Znovu (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Velikost Palety",
@@ -82,6 +90,9 @@
     "medium": "Střední",
     "complex": "Složitý",
     "detailLevelFineTune": "Úroveň Detailů (Jemné Ladění)",
+    "detailed": "Podrobný",
+    "sharp": "Ostrý",
+    "smooth": "Hladký",
     "lineSmoothing": "Vyhlazování Linií",
     "smoothingStrength": "Síla Vyhlazování",
     "sharpEdges": "Ostré Hrany",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Průvodce Barvami (PNG)",
     "saveToBrowser": "Uložit do Prohlížeče",
     "exportSession": "Exportovat Relaci",
-    "loadSession": "Načíst Relaci",
     "filename": "Název Souboru",
     "cancel": "Zrušit",
     "download": "Stáhnout",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Legenda Barev"
+    "legendTitle": "Legenda Barev",
+    "pdfPrintReady": "PDF (Připraveno k tisku)",
+    "failedImportSession": "Import relace se nezdařil: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Přepnout na {{name}}"
   },
   "palette": {
     "legend": "Legenda Palety",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Nebyli nalezeni kandidáti na rozdělení",
     "split": "Rozdělit",
     "analyzing": "Analýza..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Proměňte jakoukoli fotografii v malování podle čísel",
     "description": "Nahrajte fotografii a tento nástroj analyzuje barvy, zjednoduší obrázek do číslovaných oblastí a vygeneruje šablonu malování podle čísel připravenou k tisku  vše ve vašem prohlížeči, přičemž žádná data nikdy neopustí vaše zařízení.",

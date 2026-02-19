@@ -67,16 +67,16 @@ export function DetailControls() {
           onChange={(e) => {
             const detail = Number(e.target.value);
             // Quadratic mapping: low detail = large min region, high detail = small min region
-            const t = 1 - detail / 100;
-            const minRegionSize = Math.round(10 + t * t * 500);
+            const tFactor = 1 - detail / 100;
+            const minRegionSize = Math.round(10 + tFactor * tFactor * 500);
             updateSettings({ detailLevel: detail, minRegionSize });
           }}
           disabled={disabled}
           className="w-full mt-1 accent-blue-600"
         />
         <div className="flex justify-between text-xs text-gray-400">
-          <span>Simple</span>
-          <span>Detailed</span>
+          <span>{t('controls.simple')}</span>
+          <span>{t('controls.detailed')}</span>
         </div>
       </div>
 
@@ -96,8 +96,8 @@ export function DetailControls() {
           className="w-full mt-1 accent-blue-600"
         />
         <div className="flex justify-between text-xs text-gray-400">
-          <span>Sharp</span>
-          <span>Smooth</span>
+          <span>{t('controls.sharp')}</span>
+          <span>{t('controls.smooth')}</span>
         </div>
       </div>
     </div>

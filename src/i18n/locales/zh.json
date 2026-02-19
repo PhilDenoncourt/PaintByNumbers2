@@ -11,13 +11,16 @@
     "save": "保存",
     "export": "导出",
     "import": "导入",
-    "home": "首页"
+    "home": "首页",
+    "unknownError": "未知错误"
   },
   "header": {
     "title": "按数字绘画",
     "regions": "区域",
     "color": "颜色",
-    "regionInfo": "{{width}}x{{height}} · {{count}} 个区域"
+    "regionInfo": "{{width}}x{{height}} · {{count}} 个区域",
+    "lightMode": "切换到浅色模式",
+    "darkMode": "切换到深色模式"
   },
   "uploader": {
     "title": "上传图片",
@@ -51,7 +54,12 @@
     "adjustSettings": "调整左侧设置，然后点击生成",
     "processingFailed": "处理失败",
     "failedToDisplay": "显示结果失败",
-    "tryRegenerate": "尝试重新生成图片"
+    "tryRegenerate": "尝试重新生成图片",
+    "settings": "设置",
+    "closeSidebar": "关闭侧栏",
+    "openSettings": "打开设置",
+    "undoTooltip": "撤销 (Ctrl+Z)",
+    "redoTooltip": "重做 (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "调色板大小",
@@ -82,6 +90,9 @@
     "medium": "中等",
     "complex": "复杂",
     "detailLevelFineTune": "细节级别（微调）",
+    "detailed": "详细",
+    "sharp": "锐利",
+    "smooth": "平滑",
     "lineSmoothing": "线条平滑",
     "smoothingStrength": "平滑强度",
     "sharpEdges": "锐利边缘",
@@ -187,14 +198,18 @@
     "colorGuidePng": "颜色指南（PNG）",
     "saveToBrowser": "保存到浏览器",
     "exportSession": "导出会话",
-    "loadSession": "加载会话",
     "filename": "文件名",
     "cancel": "取消",
     "download": "下载",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "颜色图例"
+    "legendTitle": "颜色图例",
+    "pdfPrintReady": "PDF（打印就绪）",
+    "failedImportSession": "导入会话失败：{{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "切换到 {{name}}"
   },
   "palette": {
     "legend": "调色板图例",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "未找到分割候选者",
     "split": "分割",
     "analyzing": "分析中..."
-  }
-,
+  },
   "welcome": {
     "tagline": "将任何照片变成数字油画杰作",
     "description": "上传一张照片，这个工具将分析颜色，将图像简化为编号区域，并生成可打印的数字油画模板——全部在您的浏览器中完成，没有任何数据离开您的设备。",

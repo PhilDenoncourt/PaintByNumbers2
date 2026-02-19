@@ -11,13 +11,16 @@
     "save": "Αποθήκευση",
     "export": "Εξαγωγή",
     "import": "Εισαγωγή",
-    "home": "Αρχική σελίδα"
+    "home": "Αρχική σελίδα",
+    "unknownError": "Άγνωστο σφάλμα"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "περιοχές",
     "color": "Χρώμα",
-    "regionInfo": "{{width}}x{{height}} · {{count}} περιοχές"
+    "regionInfo": "{{width}}x{{height}} · {{count}} περιοχές",
+    "lightMode": "Μετάβαση σε φωτεινή λειτουργία",
+    "darkMode": "Μετάβαση σε σκοτεινή λειτουργία"
   },
   "uploader": {
     "title": "Μεταφόρτωση εικόνας",
@@ -51,7 +54,12 @@
     "adjustSettings": "Προσαρμόστε τις ρυθμίσεις στα αριστερά και κάντε κλικ στο Δημιουργία",
     "processingFailed": "Η επεξεργασία απέτυχε",
     "failedToDisplay": "Αποτυχία εμφάνισης αποτελέσματος",
-    "tryRegenerate": "Δοκιμάστε να δημιουργήσετε ξανά την εικόνα"
+    "tryRegenerate": "Δοκιμάστε να δημιουργήσετε ξανά την εικόνα",
+    "settings": "Ρυθμίσεις",
+    "closeSidebar": "Κλείσιμο πλευρικής γραμμής",
+    "openSettings": "Άνοιγμα ρυθμίσεων",
+    "undoTooltip": "Αναίρεση (Ctrl+Z)",
+    "redoTooltip": "Επανάληψη (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Μέγεθος παλέτας",
@@ -82,6 +90,9 @@
     "medium": "Μεσαίο",
     "complex": "Σύνθετο",
     "detailLevelFineTune": "Επίπεδο λεπτομέρειας (Λεπτή διαμόρφωση)",
+    "detailed": "Λεπτομερής",
+    "sharp": "Οξύς",
+    "smooth": "Ομαλός",
     "lineSmoothing": "Εξομάλυνση γραμμών",
     "smoothingStrength": "Ισχύ εξομάλυνσης",
     "sharpEdges": "Αιχμηρές άκρες",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Οδηγός χρωμάτων (PNG)",
     "saveToBrowser": "Αποθήκευση στο πρόγραμμα perieigisis",
     "exportSession": "Εξαγωγή συνεδρίας",
-    "loadSession": "Φόρτωση συνεδρίας",
     "filename": "Όνομα αρχείου",
     "cancel": "Ακύρωση",
     "download": "Λήψη",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Λεζάντα χρώματος"
+    "legendTitle": "Λεζάντα χρώματος",
+    "pdfPrintReady": "PDF (Έτοιμο για εκτύπωση)",
+    "failedImportSession": "Αποτυχία εισαγωγής συνεδρίας: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Μετάβαση σε {{name}}"
   },
   "palette": {
     "legend": "Λεζάντα παλέτας",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Δεν βρέθηκαν υποψήφιοι για διάσπαση",
     "split": "Διάσπαση",
     "analyzing": "Ανάλυση..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Μετατρέψτε οποιαδήποτε φωτογραφία σε αριθμητικό έργο τέχνης",
     "description": "Ανεβάστε μια φωτογραφία και αυτό το εργαλείο θα αναλύσει τα χρώματα, θα απλοποιήσει την εικόνα σε αριθμημένες περιοχές και θα δημιουργήσει ένα έτοιμο προς εκτύπωση πρότυπο ζωγραφικής με αριθμούς  όλα στο πρόγραμμα περιήγησής σας, χωρίς να εγκαταλείπουν δεδομένα τη συσκευή σας.",

@@ -11,13 +11,16 @@
     "save": "Spara",
     "export": "Exportera",
     "import": "Importera",
-    "home": "Startsida"
+    "home": "Startsida",
+    "unknownError": "Okänt fel"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "regioner",
     "color": "Färg",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regioner"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regioner",
+    "lightMode": "Byt till ljust läge",
+    "darkMode": "Byt till mörkt läge"
   },
   "uploader": {
     "title": "Ladda upp bild",
@@ -51,7 +54,12 @@
     "adjustSettings": "Justera inställningar på vänster sida och klicka sedan Generera",
     "processingFailed": "Bearbetningen misslyckades",
     "failedToDisplay": "Det gick inte att visa resultatet",
-    "tryRegenerate": "Försök att generera bilden på nytt"
+    "tryRegenerate": "Försök att generera bilden på nytt",
+    "settings": "Inställningar",
+    "closeSidebar": "Stäng sidopanelen",
+    "openSettings": "Öppna inställningar",
+    "undoTooltip": "Ångra (Ctrl+Z)",
+    "redoTooltip": "Gör om (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Pallettstorlek",
@@ -82,6 +90,9 @@
     "medium": "Medel",
     "complex": "Komplex",
     "detailLevelFineTune": "Detaljnivå (finjustering)",
+    "detailed": "Detaljerad",
+    "sharp": "Skarp",
+    "smooth": "Mjuk",
     "lineSmoothing": "Linjeutjämning",
     "smoothingStrength": "Utjämningsstyrka",
     "sharpEdges": "Skarpa kanter",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Färgvägledning (PNG)",
     "saveToBrowser": "Spara i webbläsaren",
     "exportSession": "Exportera session",
-    "loadSession": "Ladda session",
     "filename": "Filnamn",
     "cancel": "Avbryt",
     "download": "Hämta",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Färgförklaring"
+    "legendTitle": "Färgförklaring",
+    "pdfPrintReady": "PDF (Utskriftsklar)",
+    "failedImportSession": "Det gick inte att importera sessionen: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Byt till {{name}}"
   },
   "palette": {
     "legend": "Palettförklaring",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Inga delningskandidater hittades",
     "split": "Dela",
     "analyzing": "Analyserar..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Förvandla vilket foto som helst till ett mästerverk att måla efter siffror",
     "description": "Ladda upp ett foto så analyserar det här verktyget färgerna, förenklar bilden till numrerade regioner och genererar en utskriftsklar mall för måla-efter-siffror — allt i din webbläsare utan att någon data lämnar din enhet.",

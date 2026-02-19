@@ -11,13 +11,16 @@
     "save": "Simpan",
     "export": "Ekspor",
     "import": "Impor",
-    "home": "Beranda"
+    "home": "Beranda",
+    "unknownError": "Kesalahan tidak diketahui"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "wilayah",
     "color": "Warna",
-    "regionInfo": "{{width}}x{{height}} · {{count}} wilayah"
+    "regionInfo": "{{width}}x{{height}} · {{count}} wilayah",
+    "lightMode": "Beralih ke mode terang",
+    "darkMode": "Beralih ke mode gelap"
   },
   "uploader": {
     "title": "Unggah Gambar",
@@ -51,7 +54,12 @@
     "adjustSettings": "Sesuaikan pengaturan di sebelah kiri, lalu klik Hasilkan",
     "processingFailed": "Pemrosesan gagal",
     "failedToDisplay": "Gagal menampilkan hasil",
-    "tryRegenerate": "Coba hasilkan ulang gambar"
+    "tryRegenerate": "Coba hasilkan ulang gambar",
+    "settings": "Pengaturan",
+    "closeSidebar": "Tutup bilah samping",
+    "openSettings": "Buka pengaturan",
+    "undoTooltip": "Batalkan (Ctrl+Z)",
+    "redoTooltip": "Ulangi (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Ukuran Palet",
@@ -82,6 +90,9 @@
     "medium": "Sedang",
     "complex": "Kompleks",
     "detailLevelFineTune": "Tingkat Detail (Penyesuaian Halus)",
+    "detailed": "Terperinci",
+    "sharp": "Tajam",
+    "smooth": "Halus",
     "lineSmoothing": "Penghalusan Garis",
     "smoothingStrength": "Kekuatan Penghalusan",
     "sharpEdges": "Tepi tajam",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Panduan Warna (PNG)",
     "saveToBrowser": "Simpan ke Browser",
     "exportSession": "Ekspor Sesi",
-    "loadSession": "Muat Sesi",
     "filename": "Nama Berkas",
     "cancel": "Batal",
     "download": "Unduh",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Legenda Warna"
+    "legendTitle": "Legenda Warna",
+    "pdfPrintReady": "PDF (Siap cetak)",
+    "failedImportSession": "Gagal mengimpor sesi: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Beralih ke {{name}}"
   },
   "palette": {
     "legend": "Legenda Palet",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Tidak ada kandidat pemisahan yang ditemukan",
     "split": "Pisah",
     "analyzing": "Menganalisis..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Ubah foto apa pun menjadi karya mewarnai berdasarkan angka",
     "description": "Unggah foto dan alat ini akan menganalisis warna, menyederhanakan gambar menjadi wilayah bernomor, dan menghasilkan templat mewarnai berdasarkan angka yang siap dicetak  semuanya di dalam browser Anda, tanpa data apa pun yang meninggalkan perangkat Anda.",

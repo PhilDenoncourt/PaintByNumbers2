@@ -11,13 +11,16 @@
     "save": "Opslaan",
     "export": "Exporteren",
     "import": "Importeren",
-    "home": "Startpagina"
+    "home": "Startpagina",
+    "unknownError": "Onbekende fout"
   },
   "header": {
     "title": "Schilderen op Nummers",
     "regions": "regio's",
     "color": "Kleur",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regio's"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regio's",
+    "lightMode": "Overschakelen naar lichte modus",
+    "darkMode": "Overschakelen naar donkere modus"
   },
   "uploader": {
     "title": "Afbeelding Uploaden",
@@ -51,7 +54,12 @@
     "adjustSettings": "Pas de instellingen links aan en klik op Genereren",
     "processingFailed": "Verwerking mislukt",
     "failedToDisplay": "Fout bij weergeven van resultaat",
-    "tryRegenerate": "Probeer de afbeelding opnieuw te genereren"
+    "tryRegenerate": "Probeer de afbeelding opnieuw te genereren",
+    "settings": "Instellingen",
+    "closeSidebar": "Zijbalk sluiten",
+    "openSettings": "Instellingen openen",
+    "undoTooltip": "Ongedaan maken (Ctrl+Z)",
+    "redoTooltip": "Opnieuw (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Paletgrootte",
@@ -82,6 +90,9 @@
     "medium": "Gemiddeld",
     "complex": "Complex",
     "detailLevelFineTune": "Detailniveau (Afstemming)",
+    "detailed": "Gedetailleerd",
+    "sharp": "Scherp",
+    "smooth": "Vloeiend",
     "lineSmoothing": "Lijnverzachting",
     "smoothingStrength": "Verzachtingskracht",
     "sharpEdges": "Scherpe randen",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Kleurhulplijn (PNG)",
     "saveToBrowser": "In Browser Opslaan",
     "exportSession": "Sessie Exporteren",
-    "loadSession": "Sessie Laden",
     "filename": "Bestandsnaam",
     "cancel": "Annuleren",
     "download": "Download",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Kleurlegenda"
+    "legendTitle": "Kleurlegenda",
+    "pdfPrintReady": "PDF (Drukklaar)",
+    "failedImportSession": "Sessie importeren mislukt: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Overschakelen naar {{name}}"
   },
   "palette": {
     "legend": "Paletlegenda",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Geen splittingskandidaten gevonden",
     "split": "Splitsen",
     "analyzing": "Analyseren..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Verander elke foto in een schilderen-op-nummer meesterwerk",
     "description": "Upload een foto en dit hulpmiddel analyseert de kleuren, vereenvoudigt de afbeelding tot genummerde gebieden en genereert een printklaar schilderen-op-nummer sjabloon  alles in je browser, zonder dat er ooit gegevens je apparaat verlaten.",

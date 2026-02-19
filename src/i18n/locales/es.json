@@ -11,13 +11,16 @@
     "save": "Guardar",
     "export": "Exportar",
     "import": "Importar",
-    "home": "Inicio"
+    "home": "Inicio",
+    "unknownError": "Error desconocido"
   },
   "header": {
     "title": "Colorea por Números",
     "regions": "regiones",
     "color": "Color",
-    "regionInfo": "{{width}}x{{height}} · {{count}} regiones"
+    "regionInfo": "{{width}}x{{height}} · {{count}} regiones",
+    "lightMode": "Cambiar al modo claro",
+    "darkMode": "Cambiar al modo oscuro"
   },
   "uploader": {
     "title": "Cargar Imagen",
@@ -51,7 +54,12 @@
     "adjustSettings": "Ajusta la configuración a la izquierda, luego haz clic en Generar",
     "processingFailed": "El procesamiento falló",
     "failedToDisplay": "Error al mostrar resultado",
-    "tryRegenerate": "Intenta regenerar la imagen"
+    "tryRegenerate": "Intenta regenerar la imagen",
+    "settings": "Ajustes",
+    "closeSidebar": "Cerrar barra lateral",
+    "openSettings": "Abrir ajustes",
+    "undoTooltip": "Deshacer (Ctrl+Z)",
+    "redoTooltip": "Rehacer (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Tamaño de Paleta",
@@ -82,6 +90,9 @@
     "medium": "Medio",
     "complex": "Complejo",
     "detailLevelFineTune": "Nivel de Detalle (Ajuste Fino)",
+    "detailed": "Detallado",
+    "sharp": "Nítido",
+    "smooth": "Suave",
     "lineSmoothing": "Suavizado de Líneas",
     "smoothingStrength": "Intensidad del Suavizado",
     "sharpEdges": "Bordes agudos",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Guía de Colores (PNG)",
     "saveToBrowser": "Guardar en Navegador",
     "exportSession": "Exportar Sesión",
-    "loadSession": "Cargar Sesión",
     "filename": "Nombre de Archivo",
     "cancel": "Cancelar",
     "download": "Descargar",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Leyenda de Colores"
+    "legendTitle": "Leyenda de Colores",
+    "pdfPrintReady": "PDF (Listo para imprimir)",
+    "failedImportSession": "Error al importar la sesión: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Cambiar a {{name}}"
   },
   "palette": {
     "legend": "Leyenda de Paleta",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "No se encontraron candidatos para dividir",
     "split": "Dividir",
     "analyzing": "Analizando..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Convierte cualquier foto en una obra maestra de pintura por números",
     "description": "Sube una foto y esta herramienta analizará los colores, simplificará la imagen en regiones numeradas y generará una plantilla de pintura por números lista para imprimir  todo dentro de tu navegador, sin que ningún dato abandone tu dispositivo.",

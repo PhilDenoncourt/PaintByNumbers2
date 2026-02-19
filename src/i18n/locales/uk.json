@@ -11,13 +11,16 @@
     "save": "Зберегти",
     "export": "Експортувати",
     "import": "Імпортувати",
-    "home": "Головна"
+    "home": "Головна",
+    "unknownError": "Невідома помилка"
   },
   "header": {
     "title": "Paint by Numbers",
     "regions": "регіонів",
     "color": "Колір",
-    "regionInfo": "{{width}}x{{height}} · {{count}} регіонів"
+    "regionInfo": "{{width}}x{{height}} · {{count}} регіонів",
+    "lightMode": "Перейти до світлого режиму",
+    "darkMode": "Перейти до темного режиму"
   },
   "uploader": {
     "title": "Завантажити зображення",
@@ -51,7 +54,12 @@
     "adjustSettings": "Відрегулюйте параметри ліворуч, а потім натисніть Генерувати",
     "processingFailed": "Обробка не вдалася",
     "failedToDisplay": "Не вдалося відобразити результат",
-    "tryRegenerate": "Спробуйте повторно згенерувати зображення"
+    "tryRegenerate": "Спробуйте повторно згенерувати зображення",
+    "settings": "Налаштування",
+    "closeSidebar": "Закрити бічну панель",
+    "openSettings": "Відкрити налаштування",
+    "undoTooltip": "Скасувати (Ctrl+Z)",
+    "redoTooltip": "Повторити (Ctrl+Y)"
   },
   "controls": {
     "paletteSize": "Розмір палітри",
@@ -82,6 +90,9 @@
     "medium": "Середній",
     "complex": "Складний",
     "detailLevelFineTune": "Рівень деталізації (точне налаштування)",
+    "detailed": "Детальний",
+    "sharp": "Чіткий",
+    "smooth": "Плавний",
     "lineSmoothing": "Згладжування ліній",
     "smoothingStrength": "Міцність згладжування",
     "sharpEdges": "Гострі краї",
@@ -187,14 +198,18 @@
     "colorGuidePng": "Путівник кольорів (PNG)",
     "saveToBrowser": "Зберегти в браузер",
     "exportSession": "Експортувати сесію",
-    "loadSession": "Завантажити сесію",
     "filename": "Ім'я файлу",
     "cancel": "Скасувати",
     "download": "Завантажити",
     "svgTitle": "SVG",
     "pngTitle": "PNG",
     "pdfTitle": "PDF",
-    "legendTitle": "Легенда кольорів"
+    "legendTitle": "Легенда кольорів",
+    "pdfPrintReady": "PDF (Готовий до друку)",
+    "failedImportSession": "Помилка імпорту сесії: {{message}}"
+  },
+  "layout": {
+    "switchToLanguage": "Перейти до {{name}}"
   },
   "palette": {
     "legend": "Легенда палітри",
@@ -266,8 +281,7 @@
     "noSplitCandidates": "Не знайдено кандидатів на розділення",
     "split": "Розділити",
     "analyzing": "Аналіз..."
-  }
-,
+  },
   "welcome": {
     "tagline": "Перетворіть будь-яку фотографію на шедевр розмальовки за номерами",
     "description": "Завантажте фотографію, і цей інструмент проаналізує кольори, спростить зображення до пронумерованих областей та створить готовий до друку шаблон розмальовки за номерами — все у вашому браузері, без надсилання будь-яких даних за межі пристрою.",

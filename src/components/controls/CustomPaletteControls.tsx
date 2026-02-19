@@ -58,12 +58,12 @@ export function CustomPaletteControls() {
 
         if (palette && palette.length > 0) {
           updateSettings({ customPalette: palette, paletteSize: palette.length });
-          alert(`${t('controls.loadedPalette').replace('{{count}}', palette.length.toString())}`);
+          alert(t('controls.loadedPalette', { count: palette.length }));
         } else {
           alert(t("controls.failedParse"));
         }
       } catch (err) {
-        alert(`${t('controls.errorReading')}: ${err instanceof Error ? err.message : 'Unknown error'}`);
+        alert(`${t('controls.errorReading')}: ${err instanceof Error ? err.message : t('common.unknownError')}`);
       }
     };
     reader.readAsText(file);
