@@ -1,7 +1,7 @@
 import type { PipelineSettings, PipelineStage, PipelineResult } from '../state/types';
 import type { QuantizeOutput, SegmentOutput, MergeOutput, ContourOutput, LabelOutput } from './types';
 import { runWorker } from '../utils/workerHelper';
-import { crayolaPalettes } from '../data/crayolaPalettes';
+import { findPresetPalette } from '../data/paletteRegistry';
 import { applyPreprocessing } from '../utils/preprocessImage';
 import QuantizeWorker from '../workers/quantize.worker?worker';
 import SegmentWorker from '../workers/segment.worker?worker';
@@ -34,9 +34,7 @@ export async function runPipeline(
   // Resolve preset palette if selected
   let fixedPalette: [number, number, number][] | undefined;
   if (settings.presetPaletteId) {
-    const preset = crayolaPalettes.find(
-      (p) => `crayola-${p.size}` === settings.presetPaletteId
-    );
+    const preset = findPresetPalette(settings.presetPaletteId);
     if (preset) {
       fixedPalette = preset.colors.map((c) => c.rgb);
     }

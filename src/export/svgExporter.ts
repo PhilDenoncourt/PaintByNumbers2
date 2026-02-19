@@ -1,6 +1,6 @@
 import type { PipelineResult } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
-import { crayolaPalettes } from '../data/crayolaPalettes';
+import { findPresetPalette } from '../data/paletteRegistry';
 
 function polygonToPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return '';
@@ -21,9 +21,7 @@ export function generateSvg(result: PipelineResult, includeColor: boolean = fals
   // Resolve preset palette for crayon names
   let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
   if (presetPaletteId) {
-    const preset = crayolaPalettes.find(
-      (p) => `crayola-${p.size}` === presetPaletteId
-    );
+    const preset = findPresetPalette(presetPaletteId);
     if (preset) {
       presetColors = preset.colors;
     }

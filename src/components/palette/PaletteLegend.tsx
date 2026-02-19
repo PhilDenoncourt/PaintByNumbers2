@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
 import { rgbToHex } from '../../algorithms/colorUtils';
-import { crayolaPalettes } from '../../data/crayolaPalettes';
+import { findPresetPalette } from '../../data/paletteRegistry';
 
 export function PaletteLegend() {
   const { t } = useTranslation();
@@ -23,14 +23,8 @@ export function PaletteLegend() {
   const displayIndices = paletteColorOrder || Array.from({ length: result.palette.length }, (_, i) => i);
   const palette = result.palette;
 
-  // Resolve preset palette for crayon names
-  const presetColors = (() => {
-    if (!presetPaletteId) return null;
-    const preset = crayolaPalettes.find(
-      (p) => `crayola-${p.size}` === presetPaletteId
-    );
-    return preset?.colors ?? null;
-  })();
+  // Resolve preset palette for colour names
+  const presetColors = presetPaletteId ? (findPresetPalette(presetPaletteId)?.colors ?? null) : null;
 
   // Find which color is hovered via region
   let hoveredColorIndex: number | null = null;

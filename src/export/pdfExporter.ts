@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import type { PipelineResult, ContourData, LabelPlacement } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
-import { crayolaPalettes } from '../data/crayolaPalettes';
+import { findPresetPalette } from '../data/paletteRegistry';
 
 // --- Layout constants ---
 const MARGIN_MM = 10;
@@ -173,12 +173,10 @@ function drawLegend(
   // Grid
   const cols = Math.max(1, Math.floor(availableW / LEGEND_ENTRY_WIDTH));
 
-  // Resolve preset palette for crayon names
+  // Resolve preset palette for colour names
   let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
   if (presetPaletteId) {
-    const preset = crayolaPalettes.find(
-      (p) => `crayola-${p.size}` === presetPaletteId
-    );
+    const preset = findPresetPalette(presetPaletteId);
     if (preset) {
       presetColors = preset.colors;
     }
@@ -278,12 +276,10 @@ export function generateColorLegendPdf(
 
   startY += 12;
 
-  // Resolve preset palette for crayon names
+  // Resolve preset palette for colour names
   let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
   if (presetPaletteId) {
-    const preset = crayolaPalettes.find(
-      (p) => `crayola-${p.size}` === presetPaletteId
-    );
+    const preset = findPresetPalette(presetPaletteId);
     if (preset) {
       presetColors = preset.colors;
     }

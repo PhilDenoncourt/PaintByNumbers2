@@ -1,6 +1,6 @@
 import type { PipelineResult } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
-import { crayolaPalettes } from '../data/crayolaPalettes';
+import { findPresetPalette } from '../data/paletteRegistry';
 
 export function generatePngCanvas(
   result: PipelineResult,
@@ -143,9 +143,7 @@ export function generateColorLegendPng(
   // Resolve preset palette
   let presetColors: { name: string; rgb: [number, number, number] }[] | null = null;
   if (presetPaletteId) {
-    const preset = crayolaPalettes.find(
-      (p: { size: number }) => `crayola-${p.size}` === presetPaletteId
-    );
+    const preset = findPresetPalette(presetPaletteId);
     if (preset) presetColors = preset.colors;
   }
 

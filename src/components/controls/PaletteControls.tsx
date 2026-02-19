@@ -1,6 +1,6 @@
 import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
-import { crayolaPalettes } from '../../data/crayolaPalettes';
+import { allPresetPalettes, presetBrands, palettesForBrand, findPresetPalette } from '../../data/paletteRegistry';
 import { CustomPaletteControls } from './CustomPaletteControls';
 
 export function PaletteControls() {
@@ -29,7 +29,7 @@ export function PaletteControls() {
             if (e.target.value === 'auto') {
               updateSettings({ presetPaletteId: null, customPalette: null });
             } else if (e.target.value === 'preset') {
-              updateSettings({ presetPaletteId: `crayola-${crayolaPalettes[0].size}`, customPalette: null });
+              updateSettings({ presetPaletteId: allPresetPalettes[0].id, customPalette: null });
             } else if (e.target.value === 'custom') {
               updateSettings({ presetPaletteId: null, customPalette: [] });
             }
@@ -38,36 +38,71 @@ export function PaletteControls() {
           className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
         >
           <option value="auto">{t('controls.autoDetect')}</option>
-          <option value="preset">{t('controls.crayolaPreset')}</option>
+          <option value="preset">{t('controls.brandPreset')}</option>
           <option value="custom">{t('controls.customPalette')}</option>
         </select>
       </div>
 
       {/* Preset palette selector */}
       {isPreset && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t('controls.crayonSet')}</label>
-          <select
-            value={settings.presetPaletteId ?? ''}
-            onChange={(e) => updateSettings({ presetPaletteId: e.target.value })}
-            disabled={disabled}
-            className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none"
-          >
-            {crayolaPalettes.map((p) => (
-              <option key={p.size} value={`crayola-${p.size}`}>
-                {p.label} ({p.size} {t('controls.colorPlural')})
-              </option>
-            ))}
-          </select>
+        <div className="space-y-2">
+          {/* Brand selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('controls.presetBrand')}</label>
+            <select
+              value={findPresetPalette(settings.presetPaletteId ?? '')?.brand ?? presetBrands[0]}
+              onChange={(e) => {
+                const first = palettesForBrand(e.target.value)[0];
+                if (first) updateSettings({ presetPaletteId: first.id });
+              }}
+              disabled={disabled}
+              className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
+            >
+              {presetBrands.map((brand) => (
+                <option key={brand} value={brand}>{brand} — {palettesForBrand(brand)[0]?.medium}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Set selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('controls.presetSet')}</label>
+            <select
+              value={settings.presetPaletteId ?? ''}
+              onChange={(e) => updateSettings({ presetPaletteId: e.target.value })}
+              disabled={disabled}
+              className="w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-blue-500 focus:outline-none disabled:bg-gray-100"
+            >
+              {palettesForBrand(findPresetPalette(settings.presetPaletteId ?? '')?.brand ?? presetBrands[0]).map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.label} ({p.size} {t('controls.colorPlural')})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Buy link */}
+          {(() => {
+            const selected = findPresetPalette(settings.presetPaletteId ?? '');
+            if (!selected?.vendorUrl) return null;
+            return (
+              <a
+                href={selected.vendorUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 underline"
+              >
+                {t('controls.buyThisSet')} ↗
+              </a>
+            );
+          })()}
 
           {/* Color preview swatches */}
           {(() => {
-            const selected = crayolaPalettes.find(
-              (p) => `crayola-${p.size}` === settings.presetPaletteId
-            );
+            const selected = findPresetPalette(settings.presetPaletteId ?? '');
             if (!selected) return null;
             return (
-              <div className="mt-2 flex flex-wrap gap-1">
+              <div className="mt-1 flex flex-wrap gap-1">
                 {selected.colors.map((c, i) => (
                   <div
                     key={i}
