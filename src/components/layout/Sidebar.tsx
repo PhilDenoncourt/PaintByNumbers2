@@ -12,7 +12,7 @@ import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
 import { RegionStatistics } from '../statistics/RegionStatistics';
 
-export function Sidebar() {
+export function Sidebar({ onClose }: { onClose?: () => void }) {
   const { t } = useTranslation();
   const sourceImageData = useAppStore((s) => s.sourceImageData);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
@@ -32,14 +32,38 @@ export function Sidebar() {
   if (!sourceImageData) {
     return (
       <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
-        {/* Empty sidebar on start - user can drop image or session to main area */}
+        {/* Mobile close bar */}
+        <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
+          <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings', 'Settings')}</span>
+          <button
+            onClick={onClose}
+            className="p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Close sidebar"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
-      {/* Quick Settings Section */}
+      {/* Mobile close bar — sticky at top when scrolling */}
+      <div className="md:hidden sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shrink-0">
+        <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings', 'Settings')}</span>
+        <button
+          onClick={onClose}
+          className="p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Close sidebar"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <h2 className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide mb-4">
           {t('sidebar.palette')}

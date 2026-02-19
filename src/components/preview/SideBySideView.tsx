@@ -19,7 +19,7 @@ export function SideBySideView() {
     return (
       <div className="flex flex-col h-full">
         <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />
-        <div className="flex-1 grid grid-cols-2 gap-2 min-h-0">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-0">
           <div className="overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
             {sourceImageUrl && (
               <img
@@ -115,7 +115,7 @@ function ViewModeBar({
   ];
 
   return (
-    <div className="flex gap-1 p-2">
+    <div className="flex flex-wrap gap-1 p-2">
       {modes.map((m) => (
         <button
           key={m.key}

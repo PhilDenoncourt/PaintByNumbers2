@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { ImageUploader } from '../upload/ImageUploader';
@@ -23,6 +23,7 @@ export function AppShell() {
   const setMergeMode = useAppStore((s) => s.setMergeMode);
   const darkMode = useAppStore((s) => s.ui.darkMode);
   const toggleDarkMode = useAppStore((s) => s.toggleDarkMode);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Sync dark class on <html> element
   useEffect(() => {
@@ -82,18 +83,27 @@ export function AppShell() {
   return (
     <div className="h-full flex flex-col bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-3 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold text-gray-800 dark:text-gray-100">{t('header.title')}</h1>
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-6 py-3 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={() => setMobileSidebarOpen(true)}
+            className="md:hidden p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Open settings"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h1 className="text-sm sm:text-lg font-bold text-gray-800 dark:text-gray-100">{t('header.title')}</h1>
           {result && (
-            <span className="text-xs text-gray-400 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
+            <span className="hidden sm:inline text-xs text-gray-400 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
               {processedWidth}x{processedHeight} &middot; {regionCount} {t('header.regions')}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {tooltipText && (
-            <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-lg">
+            <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-lg">
               {tooltipText}
             </div>
           )}
@@ -109,19 +119,34 @@ export function AppShell() {
       </header>
 
       {/* Body */}
-      <div className="flex-1 flex min-h-0">
-        <ErrorBoundary fallback={
-          <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 flex items-center justify-center">
-            <div className="text-sm text-red-600 dark:text-red-400 text-center">
-              <p className="font-medium">{t('sidebar.controlsUnavailable')}</p>
-              <p className="text-xs mt-1">{t('sidebar.tryRefreshing')}</p>
-            </div>
-          </div>
-        }>
-          <Sidebar />
-        </ErrorBoundary>
+      <div className="flex-1 flex min-h-0 relative">
+        {/* Mobile sidebar backdrop */}
+        {mobileSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            onClick={() => setMobileSidebarOpen(false)}
+          />
+        )}
 
-        <main className="flex-1 flex flex-col min-h-0 p-4">
+        {/* Sidebar wrapper — drawer on mobile, static on desktop */}
+        <div
+          className={`absolute inset-y-0 left-0 z-40 h-full md:relative md:inset-auto md:z-auto transition-transform duration-300 ease-in-out shadow-xl md:shadow-none ${
+            mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          }`}
+        >
+          <ErrorBoundary fallback={
+            <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 flex items-center justify-center">
+              <div className="text-sm text-red-600 dark:text-red-400 text-center">
+                <p className="font-medium">{t('sidebar.controlsUnavailable')}</p>
+                <p className="text-xs mt-1">{t('sidebar.tryRefreshing')}</p>
+              </div>
+            </div>
+          }>
+            <Sidebar onClose={() => setMobileSidebarOpen(false)} />
+          </ErrorBoundary>
+        </div>
+
+        <main className="flex-1 flex flex-col min-h-0 p-3 sm:p-4">
           {!sourceImageData && (
             <div className="flex-1 overflow-y-auto">
               <div className="max-w-2xl mx-auto py-8 px-4 flex flex-col gap-8">
@@ -147,7 +172,7 @@ export function AppShell() {
                 </div>
 
                 {/* Feature grid */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {([
                     { title: t('welcome.feature1Title'), body: t('welcome.feature1Body'), icon: '🎨' },
                     { title: t('welcome.feature2Title'), body: t('welcome.feature2Body'), icon: '🖍️' },

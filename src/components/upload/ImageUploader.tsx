@@ -101,7 +101,7 @@ export function ImageUploader() {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-12 cursor-pointer transition-colors ${
+      className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 sm:p-12 cursor-pointer transition-colors ${
         dragOver
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/30'
           : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 bg-gray-50 dark:bg-gray-800'
