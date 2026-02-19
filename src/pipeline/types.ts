@@ -101,6 +101,7 @@ export interface SplitCandidatesInput {
   regionId: number;
   labelMap: Int32Array;
   palette: [number, number, number][];
+  imageData: ImageData;
   width: number;
   height: number;
 }
@@ -113,6 +114,7 @@ export interface SplitAnalysis {
     x: number;
     y: number;
     strength: number;
+    estimatedPixelCount: number;
   }[];
 }
 

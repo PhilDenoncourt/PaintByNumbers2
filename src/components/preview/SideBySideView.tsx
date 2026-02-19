@@ -37,7 +37,9 @@ export function SideBySideView() {
             <RegionHoverOverlay />
           </div>
         </div>
-        <CompactPaletteLegend />
+        <div className="hidden sm:block">
+          <CompactPaletteLegend />
+        </div>
       </div>
     );
   }
@@ -83,7 +85,9 @@ export function SideBySideView() {
           </div>
           <RegionHoverOverlay />
         </div>
-        <CompactPaletteLegend />
+        <div className="hidden sm:block">
+          <CompactPaletteLegend />
+        </div>
       </div>
     );
   }
@@ -98,7 +102,9 @@ export function SideBySideView() {
         </ZoomPanContainer>
         <RegionHoverOverlay />
       </div>
-      <CompactPaletteLegend />
+      <div className="hidden sm:block">
+        <CompactPaletteLegend />
+      </div>
     </div>
   );
 }

@@ -291,6 +291,7 @@
     "splitCandidates": "Split candidates:",
     "position": "Position:",
     "strength": "Strength:",
+    "pixels": "px",
     "keyboardShortcuts": "Keyboard shortcuts",
     "toggleMerge": "Toggle merge mode",
     "toggleSplit": "Toggle split mode",

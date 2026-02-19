@@ -102,6 +102,7 @@ export interface UIState {
       x: number;
       y: number;
       strength: number;
+      estimatedPixelCount: number;
     }>;
   } | null;
 }

@@ -17,6 +17,7 @@ export interface SplitAnalysis {
     x: number;
     y: number;
     strength: number; // 0-1, likelihood of being a good split point
+    estimatedPixelCount: number; // approximate pixels in the prospective new region
   }[];
 }
 
@@ -238,84 +239,102 @@ export function analyzeSplitCandidates(
   _palette: [number, number, number][],
   width: number,
   height: number,
-  samplingRate: number = 2 // Check every Nth pixel for performance
+  imageData: ImageData,
+  samplingRate: number = 2
 ): SplitAnalysis {
-  const pixels: number[] = [];
-  const edgePixels: { idx: number; x: number; y: number }[] = [];
-
-  // Collect region pixels
+  // Collect sampled pixels for this region
+  const pixels: { idx: number; x: number; y: number }[] = [];
   const totalPixels = labelMap.length;
-  for (let i = 0; i < totalPixels; i++) {
+
+  for (let i = 0; i < totalPixels; i += samplingRate) {
     if (labelMap[i] !== regionId) continue;
-    pixels.push(i);
-
-    const x = i % width;
-    const y = Math.floor(i / width);
-
-    // Check if on edge (has neighbor from different region)
-    let isEdge = false;
-    if (x === 0 || x === width - 1 || y === 0 || y === height - 1) {
-      isEdge = true;
-    } else {
-      if (
-        labelMap[i - 1] !== regionId ||
-        labelMap[i + 1] !== regionId ||
-        labelMap[i - width] !== regionId ||
-        labelMap[i + width] !== regionId
-      ) {
-        isEdge = true;
-      }
-    }
-
-    if (isEdge) {
-      edgePixels.push({ idx: i, x, y });
-    }
+    pixels.push({ idx: i, x: i % width, y: Math.floor(i / width) });
   }
 
-  // Estimate color variance within region
-  let colorVariance = 0;
-  if (pixels.length > 1) {
-    // Sample approach: check a few pixels
-    const samples = Math.min(Math.floor(pixels.length / 10), 50);
-    let minDist = Infinity;
-    let maxDist = 0;
-
-    for (let s = 0; s < samples; s++) {
-      const pIdx = Math.floor(Math.random() * pixels.length);
-      for (let t = 0; t < samples; t++) {
-        const qIdx = Math.floor(Math.random() * pixels.length);
-        if (pIdx === qIdx) continue;
-
-        // Just use euclidean distance as proxy for color variance
-        // In real usage, would decode pixel colors from imageData
-        const dist = Math.sqrt(
-          Math.pow(pIdx - qIdx, 2)
-        ); // Simplified for now
-
-        minDist = Math.min(minDist, dist);
-        maxDist = Math.max(maxDist, dist);
-      }
-    }
-    colorVariance = maxDist - minDist;
+  if (pixels.length === 0) {
+    return { regionId, hasSubregions: false, estimatedVariance: 0, splitCandidates: [] };
   }
 
-  const estimatedVariance = Math.min(colorVariance / 255, 1);
+  // Compute mean RGB color of the region from actual image data
+  let sumR = 0, sumG = 0, sumB = 0;
+  for (const p of pixels) {
+    const px = p.idx * 4;
+    sumR += imageData.data[px];
+    sumG += imageData.data[px + 1];
+    sumB += imageData.data[px + 2];
+  }
+  const meanR = sumR / pixels.length;
+  const meanG = sumG / pixels.length;
+  const meanB = sumB / pixels.length;
 
-  // Find split candidates (points with high internal color discontinuity)
-  const splitCandidates = edgePixels
-    .filter((_, i) => i % samplingRate === 0)
-    .map((ep) => ({
-      x: ep.x,
-      y: ep.y,
-      // Strength based on variance (higher variance = better split candidate)
-      strength: Math.min(estimatedVariance + Math.random() * 0.2, 1),
-    }))
-    .sort((a, b) => b.strength - a.strength)
-    .slice(0, 5); // Top 5 candidates
+  // Score each pixel by its RGB distance from the region mean.
+  // Pixels far from the mean are in visually distinct sub-areas — good split seeds.
+  let varianceSum = 0;
+  const scored: { x: number; y: number; dist: number }[] = [];
+
+  for (const p of pixels) {
+    const px = p.idx * 4;
+    const dr = imageData.data[px]     - meanR;
+    const dg = imageData.data[px + 1] - meanG;
+    const db = imageData.data[px + 2] - meanB;
+    const dist = Math.sqrt(dr * dr + dg * dg + db * db);
+    varianceSum += dist * dist;
+    scored.push({ x: p.x, y: p.y, dist });
+  }
+
+  // RMS deviation from mean, normalised to [0, 1] (128 = half of max channel range)
+  const estimatedVariance = Math.min(Math.sqrt(varianceSum / pixels.length) / 128, 1);
+
+  // Sort by distance from mean descending — the most-distinct pixels first
+  scored.sort((a, b) => b.dist - a.dist);
+
+  // Pick up to 5 candidates spread across the region.
+  // Enforce a minimum spatial separation so we get seeds in different sub-areas
+  // rather than a cluster of points all in the same spot.
+  const minSep = Math.max(width, height) * 0.08;
+  const maxColorDist = scored.length > 0 ? scored[0].dist : 1;
+  const colorThreshold = 30;
+  const splitCandidates: { x: number; y: number; strength: number; estimatedPixelCount: number }[] = [];
+
+  for (const candidate of scored) {
+    if (splitCandidates.length >= 5) break;
+    if (candidate.dist < 10) break; // remaining candidates are too close to mean to matter
+
+    const tooClose = splitCandidates.some(
+      (c) => Math.hypot(c.x - candidate.x, c.y - candidate.y) < minSep
+    );
+    if (!tooClose) {
+      // Estimate pixel count: count sampled pixels whose color is within
+      // the split flood-fill threshold of the candidate's seed color, then
+      // scale by the sampling rate to approximate total coverage.
+      const seedIdx = (candidate.y * width + candidate.x) * 4;
+      const seedR = imageData.data[seedIdx];
+      const seedG = imageData.data[seedIdx + 1];
+      const seedB = imageData.data[seedIdx + 2];
+      let matchCount = 0;
+      for (const p of pixels) {
+        const px = p.idx * 4;
+        const dr = imageData.data[px]     - seedR;
+        const dg = imageData.data[px + 1] - seedG;
+        const db = imageData.data[px + 2] - seedB;
+        if (Math.sqrt(dr * dr + dg * dg + db * db) < colorThreshold) {
+          matchCount++;
+        }
+      }
+      const estimatedPixelCount = Math.round(matchCount * samplingRate);
+
+      splitCandidates.push({
+        x: candidate.x,
+        y: candidate.y,
+        strength: candidate.dist / Math.max(maxColorDist, 1),
+        estimatedPixelCount,
+      });
+    }
+  }
 
   return {
     regionId,
-    hasSubregions: estimatedVariance > 0.1,
+    hasSubregions: estimatedVariance > 0.08 && splitCandidates.length > 1,
     estimatedVariance,
     splitCandidates,
   };

@@ -151,6 +151,9 @@ export function RegionMergeControls() {
                         <div>
                           {t('merge.position')}: ({cand.x}, {cand.y}) — {t('merge.strength')}: {(cand.strength * 100).toFixed(0)}%
                         </div>
+                        <div className="text-gray-500">
+                          ~{cand.estimatedPixelCount.toLocaleString()} {t('merge.pixels')}
+                        </div>
                       </button>
                     ))}
                   </div>

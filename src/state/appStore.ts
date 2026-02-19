@@ -22,9 +22,12 @@ import type {
   PerformSplitOutput,
   ContourInput,
   ContourOutput,
+  LabelInput,
+  LabelOutput,
 } from '../pipeline/types';
 import RegionOpsWorker from '../workers/regionOps.worker?worker';
 import ContourWorker from '../workers/contour.worker?worker';
+import LabelWorker from '../workers/label.worker?worker';
 
 interface HistoryEntry {
   settings: PipelineSettings;
@@ -337,9 +340,11 @@ export const useAppStore = create<AppState>((set, get) => ({
         [result.labelMap.buffer]
       );
 
-      // Recompute contours after merge to reflect new merged geometry
+      // Recompute contours after merge to reflect new merged geometry.
+      // Copy before transferring — transferring neuters output.labelMap.
+      const labelMapCopy = new Int32Array(output.labelMap);
       const contourInput: ContourInput = {
-        labelMap: output.labelMap,
+        labelMap: labelMapCopy,
         regions: output.regions,
         width: result.width,
         height: result.height,
@@ -351,23 +356,29 @@ export const useAppStore = create<AppState>((set, get) => ({
       const contourOutput = await runWorker<ContourInput, ContourOutput>(
         ContourWorker,
         contourInput,
-        [output.labelMap.buffer],
+        [labelMapCopy.buffer],
+        () => {}
+      );
+
+      // Recompute label placements so the merged region gets a correctly positioned number
+      const labelOutput = await runWorker<LabelInput, LabelOutput>(
+        LabelWorker,
+        { contours: contourOutput.contours },
+        [],
         () => {}
       );
 
       set((s) => {
         if (!s.result) return {};
 
-        // Update result with new labelMap, regions, and recomputed contours
+        // Update result with new labelMap, regions, recomputed contours and labels
         const newResult = {
           ...s.result,
           labelMap: output.labelMap,
           regions: output.regions,
           contours: contourOutput.contours,
+          labels: labelOutput.labels,
         };
-
-        // Update labels to remove labels from merged region
-        newResult.labels = newResult.labels.filter((l) => l.regionId !== regionAId);
 
         // Add to history
         const newHistory = s.history.slice(0, s.historyIndex + 1);
@@ -394,14 +405,15 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   analyzeSplitCandidates: async (regionId) => {
-    const { result } = get();
-    if (!result) return;
+    const { result, sourceImageData } = get();
+    if (!result || !sourceImageData) return;
 
     try {
       const input: SplitCandidatesInput = {
         regionId,
         labelMap: result.labelMap,
         palette: result.palette,
+        imageData: sourceImageData,
         width: result.width,
         height: result.height,
       };
@@ -448,9 +460,12 @@ export const useAppStore = create<AppState>((set, get) => ({
         [result.labelMap.buffer]
       );
 
-      // Recompute contours after split to get correct geometry for both new regions
+      // Recompute contours after split to get correct geometry for both new regions.
+      // Copy the labelMap before transferring to the contour worker — transferring
+      // neuters output.labelMap, which we still need to store in the result.
+      const labelMapCopy = new Int32Array(output.labelMap);
       const contourInput: ContourInput = {
-        labelMap: output.labelMap,
+        labelMap: labelMapCopy,
         regions: output.regions,
         width: result.width,
         height: result.height,
@@ -462,7 +477,15 @@ export const useAppStore = create<AppState>((set, get) => ({
       const contourOutput = await runWorker<ContourInput, ContourOutput>(
         ContourWorker,
         contourInput,
-        [output.labelMap.buffer],
+        [labelMapCopy.buffer],
+        () => {}
+      );
+
+      // Recompute label placements for both the split region and the new region
+      const labelOutput = await runWorker<LabelInput, LabelOutput>(
+        LabelWorker,
+        { contours: contourOutput.contours },
+        [],
         () => {}
       );
 
@@ -474,6 +497,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           labelMap: output.labelMap,
           regions: output.regions,
           contours: contourOutput.contours,
+          labels: labelOutput.labels,
         };
 
         // Add to history

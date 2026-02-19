@@ -61,6 +61,7 @@ self.onmessage = (e: MessageEvent) => {
         input.palette,
         input.width,
         input.height,
+        input.imageData,
         2 // sampling rate
       );
 
