@@ -36,13 +36,26 @@ export interface PresetPalette {
 }
 
 // ── Crayola ───────────────────────────────────────────────────────────────────
+//
+// One dedicated Amazon product link per box size.
+// These point to the standard retail packs; append &tag=YOUR-TAG-20 for affiliate credit.
+
+const crayolaVendorUrls: Record<number, string> = {
+  8:   'https://amzn.to/4tPK7hY', // Crayola Crayons, 8 Count
+  16:  'https://amzn.to/46apq68', // Crayola Crayons, 16 Count
+  24:  'https://amzn.to/4tKDzku', // Crayola Crayons, 24 Count
+  48:  'https://amzn.to/4bXDeoa', // Crayola Crayons, 48 Count
+  64:  'https://amzn.to/4aDEFWr', // Crayola Crayons, 64 Count
+  96:  'https://amzn.to/3OOStpI', // Crayola Crayons, 96 Count
+  120: 'https://amzn.to/3OOStpI', // Crayola Crayons, 120 Count
+};
 
 const crayolaPresets: PresetPalette[] = crayolaPalettes.map((p) => ({
   id: `crayola-${p.size}`,
   label: p.label,
   brand: 'Crayola',
   medium: 'Crayon',
-  vendorUrl: `https://www.amazon.com/s?k=crayola+crayons+${p.size}+count`,
+  vendorUrl: crayolaVendorUrls[p.size] ?? `https://www.amazon.com/s?k=crayola+crayons+${p.size}+count`,
   size: p.size,
   colors: p.colors.map((c) => ({ name: c.name, rgb: c.rgb })),
 }));
@@ -68,7 +81,7 @@ const prismacolorPresets: PresetPalette[] = [
     label: 'Prismacolor Premier 72',
     brand: 'Prismacolor',
     medium: 'Colored Pencil',
-    vendorUrl: 'https://www.amazon.com/s?k=prismacolor+premier+soft+core+72+colored+pencils',
+    vendorUrl: 'https://amzn.to/4tITP5z',
     size: prismacolor72.length,
     colors: dedup(prismacolor72),
   },
@@ -77,7 +90,7 @@ const prismacolorPresets: PresetPalette[] = [
     label: 'Prismacolor Premier 150',
     brand: 'Prismacolor',
     medium: 'Colored Pencil',
-    vendorUrl: 'https://www.amazon.com/s?k=prismacolor+premier+soft+core+150+colored+pencils',
+    vendorUrl: 'https://amzn.to/4s5qLnj',
     size: prismacolor72.length + prismacolor150extras.length,
     colors: dedup([...prismacolor72, ...prismacolor150extras]),
   },
@@ -91,7 +104,7 @@ const winsornewtonPresets: PresetPalette[] = [
     label: "Winsor & Newton Cotman 24-pan",
     brand: 'Winsor & Newton',
     medium: 'Watercolor',
-    vendorUrl: "https://www.amazon.com/s?k=winsor+newton+cotman+24+pan+watercolor+set",
+    vendorUrl: "https://amzn.to/3Oqr8dp",
     size: cotman24.length,
     colors: dedup(cotman24),
   },
@@ -100,7 +113,7 @@ const winsornewtonPresets: PresetPalette[] = [
     label: "Winsor & Newton Cotman 45-pan",
     brand: 'Winsor & Newton',
     medium: 'Watercolor',
-    vendorUrl: "https://www.amazon.com/s?k=winsor+newton+cotman+45+pan+watercolor+set",
+    vendorUrl: "https://amzn.to/3OmL017",
     size: cotman24.length + cotman45extras.length,
     colors: dedup([...cotman24, ...cotman45extras]),
   },
@@ -114,7 +127,7 @@ const tombowPresets: PresetPalette[] = [
     label: 'Tombow Dual Brush 96-Pack',
     brand: 'Tombow',
     medium: 'Marker',
-    vendorUrl: 'https://www.amazon.com/s?k=tombow+dual+brush+pen+96+pack',
+    vendorUrl: 'https://amzn.to/3Ol1R4t',
     size: tombow96.length,
     colors: dedup(tombow96),
   },

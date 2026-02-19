@@ -191,7 +191,6 @@ export const crayolaPalettes: CrayolaPalette[] = [
   buildPalette('Crayola 8', [pack8]),
   buildPalette('Crayola 16', [pack8, pack16extras]),
   buildPalette('Crayola 24', [pack8, pack16extras, pack24extras]),
-  buildPalette('Crayola 32', [pack8, pack16extras, pack24extras, pack32extras]),
   buildPalette('Crayola 48', [pack8, pack16extras, pack24extras, pack32extras, pack48extras]),
   buildPalette('Crayola 64', [pack8, pack16extras, pack24extras, pack32extras, pack48extras, pack64extras]),
   buildPalette('Crayola 96', [pack8, pack16extras, pack24extras, pack32extras, pack48extras, pack64extras, pack96extras]),
