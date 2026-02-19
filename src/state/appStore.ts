@@ -8,7 +8,7 @@ import type {
   ViewMode,
   MergeMode,
 } from './types';
-import { loadImageFromFile, imageToImageData } from '../utils/imageLoader';
+import { loadImageFromFile, imageToImageData, applyCropRotate } from '../utils/imageLoader';
 import { runPipeline } from '../pipeline/PipelineController';
 import { runRegionOpsWorker, runWorker } from '../utils/workerHelper';
 import type {
@@ -87,6 +87,8 @@ const defaultSettings: PipelineSettings = {
   borderWidth: 0,
   smoothingPasses: 0,
   preserveCorners: false,
+  cropRect: null,
+  rotation: 0 as (0 | 90 | 180 | 270),
 };
 
 const defaultPipeline: PipelineState = {
@@ -136,7 +138,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     const url = img.src;
     const { imageData } = imageToImageData(img);
 
-    set({
+    set((s) => ({
       sourceImage: img,
       sourceImageUrl: url,
       sourceImageData: imageData,
@@ -145,7 +147,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       result: null,
       pipeline: { ...defaultPipeline },
       ui: { ...defaultUI },
-    });
+      // Reset crop/rotation when a new image is loaded
+      settings: { ...s.settings, cropRect: null, rotation: 0 as (0 | 90 | 180 | 270) },
+    }));
   },
 
   updateSettings: (partial) => {
@@ -153,10 +157,20 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   startPipeline: async () => {
-    const { sourceImageData, settings } = get();
-    if (!sourceImageData) return;
+    const { sourceImage, settings } = get();
+    if (!sourceImage) return;
+
+    // Build a fresh ImageData every run — applies crop & rotation and prevents
+    // the mutation-accumulation bug that occurred when preprocessing ran in-place
+    // on the same ImageData object across multiple pipeline runs.
+    const { imageData } = applyCropRotate(sourceImage, settings.cropRect, settings.rotation);
 
     set({
+      // Keep sourceImageData in sync so split-analysis workers operate in the
+      // same coordinate space as the pipeline result.
+      sourceImageData: imageData,
+      processedWidth: imageData.width,
+      processedHeight: imageData.height,
       pipeline: { status: 'running', currentStage: 'quantize', stageProgress: 0, error: null },
       result: null,
     });
@@ -166,7 +180,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     };
 
     try {
-      const result = await runPipeline(sourceImageData, settings, onProgress);
+      const result = await runPipeline(imageData, settings, onProgress);
       set((s) => {
         // Add to history after successful pipeline
         const newHistory = s.history.slice(0, s.historyIndex + 1);

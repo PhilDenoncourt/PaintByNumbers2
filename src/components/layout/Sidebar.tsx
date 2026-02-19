@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
+import { CropRotateModal } from '../controls/CropRotateModal';
 import { PaletteControls } from '../controls/PaletteControls';
 import { AlgorithmControls } from '../controls/AlgorithmControls';
 import { DetailControls } from '../controls/DetailControls';
@@ -24,6 +26,11 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   const redo = useAppStore((s) => s.redo);
   const historyIndex = useAppStore((s) => s.historyIndex);
   const history = useAppStore((s) => s.history);
+
+  const settings       = useAppStore((s) => s.settings);
+  const updateSettings  = useAppStore((s) => s.updateSettings);
+
+  const [showCropModal, setShowCropModal] = useState(false);
 
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < history.length - 1;
@@ -50,7 +57,9 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   }
 
   return (
-    <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
+    <>
+      {showCropModal && <CropRotateModal onClose={() => setShowCropModal(false)} />}
+      <div className="w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col h-full overflow-y-auto">
       {/* Mobile close bar — sticky at top when scrolling */}
       <div className="md:hidden sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">{t('sidebar.settings')}</span>
@@ -84,6 +93,37 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         <div className="px-4 pb-4 space-y-4 bg-gray-50 dark:bg-gray-900/50">
           <div>
             <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase">{t('sidebar.image')}</h3>
+
+            {/* Crop & Rotate trigger */}
+            <div className="mb-3">
+              <button
+                onClick={() => setShowCropModal(true)}
+                disabled={pipelineStatus === 'running'}
+                className="w-full py-2 px-3 text-xs font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-between"
+              >
+                <span>✂ {t('cropRotate.title')}</span>
+                {(settings.cropRect !== null || settings.rotation !== 0) && (
+                  <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                )}
+              </button>
+
+              {(settings.cropRect !== null || settings.rotation !== 0) && (
+                <div className="mt-1.5 flex items-center justify-between text-xs px-1">
+                  <span className="text-blue-600 dark:text-blue-400 truncate">
+                    {settings.cropRect !== null && t('cropRotate.cropActive')}
+                    {settings.cropRect !== null && settings.rotation !== 0 && ' · '}
+                    {settings.rotation !== 0 && t('cropRotate.rotationActive', { angle: settings.rotation })}
+                  </span>
+                  <button
+                    onClick={() => updateSettings({ cropRect: null, rotation: 0 })}
+                    className="ml-2 shrink-0 text-gray-400 hover:text-red-500 transition-colors text-base leading-none"
+                    title={t('cropRotate.clearAll')}
+                    aria-label={t('cropRotate.clearAll')}
+                  >×</button>
+                </div>
+              )}
+            </div>
+
             <PreprocessingControls />
           </div>
           <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
@@ -207,5 +247,6 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         </button>
       </div>
     </div>
+    </>
   );
 }

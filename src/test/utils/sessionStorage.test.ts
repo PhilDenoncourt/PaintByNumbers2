@@ -23,6 +23,8 @@ describe('sessionStorage', () => {
     borderWidth: 1,
     smoothingPasses: 2,
     preserveCorners: false,
+    cropRect: null,
+    rotation: 0 as (0 | 90 | 180 | 270),
   };
 
   const mockResult: PipelineResult = {

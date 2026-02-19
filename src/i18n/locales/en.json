@@ -304,6 +304,20 @@
     "split": "Split",
     "analyzing": "Analyzing..."
   },
+  "cropRotate": {
+    "title": "Crop & Rotate",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "rotateLeft": "Rotate 90° Left",
+    "rotateRight": "Rotate 90° Right",
+    "rotate180": "Flip 180°",
+    "cropActive": "Crop active",
+    "rotationActive": "{{angle}}° rotation",
+    "clearAll": "Clear crop & rotation",
+    "noCropApplied": "Full image · No crop applied",
+    "dragHandles": "Drag handles to crop. Rotating resets the crop frame."
+  },
   "privacy": {
     "tagline": "Your images are processed entirely in your browser — nothing is uploaded or stored on any server.",
     "learnMore": "Privacy & Legal",

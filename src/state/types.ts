@@ -6,6 +6,8 @@ export type MergeMode = 'browse' | 'merge' | 'split';
 
 export type Algorithm = 'kmeans' | 'mediancut';
 
+export type RotationAngle = 0 | 90 | 180 | 270;
+
 export interface BBox {
   x: number;
   y: number;
@@ -52,6 +54,9 @@ export interface PipelineSettings {
   brightness: number; // -100 to 100
   contrast: number;   // -100 to 100
   saturation: number; // -100 to 100
+  // Crop & rotate
+  cropRect: { x: number; y: number; w: number; h: number } | null; // normalized 0–1, in post-rotation space
+  rotation: RotationAngle; // degrees clockwise, applied before crop
   // Color bleeding prevention
   borderWidth: number; // 0 to 5 pixels
   // Contour smoothing options
