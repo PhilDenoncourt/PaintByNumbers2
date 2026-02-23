@@ -20,6 +20,7 @@ describe('sessionStorage', () => {
     brightness: 10,
     contrast: 5,
     saturation: 0,
+    sharpness: 0,
     borderWidth: 1,
     smoothingPasses: 2,
     preserveCorners: false,

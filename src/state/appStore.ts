@@ -84,6 +84,7 @@ const defaultSettings: PipelineSettings = {
   brightness: 0,
   contrast: 0,
   saturation: 0,
+  sharpness: 0,
   borderWidth: 0,
   smoothingPasses: 0,
   preserveCorners: false,
