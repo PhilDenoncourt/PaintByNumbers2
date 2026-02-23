@@ -11,8 +11,8 @@ export function PreprocessedImagePreview() {
   const pipelineStatus  = useAppStore((s) => s.pipeline.status);
 
   const hasCropRotate  = settings.cropRect !== null || settings.rotation !== 0;
-  const hasColorAdjust = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0 || settings.sharpness !== 0;
-  const hasAnyEffect   = hasCropRotate || hasColorAdjust;
+  const hasPreprocessing = settings.brightness !== 0 || settings.contrast !== 0 || settings.saturation !== 0 || settings.sharpness !== 0;
+  const hasAnyEffect     = hasCropRotate || hasPreprocessing;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -37,8 +37,8 @@ export function PreprocessedImagePreview() {
 
     if (!baseData) return;
 
-    if (hasColorAdjust) {
-      // Apply color adjustments on top of the (possibly cropped) base
+    if (hasPreprocessing) {
+      // Apply preprocessing on top of the (possibly cropped) base
       const copy = hasCropRotate
         ? baseData // applyCropRotate already gave us a fresh buffer
         : new ImageData(new Uint8ClampedArray(baseData.data), baseData.width, baseData.height);
@@ -54,7 +54,7 @@ export function PreprocessedImagePreview() {
     canvas.width  = baseData.width;
     canvas.height = baseData.height;
     canvas.getContext('2d')!.putImageData(baseData, 0, 0);
-  }, [sourceImage, sourceImageData, settings, pipelineStatus, hasCropRotate, hasColorAdjust, hasAnyEffect]);
+  }, [sourceImage, sourceImageData, settings, pipelineStatus, hasCropRotate, hasPreprocessing, hasAnyEffect]);
 
   if (!hasAnyEffect || pipelineStatus === 'running') return null;
   if (!sourceImageData && !sourceImage) return null;
