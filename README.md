@@ -1,3 +1,35 @@
+# Paint by Numbers
+
+A React + TypeScript + Vite app for turning uploaded photos into paint-by-numbers templates.
+
+## Rendering strategy
+
+The app is still a client-rendered SPA, but the homepage now uses a lightweight prerender step during `npm run build`.
+
+- Vite builds the normal client bundle.
+- `scripts/prerender-home.mjs` injects static homepage HTML into `dist/index.html` using copy aligned with the in-app welcome content.
+- `scripts/check-prerender-home.mjs` validates that the built HTML still contains key homepage text.
+- React then hydrates/replaces that content on load so the interactive app still works normally.
+
+This improves SEO and social/shared-page readability for `/` without introducing a full SSR framework migration.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Production build
+
+```bash
+npm run build
+```
+
+After the build completes, `dist/index.html` contains meaningful homepage HTML before JavaScript runs.
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
