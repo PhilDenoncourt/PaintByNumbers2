@@ -9,7 +9,7 @@ import { PreprocessingControls } from '../controls/PreprocessingControls';
 import { RenderingControls } from '../controls/RenderingControls';
 import { ContourSmoothingControls } from '../controls/ContourSmoothingControls';
 import { RegionMergeControls } from '../controls/RegionMergeControls';
-import { ExportButton } from '../controls/ExportButton';
+import { LazyExportPanel } from '../controls/LazyExportPanel';
 import { SessionControls } from '../controls/SessionControls';
 import { PaletteLegend } from '../palette/PaletteLegend';
 import { RegionStatistics } from '../statistics/RegionStatistics';
@@ -231,7 +231,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
             </summary>
             <div className="px-4 pb-4 space-y-3 bg-gray-50 dark:bg-gray-900/50">
               <SessionControls />
-              <ExportButton />
+              <LazyExportPanel />
             </div>
           </details>
         </>
