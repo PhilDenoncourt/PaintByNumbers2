@@ -1,0 +1,92 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Paint by Numbers social preview</title>
+  <desc id="desc">A social sharing card for Paint by Numbers showing a paint-by-numbers canvas, color palette, and app branding.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="120" y1="90" x2="1080" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <filter id="shadow" x="56" y="46" width="1088" height="538" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="10"/>
+      <feGaussianBlur stdDeviation="22"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0588 0 0 0 0 0.0902 0 0 0 0 0.1647 0 0 0 0.14 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="100" y="80" width="1000" height="470" rx="28" fill="url(#panel)"/>
+  </g>
+
+  <rect x="140" y="120" width="420" height="390" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="170" y="150" width="360" height="330" rx="18" fill="#FFF7ED"/>
+
+  <path d="M214 392C214 364.386 236.386 342 264 342H312C339.614 342 362 364.386 362 392V432H214V392Z" fill="#FDBA74"/>
+  <circle cx="288" cy="292" r="58" fill="#FED7AA"/>
+  <path d="M260 283C266 273 278 266 291 266C306 266 319 274 325 287" stroke="#9A3412" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="266" cy="294" r="8" fill="#7C2D12"/>
+  <circle cx="312" cy="294" r="8" fill="#7C2D12"/>
+  <path d="M270 322C278 330 299 332 309 321" stroke="#7C2D12" stroke-width="7" stroke-linecap="round"/>
+
+  <path d="M395 192L450 164L489 208L471 272L411 291L370 244L395 192Z" fill="#86EFAC" stroke="#166534" stroke-width="3"/>
+  <path d="M397 195L430 233L412 289" stroke="#166534" stroke-width="3"/>
+  <path d="M449 165L446 227L472 271" stroke="#166534" stroke-width="3"/>
+  <path d="M370 244L432 234L489 208" stroke="#166534" stroke-width="3"/>
+
+  <path d="M404 316L454 304L495 334L485 389L431 406L393 369L404 316Z" fill="#93C5FD" stroke="#1D4ED8" stroke-width="3"/>
+  <path d="M453 304L444 356L485 389" stroke="#1D4ED8" stroke-width="3"/>
+  <path d="M404 316L444 356L431 406" stroke="#1D4ED8" stroke-width="3"/>
+
+  <path d="M187 173L248 152L293 185L286 245L221 268L177 229L187 173Z" fill="#FCA5A5" stroke="#B91C1C" stroke-width="3"/>
+  <path d="M188 174L231 219L221 268" stroke="#B91C1C" stroke-width="3"/>
+  <path d="M248 153L243 214L286 245" stroke="#B91C1C" stroke-width="3"/>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#0F172A" text-anchor="middle">
+    <text x="221" y="214" font-size="26">1</text>
+    <text x="445" y="232" font-size="26">2</text>
+    <text x="442" y="359" font-size="26">3</text>
+    <text x="289" y="306" font-size="28">4</text>
+  </g>
+
+  <rect x="590" y="150" width="430" height="56" rx="16" fill="#4F46E5"/>
+  <text x="622" y="186" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Paint by Numbers</text>
+
+  <text x="590" y="258" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">Turn any photo into a</text>
+  <text x="590" y="316" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">paint-by-numbers template</text>
+
+  <text x="590" y="380" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28">AI-powered image conversion, palette tuning,</text>
+  <text x="590" y="418" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28">region editing, and export to PDF, PNG, or SVG.</text>
+
+  <g transform="translate(590 460)">
+    <rect width="96" height="96" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <circle cx="48" cy="27" r="10" fill="#F97316"/>
+    <circle cx="30" cy="48" r="10" fill="#22C55E"/>
+    <circle cx="66" cy="48" r="10" fill="#3B82F6"/>
+    <circle cx="48" cy="69" r="10" fill="#A855F7"/>
+  </g>
+
+  <g transform="translate(710 462)">
+    <rect width="72" height="72" rx="18" fill="#FFF7ED" stroke="#FDBA74"/>
+    <text x="36" y="46" fill="#9A3412" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle">1</text>
+  </g>
+  <g transform="translate(796 462)">
+    <rect width="72" height="72" rx="18" fill="#DCFCE7" stroke="#86EFAC"/>
+    <text x="36" y="46" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle">2</text>
+  </g>
+  <g transform="translate(882 462)">
+    <rect width="72" height="72" rx="18" fill="#DBEAFE" stroke="#93C5FD"/>
+    <text x="36" y="46" fill="#1D4ED8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle">3</text>
+  </g>
+  <g transform="translate(968 462)">
+    <rect width="72" height="72" rx="18" fill="#F3E8FF" stroke="#D8B4FE"/>
+    <text x="36" y="46" fill="#7E22CE" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle">4</text>
+  </g>
+</svg>
