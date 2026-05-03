@@ -28,6 +28,14 @@ npm run build
 
 After the build completes, `dist/index.html` contains meaningful homepage HTML before JavaScript runs.
 
+## Bundle splitting
+
+To reduce the size of the main entry bundle:
+
+- export controls are lazy-loaded instead of being bundled into the initial app shell
+- heavy dependencies such as `jspdf`, `html2canvas`, and state/i18n libraries are emitted into separate Rollup chunks
+- core upload, editing, and preview flows stay in the primary bundle
+
 ---
 
 # React + TypeScript + Vite
