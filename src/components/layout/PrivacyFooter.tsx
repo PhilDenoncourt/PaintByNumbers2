@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { analyticsEnabled } from '../../utils/analytics';
 
 export function PrivacyFooter() {
   const { t } = useTranslation();
@@ -23,10 +24,20 @@ export function PrivacyFooter() {
 
       {expanded && (
         <div className="mt-2 pb-1 space-y-1 text-gray-500 dark:text-gray-400 leading-relaxed max-w-3xl">
-          <p>
-            <strong className="text-gray-600 dark:text-gray-300">{t('privacy.noDataTitle')}</strong>{' '}
-            {t('privacy.noDataBody')}
-          </p>
+          {analyticsEnabled ? (
+            <p>
+              <strong className="text-gray-600 dark:text-gray-300">{t('privacy.noDataTitle')}</strong>{' '}
+              {t('privacy.analyticsBody', {
+                defaultValue:
+                  'This application uses Google Analytics to measure usage (for example page views, processing runs, and export actions). Uploaded images are still processed locally in your browser and are not sent to our server.',
+              })}
+            </p>
+          ) : (
+            <p>
+              <strong className="text-gray-600 dark:text-gray-300">{t('privacy.noDataTitle')}</strong>{' '}
+              {t('privacy.noDataBody')}
+            </p>
+          )}
           <p>
             <strong className="text-gray-600 dark:text-gray-300">{t('privacy.localStorageTitle')}</strong>{' '}
             {t('privacy.localStorageBody')}

@@ -28,6 +28,7 @@ import type {
 import RegionOpsWorker from '../workers/regionOps.worker?worker';
 import ContourWorker from '../workers/contour.worker?worker';
 import LabelWorker from '../workers/label.worker?worker';
+import { trackEvent } from '../utils/analytics';
 
 interface HistoryEntry {
   settings: PipelineSettings;
@@ -151,6 +152,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Reset crop/rotation when a new image is loaded
       settings: { ...s.settings, cropRect: null, rotation: 0 as (0 | 90 | 180 | 270) },
     }));
+
+    trackEvent('image_upload', {
+      file_type: file.type || 'unknown',
+      file_size_bytes: file.size,
+      width: imageData.width,
+      height: imageData.height,
+    });
   },
 
   updateSettings: (partial) => {
@@ -160,6 +168,13 @@ export const useAppStore = create<AppState>((set, get) => ({
   startPipeline: async () => {
     const { sourceImage, settings } = get();
     if (!sourceImage) return;
+
+    trackEvent('pipeline_start', {
+      algorithm: settings.algorithm,
+      palette_size: settings.paletteSize,
+      min_region_size: settings.minRegionSize,
+      detail_level: settings.detailLevel,
+    });
 
     // Build a fresh ImageData every run — applies crop & rotation and prevents
     // the mutation-accumulation bug that occurred when preprocessing ran in-place
@@ -182,6 +197,12 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     try {
       const result = await runPipeline(imageData, settings, onProgress);
+      trackEvent('pipeline_complete', {
+        regions: result.regions.length,
+        palette_size: result.palette.length,
+        output_width: result.width,
+        output_height: result.height,
+      });
       set((s) => {
         // Add to history after successful pipeline
         const newHistory = s.history.slice(0, s.historyIndex + 1);
@@ -195,6 +216,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Pipeline failed';
+      trackEvent('pipeline_error', {
+        message,
+      });
       set({
         pipeline: { status: 'error', currentStage: null, stageProgress: 0, error: message },
       });

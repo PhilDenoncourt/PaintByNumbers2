@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { generateSvg, downloadSvg } from '../../export/svgExporter';
 import { downloadPdf, downloadColorLegendPdf } from '../../export/pdfExporter';
 import { downloadPng, downloadColorLegendPng } from '../../export/pngExporter';
+import { trackEvent } from '../../utils/analytics';
 
 export function ExportButton() {
   const { t } = useTranslation();
@@ -15,16 +16,19 @@ export function ExportButton() {
     const svg = generateSvg(result, includeColor, presetPaletteId);
     const suffix = includeColor ? 'colored' : 'outline';
     downloadSvg(svg, `paint-by-numbers-${suffix}.svg`);
+    trackEvent('export', { format: 'svg', variant: suffix });
   };
 
   const handlePdfExport = (includeColor: boolean) => {
     const suffix = includeColor ? 'colored' : 'outline';
     downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`, presetPaletteId);
+    trackEvent('export', { format: 'pdf', variant: suffix });
   };
 
   const handlePngExport = (includeColor: boolean) => {
     const suffix = includeColor ? 'colored' : 'outline';
     downloadPng(result, includeColor, `paint-by-numbers-${suffix}.png`);
+    trackEvent('export', { format: 'png', variant: suffix });
   };
 
   const handleColorGuideExport = (format: 'svg' | 'pdf' | 'png') => {
@@ -36,6 +40,8 @@ export function ExportButton() {
     } else if (format === 'png') {
       downloadColorLegendPng(result, presetPaletteId);
     }
+
+    trackEvent('export', { format, variant: 'color-guide' });
   };
 
   return (

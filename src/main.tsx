@@ -5,12 +5,16 @@ import './i18n/config.ts'
 import i18n, { isRTLLanguage } from './i18n/config.ts'
 import App from './App.tsx'
 import { ErrorBoundary } from './components/layout/ErrorBoundary'
+import { initAnalytics, trackPageView } from './utils/analytics'
 
 // Apply initial RTL settings based on browser-detected language
 const currentLang = i18n.language
 const isRTL = isRTLLanguage(currentLang)
 document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
 document.documentElement.lang = currentLang
+
+initAnalytics()
+trackPageView()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

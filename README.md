@@ -28,6 +28,25 @@ npm run build
 
 After the build completes, `dist/index.html` contains meaningful homepage HTML before JavaScript runs.
 
+## Google Analytics (GA4)
+
+This app supports optional GA4 tracking for a static deployment.
+
+1. Create a GA4 web data stream and copy your measurement ID (for example `G-XXXXXXXXXX`).
+2. Set `VITE_GA_MEASUREMENT_ID` in your hosting environment (Render dashboard or `render.yaml` with secret sync).
+3. Build and deploy as usual.
+
+When `VITE_GA_MEASUREMENT_ID` is present, the app tracks:
+
+- `page_view`
+- `image_upload`
+- `pipeline_start`
+- `pipeline_complete`
+- `pipeline_error`
+- `export`
+
+When `VITE_GA_MEASUREMENT_ID` is not set, no analytics scripts are loaded.
+
 ## Bundle splitting
 
 To reduce the size of the main entry bundle:

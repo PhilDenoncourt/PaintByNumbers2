@@ -328,6 +328,7 @@
     "author": "Phil Denoncourt III",
     "noDataTitle": "No data collection.",
     "noDataBody": "This application does not collect, transmit, or share any personal data. No analytics, no tracking, no cookies.",
+    "analyticsBody": "This application uses Google Analytics to measure usage (for example page views, processing runs, and export actions). Uploaded images are still processed locally in your browser and are not sent to our server.",
     "localStorageTitle": "Browser storage.",
     "localStorageBody": "Your current session (settings and image) may be saved to your browser's localStorage for convenience. This data never leaves your device and can be cleared at any time through your browser settings.",
     "imagesTitle": "Image processing.",
