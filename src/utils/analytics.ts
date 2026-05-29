@@ -1,13 +1,14 @@
 type AnalyticsParams = Record<string, string | number | boolean | null | undefined>;
 
+// gtag must accept the canonical `IArguments` shape used by Google's official
+// snippet. Using a rest-parameter signature here causes gtag.js to silently
+// skip queued entries because it inspects the pushed item via the live
+// `arguments` object pattern.
 declare global {
   interface Window {
-    dataLayer?: unknown[];
-    gtag?: (
-      command: 'js' | 'config' | 'event' | 'consent',
-      target: string | Date,
-      params?: AnalyticsParams,
-    ) => void;
+    dataLayer?: IArguments[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    gtag?: (...args: any[]) => void;
   }
 }
 
@@ -16,19 +17,6 @@ const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() ?? '';
 export const analyticsEnabled = measurementId.length > 0;
 
 let initialized = false;
-
-function gtag(command: 'js' | 'config' | 'event' | 'consent', target: string | Date, params?: AnalyticsParams) {
-  if (!window.dataLayer) {
-    window.dataLayer = [];
-  }
-
-  if (typeof window.gtag === 'function') {
-    window.gtag(command, target, params);
-    return;
-  }
-
-  window.dataLayer.push([command, target, params]);
-}
 
 function injectGtagScript(id: string): void {
   if (document.getElementById('ga4-gtag-script')) return;
@@ -43,26 +31,31 @@ function injectGtagScript(id: string): void {
 export function initAnalytics(): void {
   if (!analyticsEnabled || initialized) return;
 
-  injectGtagScript(measurementId);
-
+  // Set up the queue *before* loading gtag.js so any queued calls are picked
+  // up when the library finishes loading.
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtagProxy(...args: unknown[]) {
-    window.dataLayer?.push(args);
-  } as Window['gtag'];
+  // Use a plain `function` (not an arrow / rest-spread) so `arguments` is the
+  // live IArguments object that gtag.js's queue replay expects.
+  window.gtag = function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments as unknown as IArguments);
+  };
 
-  gtag('js', new Date());
-  gtag('config', measurementId, {
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, {
     anonymize_ip: true,
     send_page_view: false,
   });
+
+  injectGtagScript(measurementId);
 
   initialized = true;
 }
 
 export function trackPageView(path: string = window.location.pathname): void {
-  if (!analyticsEnabled) return;
+  if (!analyticsEnabled || !window.gtag) return;
 
-  gtag('event', 'page_view', {
+  window.gtag('event', 'page_view', {
     page_path: path,
     page_location: window.location.href,
     page_title: document.title,
@@ -71,6 +64,6 @@ export function trackPageView(path: string = window.location.pathname): void {
 }
 
 export function trackEvent(eventName: string, params: AnalyticsParams = {}): void {
-  if (!analyticsEnabled) return;
-  gtag('event', eventName, params);
+  if (!analyticsEnabled || !window.gtag) return;
+  window.gtag('event', eventName, params);
 }
