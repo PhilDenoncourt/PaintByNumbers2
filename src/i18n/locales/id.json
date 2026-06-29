@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Ketuk warna untuk menyoroti lokasinya, lalu ketuk area tersebut untuk menandainya sebagai sudah diwarnai. Seret untuk menggeser, gulir untuk memperbesar."
   },
+  "faq": {
+    "title": "Pertanyaan umum",
+    "q1": "Apakah generator mewarnai dengan angka ini gratis?",
+    "a1": "Ya, sepenuhnya gratis, tanpa pendaftaran, tanda air, atau batasan.",
+    "q2": "Apakah Anda mengunggah foto saya?",
+    "a2": "Tidak. Semuanya berjalan di browser Anda, jadi foto Anda tidak pernah meninggalkan perangkat Anda.",
+    "q3": "Format apa saja yang bisa saya ekspor?",
+    "a3": "Ekspor templat jadi Anda sebagai PDF siap cetak, gambar PNG, atau SVG yang dapat diskalakan.",
+    "q4": "Bisakah saya memakai warna sendiri atau mencocokkan cat asli?",
+    "a4": "Ya. Buat palet kustom atau petakan setiap area ke preset krayon Crayola.",
+    "q5": "Jenis foto seperti apa yang paling cocok?",
+    "a5": "Foto dengan subjek jelas dan kontras kuat paling cocok. Lebih sedikit warna membuat templat lebih sederhana."
+  },
   "export": {
     "saveSession": "Simpan Sesi",
     "loadSession": "Muat Sesi",

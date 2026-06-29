@@ -147,8 +147,6 @@ export function PaintMode({ onClose }: PaintModeProps) {
     }
   }, [result, painted, activeColor]);
 
-  drawRef.current = draw;
-
   // Fit the image to the canvas and size the backing store to the container.
   const fitToContainer = useCallback(() => {
     const canvas = canvasRef.current;
@@ -165,8 +163,10 @@ export function PaintMode({ onClose }: PaintModeProps) {
     draw();
   }, [result, draw]);
 
-  // Redraw whenever paint state / active color changes.
+  // Keep the latest draw fn reachable from event handlers, and redraw whenever
+  // paint state / active color changes.
   useEffect(() => {
+    drawRef.current = draw;
     draw();
   }, [draw]);
 

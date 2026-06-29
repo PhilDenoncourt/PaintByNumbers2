@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Dotknij koloru, aby podświetlić jego obszary, a następnie dotykaj tych obszarów, aby oznaczyć je jako pomalowane. Przeciągnij, aby przesunąć, przewiń, aby przybliżyć."
   },
+  "faq": {
+    "title": "Najczęściej zadawane pytania",
+    "q1": "Czy ten generator malowania po numerach jest darmowy?",
+    "a1": "Tak, jest całkowicie darmowy — bez rejestracji, znaków wodnych i limitów.",
+    "q2": "Czy przesyłacie moje zdjęcie?",
+    "a2": "Nie. Wszystko działa w Twojej przeglądarce, więc Twoje zdjęcie nigdy nie opuszcza urządzenia.",
+    "q3": "Jakie formaty mogę wyeksportować?",
+    "a3": "Wyeksportuj gotowy szablon jako PDF do druku, obraz PNG lub skalowalny SVG.",
+    "q4": "Czy mogę użyć własnych kolorów lub dopasować prawdziwe farby?",
+    "a4": "Tak. Utwórz własną paletę lub przypisz każdy obszar do kredki Crayola.",
+    "q5": "Jakie zdjęcie sprawdza się najlepiej?",
+    "a5": "Najlepiej sprawdzają się zdjęcia z wyraźnym tematem i mocnym kontrastem. Mniej kolorów daje prostsze szablony."
+  },
   "export": {
     "saveSession": "Zapisz Sesję",
     "loadSession": "Załaduj Sesję",

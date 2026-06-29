@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Touchez une couleur pour mettre en évidence son emplacement, puis touchez ces régions pour les marquer comme peintes. Faites glisser pour déplacer, faites défiler pour zoomer."
   },
+  "faq": {
+    "title": "Questions fréquentes",
+    "q1": "Ce générateur de peinture par numéros est-il gratuit ?",
+    "a1": "Oui, il est entièrement gratuit, sans inscription, ni filigrane, ni limite.",
+    "q2": "Téléchargez-vous ma photo ?",
+    "a2": "Non. Tout se passe dans votre navigateur : votre photo ne quitte jamais votre appareil.",
+    "q3": "Quels formats puis-je exporter ?",
+    "a3": "Exportez votre modèle terminé en PDF imprimable, en image PNG ou en SVG vectoriel.",
+    "q4": "Puis-je utiliser mes propres couleurs ou faire correspondre de vraies peintures ?",
+    "a4": "Oui. Créez une palette personnalisée ou associez chaque région à un crayon Crayola.",
+    "q5": "Quel type de photo fonctionne le mieux ?",
+    "a5": "Les photos avec un sujet net et un fort contraste fonctionnent le mieux. Moins de couleurs donnent des modèles plus simples."
+  },
   "export": {
     "saveSession": "Enregistrer la session",
     "loadSession": "Charger la session",

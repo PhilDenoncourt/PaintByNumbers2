@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Klepnutím na barvu zvýrazníte, kam patří, a poté klepnutím na tyto oblasti je označíte jako vybarvené. Tažením posouvejte, posouváním přibližujte."
   },
+  "faq": {
+    "title": "Časté dotazy",
+    "q1": "Je tento generátor malování podle čísel zdarma?",
+    "a1": "Ano, je zcela zdarma – bez registrace, vodoznaků a limitů.",
+    "q2": "Nahráváte moji fotku?",
+    "a2": "Ne. Vše běží ve vašem prohlížeči, takže vaše fotka nikdy neopustí vaše zařízení.",
+    "q3": "Jaké formáty mohu exportovat?",
+    "a3": "Exportujte hotovou šablonu jako tisknutelné PDF, obrázek PNG nebo škálovatelné SVG.",
+    "q4": "Mohu použít vlastní barvy nebo sladit skutečné barvy?",
+    "a4": "Ano. Vytvořte vlastní paletu nebo přiřaďte každou oblast k pastelce Crayola.",
+    "q5": "Jaký typ fotky funguje nejlépe?",
+    "a5": "Nejlépe fungují fotky s jasným motivem a silným kontrastem. Méně barev znamená jednodušší šablony."
+  },
   "export": {
     "saveSession": "Uložit Relaci",
     "loadSession": "Načíst Relaci",

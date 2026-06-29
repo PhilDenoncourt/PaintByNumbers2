@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tippe auf eine Farbe, um ihre Bereiche hervorzuheben, und tippe dann auf diese Bereiche, um sie als ausgemalt zu markieren. Ziehen zum Verschieben, scrollen zum Zoomen."
   },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "q1": "Ist dieser Malen-nach-Zahlen-Generator kostenlos?",
+    "a1": "Ja – völlig kostenlos, ohne Anmeldung, Wasserzeichen oder Limits.",
+    "q2": "Wird mein Foto hochgeladen?",
+    "a2": "Nein. Alles läuft in deinem Browser, dein Foto verlässt also nie dein Gerät.",
+    "q3": "Welche Formate kann ich exportieren?",
+    "a3": "Exportiere deine fertige Vorlage als druckbares PDF, PNG-Bild oder skalierbares SVG.",
+    "q4": "Kann ich eigene Farben verwenden oder echte Farben abgleichen?",
+    "a4": "Ja. Erstelle eine eigene Palette oder ordne jede Region einem Crayola-Stift zu.",
+    "q5": "Welche Art von Foto funktioniert am besten?",
+    "a5": "Fotos mit klarem Motiv und starkem Kontrast funktionieren am besten. Weniger Farben ergeben einfachere Vorlagen."
+  },
   "export": {
     "saveSession": "Sitzung speichern",
     "loadSession": "Sitzung laden",

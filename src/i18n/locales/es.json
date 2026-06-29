@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Toca un color para resaltar dónde va y luego toca esas regiones para marcarlas como pintadas. Arrastra para desplazar, desplázate para hacer zoom."
   },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "q1": "¿Este generador de pintar por números es gratis?",
+    "a1": "Sí, es completamente gratis, sin registro, marcas de agua ni límites.",
+    "q2": "¿Se sube mi foto?",
+    "a2": "No. Todo se ejecuta en tu navegador, así que tu foto nunca sale de tu dispositivo.",
+    "q3": "¿Qué formatos puedo exportar?",
+    "a3": "Exporta tu plantilla terminada como PDF imprimible, imagen PNG o SVG escalable.",
+    "q4": "¿Puedo usar mis propios colores o igualar pinturas reales?",
+    "a4": "Sí. Crea una paleta personalizada o asigna cada región a un color Crayola.",
+    "q5": "¿Qué tipo de foto funciona mejor?",
+    "a5": "Las fotos con un sujeto claro y buen contraste funcionan mejor. Menos colores generan plantillas más simples."
+  },
   "export": {
     "saveSession": "Guardar Sesión",
     "loadSession": "Cargar Sesión",

@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tryck på en färg för att markera var den hör hemma och tryck sedan på de områdena för att markera dem som målade. Dra för att panorera, scrolla för att zooma."
   },
+  "faq": {
+    "title": "Vanliga frågor",
+    "q1": "Är den här måla-efter-nummer-generatorn gratis?",
+    "a1": "Ja, den är helt gratis – utan registrering, vattenstämplar eller begränsningar.",
+    "q2": "Laddar ni upp min bild?",
+    "a2": "Nej. Allt körs i din webbläsare, så din bild lämnar aldrig din enhet.",
+    "q3": "Vilka format kan jag exportera?",
+    "a3": "Exportera din färdiga mall som utskrivbar PDF, PNG-bild eller skalbar SVG.",
+    "q4": "Kan jag använda egna färger eller matcha riktig färg?",
+    "a4": "Ja. Skapa en egen palett eller koppla varje område till en Crayola-krita.",
+    "q5": "Vilken typ av foto fungerar bäst?",
+    "a5": "Foton med ett tydligt motiv och stark kontrast fungerar bäst. Färre färger ger enklare mallar."
+  },
   "export": {
     "saveSession": "Spara session",
     "loadSession": "Ladda session",

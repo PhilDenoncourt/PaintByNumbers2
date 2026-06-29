@@ -19,7 +19,7 @@ const prerenderMarkup = `
           <section class="mx-auto max-w-2xl px-4 py-8 sm:px-6">
             <div class="text-center">
               <h2 class="text-2xl font-bold text-gray-800">Turn any photo into a paint-by-numbers masterpiece</h2>
-              <p class="mt-3 text-sm leading-relaxed text-gray-500">Upload a photo and this tool will analyse the colours, simplify the image into numbered regions, and generate a ready-to-print paint-by-numbers template — all inside your browser, with no data ever leaving your device.</p>
+              <p class="mt-3 text-sm leading-relaxed text-gray-500">This free paint-by-numbers generator turns any photo into a numbered, ready-to-print template. It analyses the colours, simplifies the image into numbered regions, and works entirely inside your browser — your photo is never uploaded and no data ever leaves your device. Export the finished template as a printable PDF, PNG, or scalable SVG.</p>
             </div>
           </section>
 
@@ -44,7 +44,7 @@ const prerenderMarkup = `
             </div>
           </section>
 
-          <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6">
+          <section class="mx-auto max-w-4xl px-4 pb-8 sm:px-6">
             <div class="rounded-lg border border-gray-200 bg-white p-5">
               <h3 class="text-sm font-semibold text-gray-700">How to get started</h3>
               <ol class="mt-3 space-y-2 text-xs text-gray-600">
@@ -54,6 +54,38 @@ const prerenderMarkup = `
                 <li><strong>4.</strong> Review and refine the result, then export your template.</li>
               </ol>
             </div>
+          </section>
+
+          <section class="mx-auto max-w-4xl px-4 pb-8 sm:px-6">
+            <div class="rounded-lg border border-gray-200 bg-white p-5">
+              <h3 class="text-sm font-semibold text-gray-700">Frequently asked questions</h3>
+              <dl class="mt-3 space-y-3 text-xs">
+                <div>
+                  <dt class="font-semibold text-gray-700">Is this paint by numbers generator free?</dt>
+                  <dd class="mt-1 text-gray-500">Yes — it&#39;s completely free, with no sign-up, watermarks, or limits.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">Do you upload my photo?</dt>
+                  <dd class="mt-1 text-gray-500">No. Everything runs in your browser, so your photo never leaves your device.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">What formats can I export?</dt>
+                  <dd class="mt-1 text-gray-500">Export your finished template as a printable PDF, a PNG image, or a scalable SVG.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">Can I use my own colors or match real paints?</dt>
+                  <dd class="mt-1 text-gray-500">Yes. Build a custom palette or map each region to a Crayola crayon preset.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">What kind of photo works best?</dt>
+                  <dd class="mt-1 text-gray-500">Photos with a clear subject and strong contrast work best. Fewer colors make simpler templates.</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+
+          <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6">
+            <p class="text-center text-xs text-gray-500">Comparing tools? See how this free generator stacks up in our <a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
           </section>
         </main>
       </div>

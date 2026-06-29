@@ -202,6 +202,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Toca un color per ressaltar on va i després toca aquestes regions per marcar-les com a pintades. Arrossega per moure, desplaça't per fer zoom."
   },
+  "faq": {
+    "title": "Preguntes freqüents",
+    "q1": "Aquest generador de pintura per números és gratuït?",
+    "a1": "Sí, és totalment gratuït, sense registre, marques d’aigua ni límits.",
+    "q2": "Pugeu la meva foto?",
+    "a2": "No. Tot s’executa al teu navegador, així que la teva foto no surt mai del teu dispositiu.",
+    "q3": "Quins formats puc exportar?",
+    "a3": "Exporta la plantilla acabada com a PDF imprimible, imatge PNG o SVG escalable.",
+    "q4": "Puc fer servir els meus colors o igualar pintures reals?",
+    "a4": "Sí. Crea una paleta personalitzada o assigna cada regió a un color Crayola.",
+    "q5": "Quin tipus de foto funciona millor?",
+    "a5": "Les fotos amb un subjecte clar i bon contrast funcionen millor. Menys colors generen plantilles més senzilles."
+  },
   "export": {
     "saveSession": "Desar Sessió",
     "loadSession": "Carregar Sessió",

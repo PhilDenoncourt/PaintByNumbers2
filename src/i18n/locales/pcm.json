@@ -202,6 +202,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tap one color make e show you where e dey, then tap those areas to mark say you don paint dem. Drag to move am, scroll to zoom."
   },
+  "faq": {
+    "title": "Questions wey people dey ask",
+    "q1": "This paint by numbers generator free?",
+    "a1": "Yes, e free well well — no sign-up, no watermark, no limit.",
+    "q2": "You dey upload my photo?",
+    "a2": "No. Everything dey happen for your browser, so your photo no dey leave your device.",
+    "q3": "Which format I fit export?",
+    "a3": "Export your template as PDF wey you fit print, PNG image, or SVG wey fit scale.",
+    "q4": "I fit use my own colors or match real paint?",
+    "a4": "Yes. Build your own palette or match every area to Crayola crayon.",
+    "q5": "Which kind photo dey work best?",
+    "a5": "Photo wey get clear subject and strong contrast dey work best. Small colors dey make template simple."
+  },
   "export": {
     "saveSession": "Save Session",
     "loadSession": "Load Session",

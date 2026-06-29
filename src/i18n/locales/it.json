@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tocca un colore per evidenziare dove va, poi tocca quelle regioni per contrassegnarle come dipinte. Trascina per spostare, scorri per ingrandire."
   },
+  "faq": {
+    "title": "Domande frequenti",
+    "q1": "Questo generatore di dipinto con i numeri è gratuito?",
+    "a1": "Sì, è completamente gratuito, senza registrazione, filigrane o limiti.",
+    "q2": "Caricate la mia foto?",
+    "a2": "No. Tutto avviene nel tuo browser, quindi la tua foto non lascia mai il dispositivo.",
+    "q3": "Quali formati posso esportare?",
+    "a3": "Esporta il modello finito come PDF stampabile, immagine PNG o SVG scalabile.",
+    "q4": "Posso usare i miei colori o abbinare colori reali?",
+    "a4": "Sì. Crea una palette personalizzata o associa ogni regione a un pastello Crayola.",
+    "q5": "Che tipo di foto funziona meglio?",
+    "a5": "Le foto con un soggetto chiaro e un forte contrasto funzionano meglio. Meno colori rendono i modelli più semplici."
+  },
   "export": {
     "saveSession": "Salva Sessione",
     "loadSession": "Carica Sessione",

@@ -209,6 +209,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tap a color to highlight where it goes, then tap those regions to mark them painted. Drag to pan, scroll to zoom."
   },
+  "faq": {
+    "title": "Frequently asked questions",
+    "q1": "Is this paint by numbers generator free?",
+    "a1": "Yes — it's completely free, with no sign-up, watermarks, or limits.",
+    "q2": "Do you upload my photo?",
+    "a2": "No. Everything runs in your browser, so your photo never leaves your device.",
+    "q3": "What formats can I export?",
+    "a3": "Export your finished template as a printable PDF, a PNG image, or a scalable SVG.",
+    "q4": "Can I use my own colors or match real paints?",
+    "a4": "Yes. Build a custom palette or map each region to a Crayola crayon preset.",
+    "q5": "What kind of photo works best?",
+    "a5": "Photos with a clear subject and strong contrast work best. Fewer colors make simpler templates."
+  },
   "export": {
     "saveSession": "Save Session",
     "loadSession": "Load Session",

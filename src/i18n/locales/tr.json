@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Bir renge dokunarak nereye geldiğini vurgulayın, ardından o bölgelere dokunarak boyandı olarak işaretleyin. Kaydırmak için sürükleyin, yakınlaştırmak için kaydırın."
   },
+  "faq": {
+    "title": "Sıkça sorulan sorular",
+    "q1": "Bu sayılarla boyama oluşturucu ücretsiz mi?",
+    "a1": "Evet, tamamen ücretsiz; kayıt, filigran veya sınır yok.",
+    "q2": "Fotoğrafımı yüklüyor musunuz?",
+    "a2": "Hayır. Her şey tarayıcınızda çalışır, böylece fotoğrafınız cihazınızdan asla çıkmaz.",
+    "q3": "Hangi formatlarda dışa aktarabilirim?",
+    "a3": "Tamamlanan şablonu yazdırılabilir PDF, PNG görüntü veya ölçeklenebilir SVG olarak dışa aktarın.",
+    "q4": "Kendi renklerimi kullanabilir veya gerçek boyalarla eşleştirebilir miyim?",
+    "a4": "Evet. Özel bir palet oluşturun veya her bölgeyi bir Crayola boya kalemiyle eşleştirin.",
+    "q5": "En iyi hangi tür fotoğraflar işe yarar?",
+    "a5": "Net bir konuya ve güçlü kontrasta sahip fotoğraflar en iyi sonucu verir. Daha az renk daha basit şablonlar oluşturur."
+  },
   "export": {
     "saveSession": "Oturumu Kaydet",
     "loadSession": "Oturumu Yükle",

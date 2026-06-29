@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Koppints egy színre a helyének kiemeléséhez, majd koppints ezekre a területekre, hogy kifestettként jelöld őket. Húzd a mozgatáshoz, görgess a nagyításhoz."
   },
+  "faq": {
+    "title": "Gyakori kérdések",
+    "q1": "Ingyenes ez a számfestő-generátor?",
+    "a1": "Igen, teljesen ingyenes – regisztráció, vízjel és korlátok nélkül.",
+    "q2": "Feltöltitek a fotómat?",
+    "a2": "Nem. Minden a böngésződben fut, így a fotód soha nem hagyja el az eszközödet.",
+    "q3": "Milyen formátumokba exportálhatok?",
+    "a3": "Exportáld az elkészült sablont nyomtatható PDF-ként, PNG-képként vagy méretezhető SVG-ként.",
+    "q4": "Használhatok saját színeket, vagy megfeleltethetem valódi festékekhez?",
+    "a4": "Igen. Hozz létre egyéni palettát, vagy rendeld hozzá minden régiót egy Crayola zsírkrétához.",
+    "q5": "Milyen fotó működik a legjobban?",
+    "a5": "A tiszta témájú, erős kontrasztú fotók működnek a legjobban. A kevesebb szín egyszerűbb sablont eredményez."
+  },
   "export": {
     "saveSession": "Munkamenet mentése",
     "loadSession": "Munkamenet betöltése",

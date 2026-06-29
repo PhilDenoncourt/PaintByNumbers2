@@ -9,6 +9,7 @@ import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
 import { ErrorBoundary } from './ErrorBoundary';
 import { PrivacyFooter } from './PrivacyFooter';
+import { FaqSection } from '../seo/FaqSection';
 
 export function AppShell() {
   const { t } = useTranslation();
@@ -218,6 +219,8 @@ export function AppShell() {
                     ))}
                   </ol>
                 </div>
+
+                <FaqSection />
               </div>
             </div>
           )}

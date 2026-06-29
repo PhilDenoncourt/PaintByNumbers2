@@ -185,6 +185,19 @@
     "colorProgress": "{{done}} / {{total}}",
     "instructions": "Tik op een kleur om te markeren waar deze hoort en tik vervolgens op die gebieden om ze als geschilderd te markeren. Sleep om te verschuiven, scroll om te zoomen."
   },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "q1": "Is deze schilderen-op-nummer-generator gratis?",
+    "a1": "Ja, hij is volledig gratis, zonder registratie, watermerken of limieten.",
+    "q2": "Uploaden jullie mijn foto?",
+    "a2": "Nee. Alles draait in je browser, dus je foto verlaat nooit je apparaat.",
+    "q3": "Welke formaten kan ik exporteren?",
+    "a3": "Exporteer je voltooide sjabloon als afdrukbare PDF, PNG-afbeelding of schaalbare SVG.",
+    "q4": "Kan ik mijn eigen kleuren gebruiken of echte verf matchen?",
+    "a4": "Ja. Maak een eigen palet of koppel elke regio aan een Crayola-krijtje.",
+    "q5": "Welk type foto werkt het beste?",
+    "a5": "Foto’s met een duidelijk onderwerp en sterk contrast werken het beste. Minder kleuren geven eenvoudigere sjablonen."
+  },
   "export": {
     "saveSession": "Sessie Opslaan",
     "loadSession": "Sessie Laden",
