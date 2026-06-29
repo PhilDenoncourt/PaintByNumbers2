@@ -312,5 +312,82 @@
     "imagesBody": "Alle afbeeldingsverwerking wordt lokaal in je browser uitgevoerd met behulp van Web Workers. Je afbeeldingen worden nooit naar een server verzonden.",
     "copyrightTitle": "Jouw verantwoordelijkheid.",
     "copyrightBody": "Je bent verantwoordelijk voor het waarborgen dat je de nodige rechten hebt om de afbeeldingen die je uploadt te gebruiken. Upload geen afbeeldingen die je niet bezit of waarvoor je geen toestemming hebt."
+  },
+  "panels": {
+    "step": "Stap {{n}} van 4",
+    "generate": "Schilderen op nummers genereren",
+    "generateCaption": "Voert opnieuw uit met je huidige instellingen · ~3s",
+    "new": "Nieuw",
+    "lockedHint": "Genereer eerst een sjabloon om deze stap te ontgrendelen",
+    "palette": {
+      "tab": "Palet",
+      "title": "Palet",
+      "desc": "Kies hoe kleuren worden geselecteerd en hoeveel je er gebruikt.",
+      "howColorsChosen": "Hoe kleuren worden gekozen",
+      "fromSet": "Uit set",
+      "autoDetect": "Automatisch detecteren",
+      "custom": "Aangepast",
+      "fromSetHelp": "Je sjabloon gebruikt de {{count}} kleuren uit deze set, zodat elke genummerde regio overeenkomt met een echte {{brand}}-kleur.",
+      "quantizationAlgorithm": "Quantisatie-algoritme"
+    },
+    "adjust": {
+      "tab": "Aanpassen",
+      "title": "Aanpassen",
+      "desc": "Stem detail, toon en hoe regio's worden getekend af.",
+      "detailLevel": "Detailniveau",
+      "imageTone": "Afbeeldingstoon",
+      "cropRotate": "Afbeelding bijsnijden en draaien"
+    },
+    "refine": {
+      "tab": "Verfijnen",
+      "title": "Verfijnen",
+      "desc": "Voeg regio's samen of splits ze en herorden je kleuren.",
+      "regionTool": "Regiogereedschap",
+      "regionToolHelp": "Klik op regio's op het canvas om ze te combineren of te verdelen. Snelkoppelingen: M samenvoegen · S splitsen · Esc bladeren.",
+      "paletteLegend": "Paletlegenda",
+      "dragToReorder": "sleep om te herschikken",
+      "statistics": "Statistieken",
+      "totalRegions": "Totale regio's",
+      "colorsUsed": "Gebruikte kleuren",
+      "avgRegionPx": "Gem. regio px",
+      "smallestPx": "Kleinste px",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Exporteren",
+      "title": "Exporteren",
+      "desc": "Download een afdrukbaar sjabloon of bewaar je sessie.",
+      "downloadTemplate": "Sjabloon downloaden",
+      "outline": "Contour",
+      "colored": "Gekleurd",
+      "svgTitle": "Schaalbare vector",
+      "svgDesc": "Scherp op elk formaat",
+      "pngTitle": "Afbeeldingsbestand",
+      "pngDesc": "Sleep in elke editor",
+      "pdfTitle": "Drukklaar",
+      "pdfDesc": "Getegeld op papierformaat",
+      "guidePdf": "Gids PDF",
+      "guidePng": "Gids PNG",
+      "session": "Sessie",
+      "exportJson": ".json exporteren",
+      "loadJson": ".json laden"
+    },
+    "canvas": {
+      "colors": "Kleuren",
+      "tapToIsolate": "tik op een staal om de regio's ervan te isoleren",
+      "zoomIn": "Inzoomen",
+      "zoomOut": "Uitzoomen"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Match een echte verfset",
+    "heroSubtitle": "Schilder met de exacte kleuren uit je sjabloon",
+    "colorCount": "{{count}} kleuren",
+    "buyOnAmazon": "Koop {{set}} op Amazon",
+    "disclosure": "Als Amazon Associate verdienen we aan in aanmerking komende aankopen — zonder extra kosten voor jou.",
+    "disclosureShort": "Als Amazon Associate verdienen we aan in aanmerking komende aankopen.",
+    "exportHeroTitle": "Klaar om te beginnen met schilderen?",
+    "exportHeroBody": "Je sjabloon is gebouwd op {{set}} — pak de bijpassende set zodat je kleuren perfect aansluiten.",
+    "getTheseIn": "Verkrijg deze in {{set}}"
   }
 }

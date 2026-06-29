@@ -312,5 +312,82 @@
     "imagesBody": "All image processing happen local for your browser using Web Workers. Your images no go anywhere to server.",
     "copyrightTitle": "Your responsibility.",
     "copyrightBody": "You responsible make sure say you get permission for use images wey you upload. No upload image wey no be your own or wey you no get permission."
+  },
+  "panels": {
+    "step": "Step {{n}} of 4",
+    "generate": "Generate paint by numbers",
+    "generateCaption": "E go run again with your current settings · ~3s",
+    "new": "New",
+    "lockedHint": "Generate template first make you unlock dis step",
+    "palette": {
+      "tab": "Palette",
+      "title": "Palette",
+      "desc": "Choose how dem go pick colours and how many you wan use.",
+      "howColorsChosen": "How dem dey pick colours",
+      "fromSet": "From set",
+      "autoDetect": "Check-am-automatic",
+      "custom": "Custom",
+      "fromSetHelp": "Your template dey use di {{count}} colours from dis set, so every region wey get number go match real {{brand}} colour.",
+      "quantizationAlgorithm": "Quantization algorithm"
+    },
+    "adjust": {
+      "tab": "Adjust",
+      "title": "Adjust",
+      "desc": "Tune detail, tone and how dem dey draw regions.",
+      "detailLevel": "Detail level",
+      "imageTone": "Image tone",
+      "cropRotate": "Crop & rotate image"
+    },
+    "refine": {
+      "tab": "Refine",
+      "title": "Refine",
+      "desc": "Join or separate regions and arrange your colours again.",
+      "regionTool": "Region tool",
+      "regionToolHelp": "Tap regions for di canvas make you join or separate dem. Shortcuts: M join · S separate · Esc browse.",
+      "paletteLegend": "Palette legend",
+      "dragToReorder": "drag make you arrange am",
+      "statistics": "Statistics",
+      "totalRegions": "Total regions",
+      "colorsUsed": "Colours wey dem use",
+      "avgRegionPx": "Avg region px",
+      "smallestPx": "Smallest px",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Export",
+      "title": "Export",
+      "desc": "Download template wey you fit print or save your session.",
+      "downloadTemplate": "Download template",
+      "outline": "Outline",
+      "colored": "Colored",
+      "svgTitle": "Scalable vector",
+      "svgDesc": "E dey sharp for any size",
+      "pngTitle": "Image file",
+      "pngDesc": "Drop am inside any editor",
+      "pdfTitle": "Ready to print",
+      "pdfDesc": "Dem tile am to paper size",
+      "guidePdf": "Guide PDF",
+      "guidePng": "Guide PNG",
+      "session": "Session",
+      "exportJson": "Export .json",
+      "loadJson": "Load .json"
+    },
+    "canvas": {
+      "colors": "Colours",
+      "tapToIsolate": "tap one swatch make e isolate im regions",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Match real paint set",
+    "heroSubtitle": "Paint with di exact colours wey dey your template",
+    "colorCount": "{{count}} colours",
+    "buyOnAmazon": "Buy {{set}} for Amazon",
+    "disclosure": "As Amazon Associate, we dey earn from qualifying purchases — e no go cost you extra.",
+    "disclosureShort": "As Amazon Associate, we dey earn from qualifying purchases.",
+    "exportHeroTitle": "You ready to start painting?",
+    "exportHeroBody": "Dem build your template from {{set}} — grab di matching set make your colours line up well well.",
+    "getTheseIn": "Get dem for {{set}}"
   }
 }

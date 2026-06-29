@@ -312,5 +312,82 @@
     "imagesBody": "Całe przetwarzanie obrazów odbywa się lokalnie w Twojej przeglądarce przy użyciu Web Workers. Twoje obrazy nigdy nie są wysyłane na serwer.",
     "copyrightTitle": "Twoja odpowiedzialność.",
     "copyrightBody": "Jesteś odpowiedzialny za zapewnienie, że posiadasz niezbędne prawa do korzystania z przesyłanych obrazów. Nie przesyłaj obrazów, których nie jesteś właścicielem lub do których używania nie masz zgody."
+  },
+  "panels": {
+    "step": "Krok {{n}} z 4",
+    "generate": "Wygeneruj malowanie po numerach",
+    "generateCaption": "Uruchamia ponownie z bieżącymi ustawieniami · ~3s",
+    "new": "Nowy",
+    "lockedHint": "Najpierw wygeneruj szablon, aby odblokować ten krok",
+    "palette": {
+      "tab": "Paleta",
+      "title": "Paleta",
+      "desc": "Wybierz sposób doboru kolorów i ich liczbę.",
+      "howColorsChosen": "Jak dobierane są kolory",
+      "fromSet": "Z zestawu",
+      "autoDetect": "Automatyczne wykrywanie",
+      "custom": "Niestandardowe",
+      "fromSetHelp": "Twój szablon używa {{count}} kolorów z tego zestawu, więc każdy numerowany region odpowiada rzeczywistemu kolorowi {{brand}}.",
+      "quantizationAlgorithm": "Algorytm kwantyzacji"
+    },
+    "adjust": {
+      "tab": "Dostosuj",
+      "title": "Dostosuj",
+      "desc": "Dostrój szczegóły, tonację i sposób rysowania regionów.",
+      "detailLevel": "Poziom szczegółów",
+      "imageTone": "Tonacja obrazu",
+      "cropRotate": "Przytnij i obróć obraz"
+    },
+    "refine": {
+      "tab": "Dopracuj",
+      "title": "Dopracuj",
+      "desc": "Scalaj lub dziel regiony i zmieniaj kolejność kolorów.",
+      "regionTool": "Narzędzie regionów",
+      "regionToolHelp": "Klikaj regiony na płótnie, aby je łączyć lub dzielić. Skróty: M scalanie · S podział · Esc przeglądanie.",
+      "paletteLegend": "Legenda palety",
+      "dragToReorder": "przeciągnij, aby zmienić kolejność",
+      "statistics": "Statystyki",
+      "totalRegions": "Łączna liczba regionów",
+      "colorsUsed": "Użyte kolory",
+      "avgRegionPx": "Śr. piksele regionu",
+      "smallestPx": "Najmniej pikseli",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Eksport",
+      "title": "Eksport",
+      "desc": "Pobierz szablon do druku lub zapisz swoją sesję.",
+      "downloadTemplate": "Pobierz szablon",
+      "outline": "Kontur",
+      "colored": "Kolorowy",
+      "svgTitle": "Grafika wektorowa",
+      "svgDesc": "Ostry w każdym rozmiarze",
+      "pngTitle": "Plik obrazu",
+      "pngDesc": "Wstaw do dowolnego edytora",
+      "pdfTitle": "Gotowy do druku",
+      "pdfDesc": "Podzielony na rozmiar papieru",
+      "guidePdf": "Przewodnik PDF",
+      "guidePng": "Przewodnik PNG",
+      "session": "Sesja",
+      "exportJson": "Eksportuj .json",
+      "loadJson": "Załaduj .json"
+    },
+    "canvas": {
+      "colors": "Kolory",
+      "tapToIsolate": "dotknij próbki, aby wyizolować jej regiony",
+      "zoomIn": "Powiększ",
+      "zoomOut": "Pomniejsz"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Dopasuj prawdziwy zestaw farb",
+    "heroSubtitle": "Maluj dokładnie tymi kolorami, które są w Twoim szablonie",
+    "colorCount": "{{count}} kolorów",
+    "buyOnAmazon": "Kup {{set}} na Amazon",
+    "disclosure": "Jako uczestnik programu Amazon Associates zarabiamy na kwalifikujących się zakupach — bez dodatkowych kosztów dla Ciebie.",
+    "disclosureShort": "Jako uczestnik programu Amazon Associates zarabiamy na kwalifikujących się zakupach.",
+    "exportHeroTitle": "Gotowy, aby zacząć malować?",
+    "exportHeroBody": "Twój szablon jest oparty na {{set}} — zdobądź pasujący zestaw, aby Twoje kolory idealnie się zgadzały.",
+    "getTheseIn": "Zdobądź je w {{set}}"
   }
 }

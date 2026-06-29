@@ -312,5 +312,82 @@
     "imagesBody": "Semua pemrosesan gambar dilakukan secara lokal di browser Anda menggunakan Web Workers. Gambar Anda tidak pernah dikirim ke server.",
     "copyrightTitle": "Tanggung jawab Anda.",
     "copyrightBody": "Anda bertanggung jawab untuk memastikan bahwa Anda memiliki hak yang diperlukan untuk menggunakan gambar apa pun yang Anda unggah. Jangan unggah gambar yang tidak Anda miliki atau tidak memiliki izin untuk digunakan."
+  },
+  "panels": {
+    "step": "Langkah {{n}} dari 4",
+    "generate": "Hasilkan paint by numbers",
+    "generateCaption": "Jalankan ulang dengan pengaturan Anda saat ini · ~3 dtk",
+    "new": "Baru",
+    "lockedHint": "Hasilkan templat terlebih dahulu untuk membuka langkah ini",
+    "palette": {
+      "tab": "Palet",
+      "title": "Palet",
+      "desc": "Pilih cara warna dipilih dan berapa banyak yang digunakan.",
+      "howColorsChosen": "Cara warna dipilih",
+      "fromSet": "Dari kumpulan",
+      "autoDetect": "Deteksi otomatis",
+      "custom": "Kustom",
+      "fromSetHelp": "Templat Anda menggunakan {{count}} warna dari kumpulan ini, sehingga setiap wilayah bernomor dipetakan ke warna {{brand}} yang sebenarnya.",
+      "quantizationAlgorithm": "Algoritma kuantisasi"
+    },
+    "adjust": {
+      "tab": "Sesuaikan",
+      "title": "Sesuaikan",
+      "desc": "Atur detail, tone, dan cara wilayah digambar.",
+      "detailLevel": "Tingkat detail",
+      "imageTone": "Tone gambar",
+      "cropRotate": "Pangkas & putar gambar"
+    },
+    "refine": {
+      "tab": "Sempurnakan",
+      "title": "Sempurnakan",
+      "desc": "Gabungkan atau pisahkan wilayah dan urutkan ulang warna Anda.",
+      "regionTool": "Alat wilayah",
+      "regionToolHelp": "Klik wilayah pada kanvas untuk menggabungkan atau membaginya. Pintasan: M gabung · S pisah · Esc telusuri.",
+      "paletteLegend": "Legenda palet",
+      "dragToReorder": "seret untuk mengurutkan ulang",
+      "statistics": "Statistik",
+      "totalRegions": "Total wilayah",
+      "colorsUsed": "Warna yang digunakan",
+      "avgRegionPx": "Rata-rata px wilayah",
+      "smallestPx": "Px terkecil",
+      "regionCount": "{{count}} wil"
+    },
+    "export": {
+      "tab": "Ekspor",
+      "title": "Ekspor",
+      "desc": "Unduh templat yang dapat dicetak atau simpan sesi Anda.",
+      "downloadTemplate": "Unduh templat",
+      "outline": "Garis besar",
+      "colored": "Berwarna",
+      "svgTitle": "Vektor skalabel",
+      "svgDesc": "Tajam pada ukuran apa pun",
+      "pngTitle": "Berkas gambar",
+      "pngDesc": "Masukkan ke editor mana pun",
+      "pdfTitle": "Siap cetak",
+      "pdfDesc": "Diubin ke ukuran kertas",
+      "guidePdf": "Panduan PDF",
+      "guidePng": "Panduan PNG",
+      "session": "Sesi",
+      "exportJson": "Ekspor .json",
+      "loadJson": "Muat .json"
+    },
+    "canvas": {
+      "colors": "Warna",
+      "tapToIsolate": "ketuk sampel warna untuk mengisolasi wilayahnya",
+      "zoomIn": "Perbesar",
+      "zoomOut": "Perkecil"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Cocokkan dengan kumpulan cat asli",
+    "heroSubtitle": "Lukis dengan warna persis yang ada di templat Anda",
+    "colorCount": "{{count}} warna",
+    "buyOnAmazon": "Beli {{set}} di Amazon",
+    "disclosure": "Sebagai Amazon Associate, kami memperoleh komisi dari pembelian yang memenuhi syarat — tanpa biaya tambahan untuk Anda.",
+    "disclosureShort": "Sebagai Amazon Associate, kami memperoleh komisi dari pembelian yang memenuhi syarat.",
+    "exportHeroTitle": "Siap mulai melukis?",
+    "exportHeroBody": "Templat Anda dibuat dari {{set}} — dapatkan kumpulan yang cocok agar warna Anda selaras dengan sempurna.",
+    "getTheseIn": "Dapatkan ini di {{set}}"
   }
 }

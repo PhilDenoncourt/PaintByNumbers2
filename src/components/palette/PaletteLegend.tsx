@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { rgbToHex } from '../../algorithms/colorUtils';
 import { findPresetPalette } from '../../data/paletteRegistry';
 
-export function PaletteLegend() {
+export function PaletteLegend({ showHeader = true }: { showHeader?: boolean } = {}) {
   const { t } = useTranslation();
   const [draggedFrom, setDraggedFrom] = useState<number | null>(null);
   const [draggedOver, setDraggedOver] = useState<number | null>(null);
@@ -68,13 +68,17 @@ export function PaletteLegend() {
 
   return (
     <div className="space-y-1">
-      <h3 className="text-sm font-medium text-gray-700 mb-2">
-        {t('palette.title')} ({result.palette.length})
-      </h3>
-      <div className="text-xs text-gray-400 mb-1">
-        {t('palette.dragToReorder')}
-      </div>
-      <div className="max-h-64 overflow-y-auto space-y-1">
+      {showHeader && (
+        <>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            {t('palette.title')} ({result.palette.length})
+          </h3>
+          <div className="text-xs text-gray-400 dark:text-gray-500 mb-1">
+            {t('palette.dragToReorder')}
+          </div>
+        </>
+      )}
+      <div className="max-h-[230px] overflow-y-auto space-y-[3px]">
         {displayIndices.map((colorIdx, displayOrder) => {
           const color = palette[colorIdx];
           const [r, g, b] = color;
@@ -104,29 +108,32 @@ export function PaletteLegend() {
               onDrop={(e) => handleDrop(e, displayOrder)}
               onDragEnd={handleDragEnd}
               title={t('palette.dragTip')}
-              className={`flex items-center gap-2 w-full px-2 py-1 rounded text-sm transition-all cursor-move ${
+              className={`flex items-center gap-2.5 px-[9px] py-[7px] rounded-[8px] transition-all cursor-move ${
                 draggedFrom === displayOrder
-                  ? 'opacity-50 bg-gray-200'
+                  ? 'opacity-50 bg-gray-200 dark:bg-gray-600'
                   : draggedOver === displayOrder
-                    ? 'bg-blue-100 ring-1 ring-blue-400'
+                    ? 'bg-blue-100 dark:bg-blue-500/20 ring-1 ring-blue-400'
                     : isSelected
-                      ? 'bg-blue-100 ring-2 ring-blue-500'
+                      ? 'bg-blue-100 dark:bg-blue-500/20 ring-2 ring-blue-500'
                       : isHovered
-                        ? 'bg-yellow-50 ring-1 ring-yellow-400'
-                        : 'hover:bg-gray-100'
+                        ? 'bg-yellow-50 dark:bg-yellow-500/15 ring-1 ring-yellow-400'
+                        : 'bg-[#f8fafc] dark:bg-gray-700/40 hover:bg-gray-100 dark:hover:bg-gray-700'
               } ${isDimmed ? 'opacity-40' : 'opacity-100'}`}
               onClick={() => setSelectedColor(isSelected ? null : colorIdx)}
             >
+              <span className="text-gray-300 dark:text-gray-600 text-[13px] leading-none select-none">⋮⋮</span>
               <div
-                className="w-5 h-5 rounded border border-gray-300 shrink-0"
+                className="w-[22px] h-[22px] rounded-md border border-gray-200 dark:border-gray-600 shrink-0"
                 style={{ backgroundColor: `rgb(${r},${g},${b})` }}
               />
-              <span className="font-mono text-gray-700 w-5 text-right">{colorIdx + 1}</span>
-              <span className="text-gray-400 text-xs truncate flex-1">
+              <span className="font-mono text-[12px] font-bold text-[#334155] dark:text-gray-200 w-[18px]">
+                {colorIdx + 1}
+              </span>
+              <span className="text-[11.5px] text-[#94a3b8] dark:text-gray-500 truncate flex-1">
                 {crayonName ?? hex}
               </span>
-              <span className="text-gray-400 text-xs shrink-0">
-                ({regionCount})
+              <span className="text-[11px] text-[#94a3b8] dark:text-gray-500 shrink-0">
+                {t('panels.refine.regionCount', { count: regionCount })}
               </span>
             </div>
           );

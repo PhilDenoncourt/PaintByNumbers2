@@ -7,6 +7,7 @@ import type {
   UIState,
   ViewMode,
   MergeMode,
+  ActivePanel,
 } from './types';
 import { loadImageFromFile, imageToImageData, applyCropRotate } from '../utils/imageLoader';
 import { runPipeline } from '../pipeline/PipelineController';
@@ -58,6 +59,7 @@ interface AppState {
   setHoveredRegion: (id: number | null) => void;
   setSelectedColor: (idx: number | null) => void;
   setViewMode: (mode: ViewMode) => void;
+  setActivePanel: (panel: ActivePanel) => void;
   setZoomPan: (zoom: number, panX: number, panY: number) => void;
   undo: () => void;
   redo: () => void;
@@ -80,7 +82,9 @@ const defaultSettings: PipelineSettings = {
   minRegionSize: 50,
   detailLevel: 30,
   simplificationEpsilon: 1.5,
-  presetPaletteId: null,
+  // Default to a real paint set (the revenue path): every region maps to a
+  // purchasable Crayola color out of the box. Users can switch to Auto-detect.
+  presetPaletteId: 'crayola-24',
   customPalette: null,
   brightness: 0,
   contrast: 0,
@@ -102,6 +106,7 @@ const defaultPipeline: PipelineState = {
 
 const defaultUI: UIState = {
   viewMode: 'colored',
+  activePanel: 'palette',
   hoveredRegion: null,
   selectedColor: null,
   zoom: 1,
@@ -228,6 +233,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   setHoveredRegion: (id) => set((s) => ({ ui: { ...s.ui, hoveredRegion: id } })),
   setSelectedColor: (idx) => set((s) => ({ ui: { ...s.ui, selectedColor: idx } })),
   setViewMode: (mode) => set((s) => ({ ui: { ...s.ui, viewMode: mode } })),
+  setActivePanel: (panel) => set((s) => ({ ui: { ...s.ui, activePanel: panel } })),
   setZoomPan: (zoom, panX, panY) => set((s) => ({ ui: { ...s.ui, zoom, panX, panY } })),
 
   undo: () => {

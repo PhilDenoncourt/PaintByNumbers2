@@ -312,5 +312,82 @@
     "imagesBody": "Tout le traitement des images est effectué localement dans votre navigateur via des Web Workers. Vos images ne sont jamais envoyées à un serveur.",
     "copyrightTitle": "Votre responsabilité.",
     "copyrightBody": "Vous êtes responsable de vous assurer que vous disposez des droits nécessaires pour utiliser les images que vous téléversez. Ne téléversez pas d'images que vous ne possédez pas ou pour lesquelles vous n'avez pas l'autorisation de les utiliser."
+  },
+  "panels": {
+    "step": "Étape {{n}} sur 4",
+    "generate": "Générer la peinture par numéros",
+    "generateCaption": "Relance avec vos paramètres actuels · ~3 s",
+    "new": "Nouveau",
+    "lockedHint": "Générez d'abord un modèle pour déverrouiller cette étape",
+    "palette": {
+      "tab": "Palette",
+      "title": "Palette",
+      "desc": "Choisissez la méthode de sélection des couleurs et leur nombre.",
+      "howColorsChosen": "Comment les couleurs sont choisies",
+      "fromSet": "À partir d'un ensemble",
+      "autoDetect": "Détection automatique",
+      "custom": "Personnalisé",
+      "fromSetHelp": "Votre modèle utilise les {{count}} couleurs de cet ensemble, de sorte que chaque région numérotée correspond à une véritable couleur {{brand}}.",
+      "quantizationAlgorithm": "Algorithme de quantification"
+    },
+    "adjust": {
+      "tab": "Ajuster",
+      "title": "Ajuster",
+      "desc": "Réglez le niveau de détail, la tonalité et le tracé des régions.",
+      "detailLevel": "Niveau de détail",
+      "imageTone": "Tonalité de l'image",
+      "cropRotate": "Rogner et pivoter l'image"
+    },
+    "refine": {
+      "tab": "Affiner",
+      "title": "Affiner",
+      "desc": "Fusionnez ou divisez des régions et réorganisez vos couleurs.",
+      "regionTool": "Outil de région",
+      "regionToolHelp": "Cliquez sur les régions du canevas pour les combiner ou les diviser. Raccourcis : M fusionner · S diviser · Esc parcourir.",
+      "paletteLegend": "Légende de la palette",
+      "dragToReorder": "glissez pour réorganiser",
+      "statistics": "Statistiques",
+      "totalRegions": "Nombre total de régions",
+      "colorsUsed": "Couleurs utilisées",
+      "avgRegionPx": "Pixels moyens par région",
+      "smallestPx": "Pixels les plus petits",
+      "regionCount": "{{count}} rég"
+    },
+    "export": {
+      "tab": "Exporter",
+      "title": "Exporter",
+      "desc": "Téléchargez un modèle imprimable ou enregistrez votre session.",
+      "downloadTemplate": "Télécharger le modèle",
+      "outline": "Contour",
+      "colored": "Colorié",
+      "svgTitle": "Vecteur évolutif",
+      "svgDesc": "Net à toutes les tailles",
+      "pngTitle": "Fichier image",
+      "pngDesc": "À glisser dans n'importe quel éditeur",
+      "pdfTitle": "Prêt à imprimer",
+      "pdfDesc": "Découpé au format papier",
+      "guidePdf": "Guide PDF",
+      "guidePng": "Guide PNG",
+      "session": "Session",
+      "exportJson": "Exporter .json",
+      "loadJson": "Charger .json"
+    },
+    "canvas": {
+      "colors": "Couleurs",
+      "tapToIsolate": "touchez un échantillon pour isoler ses régions",
+      "zoomIn": "Zoom avant",
+      "zoomOut": "Zoom arrière"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Associez un véritable ensemble de peinture",
+    "heroSubtitle": "Peignez avec les couleurs exactes de votre modèle",
+    "colorCount": "{{count}} couleurs",
+    "buyOnAmazon": "Acheter {{set}} sur Amazon",
+    "disclosure": "En tant que Partenaire Amazon, nous réalisons un bénéfice sur les achats remplissant les conditions requises — sans coût supplémentaire pour vous.",
+    "disclosureShort": "En tant que Partenaire Amazon, nous réalisons un bénéfice sur les achats remplissant les conditions requises.",
+    "exportHeroTitle": "Prêt à commencer à peindre ?",
+    "exportHeroBody": "Votre modèle est construit à partir de {{set}} — procurez-vous l'ensemble correspondant pour que vos couleurs s'accordent parfaitement.",
+    "getTheseIn": "Obtenez ces couleurs dans {{set}}"
   }
 }

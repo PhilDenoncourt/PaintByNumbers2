@@ -4,6 +4,8 @@ export type ViewMode = 'colored' | 'print' | 'sidebyside' | 'overlay';
 
 export type MergeMode = 'browse' | 'merge' | 'split';
 
+export type ActivePanel = 'palette' | 'adjust' | 'refine' | 'export';
+
 export type Algorithm = 'kmeans' | 'mediancut';
 
 export type RotationAngle = 0 | 90 | 180 | 270;
@@ -84,6 +86,7 @@ export interface PipelineResult {
 
 export interface UIState {
   viewMode: ViewMode;
+  activePanel: ActivePanel; // which contextual nav tab is open
   hoveredRegion: number | null;
   selectedColor: number | null;
   zoom: number;

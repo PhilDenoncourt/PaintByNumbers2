@@ -312,5 +312,82 @@
     "imagesBody": "All bildbehandling utförs lokalt i din webbläsare med Web Workers. Dina bilder skickas aldrig till en server.",
     "copyrightTitle": "Ditt ansvar.",
     "copyrightBody": "Du ansvarar för att säkerställa att du har de nödvändiga rättigheterna att använda de bilder du laddar upp. Ladda inte upp bilder som du inte äger eller har tillstånd att använda."
+  },
+  "panels": {
+    "step": "Steg {{n}} av 4",
+    "generate": "Generera måla efter siffror",
+    "generateCaption": "Kör om med dina nuvarande inställningar · ~3s",
+    "new": "Ny",
+    "lockedHint": "Generera en mall först för att låsa upp det här steget",
+    "palette": {
+      "tab": "Palett",
+      "title": "Palett",
+      "desc": "Välj hur färger plockas och hur många som ska användas.",
+      "howColorsChosen": "Hur färger väljs",
+      "fromSet": "Från uppsättning",
+      "autoDetect": "Automatisk detektering",
+      "custom": "Anpassad",
+      "fromSetHelp": "Din mall använder de {{count}} färgerna från den här uppsättningen, så att varje numrerad region motsvarar en riktig {{brand}}-färg.",
+      "quantizationAlgorithm": "Kvantiseringsalgoritm"
+    },
+    "adjust": {
+      "tab": "Justera",
+      "title": "Justera",
+      "desc": "Finjustera detaljer, ton och hur regioner ritas.",
+      "detailLevel": "Detaljnivå",
+      "imageTone": "Bildton",
+      "cropRotate": "Beskär och rotera bild"
+    },
+    "refine": {
+      "tab": "Förfina",
+      "title": "Förfina",
+      "desc": "Sammanfoga eller dela regioner och sortera om dina färger.",
+      "regionTool": "Regionverktyg",
+      "regionToolHelp": "Klicka på regioner på arbetsytan för att kombinera eller dela dem. Genvägar: M sammanfoga · S dela · Esc bläddra.",
+      "paletteLegend": "Palettförklaring",
+      "dragToReorder": "dra för att sortera om",
+      "statistics": "Statistik",
+      "totalRegions": "Totala regioner",
+      "colorsUsed": "Använda färger",
+      "avgRegionPx": "Genomsnittlig region px",
+      "smallestPx": "Minsta px",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Exportera",
+      "title": "Exportera",
+      "desc": "Ladda ner en utskriftsklar mall eller spara din session.",
+      "downloadTemplate": "Ladda ner mall",
+      "outline": "Kontur",
+      "colored": "Färgad",
+      "svgTitle": "Skalbar vektor",
+      "svgDesc": "Skarp i alla storlekar",
+      "pngTitle": "Bildfil",
+      "pngDesc": "Släpp in i valfri redigerare",
+      "pdfTitle": "Utskriftsklar",
+      "pdfDesc": "Uppdelad till pappersstorlek",
+      "guidePdf": "Guide PDF",
+      "guidePng": "Guide PNG",
+      "session": "Session",
+      "exportJson": "Exportera .json",
+      "loadJson": "Läs in .json"
+    },
+    "canvas": {
+      "colors": "Färger",
+      "tapToIsolate": "tryck på en färgruta för att isolera dess regioner",
+      "zoomIn": "Zooma in",
+      "zoomOut": "Zooma ut"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Matcha en riktig färguppsättning",
+    "heroSubtitle": "Måla med de exakta färgerna i din mall",
+    "colorCount": "{{count}} färger",
+    "buyOnAmazon": "Köp {{set}} på Amazon",
+    "disclosure": "Som Amazon Associate tjänar vi på kvalificerade köp — utan extra kostnad för dig.",
+    "disclosureShort": "Som Amazon Associate tjänar vi på kvalificerade köp.",
+    "exportHeroTitle": "Redo att börja måla?",
+    "exportHeroBody": "Din mall är byggd från {{set}} — skaffa den matchande uppsättningen så att dina färger stämmer perfekt.",
+    "getTheseIn": "Få dessa i {{set}}"
   }
 }

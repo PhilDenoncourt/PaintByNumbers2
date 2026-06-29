@@ -312,5 +312,82 @@
     "imagesBody": "所有图片处理均使用 Web Workers 在浏览器中本地完成。您的图片永远不会发送到服务器。",
     "copyrightTitle": "您的责任。",
     "copyrightBody": "您有责任确保对上传的任何图片有必要的使用权。请勿上传您未拥有或未获授权使用的图片。"
+  },
+  "panels": {
+    "step": "第 {{n}} 步，共 4 步",
+    "generate": "生成按数字绘画",
+    "generateCaption": "使用当前设置重新运行 · 约 3 秒",
+    "new": "新建",
+    "lockedHint": "请先生成模板以解锁此步骤",
+    "palette": {
+      "tab": "调色板",
+      "title": "调色板",
+      "desc": "选择颜色的挑选方式以及使用的数量。",
+      "howColorsChosen": "颜色如何挑选",
+      "fromSet": "来自套装",
+      "autoDetect": "自动检测",
+      "custom": "自定义",
+      "fromSetHelp": "您的模板使用此套装中的 {{count}} 种颜色，因此每个编号区域都对应一个真实的 {{brand}} 颜色。",
+      "quantizationAlgorithm": "色彩量化算法"
+    },
+    "adjust": {
+      "tab": "调整",
+      "title": "调整",
+      "desc": "调节细节、色调以及区域的绘制方式。",
+      "detailLevel": "细节级别",
+      "imageTone": "图片色调",
+      "cropRotate": "裁剪和旋转图片"
+    },
+    "refine": {
+      "tab": "优化",
+      "title": "优化",
+      "desc": "合并或拆分区域并重新排序颜色。",
+      "regionTool": "区域工具",
+      "regionToolHelp": "在画布上点击区域以合并或拆分它们。快捷键：M 合并 · S 拆分 · Esc 浏览。",
+      "paletteLegend": "调色板图例",
+      "dragToReorder": "拖动重新排序",
+      "statistics": "统计",
+      "totalRegions": "总区域数",
+      "colorsUsed": "已用颜色",
+      "avgRegionPx": "平均区域像素",
+      "smallestPx": "最小像素",
+      "regionCount": "{{count}} 个区域"
+    },
+    "export": {
+      "tab": "导出",
+      "title": "导出",
+      "desc": "下载可打印的模板或保存您的会话。",
+      "downloadTemplate": "下载模板",
+      "outline": "轮廓",
+      "colored": "着色",
+      "svgTitle": "可缩放矢量图",
+      "svgDesc": "任何尺寸都清晰",
+      "pngTitle": "图片文件",
+      "pngDesc": "可放入任意编辑器",
+      "pdfTitle": "可直接打印",
+      "pdfDesc": "按纸张尺寸平铺",
+      "guidePdf": "指南 PDF",
+      "guidePng": "指南 PNG",
+      "session": "会话",
+      "exportJson": "导出 .json",
+      "loadJson": "加载 .json"
+    },
+    "canvas": {
+      "colors": "颜色",
+      "tapToIsolate": "点击色块以隔离其区域",
+      "zoomIn": "放大",
+      "zoomOut": "缩小"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "匹配真实的颜料套装",
+    "heroSubtitle": "使用模板中的精确颜色进行绘画",
+    "colorCount": "{{count}} 种颜色",
+    "buyOnAmazon": "在 Amazon 购买 {{set}}",
+    "disclosure": "作为 Amazon 联盟成员，我们从符合条件的购买中赚取佣金——您无需支付额外费用。",
+    "disclosureShort": "作为 Amazon 联盟成员，我们从符合条件的购买中赚取佣金。",
+    "exportHeroTitle": "准备好开始绘画了吗？",
+    "exportHeroBody": "您的模板基于 {{set}} 制作——选购配套套装，让您的颜色完美对应。",
+    "getTheseIn": "在 {{set}} 中获取这些颜色"
   }
 }

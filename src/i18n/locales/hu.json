@@ -312,5 +312,82 @@
     "imagesBody": "Minden képfeldolgozás helyben, a böngésződben zajlik Web Workers segítségével. A képeid soha nem kerülnek szerverre küldésre.",
     "copyrightTitle": "A te felelősséged.",
     "copyrightBody": "Te vagy a felelős annak biztosításáért, hogy rendelkezz a szükséges jogokkal a feltöltött képek használatához. Ne tölts fel olyan képeket, amelyeket nem te tulajdonolsz, vagy amelyek használatára nincs engedélyed."
+  },
+  "panels": {
+    "step": "{{n}}. lépés a 4-ből",
+    "generate": "Paint by Numbers generálása",
+    "generateCaption": "Újrafuttatás a jelenlegi beállításokkal · ~3 mp",
+    "new": "Új",
+    "lockedHint": "Előbb generálj egy sablont a lépés feloldásához",
+    "palette": {
+      "tab": "Paletta",
+      "title": "Paletta",
+      "desc": "Válaszd ki, hogyan válasszuk ki a színeket és hányat használjunk.",
+      "howColorsChosen": "Hogyan választjuk ki a színeket",
+      "fromSet": "Készletből",
+      "autoDetect": "Automatikus felismerés",
+      "custom": "Egyéni",
+      "fromSetHelp": "A sablonod ennek a készletnek a {{count}} színét használja, így minden számozott régió valódi {{brand}} színhez tartozik.",
+      "quantizationAlgorithm": "Kvantálási algoritmus"
+    },
+    "adjust": {
+      "tab": "Módosítás",
+      "title": "Módosítás",
+      "desc": "Hangold a részletességet, a tónust és a régiók rajzolását.",
+      "detailLevel": "Részletességi szint",
+      "imageTone": "Kép tónusa",
+      "cropRotate": "Kép vágása és forgatása"
+    },
+    "refine": {
+      "tab": "Finomítás",
+      "title": "Finomítás",
+      "desc": "Egyesíts vagy oszd fel a régiókat, és rendezd át a színeidet.",
+      "regionTool": "Régió eszköz",
+      "regionToolHelp": "Kattints a régiókra a vásznon az egyesítésükhöz vagy felosztásukhoz. Parancsok: M egyesítés · S felosztás · Esc böngészés.",
+      "paletteLegend": "Paletta jelmagyarázat",
+      "dragToReorder": "húzd az átrendezéshez",
+      "statistics": "Statisztika",
+      "totalRegions": "Régiók összesen",
+      "colorsUsed": "Felhasznált színek",
+      "avgRegionPx": "Átlagos régió px",
+      "smallestPx": "Legkisebb px",
+      "regionCount": "{{count}} rég"
+    },
+    "export": {
+      "tab": "Exportálás",
+      "title": "Exportálás",
+      "desc": "Tölts le egy nyomtatható sablont, vagy mentsd el a munkamenetedet.",
+      "downloadTemplate": "Sablon letöltése",
+      "outline": "Kontúr",
+      "colored": "Színezett",
+      "svgTitle": "Méretezhető vektor",
+      "svgDesc": "Éles bármilyen méretben",
+      "pngTitle": "Képfájl",
+      "pngDesc": "Húzd bármelyik szerkesztőbe",
+      "pdfTitle": "Nyomtatásra kész",
+      "pdfDesc": "Papírmérethez igazítva",
+      "guidePdf": "Útmutató PDF",
+      "guidePng": "Útmutató PNG",
+      "session": "Munkamenet",
+      "exportJson": "Exportálás .json",
+      "loadJson": "Betöltés .json"
+    },
+    "canvas": {
+      "colors": "Színek",
+      "tapToIsolate": "koppints egy színmintára a régiói elkülönítéséhez",
+      "zoomIn": "Nagyítás",
+      "zoomOut": "Kicsinyítés"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Párosíts egy valódi festékkészletet",
+    "heroSubtitle": "Fess a sablonod pontos színeivel",
+    "colorCount": "{{count}} szín",
+    "buyOnAmazon": "{{set}} megvásárlása az Amazonon",
+    "disclosure": "Amazon Associate partnerként a minősített vásárlásokból bevételünk származik — neked semmilyen többletköltség nélkül.",
+    "disclosureShort": "Amazon Associate partnerként a minősített vásárlásokból bevételünk származik.",
+    "exportHeroTitle": "Készen állsz a festésre?",
+    "exportHeroBody": "A sablonod a következőből épül fel: {{set}} — szerezd be a megfelelő készletet, hogy a színeid tökéletesen illeszkedjenek.",
+    "getTheseIn": "Szerezd be ezeket itt: {{set}}"
   }
 }

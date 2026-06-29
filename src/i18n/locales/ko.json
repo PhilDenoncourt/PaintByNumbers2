@@ -312,5 +312,82 @@
     "imagesBody": "모든 이미지 처리는 Web Workers를 사용하여 브라우저 내에서 로컬로 수행됩니다. 이미지는 절대 서버로 전송되지 않습니다.",
     "copyrightTitle": "사용자의 책임.",
     "copyrightBody": "업로드하는 이미지를 사용할 수 있는 필요한 권한이 있는지 확인할 책임은 사용자에게 있습니다. 소유하지 않거나 사용 허가를 받지 않은 이미지는 업로드하지 마세요."
+  },
+  "panels": {
+    "step": "4단계 중 {{n}}단계",
+    "generate": "색칠하기 숫자 생성",
+    "generateCaption": "현재 설정으로 다시 실행 · 약 3초",
+    "new": "새로 만들기",
+    "lockedHint": "이 단계를 잠금 해제하려면 먼저 템플릿을 생성하세요",
+    "palette": {
+      "tab": "팔레트",
+      "title": "팔레트",
+      "desc": "색상을 선택하는 방식과 사용할 색상 수를 정하세요.",
+      "howColorsChosen": "색상을 선택하는 방식",
+      "fromSet": "세트에서",
+      "autoDetect": "자동 감지",
+      "custom": "사용자 정의",
+      "fromSetHelp": "템플릿은 이 세트의 {{count}}개 색상을 사용하므로, 번호가 매겨진 모든 지역이 실제 {{brand}} 색상에 대응됩니다.",
+      "quantizationAlgorithm": "양자화 알고리즘"
+    },
+    "adjust": {
+      "tab": "조정",
+      "title": "조정",
+      "desc": "세부 정도, 톤, 지역을 그리는 방식을 조절하세요.",
+      "detailLevel": "세부 수준",
+      "imageTone": "이미지 톤",
+      "cropRotate": "이미지 자르기 및 회전"
+    },
+    "refine": {
+      "tab": "다듬기",
+      "title": "다듬기",
+      "desc": "지역을 병합하거나 분할하고 색상 순서를 변경하세요.",
+      "regionTool": "지역 도구",
+      "regionToolHelp": "캔버스에서 지역을 클릭하여 합치거나 나누세요. 바로가기: M 병합 · S 분할 · Esc 찾아보기.",
+      "paletteLegend": "팔레트 범례",
+      "dragToReorder": "드래그하여 순서 변경",
+      "statistics": "통계",
+      "totalRegions": "총 지역",
+      "colorsUsed": "사용된 색상",
+      "avgRegionPx": "평균 지역 px",
+      "smallestPx": "최소 px",
+      "regionCount": "{{count}}개 지역"
+    },
+    "export": {
+      "tab": "내보내기",
+      "title": "내보내기",
+      "desc": "인쇄 가능한 템플릿을 다운로드하거나 세션을 저장하세요.",
+      "downloadTemplate": "템플릿 다운로드",
+      "outline": "윤곽선",
+      "colored": "색상",
+      "svgTitle": "확장 가능한 벡터",
+      "svgDesc": "어떤 크기에서도 선명함",
+      "pngTitle": "이미지 파일",
+      "pngDesc": "어떤 편집기에든 넣기",
+      "pdfTitle": "인쇄 준비 완료",
+      "pdfDesc": "용지 크기에 맞게 타일링",
+      "guidePdf": "가이드 PDF",
+      "guidePng": "가이드 PNG",
+      "session": "세션",
+      "exportJson": ".json 내보내기",
+      "loadJson": ".json 로드"
+    },
+    "canvas": {
+      "colors": "색상",
+      "tapToIsolate": "색상 견본을 탭하여 해당 지역을 분리하세요",
+      "zoomIn": "확대",
+      "zoomOut": "축소"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "실제 물감 세트와 맞추기",
+    "heroSubtitle": "템플릿의 정확한 색상으로 칠하세요",
+    "colorCount": "{{count}}개 색상",
+    "buyOnAmazon": "Amazon에서 {{set}} 구매",
+    "disclosure": "Amazon 어소시에이트로서 적격 구매를 통해 수익을 얻습니다  추가 비용은 없습니다.",
+    "disclosureShort": "Amazon 어소시에이트로서 적격 구매를 통해 수익을 얻습니다.",
+    "exportHeroTitle": "칠할 준비가 되셨나요?",
+    "exportHeroBody": "템플릿은 {{set}}을(를) 기반으로 만들어졌습니다  색상이 완벽하게 맞도록 해당 세트를 구하세요.",
+    "getTheseIn": "{{set}}에서 구하기"
   }
 }

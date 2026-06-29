@@ -312,5 +312,82 @@
     "imagesBody": "Tutta l'elaborazione delle immagini viene eseguita localmente nel tuo browser tramite Web Workers. Le tue immagini non vengono mai inviate a un server.",
     "copyrightTitle": "La tua responsabilità.",
     "copyrightBody": "Sei responsabile di assicurarti di avere i diritti necessari per utilizzare le immagini che carichi. Non caricare immagini che non possiedi o per cui non hai il permesso di utilizzo."
+  },
+  "panels": {
+    "step": "Passo {{n}} di 4",
+    "generate": "Genera dipingi per numeri",
+    "generateCaption": "Riesegue con le tue impostazioni attuali · ~3s",
+    "new": "Nuovo",
+    "lockedHint": "Genera prima un modello per sbloccare questo passo",
+    "palette": {
+      "tab": "Tavolozza",
+      "title": "Tavolozza",
+      "desc": "Scegli come vengono selezionati i colori e quanti usarne.",
+      "howColorsChosen": "Come vengono scelti i colori",
+      "fromSet": "Da set",
+      "autoDetect": "Rilevamento automatico",
+      "custom": "Personalizzato",
+      "fromSetHelp": "Il tuo modello usa i {{count}} colori di questo set, quindi ogni regione numerata corrisponde a un vero colore {{brand}}.",
+      "quantizationAlgorithm": "Algoritmo di quantizzazione"
+    },
+    "adjust": {
+      "tab": "Regola",
+      "title": "Regola",
+      "desc": "Regola dettaglio, tono e come vengono disegnate le regioni.",
+      "detailLevel": "Livello di dettaglio",
+      "imageTone": "Tono dell'immagine",
+      "cropRotate": "Ritaglia e ruota l'immagine"
+    },
+    "refine": {
+      "tab": "Affina",
+      "title": "Affina",
+      "desc": "Unisci o dividi le regioni e riordina i tuoi colori.",
+      "regionTool": "Strumento regione",
+      "regionToolHelp": "Fai clic sulle regioni nella tela per combinarle o dividerle. Scorciatoie: M unisci · S dividi · Esc sfoglia.",
+      "paletteLegend": "Legenda tavolozza",
+      "dragToReorder": "trascina per riordinare",
+      "statistics": "Statistiche",
+      "totalRegions": "Regioni totali",
+      "colorsUsed": "Colori usati",
+      "avgRegionPx": "Px medi regione",
+      "smallestPx": "Px più piccola",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Esporta",
+      "title": "Esporta",
+      "desc": "Scarica un modello stampabile o salva la tua sessione.",
+      "downloadTemplate": "Scarica modello",
+      "outline": "Contorno",
+      "colored": "Colorato",
+      "svgTitle": "Vettoriale scalabile",
+      "svgDesc": "Nitido a qualsiasi dimensione",
+      "pngTitle": "File immagine",
+      "pngDesc": "Inserisci in qualsiasi editor",
+      "pdfTitle": "Pronto per la stampa",
+      "pdfDesc": "Suddiviso per formato carta",
+      "guidePdf": "Guida PDF",
+      "guidePng": "Guida PNG",
+      "session": "Sessione",
+      "exportJson": "Esporta .json",
+      "loadJson": "Carica .json"
+    },
+    "canvas": {
+      "colors": "Colori",
+      "tapToIsolate": "tocca un campione per isolare le sue regioni",
+      "zoomIn": "Ingrandisci",
+      "zoomOut": "Riduci"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Abbina un vero set di colori",
+    "heroSubtitle": "Dipingi con i colori esatti del tuo modello",
+    "colorCount": "{{count}} colori",
+    "buyOnAmazon": "Acquista {{set}} su Amazon",
+    "disclosure": "In qualità di Affiliato Amazon riceviamo un guadagno dagli acquisti idonei — senza costi aggiuntivi per te.",
+    "disclosureShort": "In qualità di Affiliato Amazon riceviamo un guadagno dagli acquisti idonei.",
+    "exportHeroTitle": "Pronto a iniziare a dipingere?",
+    "exportHeroBody": "Il tuo modello è costruito da {{set}} — procurati il set corrispondente così i tuoi colori si allineano perfettamente.",
+    "getTheseIn": "Ottieni questi in {{set}}"
   }
 }

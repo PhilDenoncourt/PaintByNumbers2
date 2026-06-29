@@ -2,7 +2,7 @@ import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
 import type { MergeMode } from '../../state/types';
 
-export function RegionMergeControls() {
+export function RegionMergeControls({ showModeButtons = true }: { showModeButtons?: boolean } = {}) {
   const { t } = useTranslation();
   const mergeMode = useAppStore((s) => s.ui.mergeMode);
   const setMergeMode = useAppStore((s) => s.setMergeMode);
@@ -27,8 +27,9 @@ export function RegionMergeControls() {
   };
 
   return (
-    <div className="border-b border-gray-300 bg-white p-3">
+    <div className="border-b border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-3">
       {/* Mode buttons */}
+      {showModeButtons && (
       <div className="mb-3 flex flex-wrap gap-2">
         <button
           onClick={() => handleModeChange('browse')}
@@ -64,6 +65,7 @@ export function RegionMergeControls() {
           ✂️ {t('controls.split')}
         </button>
       </div>
+      )}
 
       {/* Merge mode UI */}
       {mergeMode === 'merge' && (

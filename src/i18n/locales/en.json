@@ -335,5 +335,80 @@
     "imagesBody": "All image processing is performed locally in your browser using Web Workers. Your images are never sent to a server.",
     "copyrightTitle": "Your responsibility.",
     "copyrightBody": "You are responsible for ensuring you have the necessary rights to use any images you upload. Do not upload images you do not own or have permission to use."
+  },
+  "panels": {
+    "step": "Step {{n}} of 4",
+    "generate": "Generate paint by numbers",
+    "generateCaption": "Re-runs with your current settings · ~3s",
+    "new": "New",
+    "lockedHint": "Generate a template first to unlock this step",
+    "palette": {
+      "tab": "Palette",
+      "title": "Palette",
+      "desc": "Choose how colors are picked and how many to use.",
+      "howColorsChosen": "How colors are chosen",
+      "fromSet": "From set",
+      "autoDetect": "Auto-detect",
+      "custom": "Custom",
+      "fromSetHelp": "Your template uses the {{count}} colors from this set, so every numbered region maps to a real {{brand}} color.",
+      "quantizationAlgorithm": "Quantization algorithm"
+    },
+    "adjust": {
+      "tab": "Adjust",
+      "title": "Adjust",
+      "desc": "Tune detail, tone and how regions are drawn.",
+      "detailLevel": "Detail level",
+      "imageTone": "Image tone",
+      "cropRotate": "Crop & rotate image"
+    },
+    "refine": {
+      "tab": "Refine",
+      "title": "Refine",
+      "desc": "Merge or split regions and reorder your colors.",
+      "regionTool": "Region tool",
+      "regionToolHelp": "Click regions on the canvas to combine or divide them. Shortcuts: M merge · S split · Esc browse.",
+      "paletteLegend": "Palette legend",
+      "dragToReorder": "drag to reorder",
+      "statistics": "Statistics",
+      "totalRegions": "Total regions",
+      "colorsUsed": "Colors used",
+      "avgRegionPx": "Avg region px",
+      "smallestPx": "Smallest px",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Export",
+      "title": "Export",
+      "desc": "Download a printable template or save your session.",
+      "downloadTemplate": "Download template",
+      "outline": "Outline",
+      "colored": "Colored",
+      "svgTitle": "Scalable vector",
+      "svgDesc": "Crisp at any size",
+      "pngTitle": "Image file",
+      "pngDesc": "Drop into any editor",
+      "pdfTitle": "Print-ready",
+      "pdfDesc": "Tiled to paper size",
+      "guidePdf": "Guide PDF",
+      "guidePng": "Guide PNG",
+      "session": "Session",
+      "exportJson": "Export .json",
+      "loadJson": "Load .json"
+    },
+    "canvas": {
+      "colors": "Colors",
+      "tapToIsolate": "tap a swatch to isolate its regions",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Match a real paint set",
+    "heroSubtitle": "Paint with the exact colors in your template",
+    "colorCount": "{{count}} colors",
+    "buyOnAmazon": "Buy {{set}} on Amazon",
+    "exportHeroTitle": "Ready to start painting?",
+    "exportHeroBody": "Your template is built from {{set}} — grab the matching set so your colors line up perfectly.",
+    "getTheseIn": "Get these in {{set}}"
   }
 }

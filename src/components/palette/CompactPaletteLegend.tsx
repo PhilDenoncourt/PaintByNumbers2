@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { rgbToHex } from '../../algorithms/colorUtils';
 import { findPresetPalette } from '../../data/paletteRegistry';
 
-export function CompactPaletteLegend() {
+export function CompactPaletteLegend({ bare = false }: { bare?: boolean } = {}) {
   const { t } = useTranslation();
   const result = useAppStore((s) => s.result);
   const selectedColor = useAppStore((s) => s.ui.selectedColor);
@@ -30,12 +30,8 @@ export function CompactPaletteLegend() {
     regionsPerColor.set(label.colorIndex, (regionsPerColor.get(label.colorIndex) || 0) + 1);
   }
 
-  return (
-    <div className="bg-white border-t border-gray-200 px-3 py-2">
-      <div className="text-xs font-medium text-gray-500 mb-1.5">
-        {t('palette.title')} ({result.palette.length})
-      </div>
-      <div className="flex flex-wrap gap-1.5">
+  const chips = (
+    <div className="flex flex-wrap gap-1.5">
         {displayIndices.map((colorIdx) => {
           const color = palette[colorIdx];
           const [r, g, b] = color;
@@ -62,26 +58,36 @@ export function CompactPaletteLegend() {
               key={colorIdx}
               title={`${colorIdx + 1}: ${label} (${regionCount} ${t('palette.regions', { defaultValue: 'regions' })})`}
               onClick={() => setSelectedColor(isSelected ? null : colorIdx)}
-              className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-all cursor-pointer border ${
+              className={`flex items-center gap-[7px] py-[5px] pl-1.5 pr-[9px] rounded-[8px] text-xs transition-all cursor-pointer border ${
                 isSelected
-                  ? 'bg-blue-100 border-blue-500 ring-1 ring-blue-400'
+                  ? 'bg-blue-100 dark:bg-blue-500/20 border-blue-500 ring-1 ring-blue-400'
                   : isHovered
-                  ? 'bg-yellow-50 border-yellow-400'
-                  : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                  ? 'bg-yellow-50 dark:bg-yellow-500/15 border-yellow-400'
+                  : 'bg-[#f8fafc] dark:bg-gray-700/50 border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'
               } ${isDimmed ? 'opacity-40' : 'opacity-100'}`}
             >
               <div
-                className="w-4 h-4 rounded-sm border border-gray-300 shrink-0"
+                className="w-[18px] h-[18px] rounded-[5px] border border-gray-200 dark:border-gray-500 shrink-0"
                 style={{ backgroundColor: `rgb(${r},${g},${b})` }}
               />
-              <span className="font-mono text-gray-600 font-medium">{colorIdx + 1}</span>
-              <span className="text-gray-400 hidden sm:inline" style={{ maxWidth: '6rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <span className="font-mono font-bold text-[#334155] dark:text-gray-200">{colorIdx + 1}</span>
+              <span className="text-[#94a3b8] dark:text-gray-500 hidden sm:inline" style={{ maxWidth: '6rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {label}
               </span>
             </button>
           );
         })}
+    </div>
+  );
+
+  if (bare) return chips;
+
+  return (
+    <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-3 py-2">
+      <div className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">
+        {t('palette.title')} ({result.palette.length})
       </div>
+      {chips}
     </div>
   );
 }

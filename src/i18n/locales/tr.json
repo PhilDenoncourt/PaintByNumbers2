@@ -312,5 +312,82 @@
     "imagesBody": "Tüm görüntü işleme, Web Workers kullanılarak tarayıcınızda yerel olarak gerçekleştirilir. Görüntüleriniz asla bir sunucuya gönderilmez.",
     "copyrightTitle": "Sizin sorumluluğunuz.",
     "copyrightBody": "Yüklediğiniz görüntüleri kullanmak için gerekli haklara sahip olduğunuzdan emin olmak sizin sorumluluğunuzdadır. Sahip olmadığınız veya kullanma izninizin bulunmadığı görüntüleri yüklemeyin."
+  },
+  "panels": {
+    "step": "4 adımdan {{n}}. adım",
+    "generate": "Numaralara göre boyama oluştur",
+    "generateCaption": "Mevcut ayarlarınızla yeniden çalıştırır · ~3sn",
+    "new": "Yeni",
+    "lockedHint": "Bu adımın kilidini açmak için önce bir şablon oluşturun",
+    "palette": {
+      "tab": "Palet",
+      "title": "Palet",
+      "desc": "Renklerin nasıl seçileceğini ve kaç tane kullanılacağını belirleyin.",
+      "howColorsChosen": "Renkler nasıl seçilir",
+      "fromSet": "Setten",
+      "autoDetect": "Otomatik algıla",
+      "custom": "Özel",
+      "fromSetHelp": "Şablonunuz bu setteki {{count}} rengi kullanır, bu nedenle her numaralı bölge gerçek bir {{brand}} rengine karşılık gelir.",
+      "quantizationAlgorithm": "Niceleme algoritması"
+    },
+    "adjust": {
+      "tab": "Ayarla",
+      "title": "Ayarla",
+      "desc": "Detayı, tonu ve bölgelerin nasıl çizileceğini ince ayar yapın.",
+      "detailLevel": "Detay seviyesi",
+      "imageTone": "Resim tonu",
+      "cropRotate": "Resmi kırp ve döndür"
+    },
+    "refine": {
+      "tab": "İyileştir",
+      "title": "İyileştir",
+      "desc": "Bölgeleri birleştirin veya bölün ve renklerinizi yeniden sıralayın.",
+      "regionTool": "Bölge aracı",
+      "regionToolHelp": "Bölgeleri birleştirmek veya bölmek için tuval üzerinde tıklayın. Kısayollar: M birleştir · S böl · Esc göz at.",
+      "paletteLegend": "Palet efsanesi",
+      "dragToReorder": "yeniden sıralamak için sürükleyin",
+      "statistics": "İstatistikler",
+      "totalRegions": "Toplam bölge",
+      "colorsUsed": "Kullanılan renkler",
+      "avgRegionPx": "Ort. bölge px",
+      "smallestPx": "En küçük px",
+      "regionCount": "{{count}} bölge"
+    },
+    "export": {
+      "tab": "Dışa Aktar",
+      "title": "Dışa Aktar",
+      "desc": "Yazdırılabilir bir şablon indirin veya oturumunuzu kaydedin.",
+      "downloadTemplate": "Şablonu indir",
+      "outline": "Kontur",
+      "colored": "Renkli",
+      "svgTitle": "Ölçeklenebilir vektör",
+      "svgDesc": "Her boyutta net",
+      "pngTitle": "Resim dosyası",
+      "pngDesc": "Herhangi bir düzenleyiciye bırakın",
+      "pdfTitle": "Yazdırmaya hazır",
+      "pdfDesc": "Kağıt boyutuna döşeli",
+      "guidePdf": "Kılavuz PDF",
+      "guidePng": "Kılavuz PNG",
+      "session": "Oturum",
+      "exportJson": "Dışa aktar .json",
+      "loadJson": "Yükle .json"
+    },
+    "canvas": {
+      "colors": "Renkler",
+      "tapToIsolate": "bölgelerini izole etmek için bir renk örneğine dokunun",
+      "zoomIn": "Yakınlaştır",
+      "zoomOut": "Uzaklaştır"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Gerçek bir boya setiyle eşleştirin",
+    "heroSubtitle": "Şablonunuzdaki tam renklerle boyayın",
+    "colorCount": "{{count}} renk",
+    "buyOnAmazon": "{{set}} setini Amazon'dan satın al",
+    "disclosure": "Amazon Ortağı olarak, uygun alışverişlerden kazanç elde ederiz — size ek bir maliyeti olmadan.",
+    "disclosureShort": "Amazon Ortağı olarak, uygun alışverişlerden kazanç elde ederiz.",
+    "exportHeroTitle": "Boyamaya başlamaya hazır mısınız?",
+    "exportHeroBody": "Şablonunuz {{set}} setinden oluşturuldu — renklerinizin kusursuz uyması için eşleşen seti edinin.",
+    "getTheseIn": "Bunları {{set}} setinde edinin"
   }
 }

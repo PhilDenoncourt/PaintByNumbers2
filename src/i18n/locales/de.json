@@ -312,5 +312,82 @@
     "imagesBody": "Die gesamte Bildverarbeitung erfolgt lokal in deinem Browser mit Web Workers. Deine Bilder werden niemals an einen Server gesendet.",
     "copyrightTitle": "Deine Verantwortung.",
     "copyrightBody": "Du bist dafür verantwortlich sicherzustellen, dass du die erforderlichen Rechte zur Nutzung aller hochgeladenen Bilder besitzt. Lade keine Bilder hoch, die du nicht besitzt oder für deren Verwendung du keine Berechtigung hast."
+  },
+  "panels": {
+    "step": "Schritt {{n}} von 4",
+    "generate": "Malen nach Zahlen generieren",
+    "generateCaption": "Wird mit deinen aktuellen Einstellungen erneut ausgeführt · ~3 Sek.",
+    "new": "Neu",
+    "lockedHint": "Generiere zuerst eine Vorlage, um diesen Schritt freizuschalten",
+    "palette": {
+      "tab": "Palette",
+      "title": "Palette",
+      "desc": "Lege fest, wie Farben ausgewählt werden und wie viele verwendet werden.",
+      "howColorsChosen": "Wie Farben ausgewählt werden",
+      "fromSet": "Aus Set",
+      "autoDetect": "Automatische Erkennung",
+      "custom": "Benutzerdefiniert",
+      "fromSetHelp": "Deine Vorlage verwendet die {{count}} Farben aus diesem Set, sodass jede nummerierte Region einer echten {{brand}}-Farbe entspricht.",
+      "quantizationAlgorithm": "Quantisierungsalgorithmus"
+    },
+    "adjust": {
+      "tab": "Anpassen",
+      "title": "Anpassen",
+      "desc": "Feinabstimmung von Detail, Tonwert und Darstellung der Regionen.",
+      "detailLevel": "Detailebene",
+      "imageTone": "Bildtonwert",
+      "cropRotate": "Bild zuschneiden & drehen"
+    },
+    "refine": {
+      "tab": "Verfeinern",
+      "title": "Verfeinern",
+      "desc": "Regionen zusammenführen oder aufteilen und deine Farben neu anordnen.",
+      "regionTool": "Regionswerkzeug",
+      "regionToolHelp": "Klicke auf Regionen auf der Leinwand, um sie zu kombinieren oder zu teilen. Tastenkürzel: M Zusammenführen · S Aufteilen · Esc Durchsuchen.",
+      "paletteLegend": "Palettenlegende",
+      "dragToReorder": "ziehen zum Neuanordnen",
+      "statistics": "Statistiken",
+      "totalRegions": "Gesamte Regionen",
+      "colorsUsed": "Verwendete Farben",
+      "avgRegionPx": "Durchschn. Regions-Px",
+      "smallestPx": "Kleinste Px",
+      "regionCount": "{{count}} Reg."
+    },
+    "export": {
+      "tab": "Exportieren",
+      "title": "Exportieren",
+      "desc": "Lade eine druckbare Vorlage herunter oder speichere deine Sitzung.",
+      "downloadTemplate": "Vorlage herunterladen",
+      "outline": "Kontur",
+      "colored": "Gefärbt",
+      "svgTitle": "Skalierbarer Vektor",
+      "svgDesc": "Gestochen scharf in jeder Größe",
+      "pngTitle": "Bilddatei",
+      "pngDesc": "In jeden Editor einfügen",
+      "pdfTitle": "Druckfertig",
+      "pdfDesc": "Auf Papiergröße gekachelt",
+      "guidePdf": "Anleitung PDF",
+      "guidePng": "Anleitung PNG",
+      "session": "Sitzung",
+      "exportJson": ".json exportieren",
+      "loadJson": ".json laden"
+    },
+    "canvas": {
+      "colors": "Farben",
+      "tapToIsolate": "tippe auf ein Farbfeld, um seine Regionen zu isolieren",
+      "zoomIn": "Vergrößern",
+      "zoomOut": "Verkleinern"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Passe ein echtes Farbset an",
+    "heroSubtitle": "Male mit den exakten Farben deiner Vorlage",
+    "colorCount": "{{count}} Farben",
+    "buyOnAmazon": "{{set}} bei Amazon kaufen",
+    "disclosure": "Als Amazon-Partner verdienen wir an qualifizierten Käufen — ohne zusätzliche Kosten für dich.",
+    "disclosureShort": "Als Amazon-Partner verdienen wir an qualifizierten Käufen.",
+    "exportHeroTitle": "Bereit zum Loslegen?",
+    "exportHeroBody": "Deine Vorlage basiert auf {{set}} — hol dir das passende Set, damit deine Farben perfekt übereinstimmen.",
+    "getTheseIn": "Erhältlich in {{set}}"
   }
 }

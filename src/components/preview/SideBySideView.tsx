@@ -6,7 +6,13 @@ import { CanvasPreview } from './CanvasPreview';
 import { RegionHoverOverlay } from './RegionHoverOverlay';
 import { CompactPaletteLegend } from '../palette/CompactPaletteLegend';
 
-export function SideBySideView() {
+export function SideBySideView({
+  showToolbar = true,
+  showLegend = true,
+}: {
+  showToolbar?: boolean;
+  showLegend?: boolean;
+} = {}) {
   const { t } = useTranslation();
   const sourceImageUrl = useAppStore((s) => s.sourceImageUrl);
   const result = useAppStore((s) => s.result);
@@ -19,7 +25,7 @@ export function SideBySideView() {
   if (viewMode === 'sidebyside') {
     return (
       <div className="flex flex-col h-full">
-        <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />
+        {showToolbar && <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-0">
           <div className="overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
             {sourceImageUrl && (
@@ -37,9 +43,11 @@ export function SideBySideView() {
             <RegionHoverOverlay />
           </div>
         </div>
-        <div className="hidden sm:block">
-          <CompactPaletteLegend />
-        </div>
+        {showLegend && (
+          <div className="hidden sm:block">
+            <CompactPaletteLegend />
+          </div>
+        )}
       </div>
     );
   }
@@ -47,7 +55,7 @@ export function SideBySideView() {
   if (viewMode === 'overlay') {
     return (
       <div className="flex flex-col h-full">
-        <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />
+        {showToolbar && <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />}
         <div className="px-4 pb-3 space-y-2 bg-white border-b border-gray-200">
           <div className="text-xs font-medium text-gray-700">{t('preview.beforeAfterSlider')}</div>
           <div className="flex items-center gap-3">
@@ -85,9 +93,11 @@ export function SideBySideView() {
           </div>
           <RegionHoverOverlay />
         </div>
-        <div className="hidden sm:block">
-          <CompactPaletteLegend />
-        </div>
+        {showLegend && (
+          <div className="hidden sm:block">
+            <CompactPaletteLegend />
+          </div>
+        )}
       </div>
     );
   }
@@ -95,16 +105,18 @@ export function SideBySideView() {
   // Default: colored or print mode
   return (
     <div className="flex flex-col h-full">
-      <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />
+      {showToolbar && <ViewModeBar viewMode={viewMode} setViewMode={setViewMode} />}
       <div className="flex-1 relative min-h-0">
         <ZoomPanContainer>
           <CanvasPreview />
         </ZoomPanContainer>
         <RegionHoverOverlay />
       </div>
-      <div className="hidden sm:block">
-        <CompactPaletteLegend />
-      </div>
+      {showLegend && (
+        <div className="hidden sm:block">
+          <CompactPaletteLegend />
+        </div>
+      )}
     </div>
   );
 }

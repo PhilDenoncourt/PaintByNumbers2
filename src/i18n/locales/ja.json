@@ -312,5 +312,82 @@
     "imagesBody": "すべての画像処理は、Web Workersを使用してブラウザ内でローカルに実行されます。画像がサーバーに送信されることはありません。",
     "copyrightTitle": "お客様の責任。",
     "copyrightBody": "アップロードする画像の使用に必要な権利を有していることを確認する責任があります。所有していない、または使用許可を持っていない画像はアップロードしないでください。"
+  },
+  "panels": {
+    "step": "ステップ {{n}} / 4",
+    "generate": "数字でお絵かきを生成",
+    "generateCaption": "現在の設定で再実行します · 約3秒",
+    "new": "新規",
+    "lockedHint": "このステップを解除するには、まずテンプレートを生成してください",
+    "palette": {
+      "tab": "パレット",
+      "title": "パレット",
+      "desc": "色の選び方と使用する色数を選択します。",
+      "howColorsChosen": "色の選び方",
+      "fromSet": "セットから",
+      "autoDetect": "自動検出",
+      "custom": "カスタム",
+      "fromSetHelp": "テンプレートはこのセットの{{count}}色を使用するため、番号付きの各領域は実際の{{brand}}の色に対応します。",
+      "quantizationAlgorithm": "色量子化アルゴリズム"
+    },
+    "adjust": {
+      "tab": "調整",
+      "title": "調整",
+      "desc": "ディテール、トーン、領域の描画方法を調整します。",
+      "detailLevel": "詳細度",
+      "imageTone": "画像のトーン",
+      "cropRotate": "画像のトリミングと回転"
+    },
+    "refine": {
+      "tab": "微調整",
+      "title": "微調整",
+      "desc": "領域をマージまたは分割し、色を並べ替えます。",
+      "regionTool": "領域ツール",
+      "regionToolHelp": "キャンバス上の領域をクリックして結合または分割します。ショートカット：M マージ · S 分割 · Esc 参照。",
+      "paletteLegend": "パレット凡例",
+      "dragToReorder": "ドラッグして並べ替え",
+      "statistics": "統計",
+      "totalRegions": "総領域数",
+      "colorsUsed": "使用した色数",
+      "avgRegionPx": "平均領域ピクセル",
+      "smallestPx": "最小ピクセル",
+      "regionCount": "{{count}} 領域"
+    },
+    "export": {
+      "tab": "エクスポート",
+      "title": "エクスポート",
+      "desc": "印刷可能なテンプレートをダウンロードするか、セッションを保存します。",
+      "downloadTemplate": "テンプレートをダウンロード",
+      "outline": "輪郭",
+      "colored": "カラー",
+      "svgTitle": "スケーラブルベクター",
+      "svgDesc": "どんなサイズでも鮮明",
+      "pngTitle": "画像ファイル",
+      "pngDesc": "どんなエディターにも取り込み可能",
+      "pdfTitle": "印刷対応",
+      "pdfDesc": "用紙サイズにタイル分割",
+      "guidePdf": "ガイドPDF",
+      "guidePng": "ガイドPNG",
+      "session": "セッション",
+      "exportJson": ".json をエクスポート",
+      "loadJson": ".json を読み込み"
+    },
+    "canvas": {
+      "colors": "色",
+      "tapToIsolate": "スウォッチをタップしてその領域を分離",
+      "zoomIn": "拡大",
+      "zoomOut": "縮小"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "実際のペイントセットに合わせる",
+    "heroSubtitle": "テンプレートとまったく同じ色で塗りましょう",
+    "colorCount": "{{count}} 色",
+    "buyOnAmazon": "Amazon で {{set}} を購入",
+    "disclosure": "Amazonアソシエイトとして、対象となる購入から収益を得ています — お客様に追加費用は一切かかりません。",
+    "disclosureShort": "Amazonアソシエイトとして、対象となる購入から収益を得ています。",
+    "exportHeroTitle": "塗り始める準備はできましたか？",
+    "exportHeroBody": "テンプレートは {{set}} を基に作成されています — 対応するセットを入手すれば、色がぴったり合います。",
+    "getTheseIn": "{{set}} でこれらを入手"
   }
 }

@@ -312,5 +312,82 @@
     "imagesBody": "Tot el processament d'imatges es realitza localment al teu navegador usant Web Workers. Les teves imatges mai s'envien a un servidor.",
     "copyrightTitle": "La teva responsabilitat.",
     "copyrightBody": "Ets responsable d'assegurar que tens els drets necessaris per usar qualsevol imatge que pujis. No pujis imatges que no posseeixis o de les quals no tinguis permís per usar."
+  },
+  "panels": {
+    "step": "Pas {{n}} de 4",
+    "generate": "Genera el paint by numbers",
+    "generateCaption": "Es torna a executar amb la teva configuració actual · ~3s",
+    "new": "Nou",
+    "lockedHint": "Genera primer una plantilla per desbloquejar aquest pas",
+    "palette": {
+      "tab": "Paleta",
+      "title": "Paleta",
+      "desc": "Tria com es trien els colors i quants se n'utilitzen.",
+      "howColorsChosen": "Com es trien els colors",
+      "fromSet": "Des d'un conjunt",
+      "autoDetect": "Detecció automàtica",
+      "custom": "Personalitzada",
+      "fromSetHelp": "La teva plantilla utilitza els {{count}} colors d'aquest conjunt, de manera que cada regió numerada es correspon amb un color real de {{brand}}.",
+      "quantizationAlgorithm": "Algoritme de quantització"
+    },
+    "adjust": {
+      "tab": "Ajustar",
+      "title": "Ajustar",
+      "desc": "Ajusta el detall, el to i com es dibuixen les regions.",
+      "detailLevel": "Nivell de detall",
+      "imageTone": "To de la imatge",
+      "cropRotate": "Retalla i gira la imatge"
+    },
+    "refine": {
+      "tab": "Refinar",
+      "title": "Refinar",
+      "desc": "Fusiona o divideix regions i reordena els teus colors.",
+      "regionTool": "Eina de regions",
+      "regionToolHelp": "Fes clic a les regions del llenç per combinar-les o dividir-les. Dreceres: M fusiona · S divideix · Esc navega.",
+      "paletteLegend": "Llegenda de la paleta",
+      "dragToReorder": "arrossega per reordenar",
+      "statistics": "Estadístiques",
+      "totalRegions": "Total de regions",
+      "colorsUsed": "Colors utilitzats",
+      "avgRegionPx": "Px mitjans per regió",
+      "smallestPx": "Px més petits",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Exportar",
+      "title": "Exportar",
+      "desc": "Descarrega una plantilla imprimible o desa la teva sessió.",
+      "downloadTemplate": "Descarrega la plantilla",
+      "outline": "Contorn",
+      "colored": "Colorit",
+      "svgTitle": "Vector escalable",
+      "svgDesc": "Nítid a qualsevol mida",
+      "pngTitle": "Fitxer d'imatge",
+      "pngDesc": "Arrossega'l a qualsevol editor",
+      "pdfTitle": "Llest per imprimir",
+      "pdfDesc": "Mosaic segons la mida del paper",
+      "guidePdf": "Guia PDF",
+      "guidePng": "Guia PNG",
+      "session": "Sessió",
+      "exportJson": "Exporta .json",
+      "loadJson": "Carrega .json"
+    },
+    "canvas": {
+      "colors": "Colors",
+      "tapToIsolate": "toca una mostra per aïllar les seves regions",
+      "zoomIn": "Apropa",
+      "zoomOut": "Allunya"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Combina amb un conjunt de pintura real",
+    "heroSubtitle": "Pinta amb els colors exactes de la teva plantilla",
+    "colorCount": "{{count}} colors",
+    "buyOnAmazon": "Compra {{set}} a Amazon",
+    "disclosure": "Com a Associat d'Amazon, guanyem amb les compres que compleixen els requisits — sense cap cost addicional per a tu.",
+    "disclosureShort": "Com a Associat d'Amazon, guanyem amb les compres que compleixen els requisits.",
+    "exportHeroTitle": "A punt per començar a pintar?",
+    "exportHeroBody": "La teva plantilla s'ha creat a partir de {{set}} — aconsegueix el conjunt corresponent perquè els teus colors encaixin perfectament.",
+    "getTheseIn": "Aconsegueix-los a {{set}}"
   }
 }

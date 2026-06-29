@@ -67,3 +67,12 @@ export function trackEvent(eventName: string, params: AnalyticsParams = {}): voi
   if (!analyticsEnabled || !window.gtag) return;
   window.gtag('event', eventName, params);
 }
+
+/**
+ * Track a click on an Amazon affiliate CTA. These links are the site's revenue
+ * source, so every surface (palette hero, legend bar, export hero) reports a
+ * uniform `affiliate_click` event identifying which paint set was clicked.
+ */
+export function trackAffiliateClick(brand: string, setId: string): void {
+  trackEvent('affiliate_click', { brand, set_id: setId });
+}

@@ -312,5 +312,82 @@
     "imagesBody": "Todo o processamento de imagens é realizado localmente no seu navegador usando Web Workers. Suas imagens nunca são enviadas a um servidor.",
     "copyrightTitle": "Sua responsabilidade.",
     "copyrightBody": "Você é responsável por garantir que possui os direitos necessários para usar quaisquer imagens que você carregue. Não carregue imagens que não sejam suas ou para as quais não tenha permissão de uso."
+  },
+  "panels": {
+    "step": "Etapa {{n}} de 4",
+    "generate": "Gerar pintar pelos números",
+    "generateCaption": "Reexecuta com suas configurações atuais · ~3s",
+    "new": "Novo",
+    "lockedHint": "Gere um modelo primeiro para desbloquear esta etapa",
+    "palette": {
+      "tab": "Paleta",
+      "title": "Paleta",
+      "desc": "Escolha como as cores são selecionadas e quantas usar.",
+      "howColorsChosen": "Como as cores são escolhidas",
+      "fromSet": "Do conjunto",
+      "autoDetect": "Detectar automaticamente",
+      "custom": "Personalizado",
+      "fromSetHelp": "Seu modelo usa as {{count}} cores deste conjunto, então cada região numerada corresponde a uma cor real da {{brand}}.",
+      "quantizationAlgorithm": "Algoritmo de quantização"
+    },
+    "adjust": {
+      "tab": "Ajustar",
+      "title": "Ajustar",
+      "desc": "Ajuste detalhe, tom e como as regiões são desenhadas.",
+      "detailLevel": "Nível de detalhe",
+      "imageTone": "Tom da imagem",
+      "cropRotate": "Recortar e girar imagem"
+    },
+    "refine": {
+      "tab": "Refinar",
+      "title": "Refinar",
+      "desc": "Mescle ou divida regiões e reordene suas cores.",
+      "regionTool": "Ferramenta de região",
+      "regionToolHelp": "Clique em regiões na tela para combiná-las ou dividi-las. Atalhos: M mesclar · S dividir · Esc navegar.",
+      "paletteLegend": "Legenda da paleta",
+      "dragToReorder": "arraste para reordenar",
+      "statistics": "Estatísticas",
+      "totalRegions": "Total de regiões",
+      "colorsUsed": "Cores usadas",
+      "avgRegionPx": "Px médio por região",
+      "smallestPx": "Menor px",
+      "regionCount": "{{count}} reg"
+    },
+    "export": {
+      "tab": "Exportar",
+      "title": "Exportar",
+      "desc": "Baixe um modelo para impressão ou salve sua sessão.",
+      "downloadTemplate": "Baixar modelo",
+      "outline": "Contorno",
+      "colored": "Colorido",
+      "svgTitle": "Vetor escalável",
+      "svgDesc": "Nítido em qualquer tamanho",
+      "pngTitle": "Arquivo de imagem",
+      "pngDesc": "Coloque em qualquer editor",
+      "pdfTitle": "Pronto para imprimir",
+      "pdfDesc": "Dividido no tamanho do papel",
+      "guidePdf": "Guia em PDF",
+      "guidePng": "Guia em PNG",
+      "session": "Sessão",
+      "exportJson": "Exportar .json",
+      "loadJson": "Carregar .json"
+    },
+    "canvas": {
+      "colors": "Cores",
+      "tapToIsolate": "toque em uma amostra para isolar suas regiões",
+      "zoomIn": "Aproximar",
+      "zoomOut": "Afastar"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Combine com um conjunto de tintas real",
+    "heroSubtitle": "Pinte com as cores exatas do seu modelo",
+    "colorCount": "{{count}} cores",
+    "buyOnAmazon": "Comprar {{set}} na Amazon",
+    "disclosure": "Como Associados da Amazon, ganhamos com compras qualificadas — sem custo extra para você.",
+    "disclosureShort": "Como Associados da Amazon, ganhamos com compras qualificadas.",
+    "exportHeroTitle": "Pronto para começar a pintar?",
+    "exportHeroBody": "Seu modelo é feito a partir do {{set}} — adquira o conjunto correspondente para que suas cores combinem perfeitamente.",
+    "getTheseIn": "Obtenha estas no {{set}}"
   }
 }

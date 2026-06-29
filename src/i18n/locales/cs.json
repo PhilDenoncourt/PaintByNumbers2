@@ -312,5 +312,82 @@
     "imagesBody": "Veškeré zpracování obrázků probíhá lokálně ve vašem prohlížeči pomocí Web Workers. Vaše obrázky nejsou nikdy odeslány na server.",
     "copyrightTitle": "Vaše odpovědnost.",
     "copyrightBody": "Jste zodpovědní za zajištění, že máte potřebná práva k používání jakýchkoli obrázků, které nahráváte. Nenahrávejte obrázky, které nevlastníte nebo k jejichž použití nemáte oprávnění."
+  },
+  "panels": {
+    "step": "Krok {{n}} ze 4",
+    "generate": "Vytvořit malování podle čísel",
+    "generateCaption": "Znovu spustí s vaším aktuálním nastavením · ~3 s",
+    "new": "Nový",
+    "lockedHint": "Nejprve vytvořte šablonu, abyste odemkli tento krok",
+    "palette": {
+      "tab": "Paleta",
+      "title": "Paleta",
+      "desc": "Vyberte, jak se barvy vybírají a kolik jich použít.",
+      "howColorsChosen": "Jak se barvy vybírají",
+      "fromSet": "Ze sady",
+      "autoDetect": "Automatické zjišťování",
+      "custom": "Vlastní",
+      "fromSetHelp": "Vaše šablona používá {{count}} barev z této sady, takže každá číslovaná oblast odpovídá skutečné barvě {{brand}}.",
+      "quantizationAlgorithm": "Algoritmus kvantizace"
+    },
+    "adjust": {
+      "tab": "Upravit",
+      "title": "Upravit",
+      "desc": "Dolaďte detaily, tón a způsob vykreslení oblastí.",
+      "detailLevel": "Úroveň detailů",
+      "imageTone": "Tón obrázku",
+      "cropRotate": "Oříznout a otočit obrázek"
+    },
+    "refine": {
+      "tab": "Upřesnit",
+      "title": "Upřesnit",
+      "desc": "Slučte nebo rozdělte oblasti a změňte pořadí barev.",
+      "regionTool": "Nástroj oblastí",
+      "regionToolHelp": "Kliknutím na oblasti na plátně je spojíte nebo rozdělíte. Zkratky: M sloučit · S rozdělit · Esc procházet.",
+      "paletteLegend": "Legenda palety",
+      "dragToReorder": "přetáhněte ke změně pořadí",
+      "statistics": "Statistika",
+      "totalRegions": "Celkem oblastí",
+      "colorsUsed": "Použité barvy",
+      "avgRegionPx": "Prům. px oblasti",
+      "smallestPx": "Nejmenší px",
+      "regionCount": "{{count}} obl."
+    },
+    "export": {
+      "tab": "Export",
+      "title": "Export",
+      "desc": "Stáhněte tisknutelnou šablonu nebo uložte svou relaci.",
+      "downloadTemplate": "Stáhnout šablonu",
+      "outline": "Obrys",
+      "colored": "Barevné",
+      "svgTitle": "Škálovatelný vektor",
+      "svgDesc": "Ostré v jakékoli velikosti",
+      "pngTitle": "Obrázkový soubor",
+      "pngDesc": "Vložte do libovolného editoru",
+      "pdfTitle": "Připraveno k tisku",
+      "pdfDesc": "Rozloženo na velikost papíru",
+      "guidePdf": "Průvodce PDF",
+      "guidePng": "Průvodce PNG",
+      "session": "Relace",
+      "exportJson": "Exportovat .json",
+      "loadJson": "Načíst .json"
+    },
+    "canvas": {
+      "colors": "Barvy",
+      "tapToIsolate": "klepnutím na vzorek izolujete jeho oblasti",
+      "zoomIn": "Přiblížit",
+      "zoomOut": "Oddálit"
+    }
+  },
+  "affiliate": {
+    "heroTitle": "Najděte skutečnou sadu barev",
+    "heroSubtitle": "Malujte přesnými barvami z vaší šablony",
+    "colorCount": "{{count}} barev",
+    "buyOnAmazon": "Koupit {{set}} na Amazon",
+    "disclosure": "Jako účastník programu Amazon Associates získáváme provizi z kvalifikovaných nákupů — bez jakýchkoli nákladů navíc pro vás.",
+    "disclosureShort": "Jako účastník programu Amazon Associates získáváme provizi z kvalifikovaných nákupů.",
+    "exportHeroTitle": "Připraveni začít malovat?",
+    "exportHeroBody": "Vaše šablona je vytvořena ze sady {{set}} — pořiďte si odpovídající sadu, aby vaše barvy dokonale ladily.",
+    "getTheseIn": "Získejte je v sadě {{set}}"
   }
 }
