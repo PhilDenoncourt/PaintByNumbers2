@@ -175,6 +175,16 @@
     "sideBySide": "Affiancato",
     "overlay": "Sovrapposizione"
   },
+  "paintMode": {
+    "title": "Modalità pittura",
+    "exit": "Esci",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Completato — tutte le regioni dipinte!",
+    "colors": "Colori",
+    "toggleAll": "Attiva/disattiva tutto #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tocca un colore per evidenziare dove va, poi tocca quelle regioni per contrassegnarle come dipinte. Trascina per spostare, scorri per ingrandire."
+  },
   "export": {
     "saveSession": "Salva Sessione",
     "loadSession": "Carica Sessione",

@@ -199,6 +199,16 @@
     "sideBySide": "Side by Side",
     "overlay": "Overlay"
   },
+  "paintMode": {
+    "title": "Paint Mode",
+    "exit": "Exit",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Finished — every region painted!",
+    "colors": "Colors",
+    "toggleAll": "Toggle all #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tap a color to highlight where it goes, then tap those regions to mark them painted. Drag to pan, scroll to zoom."
+  },
   "export": {
     "saveSession": "Save Session",
     "loadSession": "Load Session",

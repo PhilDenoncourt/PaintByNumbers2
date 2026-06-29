@@ -175,6 +175,16 @@
     "sideBySide": "Egymás mellett",
     "overlay": "Réteg"
   },
+  "paintMode": {
+    "title": "Festés mód",
+    "exit": "Kilépés",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Kész — minden terület kifestve!",
+    "colors": "Színek",
+    "toggleAll": "Összes váltása #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Koppints egy színre a helyének kiemeléséhez, majd koppints ezekre a területekre, hogy kifestettként jelöld őket. Húzd a mozgatáshoz, görgess a nagyításhoz."
+  },
   "export": {
     "saveSession": "Munkamenet mentése",
     "loadSession": "Munkamenet betöltése",

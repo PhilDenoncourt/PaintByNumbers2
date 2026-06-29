@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import type { ViewMode } from '../../state/types';
 import { SideBySideView } from '../preview/SideBySideView';
 import { LegendBar } from './LegendBar';
+import { PaintMode } from '../paint/PaintMode';
 
 const ZOOM_MIN = 0.1;
 const ZOOM_MAX = 10;
@@ -15,6 +17,7 @@ export function CanvasArea() {
   const panX = useAppStore((s) => s.ui.panX);
   const panY = useAppStore((s) => s.ui.panY);
   const setZoomPan = useAppStore((s) => s.setZoomPan);
+  const [paintModeOpen, setPaintModeOpen] = useState(false);
 
   const views: { id: ViewMode; label: string }[] = [
     { id: 'colored', label: t('preview.colored') },
@@ -52,6 +55,12 @@ export function CanvasArea() {
         </div>
         <div className="flex items-center gap-2">
           <button
+            onClick={() => setPaintModeOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-[7px] rounded-[9px] text-[12.5px] font-semibold bg-[#16a34a] text-white hover:bg-[#15803d] transition-colors"
+          >
+            🖌️ {t('paintMode.title')}
+          </button>
+          <button
             onClick={() => setZoom(1 / 1.1)}
             className="w-[34px] h-[34px] rounded-[9px] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#475569] dark:text-gray-300 text-[15px] hover:bg-gray-50 dark:hover:bg-gray-700"
             aria-label={t('panels.canvas.zoomOut')}
@@ -78,6 +87,8 @@ export function CanvasArea() {
         </div>
         <LegendBar />
       </div>
+
+      {paintModeOpen && <PaintMode onClose={() => setPaintModeOpen(false)} />}
     </div>
   );
 }

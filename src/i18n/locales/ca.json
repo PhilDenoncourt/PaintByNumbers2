@@ -192,6 +192,16 @@
     "sideBySide": "Costat a Costat",
     "overlay": "Superposició"
   },
+  "paintMode": {
+    "title": "Mode pintura",
+    "exit": "Surt",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Fet — totes les regions pintades!",
+    "colors": "Colors",
+    "toggleAll": "Commuta-ho tot #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Toca un color per ressaltar on va i després toca aquestes regions per marcar-les com a pintades. Arrossega per moure, desplaça't per fer zoom."
+  },
   "export": {
     "saveSession": "Desar Sessió",
     "loadSession": "Carregar Sessió",

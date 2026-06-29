@@ -175,6 +175,16 @@
     "sideBySide": "Lado a Lado",
     "overlay": "Superposición"
   },
+  "paintMode": {
+    "title": "Modo pintura",
+    "exit": "Salir",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 ¡Listo! ¡Todas las regiones pintadas!",
+    "colors": "Colores",
+    "toggleAll": "Alternar todo #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Toca un color para resaltar dónde va y luego toca esas regiones para marcarlas como pintadas. Arrastra para desplazar, desplázate para hacer zoom."
+  },
   "export": {
     "saveSession": "Guardar Sesión",
     "loadSession": "Cargar Sesión",

@@ -175,6 +175,16 @@
     "sideBySide": "Vedle Sebe",
     "overlay": "Překrytí"
   },
+  "paintMode": {
+    "title": "Režim malování",
+    "exit": "Ukončit",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Hotovo — všechny oblasti vybarveny!",
+    "colors": "Barvy",
+    "toggleAll": "Přepnout vše #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Klepnutím na barvu zvýrazníte, kam patří, a poté klepnutím na tyto oblasti je označíte jako vybarvené. Tažením posouvejte, posouváním přibližujte."
+  },
   "export": {
     "saveSession": "Uložit Relaci",
     "loadSession": "Načíst Relaci",

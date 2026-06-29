@@ -175,6 +175,16 @@
     "sideBySide": "Yan Yana",
     "overlay": "Katman"
   },
+  "paintMode": {
+    "title": "Boyama modu",
+    "exit": "Çıkış",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Tamamlandı — tüm bölgeler boyandı!",
+    "colors": "Renkler",
+    "toggleAll": "Tümünü değiştir #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Bir renge dokunarak nereye geldiğini vurgulayın, ardından o bölgelere dokunarak boyandı olarak işaretleyin. Kaydırmak için sürükleyin, yakınlaştırmak için kaydırın."
+  },
   "export": {
     "saveSession": "Oturumu Kaydet",
     "loadSession": "Oturumu Yükle",

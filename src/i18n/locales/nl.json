@@ -175,6 +175,16 @@
     "sideBySide": "Naast Elkaar",
     "overlay": "Overlay"
   },
+  "paintMode": {
+    "title": "Schildermodus",
+    "exit": "Afsluiten",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Klaar — alle gebieden geschilderd!",
+    "colors": "Kleuren",
+    "toggleAll": "Alles omschakelen #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tik op een kleur om te markeren waar deze hoort en tik vervolgens op die gebieden om ze als geschilderd te markeren. Sleep om te verschuiven, scroll om te zoomen."
+  },
   "export": {
     "saveSession": "Sessie Opslaan",
     "loadSession": "Sessie Laden",

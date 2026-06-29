@@ -175,6 +175,16 @@
     "sideBySide": "Sida vid sida",
     "overlay": "Överlagring"
   },
+  "paintMode": {
+    "title": "Målarläge",
+    "exit": "Avsluta",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Klart — alla områden målade!",
+    "colors": "Färger",
+    "toggleAll": "Växla alla #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tryck på en färg för att markera var den hör hemma och tryck sedan på de områdena för att markera dem som målade. Dra för att panorera, scrolla för att zooma."
+  },
   "export": {
     "saveSession": "Spara session",
     "loadSession": "Ladda session",

@@ -175,6 +175,16 @@
     "sideBySide": "并排",
     "overlay": "叠加"
   },
+  "paintMode": {
+    "title": "上色模式",
+    "exit": "退出",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 完成——所有区域都已上色！",
+    "colors": "颜色",
+    "toggleAll": "切换全部 #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "点击某个颜色以高亮其所在区域，然后点击这些区域将其标记为已上色。拖动以平移，滚动以缩放。"
+  },
   "export": {
     "saveSession": "保存会话",
     "loadSession": "加载会话",

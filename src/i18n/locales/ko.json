@@ -175,6 +175,16 @@
     "sideBySide": "나란히",
     "overlay": "오버레이"
   },
+  "paintMode": {
+    "title": "색칠 모드",
+    "exit": "나가기",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 완료 — 모든 영역을 색칠했습니다!",
+    "colors": "색상",
+    "toggleAll": "전체 전환 #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "색상을 탭하면 해당 위치가 강조 표시됩니다. 그런 다음 해당 영역을 탭하여 색칠 완료로 표시하세요. 드래그하여 이동하고 스크롤하여 확대/축소합니다."
+  },
   "export": {
     "saveSession": "세션 저장",
     "loadSession": "세션 로드",

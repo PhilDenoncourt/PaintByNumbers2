@@ -175,6 +175,16 @@
     "sideBySide": "Nebeneinander",
     "overlay": "Überlagern"
   },
+  "paintMode": {
+    "title": "Malmodus",
+    "exit": "Beenden",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Fertig – alle Bereiche ausgemalt!",
+    "colors": "Farben",
+    "toggleAll": "Alle umschalten #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tippe auf eine Farbe, um ihre Bereiche hervorzuheben, und tippe dann auf diese Bereiche, um sie als ausgemalt zu markieren. Ziehen zum Verschieben, scrollen zum Zoomen."
+  },
   "export": {
     "saveSession": "Sitzung speichern",
     "loadSession": "Sitzung laden",

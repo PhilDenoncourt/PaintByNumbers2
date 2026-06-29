@@ -175,6 +175,16 @@
     "sideBySide": "並べて表示",
     "overlay": "オーバーレイ"
   },
+  "paintMode": {
+    "title": "ペイントモード",
+    "exit": "終了",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 完成——すべての領域を塗りました！",
+    "colors": "色",
+    "toggleAll": "すべて切り替え #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "色をタップするとその場所が強調表示されます。次にその領域をタップして塗り終えたものとして印を付けます。ドラッグで移動、スクロールでズームします。"
+  },
   "export": {
     "saveSession": "セッションを保存",
     "loadSession": "セッションを読み込み",

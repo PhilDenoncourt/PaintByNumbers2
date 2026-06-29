@@ -175,6 +175,16 @@
     "sideBySide": "Berdampingan",
     "overlay": "Tumpang tindih"
   },
+  "paintMode": {
+    "title": "Mode Mewarnai",
+    "exit": "Keluar",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Selesai — semua area telah diwarnai!",
+    "colors": "Warna",
+    "toggleAll": "Alihkan semua #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Ketuk warna untuk menyoroti lokasinya, lalu ketuk area tersebut untuk menandainya sebagai sudah diwarnai. Seret untuk menggeser, gulir untuk memperbesar."
+  },
   "export": {
     "saveSession": "Simpan Sesi",
     "loadSession": "Muat Sesi",

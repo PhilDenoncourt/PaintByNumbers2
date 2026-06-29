@@ -175,6 +175,16 @@
     "sideBySide": "جنباً إلى جنب",
     "overlay": "تراكب"
   },
+  "paintMode": {
+    "title": "وضع التلوين",
+    "exit": "خروج",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 اكتمل — تم تلوين جميع المناطق!",
+    "colors": "الألوان",
+    "toggleAll": "تبديل الكل #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "اضغط على لون لإبراز موضعه، ثم اضغط على تلك المناطق لتمييزها كمُلوّنة. اسحب للتحريك، ومرّر للتكبير."
+  },
   "export": {
     "saveSession": "حفظ الجلسة",
     "loadSession": "تحميل الجلسة",

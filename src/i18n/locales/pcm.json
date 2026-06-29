@@ -192,6 +192,16 @@
     "sideBySide": "Side By Side",
     "overlay": "Overlay"
   },
+  "paintMode": {
+    "title": "Paint Mode",
+    "exit": "Comot",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 You don finish — you don paint every area!",
+    "colors": "Colors",
+    "toggleAll": "Toggle all #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Tap one color make e show you where e dey, then tap those areas to mark say you don paint dem. Drag to move am, scroll to zoom."
+  },
   "export": {
     "saveSession": "Save Session",
     "loadSession": "Load Session",

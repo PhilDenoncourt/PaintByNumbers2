@@ -175,6 +175,16 @@
     "sideBySide": "Obok Siebie",
     "overlay": "Nakładka"
   },
+  "paintMode": {
+    "title": "Tryb malowania",
+    "exit": "Wyjdź",
+    "progress": "{{painted}} / {{total}} ({{pct}}%)",
+    "finished": "🎉 Gotowe — wszystkie obszary pomalowane!",
+    "colors": "Kolory",
+    "toggleAll": "Przełącz wszystkie #{{number}}",
+    "colorProgress": "{{done}} / {{total}}",
+    "instructions": "Dotknij koloru, aby podświetlić jego obszary, a następnie dotykaj tych obszarów, aby oznaczyć je jako pomalowane. Przeciągnij, aby przesunąć, przewiń, aby przybliżyć."
+  },
   "export": {
     "saveSession": "Zapisz Sesję",
     "loadSession": "Załaduj Sesję",
