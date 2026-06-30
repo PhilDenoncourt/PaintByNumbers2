@@ -32,7 +32,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock Web Workers for tests
-global.Worker = vi.fn(() => ({
+globalThis.Worker = vi.fn(() => ({
   postMessage: vi.fn(),
   terminate: vi.fn(),
   addEventListener: vi.fn(),
@@ -44,7 +44,7 @@ global.Worker = vi.fn(() => ({
 
 // Mock ImageData if not available
 if (typeof ImageData === 'undefined') {
-  (global as unknown as { ImageData: typeof ImageData }).ImageData = class ImageData {
+  (globalThis as unknown as { ImageData: typeof ImageData }).ImageData = class ImageData {
     data: Uint8ClampedArray;
     width: number;
     height: number;

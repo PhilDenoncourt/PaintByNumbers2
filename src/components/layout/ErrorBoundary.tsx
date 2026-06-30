@@ -44,7 +44,7 @@ function ErrorFallback({ error, errorInfo, onReset }: { error: Error | null; err
         {error && (
           <details className="mb-6 p-3 bg-gray-100 rounded text-xs text-gray-700 text-left overflow-auto max-h-40">
             <summary className="cursor-pointer font-semibold mb-2">
-              {t('errorBoundary.errorDetails')} ({process.env.NODE_ENV === 'development' ? 'Development' : 'Hidden'})
+              {t('errorBoundary.errorDetails')} ({import.meta.env.DEV ? 'Development' : 'Hidden'})
             </summary>
             <div className="whitespace-pre-wrap break-words">
               <p className="font-mono text-red-600 mb-2">
