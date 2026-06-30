@@ -22,6 +22,23 @@
     "lightMode": "밝은 모드로 전환",
     "darkMode": "어두운 모드로 전환"
   },
+  "welcome": {
+    "tagline": "어떤 사진이든 숫자로 칠하는 걸작으로 변환하세요",
+    "description": "사진을 업로드하면 이 도구가 색상을 분석하고, 이미지를 번호가 매겨진 영역으로 단순화하며, 인쇄 가능한 숫자 칠하기 템플릿을 생성합니다  모두 브라우저 내에서 처리되며, 어떤 데이터도 기기를 벗어나지 않습니다.",
+    "feature1Title": "스마트 색상 양자화",
+    "feature1Body": "K-Means 또는 Median Cut 알고리즘 중에서 선택하여 사진을 완벽한 색상 세트로 줄이세요.",
+    "feature2Title": "사용자 정의 팔레트",
+    "feature2Body": "Crayola 크레용 프리셋을 사용하거나 처음부터 직접 팔레트를 만드세요.",
+    "feature3Title": "영역 편집",
+    "feature3Body": "결과에서 색상 영역을 합치거나 분할하여 그림의 복잡도를 세밀하게 조정하세요.",
+    "feature4Title": "어디서든 내보내기",
+    "feature4Body": "완성된 템플릿을 PDF, PNG 또는 확장 가능한 SVG로 다운로드하세요.",
+    "howToBegin": "시작하는 방법",
+    "step1": "아래에 이미지를 드래그 앤 드롭하거나, 클릭하여 탐색하거나, 클립보드에서 붙여넣기 하세요.",
+    "step2": "왼쪽 패널에서 팔레트 크기 및 기타 설정을 조정하세요.",
+    "step3": "\"숫자 칠하기 생성\"을 클릭하여 이미지를 처리하세요.",
+    "step4": "결과를 검토하고 수정한 다음, 템플릿을 내보내세요."
+  },
   "uploader": {
     "title": "이미지 업로드",
     "dragDrop": "이미지 또는 저장된 세션을 여기에 놓거나 찾아보기를 클릭하세요",
@@ -140,7 +157,14 @@
     "browseDescription": "수정 없이 지역 찾아보기",
     "mergeDescription": "지역을 클릭하여 선택하고 병합하기",
     "reset": "재설정",
-    "resetAll": "모두 재설정"
+    "resetAll": "모두 재설정",
+    "brandPreset": "브랜드 프리셋",
+    "presetBrand": "크리에이티브 브랜드",
+    "presetSet": "세트",
+    "buyThisSet": "이 세트 구매",
+    "sharpness": "선명도",
+    "blurry": "흐림",
+    "sharpened": "선명함"
   },
   "processing": {
     "quantizing": "색상 양자화 중",
@@ -232,7 +256,8 @@
     "failedImportSession": "세션 가져오기 실패: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "{{name}}으로 전환"
+    "switchToLanguage": "{{name}}으로 전환",
+    "languages": "언어"
   },
   "palette": {
     "legend": "팔레트 범례",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "키보드 바로가기",
     "toggleMerge": "병합 모드 전환",
     "toggleSplit": "분할 모드 전환",
-    "returnBrowse": "찾아보기 모드로 돌아가기"
+    "returnBrowse": "찾아보기 모드로 돌아가기",
+    "pixels": "px"
   },
   "split": {
     "title": "지역 분할",
@@ -305,22 +331,19 @@
     "split": "분할",
     "analyzing": "분석 중..."
   },
-  "welcome": {
-    "tagline": "어떤 사진이든 숫자로 칠하는 걸작으로 변환하세요",
-    "description": "사진을 업로드하면 이 도구가 색상을 분석하고, 이미지를 번호가 매겨진 영역으로 단순화하며, 인쇄 가능한 숫자 칠하기 템플릿을 생성합니다  모두 브라우저 내에서 처리되며, 어떤 데이터도 기기를 벗어나지 않습니다.",
-    "feature1Title": "스마트 색상 양자화",
-    "feature1Body": "K-Means 또는 Median Cut 알고리즘 중에서 선택하여 사진을 완벽한 색상 세트로 줄이세요.",
-    "feature2Title": "사용자 정의 팔레트",
-    "feature2Body": "Crayola 크레용 프리셋을 사용하거나 처음부터 직접 팔레트를 만드세요.",
-    "feature3Title": "영역 편집",
-    "feature3Body": "결과에서 색상 영역을 합치거나 분할하여 그림의 복잡도를 세밀하게 조정하세요.",
-    "feature4Title": "어디서든 내보내기",
-    "feature4Body": "완성된 템플릿을 PDF, PNG 또는 확장 가능한 SVG로 다운로드하세요.",
-    "howToBegin": "시작하는 방법",
-    "step1": "아래에 이미지를 드래그 앤 드롭하거나, 클릭하여 탐색하거나, 클립보드에서 붙여넣기 하세요.",
-    "step2": "왼쪽 패널에서 팔레트 크기 및 기타 설정을 조정하세요.",
-    "step3": "\"숫자 칠하기 생성\"을 클릭하여 이미지를 처리하세요.",
-    "step4": "결과를 검토하고 수정한 다음, 템플릿을 내보내세요."
+  "cropRotate": {
+    "title": "자르기 및 회전",
+    "apply": "적용",
+    "cancel": "취소",
+    "reset": "재설정",
+    "rotateLeft": "왼쪽으로 90° 회전",
+    "rotateRight": "오른쪽으로 90° 회전",
+    "rotate180": "180° 뒤집기",
+    "cropActive": "자르기 활성화됨",
+    "rotationActive": "{{angle}}° 회전",
+    "clearAll": "자르기 및 회전 지우기",
+    "noCropApplied": "전체 이미지 · 자르기 미적용",
+    "dragHandles": "핸들을 드래그하여 자릅니다. 회전하면 자르기 프레임이 초기화됩니다."
   },
   "privacy": {
     "tagline": "이미지는 브라우저 내에서만 완전히 처리됩니다  어떤 서버에도 업로드되거나 저장되지 않습니다.",
@@ -334,7 +357,8 @@
     "imagesTitle": "이미지 처리.",
     "imagesBody": "모든 이미지 처리는 Web Workers를 사용하여 브라우저 내에서 로컬로 수행됩니다. 이미지는 절대 서버로 전송되지 않습니다.",
     "copyrightTitle": "사용자의 책임.",
-    "copyrightBody": "업로드하는 이미지를 사용할 수 있는 필요한 권한이 있는지 확인할 책임은 사용자에게 있습니다. 소유하지 않거나 사용 허가를 받지 않은 이미지는 업로드하지 마세요."
+    "copyrightBody": "업로드하는 이미지를 사용할 수 있는 필요한 권한이 있는지 확인할 책임은 사용자에게 있습니다. 소유하지 않거나 사용 허가를 받지 않은 이미지는 업로드하지 마세요.",
+    "analyticsBody": "이 애플리케이션은 사용 현황(예: 페이지 조회수, 처리 실행, 내보내기 작업)을 측정하기 위해 Google Analytics를 사용합니다. 업로드된 이미지는 여전히 브라우저에서 로컬로 처리되며 서버로 전송되지 않습니다."
   },
   "panels": {
     "step": "4단계 중 {{n}}단계",
@@ -411,6 +435,18 @@
     "disclosureShort": "Amazon 어소시에이트로서 적격 구매를 통해 수익을 얻습니다.",
     "exportHeroTitle": "칠할 준비가 되셨나요?",
     "exportHeroBody": "템플릿은 {{set}}을(를) 기반으로 만들어졌습니다  색상이 완벽하게 맞도록 해당 세트를 구하세요.",
-    "getTheseIn": "{{set}}에서 구하기"
+    "getTheseIn": "{{set}}에서 구하기",
+    "buyOnAmazonShort": "Amazon에서 구매",
+    "buyTheSet": "{{set}} 구매"
+  },
+  "studio": {
+    "replay": "공개 다시 재생",
+    "pickYourColors": "색상을 선택하세요",
+    "pickYourColorsSub": "템플릿을 직접 손에 들 수 있는 물감 세트와 맞춰보세요.",
+    "everyNumberMaps": "모든 번호는 실제 색상에 대응합니다",
+    "biggerSetNote": "큰 팔레트는 작은 박스 세트 이상이 필요합니다 — 더 큰 세트를 찾아드렸습니다.",
+    "paletteDrops": "내 팔레트 · {{count}}방울",
+    "paletteCount": "팔레트 · {{count}}색",
+    "tapToIsolate": "탭하여 분리"
   }
 }

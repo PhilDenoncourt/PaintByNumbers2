@@ -157,7 +157,14 @@
     "browseDescription": "Browse regions without change",
     "mergeDescription": "Tap regions for pick and join dem",
     "reset": "Start fresh",
-    "resetAll": "Start Everything Fresh"
+    "resetAll": "Start Everything Fresh",
+    "brandPreset": "Brand Preset",
+    "presetBrand": "Creative Brand",
+    "presetSet": "Set",
+    "buyThisSet": "Buy dis set",
+    "sharpness": "Sharpness",
+    "blurry": "Blurry",
+    "sharpened": "E sharp"
   },
   "processing": {
     "quantizing": "Quantizing colours",
@@ -249,7 +256,8 @@
     "failedImportSession": "E no fit import session: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Change to {{name}}"
+    "switchToLanguage": "Change to {{name}}",
+    "languages": "Languages"
   },
   "palette": {
     "legend": "Palette Legend",
@@ -313,7 +321,8 @@
     "keyboardShortcuts": "Keyboard shortcuts",
     "toggleMerge": "Toggle join mode",
     "toggleSplit": "Toggle separate mode",
-    "returnBrowse": "Return to browse mode"
+    "returnBrowse": "Return to browse mode",
+    "pixels": "px"
   },
   "split": {
     "title": "Separate Regions",
@@ -321,6 +330,20 @@
     "noSplitCandidates": "No candidates find for separate",
     "split": "Separate",
     "analyzing": "Dey analyze..."
+  },
+  "cropRotate": {
+    "title": "Crop & Turn",
+    "apply": "Apply am",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "rotateLeft": "Turn 90° Left",
+    "rotateRight": "Turn 90° Right",
+    "rotate180": "Flip 180°",
+    "cropActive": "Crop dey active",
+    "rotationActive": "{{angle}}° turn",
+    "clearAll": "Clear crop & turn",
+    "noCropApplied": "Full image · No crop dey applied",
+    "dragHandles": "Drag di handles to crop am. If you turn am, e go reset di crop frame."
   },
   "privacy": {
     "tagline": "Your images process inside your browser only — nothing go upload or store for any server.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Image processing.",
     "imagesBody": "All image processing happen local for your browser using Web Workers. Your images no go anywhere to server.",
     "copyrightTitle": "Your responsibility.",
-    "copyrightBody": "You responsible make sure say you get permission for use images wey you upload. No upload image wey no be your own or wey you no get permission."
+    "copyrightBody": "You responsible make sure say you get permission for use images wey you upload. No upload image wey no be your own or wey you no get permission.",
+    "analyticsBody": "Dis app dey use Google Analytics to measure how people dey use am (like page views, processing wey run, and export actions). Di images wey you upload still dey process for your browser, e no dey go to our server."
   },
   "panels": {
     "step": "Step {{n}} of 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "As Amazon Associate, we dey earn from qualifying purchases.",
     "exportHeroTitle": "You ready to start painting?",
     "exportHeroBody": "Dem build your template from {{set}} — grab di matching set make your colours line up well well.",
-    "getTheseIn": "Get dem for {{set}}"
+    "getTheseIn": "Get dem for {{set}}",
+    "buyOnAmazonShort": "Buy for Amazon",
+    "buyTheSet": "Buy {{set}}"
+  },
+  "studio": {
+    "replay": "Replay di reveal",
+    "pickYourColors": "Pick your colors",
+    "pickYourColorsSub": "Match di template to paint set wey you fit hold for hand.",
+    "everyNumberMaps": "Every number dey match one real color",
+    "biggerSetNote": "Big palette need pass small boxed set — we don match bigger set for you.",
+    "paletteDrops": "Your palette · {{count}} drops",
+    "paletteCount": "Palette · {{count}} colors",
+    "tapToIsolate": "tap to isolate am"
   }
 }

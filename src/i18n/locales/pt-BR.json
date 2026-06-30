@@ -22,6 +22,23 @@
     "lightMode": "Mudar para modo claro",
     "darkMode": "Mudar para modo escuro"
   },
+  "welcome": {
+    "tagline": "Transforme qualquer foto em uma obra-prima de pintura por números",
+    "description": "Carregue uma foto e esta ferramenta analisará as cores, simplificará a imagem em regiões numeradas e gerará um modelo de pintura por números pronto para impressão — tudo no seu navegador, sem que nenhum dado saia do seu dispositivo.",
+    "feature1Title": "Quantização inteligente de cores",
+    "feature1Body": "Escolha entre os algoritmos K-Means ou Median Cut para reduzir sua foto ao conjunto perfeito de cores.",
+    "feature2Title": "Paletas personalizadas",
+    "feature2Body": "Use um predefinido de lápis de cor Crayola ou crie sua própria paleta do zero.",
+    "feature3Title": "Edição de regiões",
+    "feature3Body": "Mescle ou divida regiões de cor no resultado para ajustar a complexidade da sua pintura.",
+    "feature4Title": "Exporte para qualquer lugar",
+    "feature4Body": "Baixe o modelo finalizado como PDF, PNG ou SVG escalável.",
+    "howToBegin": "Como começar",
+    "step1": "Arraste e solte uma imagem abaixo, clique para navegar ou cole da área de transferência.",
+    "step2": "Ajuste o tamanho da paleta e outras configurações no painel esquerdo.",
+    "step3": "Clique em \"Gerar Pintura por Números\" para processar a imagem.",
+    "step4": "Revise e refine o resultado, depois exporte seu modelo."
+  },
   "uploader": {
     "title": "Fazer Upload da Imagem",
     "dragDrop": "Solte uma imagem ou sessão salva aqui, ou clique para procurar",
@@ -140,7 +157,14 @@
     "browseDescription": "Procure regiões sem modificações",
     "mergeDescription": "Clique em regiões para selecioná-las e mesclá-las",
     "reset": "Redefinir",
-    "resetAll": "Redefinir Tudo"
+    "resetAll": "Redefinir Tudo",
+    "brandPreset": "Predefinição de marca",
+    "presetBrand": "Marca criativa",
+    "presetSet": "Conjunto",
+    "buyThisSet": "Comprar este conjunto",
+    "sharpness": "Nitidez",
+    "blurry": "Desfocado",
+    "sharpened": "Nítido"
   },
   "processing": {
     "quantizing": "Quantizando cores",
@@ -232,7 +256,8 @@
     "failedImportSession": "Falha ao importar sessão: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Mudar para {{name}}"
+    "switchToLanguage": "Mudar para {{name}}",
+    "languages": "Idiomas"
   },
   "palette": {
     "legend": "Legenda de Paleta",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Atalhos de teclado",
     "toggleMerge": "Alternar modo de mesclagem",
     "toggleSplit": "Alternar modo de divisão",
-    "returnBrowse": "Retornar ao modo de navegação"
+    "returnBrowse": "Retornar ao modo de navegação",
+    "pixels": "px"
   },
   "split": {
     "title": "Dividir Regiões",
@@ -305,22 +331,19 @@
     "split": "Dividir",
     "analyzing": "Analisando..."
   },
-  "welcome": {
-    "tagline": "Transforme qualquer foto em uma obra-prima de pintura por números",
-    "description": "Carregue uma foto e esta ferramenta analisará as cores, simplificará a imagem em regiões numeradas e gerará um modelo de pintura por números pronto para impressão — tudo no seu navegador, sem que nenhum dado saia do seu dispositivo.",
-    "feature1Title": "Quantização inteligente de cores",
-    "feature1Body": "Escolha entre os algoritmos K-Means ou Median Cut para reduzir sua foto ao conjunto perfeito de cores.",
-    "feature2Title": "Paletas personalizadas",
-    "feature2Body": "Use um predefinido de lápis de cor Crayola ou crie sua própria paleta do zero.",
-    "feature3Title": "Edição de regiões",
-    "feature3Body": "Mescle ou divida regiões de cor no resultado para ajustar a complexidade da sua pintura.",
-    "feature4Title": "Exporte para qualquer lugar",
-    "feature4Body": "Baixe o modelo finalizado como PDF, PNG ou SVG escalável.",
-    "howToBegin": "Como começar",
-    "step1": "Arraste e solte uma imagem abaixo, clique para navegar ou cole da área de transferência.",
-    "step2": "Ajuste o tamanho da paleta e outras configurações no painel esquerdo.",
-    "step3": "Clique em \"Gerar Pintura por Números\" para processar a imagem.",
-    "step4": "Revise e refine o resultado, depois exporte seu modelo."
+  "cropRotate": {
+    "title": "Cortar e Girar",
+    "apply": "Aplicar",
+    "cancel": "Cancelar",
+    "reset": "Redefinir",
+    "rotateLeft": "Girar 90° à esquerda",
+    "rotateRight": "Girar 90° à direita",
+    "rotate180": "Girar 180°",
+    "cropActive": "Corte ativo",
+    "rotationActive": "Rotação de {{angle}}°",
+    "clearAll": "Limpar corte e rotação",
+    "noCropApplied": "Imagem completa · Nenhum corte aplicado",
+    "dragHandles": "Arraste as alças para cortar. Girar reinicia o quadro de corte."
   },
   "privacy": {
     "tagline": "Suas imagens são processadas inteiramente no seu navegador — nada é enviado ou armazenado em qualquer servidor.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Processamento de imagens.",
     "imagesBody": "Todo o processamento de imagens é realizado localmente no seu navegador usando Web Workers. Suas imagens nunca são enviadas a um servidor.",
     "copyrightTitle": "Sua responsabilidade.",
-    "copyrightBody": "Você é responsável por garantir que possui os direitos necessários para usar quaisquer imagens que você carregue. Não carregue imagens que não sejam suas ou para as quais não tenha permissão de uso."
+    "copyrightBody": "Você é responsável por garantir que possui os direitos necessários para usar quaisquer imagens que você carregue. Não carregue imagens que não sejam suas ou para as quais não tenha permissão de uso.",
+    "analyticsBody": "Este aplicativo usa o Google Analytics para medir o uso (por exemplo, visualizações de página, execuções de processamento e ações de exportação). As imagens enviadas continuam sendo processadas localmente no seu navegador e não são enviadas ao nosso servidor."
   },
   "panels": {
     "step": "Etapa {{n}} de 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Como Associados da Amazon, ganhamos com compras qualificadas.",
     "exportHeroTitle": "Pronto para começar a pintar?",
     "exportHeroBody": "Seu modelo é feito a partir do {{set}} — adquira o conjunto correspondente para que suas cores combinem perfeitamente.",
-    "getTheseIn": "Obtenha estas no {{set}}"
+    "getTheseIn": "Obtenha estas no {{set}}",
+    "buyOnAmazonShort": "Comprar na Amazon",
+    "buyTheSet": "Comprar {{set}}"
+  },
+  "studio": {
+    "replay": "Repetir revelação",
+    "pickYourColors": "Escolha suas cores",
+    "pickYourColorsSub": "Combine o modelo com um conjunto de tintas que você pode ter em mãos.",
+    "everyNumberMaps": "Cada número corresponde a uma cor real",
+    "biggerSetNote": "Uma paleta grande precisa de mais do que um pequeno conjunto em caixa — encontramos um conjunto maior para você.",
+    "paletteDrops": "Sua paleta · {{count}} gotas",
+    "paletteCount": "Paleta · {{count}} cores",
+    "tapToIsolate": "toque para isolar"
   }
 }

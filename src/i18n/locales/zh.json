@@ -22,6 +22,23 @@
     "lightMode": "切换到浅色模式",
     "darkMode": "切换到深色模式"
   },
+  "welcome": {
+    "tagline": "将任何照片变成数字油画杰作",
+    "description": "上传一张照片，这个工具将分析颜色，将图像简化为编号区域，并生成可打印的数字油画模板——全部在您的浏览器中完成，没有任何数据离开您的设备。",
+    "feature1Title": "智能颜色量化",
+    "feature1Body": "从 K-Means 或 Median Cut 算法中选择，将您的照片缩减为完美的颜色集合。",
+    "feature2Title": "自定义调色板",
+    "feature2Body": "使用 Crayola 蜡笔预设，或从头开始创建自己的调色板。",
+    "feature3Title": "区域编辑",
+    "feature3Body": "在结果中合并或拆分颜色区域，以微调画作的复杂程度。",
+    "feature4Title": "随处导出",
+    "feature4Body": "将完成的模板下载为 PDF、PNG 或可缩放的 SVG。",
+    "howToBegin": "如何开始",
+    "step1": "将图片拖放到下方，点击浏览，或从剪贴板粘贴。",
+    "step2": "在左侧面板中调整调色板大小和其他设置。",
+    "step3": "点击\"生成数字油画\"以处理图像。",
+    "step4": "查看并优化结果，然后导出您的模板。"
+  },
   "uploader": {
     "title": "上传图片",
     "dragDrop": "拖放图片或已保存的会话，或点击浏览",
@@ -140,7 +157,14 @@
     "browseDescription": "浏览区域而不进行修改",
     "mergeDescription": "点击区域选择并合并它们",
     "reset": "重置",
-    "resetAll": "全部重置"
+    "resetAll": "全部重置",
+    "brandPreset": "品牌预设",
+    "presetBrand": "创意品牌",
+    "presetSet": "套装",
+    "buyThisSet": "购买此套装",
+    "sharpness": "锐度",
+    "blurry": "模糊",
+    "sharpened": "锐化"
   },
   "processing": {
     "quantizing": "量化颜色",
@@ -232,7 +256,8 @@
     "failedImportSession": "导入会话失败：{{message}}"
   },
   "layout": {
-    "switchToLanguage": "切换到 {{name}}"
+    "switchToLanguage": "切换到 {{name}}",
+    "languages": "语言"
   },
   "palette": {
     "legend": "调色板图例",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "键盘快捷键",
     "toggleMerge": "切换合并模式",
     "toggleSplit": "切换分割模式",
-    "returnBrowse": "返回浏览模式"
+    "returnBrowse": "返回浏览模式",
+    "pixels": "像素"
   },
   "split": {
     "title": "分割区域",
@@ -305,22 +331,19 @@
     "split": "分割",
     "analyzing": "分析中..."
   },
-  "welcome": {
-    "tagline": "将任何照片变成数字油画杰作",
-    "description": "上传一张照片，这个工具将分析颜色，将图像简化为编号区域，并生成可打印的数字油画模板——全部在您的浏览器中完成，没有任何数据离开您的设备。",
-    "feature1Title": "智能颜色量化",
-    "feature1Body": "从 K-Means 或 Median Cut 算法中选择，将您的照片缩减为完美的颜色集合。",
-    "feature2Title": "自定义调色板",
-    "feature2Body": "使用 Crayola 蜡笔预设，或从头开始创建自己的调色板。",
-    "feature3Title": "区域编辑",
-    "feature3Body": "在结果中合并或拆分颜色区域，以微调画作的复杂程度。",
-    "feature4Title": "随处导出",
-    "feature4Body": "将完成的模板下载为 PDF、PNG 或可缩放的 SVG。",
-    "howToBegin": "如何开始",
-    "step1": "将图片拖放到下方，点击浏览，或从剪贴板粘贴。",
-    "step2": "在左侧面板中调整调色板大小和其他设置。",
-    "step3": "点击\"生成数字油画\"以处理图像。",
-    "step4": "查看并优化结果，然后导出您的模板。"
+  "cropRotate": {
+    "title": "裁剪与旋转",
+    "apply": "应用",
+    "cancel": "取消",
+    "reset": "重置",
+    "rotateLeft": "向左旋转 90°",
+    "rotateRight": "向右旋转 90°",
+    "rotate180": "翻转 180°",
+    "cropActive": "裁剪已启用",
+    "rotationActive": "旋转 {{angle}}°",
+    "clearAll": "清除裁剪和旋转",
+    "noCropApplied": "完整图像 · 未应用裁剪",
+    "dragHandles": "拖动控制点进行裁剪。旋转会重置裁剪框。"
   },
   "privacy": {
     "tagline": "您的图片完全在浏览器中处理——不会上传或存储到任何服务器。",
@@ -334,7 +357,8 @@
     "imagesTitle": "图片处理。",
     "imagesBody": "所有图片处理均使用 Web Workers 在浏览器中本地完成。您的图片永远不会发送到服务器。",
     "copyrightTitle": "您的责任。",
-    "copyrightBody": "您有责任确保对上传的任何图片有必要的使用权。请勿上传您未拥有或未获授权使用的图片。"
+    "copyrightBody": "您有责任确保对上传的任何图片有必要的使用权。请勿上传您未拥有或未获授权使用的图片。",
+    "analyticsBody": "本应用使用 Google Analytics 来衡量使用情况（例如页面浏览量、处理次数和导出操作）。上传的图片仍在你的浏览器本地处理，不会发送到我们的服务器。"
   },
   "panels": {
     "step": "第 {{n}} 步，共 4 步",
@@ -411,6 +435,18 @@
     "disclosureShort": "作为 Amazon 联盟成员，我们从符合条件的购买中赚取佣金。",
     "exportHeroTitle": "准备好开始绘画了吗？",
     "exportHeroBody": "您的模板基于 {{set}} 制作——选购配套套装，让您的颜色完美对应。",
-    "getTheseIn": "在 {{set}} 中获取这些颜色"
+    "getTheseIn": "在 {{set}} 中获取这些颜色",
+    "buyOnAmazonShort": "在亚马逊购买",
+    "buyTheSet": "购买 {{set}}"
+  },
+  "studio": {
+    "replay": "重播揭示动画",
+    "pickYourColors": "选择你的颜色",
+    "pickYourColorsSub": "将模板与你手边的实体颜料套装相匹配。",
+    "everyNumberMaps": "每个数字都对应一种真实颜色",
+    "biggerSetNote": "较大的调色板需要的不只是小盒装套装——我们为你匹配了更大的套装。",
+    "paletteDrops": "你的调色板 · {{count}} 滴",
+    "paletteCount": "调色板 · {{count}} 种颜色",
+    "tapToIsolate": "点击以单独显示"
   }
 }

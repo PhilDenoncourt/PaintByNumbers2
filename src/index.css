@@ -11,6 +11,32 @@ html, body, #root {
   margin: 0;
 }
 
+/* ── Open Studio redesign ── */
+.font-display {
+  font-family: 'Bricolage Grotesque', 'Noto Sans', sans-serif;
+}
+.font-serif-studio {
+  font-family: 'Spectral', Georgia, serif;
+}
+
+/* Signature "paint-in" reveal: each template region fades out to reveal color. */
+@keyframes pbnFade { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pbnRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pbnGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 216, 20, 0); }
+  50% { box-shadow: 0 0 26px 2px rgba(255, 216, 20, 0.28); }
+}
+
+/* Warm, thin scrollbar for the studio controls/index columns. */
+.pbn-sc::-webkit-scrollbar { width: 7px; height: 7px; }
+.pbn-sc::-webkit-scrollbar-thumb { background: rgba(120, 110, 90, 0.28); border-radius: 6px; }
+.dark .pbn-sc::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); }
+
+/* Honor reduced-motion: skip the staggered reveal, show the finished art at once. */
+@media (prefers-reduced-motion: reduce) {
+  [data-pbn-reveal] { display: none !important; }
+}
+
 /* RTL Support for Arabic and other RTL languages */
 html[dir="rtl"] {
   direction: rtl;

@@ -256,7 +256,8 @@
     "failedImportSession": "Failed to import session: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Switch to {{name}}"
+    "switchToLanguage": "Switch to {{name}}",
+    "languages": "Languages"
   },
   "palette": {
     "legend": "Palette Legend",
@@ -430,8 +431,20 @@
     "heroSubtitle": "Paint with the exact colors in your template",
     "colorCount": "{{count}} colors",
     "buyOnAmazon": "Buy {{set}} on Amazon",
+    "buyOnAmazonShort": "Buy on Amazon",
+    "buyTheSet": "Buy the {{set}}",
     "exportHeroTitle": "Ready to start painting?",
     "exportHeroBody": "Your template is built from {{set}} — grab the matching set so your colors line up perfectly.",
     "getTheseIn": "Get these in {{set}}"
+  },
+  "studio": {
+    "replay": "Replay reveal",
+    "pickYourColors": "Pick your colors",
+    "pickYourColorsSub": "Match the template to a paint set you can hold in your hand.",
+    "everyNumberMaps": "Every number maps to a real color",
+    "biggerSetNote": "A large palette needs more than a small boxed set — we matched a wider set for you.",
+    "paletteDrops": "Your palette · {{count}} drops",
+    "paletteCount": "Palette · {{count}} colors",
+    "tapToIsolate": "tap to isolate"
   }
 }

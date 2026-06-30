@@ -8,7 +8,9 @@
       "Bash(npx tsc:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "PowerShell(npx vitest run 2>&1 | Select-Object -Last 25)",
+      "PowerShell(npx eslint src/components/studio src/components/layout/AppShell.tsx 2>&1 | Select-Object -First 40)"
     ]
   }
 }

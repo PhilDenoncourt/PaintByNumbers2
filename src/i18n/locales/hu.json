@@ -22,6 +22,23 @@
     "lightMode": "Váltás világos módra",
     "darkMode": "Váltás sötét módra"
   },
+  "welcome": {
+    "tagline": "Alakíts bármilyen fotót számok szerint festendő remekművé",
+    "description": "Tölts fel egy fotót, és ez az eszköz elemzi a színeket, egyszerűsíti a képet sorszámozott területekre, és létrehoz egy nyomtatásra kész számozósablon-sablont  mindezt a böngésződben, anélkül, hogy bármilyen adat elhagyná az eszközödet.",
+    "feature1Title": "Intelligens színkvantálás",
+    "feature1Body": "Válassz a K-Means vagy Median Cut algoritmusok közül, hogy a fényképedet a tökéletes színkészletre csökkentsd.",
+    "feature2Title": "Egyedi palettás",
+    "feature2Body": "Használj Crayola zsírkréta előbeállítást, vagy hozd létre a saját palettádat a nulláról.",
+    "feature3Title": "Területek szerkesztése",
+    "feature3Body": "Egyesítsd vagy osztd fel a színterületeket az eredményen a festményed összetettségének finomhangolásához.",
+    "feature4Title": "Exportálás bárhova",
+    "feature4Body": "Töltsd le a kész sablont PDF, PNG vagy méretezhető SVG formátumban.",
+    "howToBegin": "Hogyan kezdj hozzá",
+    "step1": "Húzd és ejtsd le a képet az alábbiakban, kattints a böngészéshez, vagy illesztd be a vágólapról.",
+    "step2": "Állítsd be a paletta méretét és egyéb beállításokat a bal oldali panelen.",
+    "step3": "Kattints a \"Számok szerint festés generálása\" gombra a kép feldolgozásához.",
+    "step4": "Ellenőrizd és finomítsd az eredményt, majd exportáld a sablonod."
+  },
   "uploader": {
     "title": "Kép feltöltése",
     "dragDrop": "Húzza ide a képet vagy a mentett munkamenetet, vagy kattintson a böngészéshez",
@@ -140,7 +157,14 @@
     "browseDescription": "Régiók böngészése módosítások nélkül",
     "mergeDescription": "Kattintson a régiókra a kiválasztásukhoz és egyesítésükhöz",
     "reset": "Alaphelyzetbe állítás",
-    "resetAll": "Az összes alaphelyzetbe állítása"
+    "resetAll": "Az összes alaphelyzetbe állítása",
+    "brandPreset": "Márka előbeállítás",
+    "presetBrand": "Kreatív márka",
+    "presetSet": "Készlet",
+    "buyThisSet": "Készlet megvásárlása",
+    "sharpness": "Élesség",
+    "blurry": "Életlen",
+    "sharpened": "Éles"
   },
   "processing": {
     "quantizing": "Szín kvantálása",
@@ -232,7 +256,8 @@
     "failedImportSession": "A munkamenet importálása sikertelen: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Váltás: {{name}}"
+    "switchToLanguage": "Váltás: {{name}}",
+    "languages": "Nyelvek"
   },
   "palette": {
     "legend": "Paletta jelmagyarázat",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Billentyűparancsok",
     "toggleMerge": "Egyesítés mód váltása",
     "toggleSplit": "Felosztás mód váltása",
-    "returnBrowse": "Vissza a böngészési módhoz"
+    "returnBrowse": "Vissza a böngészési módhoz",
+    "pixels": "px"
   },
   "split": {
     "title": "Régiók felosztása",
@@ -305,22 +331,19 @@
     "split": "Felosztás",
     "analyzing": "Elemzése..."
   },
-  "welcome": {
-    "tagline": "Alakíts bármilyen fotót számok szerint festendő remekművé",
-    "description": "Tölts fel egy fotót, és ez az eszköz elemzi a színeket, egyszerűsíti a képet sorszámozott területekre, és létrehoz egy nyomtatásra kész számozósablon-sablont  mindezt a böngésződben, anélkül, hogy bármilyen adat elhagyná az eszközödet.",
-    "feature1Title": "Intelligens színkvantálás",
-    "feature1Body": "Válassz a K-Means vagy Median Cut algoritmusok közül, hogy a fényképedet a tökéletes színkészletre csökkentsd.",
-    "feature2Title": "Egyedi palettás",
-    "feature2Body": "Használj Crayola zsírkréta előbeállítást, vagy hozd létre a saját palettádat a nulláról.",
-    "feature3Title": "Területek szerkesztése",
-    "feature3Body": "Egyesítsd vagy osztd fel a színterületeket az eredményen a festményed összetettségének finomhangolásához.",
-    "feature4Title": "Exportálás bárhova",
-    "feature4Body": "Töltsd le a kész sablont PDF, PNG vagy méretezhető SVG formátumban.",
-    "howToBegin": "Hogyan kezdj hozzá",
-    "step1": "Húzd és ejtsd le a képet az alábbiakban, kattints a böngészéshez, vagy illesztd be a vágólapról.",
-    "step2": "Állítsd be a paletta méretét és egyéb beállításokat a bal oldali panelen.",
-    "step3": "Kattints a \"Számok szerint festés generálása\" gombra a kép feldolgozásához.",
-    "step4": "Ellenőrizd és finomítsd az eredményt, majd exportáld a sablonod."
+  "cropRotate": {
+    "title": "Vágás és forgatás",
+    "apply": "Alkalmaz",
+    "cancel": "Mégse",
+    "reset": "Visszaállítás",
+    "rotateLeft": "Forgatás 90°-kal balra",
+    "rotateRight": "Forgatás 90°-kal jobbra",
+    "rotate180": "Tükrözés 180°-kal",
+    "cropActive": "Vágás aktív",
+    "rotationActive": "{{angle}}°-os forgatás",
+    "clearAll": "Vágás és forgatás törlése",
+    "noCropApplied": "Teljes kép · Nincs alkalmazott vágás",
+    "dragHandles": "Húzza a fogantyúkat a vágáshoz. A forgatás visszaállítja a vágási keretet."
   },
   "privacy": {
     "tagline": "A képeid teljes egészében a böngésződben kerülnek feldolgozásra  semmi sem töltődik fel vagy tárolódik semmilyen szerveren.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Képfeldolgozás.",
     "imagesBody": "Minden képfeldolgozás helyben, a böngésződben zajlik Web Workers segítségével. A képeid soha nem kerülnek szerverre küldésre.",
     "copyrightTitle": "A te felelősséged.",
-    "copyrightBody": "Te vagy a felelős annak biztosításáért, hogy rendelkezz a szükséges jogokkal a feltöltött képek használatához. Ne tölts fel olyan képeket, amelyeket nem te tulajdonolsz, vagy amelyek használatára nincs engedélyed."
+    "copyrightBody": "Te vagy a felelős annak biztosításáért, hogy rendelkezz a szükséges jogokkal a feltöltött képek használatához. Ne tölts fel olyan képeket, amelyeket nem te tulajdonolsz, vagy amelyek használatára nincs engedélyed.",
+    "analyticsBody": "Ez az alkalmazás Google Analytics-ot használ a használat mérésére (például oldalmegtekintések, feldolgozási folyamatok és exportálási műveletek). A feltöltött képek továbbra is helyben, a böngészőjében kerülnek feldolgozásra, és nem kerülnek elküldésre a szerverünkre."
   },
   "panels": {
     "step": "{{n}}. lépés a 4-ből",
@@ -411,6 +435,18 @@
     "disclosureShort": "Amazon Associate partnerként a minősített vásárlásokból bevételünk származik.",
     "exportHeroTitle": "Készen állsz a festésre?",
     "exportHeroBody": "A sablonod a következőből épül fel: {{set}} — szerezd be a megfelelő készletet, hogy a színeid tökéletesen illeszkedjenek.",
-    "getTheseIn": "Szerezd be ezeket itt: {{set}}"
+    "getTheseIn": "Szerezd be ezeket itt: {{set}}",
+    "buyOnAmazonShort": "Vásárlás az Amazonon",
+    "buyTheSet": "{{set}} megvásárlása"
+  },
+  "studio": {
+    "replay": "Leleplezés újrajátszása",
+    "pickYourColors": "Válaszd ki a színeidet",
+    "pickYourColorsSub": "Illeszd a sablont egy olyan festékkészlethez, amelyet a kezedben tarthatsz.",
+    "everyNumberMaps": "Minden szám egy valódi színnek felel meg",
+    "biggerSetNote": "Egy nagy paletta többet igényel egy kis dobozos készletnél — találtunk neked egy nagyobb készletet.",
+    "paletteDrops": "Palettád · {{count}} csepp",
+    "paletteCount": "Paletta · {{count}} szín",
+    "tapToIsolate": "koppints az elkülönítéshez"
   }
 }

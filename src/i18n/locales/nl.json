@@ -22,6 +22,23 @@
     "lightMode": "Overschakelen naar lichte modus",
     "darkMode": "Overschakelen naar donkere modus"
   },
+  "welcome": {
+    "tagline": "Verander elke foto in een schilderen-op-nummer meesterwerk",
+    "description": "Upload een foto en dit hulpmiddel analyseert de kleuren, vereenvoudigt de afbeelding tot genummerde gebieden en genereert een printklaar schilderen-op-nummer sjabloon  alles in je browser, zonder dat er ooit gegevens je apparaat verlaten.",
+    "feature1Title": "Slimme kleurkwantisatie",
+    "feature1Body": "Kies uit K-Means of Median Cut algoritmen om je foto te reduceren tot de perfecte set kleuren.",
+    "feature2Title": "Aangepaste paletten",
+    "feature2Body": "Gebruik een Crayola kleurpotlood voorinstelling of maak je eigen palet van nul.",
+    "feature3Title": "Gebieden bewerken",
+    "feature3Body": "Kleurgebieden in het resultaat samenvoegen of splitsen om de complexiteit van je schilderij fijn af te stellen.",
+    "feature4Title": "Overal exporteren",
+    "feature4Body": "Download het afgeronde sjabloon als PDF, PNG of schaalbare SVG.",
+    "howToBegin": "Zo begin je",
+    "step1": "Sleep een afbeelding hieronder, klik om te bladeren of plak vanuit het klembord.",
+    "step2": "Pas de paletgrootte en andere instellingen aan in het linker paneel.",
+    "step3": "Klik op \"Schilderen op nummer genereren\" om de afbeelding te verwerken.",
+    "step4": "Controleer en verfijn het resultaat, exporteer dan je sjabloon."
+  },
   "uploader": {
     "title": "Afbeelding Uploaden",
     "dragDrop": "Sleep een afbeelding of opgeslagen sessie hier, of klik om te bladeren",
@@ -140,7 +157,14 @@
     "browseDescription": "Blader door regio's zonder wijzigingen",
     "mergeDescription": "Klik op regio's om ze te selecteren en samen te voegen",
     "reset": "Opnieuw instellen",
-    "resetAll": "Alles Opnieuw Instellen"
+    "resetAll": "Alles Opnieuw Instellen",
+    "brandPreset": "Merkvoorinstelling",
+    "presetBrand": "Creatief merk",
+    "presetSet": "Set",
+    "buyThisSet": "Koop deze set",
+    "sharpness": "Scherpte",
+    "blurry": "Wazig",
+    "sharpened": "Scherp"
   },
   "processing": {
     "quantizing": "Kleuren quantiseren",
@@ -232,7 +256,8 @@
     "failedImportSession": "Sessie importeren mislukt: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Overschakelen naar {{name}}"
+    "switchToLanguage": "Overschakelen naar {{name}}",
+    "languages": "Talen"
   },
   "palette": {
     "legend": "Paletlegenda",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Toetsenbordsnelkoppelingen",
     "toggleMerge": "Samenvoegingsmodus in-/uitschakelen",
     "toggleSplit": "Splitsingsmodus in-/uitschakelen",
-    "returnBrowse": "Terug naar Bladermodus"
+    "returnBrowse": "Terug naar Bladermodus",
+    "pixels": "px"
   },
   "split": {
     "title": "Regio's Splitsen",
@@ -305,22 +331,19 @@
     "split": "Splitsen",
     "analyzing": "Analyseren..."
   },
-  "welcome": {
-    "tagline": "Verander elke foto in een schilderen-op-nummer meesterwerk",
-    "description": "Upload een foto en dit hulpmiddel analyseert de kleuren, vereenvoudigt de afbeelding tot genummerde gebieden en genereert een printklaar schilderen-op-nummer sjabloon  alles in je browser, zonder dat er ooit gegevens je apparaat verlaten.",
-    "feature1Title": "Slimme kleurkwantisatie",
-    "feature1Body": "Kies uit K-Means of Median Cut algoritmen om je foto te reduceren tot de perfecte set kleuren.",
-    "feature2Title": "Aangepaste paletten",
-    "feature2Body": "Gebruik een Crayola kleurpotlood voorinstelling of maak je eigen palet van nul.",
-    "feature3Title": "Gebieden bewerken",
-    "feature3Body": "Kleurgebieden in het resultaat samenvoegen of splitsen om de complexiteit van je schilderij fijn af te stellen.",
-    "feature4Title": "Overal exporteren",
-    "feature4Body": "Download het afgeronde sjabloon als PDF, PNG of schaalbare SVG.",
-    "howToBegin": "Zo begin je",
-    "step1": "Sleep een afbeelding hieronder, klik om te bladeren of plak vanuit het klembord.",
-    "step2": "Pas de paletgrootte en andere instellingen aan in het linker paneel.",
-    "step3": "Klik op \"Schilderen op nummer genereren\" om de afbeelding te verwerken.",
-    "step4": "Controleer en verfijn het resultaat, exporteer dan je sjabloon."
+  "cropRotate": {
+    "title": "Bijsnijden & Draaien",
+    "apply": "Toepassen",
+    "cancel": "Annuleren",
+    "reset": "Resetten",
+    "rotateLeft": "90° naar links draaien",
+    "rotateRight": "90° naar rechts draaien",
+    "rotate180": "180° spiegelen",
+    "cropActive": "Bijsnijden actief",
+    "rotationActive": "{{angle}}° rotatie",
+    "clearAll": "Bijsnijden en rotatie wissen",
+    "noCropApplied": "Volledige afbeelding · Geen bijsnijding toegepast",
+    "dragHandles": "Sleep de handvatten om bij te snijden. Draaien zet het bijsnijkader terug."
   },
   "privacy": {
     "tagline": "Je afbeeldingen worden volledig in je browser verwerkt  er wordt niets geüpload of opgeslagen op een server.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Afbeeldingsverwerking.",
     "imagesBody": "Alle afbeeldingsverwerking wordt lokaal in je browser uitgevoerd met behulp van Web Workers. Je afbeeldingen worden nooit naar een server verzonden.",
     "copyrightTitle": "Jouw verantwoordelijkheid.",
-    "copyrightBody": "Je bent verantwoordelijk voor het waarborgen dat je de nodige rechten hebt om de afbeeldingen die je uploadt te gebruiken. Upload geen afbeeldingen die je niet bezit of waarvoor je geen toestemming hebt."
+    "copyrightBody": "Je bent verantwoordelijk voor het waarborgen dat je de nodige rechten hebt om de afbeeldingen die je uploadt te gebruiken. Upload geen afbeeldingen die je niet bezit of waarvoor je geen toestemming hebt.",
+    "analyticsBody": "Deze applicatie gebruikt Google Analytics om het gebruik te meten (bijvoorbeeld paginaweergaven, verwerkingen en exportacties). Geüploade afbeeldingen worden nog steeds lokaal in je browser verwerkt en niet naar onze server verzonden."
   },
   "panels": {
     "step": "Stap {{n}} van 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Als Amazon Associate verdienen we aan in aanmerking komende aankopen.",
     "exportHeroTitle": "Klaar om te beginnen met schilderen?",
     "exportHeroBody": "Je sjabloon is gebouwd op {{set}} — pak de bijpassende set zodat je kleuren perfect aansluiten.",
-    "getTheseIn": "Verkrijg deze in {{set}}"
+    "getTheseIn": "Verkrijg deze in {{set}}",
+    "buyOnAmazonShort": "Koop op Amazon",
+    "buyTheSet": "Koop {{set}}"
+  },
+  "studio": {
+    "replay": "Onthulling opnieuw afspelen",
+    "pickYourColors": "Kies je kleuren",
+    "pickYourColorsSub": "Koppel de sjabloon aan een verfset die je echt in handen kunt houden.",
+    "everyNumberMaps": "Elk nummer komt overeen met een echte kleur",
+    "biggerSetNote": "Een groot palet heeft meer nodig dan een kleine doosset — we hebben een grotere set voor je gevonden.",
+    "paletteDrops": "Jouw palet · {{count}} druppels",
+    "paletteCount": "Palet · {{count}} kleuren",
+    "tapToIsolate": "tik om te isoleren"
   }
 }

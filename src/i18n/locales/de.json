@@ -22,6 +22,23 @@
     "lightMode": "Zum hellen Modus wechseln",
     "darkMode": "Zum dunklen Modus wechseln"
   },
+  "welcome": {
+    "tagline": "Verwandle jedes Foto in ein Malen-nach-Zahlen-Meisterwerk",
+    "description": "Lade ein Foto hoch und dieses Tool analysiert die Farben, vereinfacht das Bild in nummerierte Bereiche und erstellt eine druckfertige Malen-nach-Zahlen-Vorlage  alles in deinem Browser, ohne dass Daten das Gerät verlassen.",
+    "feature1Title": "Intelligente Farbquantisierung",
+    "feature1Body": "Wähle zwischen den Algorithmen K-Means oder Median Cut, um dein Foto auf die perfekte Farbpalette zu reduzieren.",
+    "feature2Title": "Eigene Paletten",
+    "feature2Body": "Verwende eine Crayola-Buntstift-Voreinstellung oder erstelle deine eigene Palette von Grund auf.",
+    "feature3Title": "Bereiche bearbeiten",
+    "feature3Body": "Farbregionen im Ergebnis zusammenführen oder aufteilen, um die Komplexität deines Gemäldes fein abzustimmen.",
+    "feature4Title": "Export überall",
+    "feature4Body": "Lade die fertige Vorlage als PDF, PNG oder skalierbares SVG herunter.",
+    "howToBegin": "So fängst du an",
+    "step1": "Ziehe ein Bild hierher, klicke zum Durchsuchen oder füge es aus der Zwischenablage ein.",
+    "step2": "Passe die Palettengröße und andere Einstellungen im linken Bereich an.",
+    "step3": "Klicke auf \"Malen nach Zahlen erstellen\", um das Bild zu verarbeiten.",
+    "step4": "Überprüfe und verfeinere das Ergebnis, dann exportiere deine Vorlage."
+  },
   "uploader": {
     "title": "Bild hochladen",
     "dragDrop": "Ziehen Sie ein Bild oder eine gespeicherte Sitzung hierher, oder klicken Sie zum Durchsuchen",
@@ -140,7 +157,14 @@
     "browseDescription": "Durchsuchen Sie Regionen ohne Änderungen",
     "mergeDescription": "Klicken Sie auf Regionen, um sie auszuwählen und zusammenzuführen",
     "reset": "Zurücksetzen",
-    "resetAll": "Alles zurücksetzen"
+    "resetAll": "Alles zurücksetzen",
+    "brandPreset": "Marken-Voreinstellung",
+    "presetBrand": "Kreativmarke",
+    "presetSet": "Set",
+    "buyThisSet": "Dieses Set kaufen",
+    "sharpness": "Schärfe",
+    "blurry": "Unscharf",
+    "sharpened": "Geschärft"
   },
   "processing": {
     "quantizing": "Farben quantisieren",
@@ -232,7 +256,8 @@
     "failedImportSession": "Sitzungsimport fehlgeschlagen: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Zu {{name}} wechseln"
+    "switchToLanguage": "Zu {{name}} wechseln",
+    "languages": "Sprachen"
   },
   "palette": {
     "legend": "Palettenumfang",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Tastaturkürzel",
     "toggleMerge": "Zusammenführungsmodus umschalten",
     "toggleSplit": "Aufteilen-Modus umschalten",
-    "returnBrowse": "Zurück zum Durchsuchen-Modus"
+    "returnBrowse": "Zurück zum Durchsuchen-Modus",
+    "pixels": "px"
   },
   "split": {
     "title": "Regionen aufteilen",
@@ -305,22 +331,19 @@
     "split": "Aufteilen",
     "analyzing": "Wird analysiert..."
   },
-  "welcome": {
-    "tagline": "Verwandle jedes Foto in ein Malen-nach-Zahlen-Meisterwerk",
-    "description": "Lade ein Foto hoch und dieses Tool analysiert die Farben, vereinfacht das Bild in nummerierte Bereiche und erstellt eine druckfertige Malen-nach-Zahlen-Vorlage  alles in deinem Browser, ohne dass Daten das Gerät verlassen.",
-    "feature1Title": "Intelligente Farbquantisierung",
-    "feature1Body": "Wähle zwischen den Algorithmen K-Means oder Median Cut, um dein Foto auf die perfekte Farbpalette zu reduzieren.",
-    "feature2Title": "Eigene Paletten",
-    "feature2Body": "Verwende eine Crayola-Buntstift-Voreinstellung oder erstelle deine eigene Palette von Grund auf.",
-    "feature3Title": "Bereiche bearbeiten",
-    "feature3Body": "Farbregionen im Ergebnis zusammenführen oder aufteilen, um die Komplexität deines Gemäldes fein abzustimmen.",
-    "feature4Title": "Export überall",
-    "feature4Body": "Lade die fertige Vorlage als PDF, PNG oder skalierbares SVG herunter.",
-    "howToBegin": "So fängst du an",
-    "step1": "Ziehe ein Bild hierher, klicke zum Durchsuchen oder füge es aus der Zwischenablage ein.",
-    "step2": "Passe die Palettengröße und andere Einstellungen im linken Bereich an.",
-    "step3": "Klicke auf \"Malen nach Zahlen erstellen\", um das Bild zu verarbeiten.",
-    "step4": "Überprüfe und verfeinere das Ergebnis, dann exportiere deine Vorlage."
+  "cropRotate": {
+    "title": "Zuschneiden & Drehen",
+    "apply": "Anwenden",
+    "cancel": "Abbrechen",
+    "reset": "Zurücksetzen",
+    "rotateLeft": "90° nach links drehen",
+    "rotateRight": "90° nach rechts drehen",
+    "rotate180": "Um 180° drehen",
+    "cropActive": "Zuschnitt aktiv",
+    "rotationActive": "{{angle}}° Drehung",
+    "clearAll": "Zuschnitt & Drehung zurücksetzen",
+    "noCropApplied": "Vollständiges Bild · Kein Zuschnitt angewendet",
+    "dragHandles": "Ziehen Sie die Griffe, um zuzuschneiden. Drehen setzt den Zuschnittrahmen zurück."
   },
   "privacy": {
     "tagline": "Deine Bilder werden vollständig in deinem Browser verarbeitet  nichts wird hochgeladen oder auf einem Server gespeichert.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Bildverarbeitung.",
     "imagesBody": "Die gesamte Bildverarbeitung erfolgt lokal in deinem Browser mit Web Workers. Deine Bilder werden niemals an einen Server gesendet.",
     "copyrightTitle": "Deine Verantwortung.",
-    "copyrightBody": "Du bist dafür verantwortlich sicherzustellen, dass du die erforderlichen Rechte zur Nutzung aller hochgeladenen Bilder besitzt. Lade keine Bilder hoch, die du nicht besitzt oder für deren Verwendung du keine Berechtigung hast."
+    "copyrightBody": "Du bist dafür verantwortlich sicherzustellen, dass du die erforderlichen Rechte zur Nutzung aller hochgeladenen Bilder besitzt. Lade keine Bilder hoch, die du nicht besitzt oder für deren Verwendung du keine Berechtigung hast.",
+    "analyticsBody": "Diese Anwendung nutzt Google Analytics, um die Nutzung zu messen (z. B. Seitenaufrufe, Verarbeitungsvorgänge und Exportaktionen). Hochgeladene Bilder werden weiterhin lokal in Ihrem Browser verarbeitet und nicht an unseren Server gesendet."
   },
   "panels": {
     "step": "Schritt {{n}} von 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Als Amazon-Partner verdienen wir an qualifizierten Käufen.",
     "exportHeroTitle": "Bereit zum Loslegen?",
     "exportHeroBody": "Deine Vorlage basiert auf {{set}} — hol dir das passende Set, damit deine Farben perfekt übereinstimmen.",
-    "getTheseIn": "Erhältlich in {{set}}"
+    "getTheseIn": "Erhältlich in {{set}}",
+    "buyOnAmazonShort": "Bei Amazon kaufen",
+    "buyTheSet": "{{set}} kaufen"
+  },
+  "studio": {
+    "replay": "Enthüllung wiederholen",
+    "pickYourColors": "Wähle deine Farben",
+    "pickYourColorsSub": "Ordne die Vorlage einem Malset zu, das du in den Händen halten kannst.",
+    "everyNumberMaps": "Jede Zahl steht für eine echte Farbe",
+    "biggerSetNote": "Eine große Palette braucht mehr als ein kleines Boxset — wir haben ein größeres Set für dich gefunden.",
+    "paletteDrops": "Deine Palette · {{count}} Tropfen",
+    "paletteCount": "Palette · {{count}} Farben",
+    "tapToIsolate": "tippen zum Isolieren"
   }
 }

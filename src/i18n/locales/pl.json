@@ -22,6 +22,23 @@
     "lightMode": "Przełącz na tryb jasny",
     "darkMode": "Przełącz na tryb ciemny"
   },
+  "welcome": {
+    "tagline": "Zamień dowolne zdjęcie w arcydzieło malowania po numerach",
+    "description": "Prześlij zdjęcie, a to narzędzie przeanalizuje kolory, uprości obraz do numerowanych obszarów i wygeneruje gotowy do wydruku szablon malowania po numerach  wszystko w Twojej przeglądarce, bez wysyłania jakichkolwiek danych poza urządzenie.",
+    "feature1Title": "Inteligentna kwantyzacja kolorów",
+    "feature1Body": "Wybierz algorytm K-Means lub Median Cut, aby zredukować zdjęcie do idealnego zestawu kolorów.",
+    "feature2Title": "Niestandardowe palety",
+    "feature2Body": "Użyj predefiniowanej palety kredek Crayola lub stwórz własną paletę od podstaw.",
+    "feature3Title": "Edycja obszarów",
+    "feature3Body": "Scalaj lub dziel obszary kolorów w wyniku, aby dostroić złożoność swojego obrazu.",
+    "feature4Title": "Eksportuj wszędzie",
+    "feature4Body": "Pobierz gotowy szablon jako PDF, PNG lub skalowalny SVG.",
+    "howToBegin": "Jak zacząć",
+    "step1": "Przeciągnij i upuść obraz poniżej, kliknij, aby go znaleźć, lub wklej ze schowka.",
+    "step2": "Dostosuj rozmiar palety i inne ustawienia w lewym panelu.",
+    "step3": "Kliknij \"Generuj malowanie po numerach\", aby przetworzyć obraz.",
+    "step4": "Przejrzyj i dopracuj wynik, a następnie wyeksportuj szablon."
+  },
   "uploader": {
     "title": "Prześlij Obraz",
     "dragDrop": "Przeciągnij tutaj obraz lub zapisaną sesję, lub kliknij aby przeglądać",
@@ -140,7 +157,14 @@
     "browseDescription": "Przeglądaj regiony bez modyfikacji",
     "mergeDescription": "Kliknij na regiony, aby je wybrać i scalić",
     "reset": "Resetuj",
-    "resetAll": "Resetuj Wszystko"
+    "resetAll": "Resetuj Wszystko",
+    "brandPreset": "Zestaw marki",
+    "presetBrand": "Marka kreatywna",
+    "presetSet": "Zestaw",
+    "buyThisSet": "Kup ten zestaw",
+    "sharpness": "Ostrość",
+    "blurry": "Rozmazane",
+    "sharpened": "Wyostrzone"
   },
   "processing": {
     "quantizing": "Kwantyzacja Kolorów",
@@ -232,7 +256,8 @@
     "failedImportSession": "Błąd importu sesji: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Przełącz na {{name}}"
+    "switchToLanguage": "Przełącz na {{name}}",
+    "languages": "Języki"
   },
   "palette": {
     "legend": "Legenda Palety",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Skróty Klawiszowe",
     "toggleMerge": "Przełącz Tryb Scalania",
     "toggleSplit": "Przełącz Tryb Podziału",
-    "returnBrowse": "Powróć do Trybu Przeglądania"
+    "returnBrowse": "Powróć do Trybu Przeglądania",
+    "pixels": "px"
   },
   "split": {
     "title": "Podziel Regiony",
@@ -305,22 +331,19 @@
     "split": "Podziel",
     "analyzing": "Analizowanie..."
   },
-  "welcome": {
-    "tagline": "Zamień dowolne zdjęcie w arcydzieło malowania po numerach",
-    "description": "Prześlij zdjęcie, a to narzędzie przeanalizuje kolory, uprości obraz do numerowanych obszarów i wygeneruje gotowy do wydruku szablon malowania po numerach  wszystko w Twojej przeglądarce, bez wysyłania jakichkolwiek danych poza urządzenie.",
-    "feature1Title": "Inteligentna kwantyzacja kolorów",
-    "feature1Body": "Wybierz algorytm K-Means lub Median Cut, aby zredukować zdjęcie do idealnego zestawu kolorów.",
-    "feature2Title": "Niestandardowe palety",
-    "feature2Body": "Użyj predefiniowanej palety kredek Crayola lub stwórz własną paletę od podstaw.",
-    "feature3Title": "Edycja obszarów",
-    "feature3Body": "Scalaj lub dziel obszary kolorów w wyniku, aby dostroić złożoność swojego obrazu.",
-    "feature4Title": "Eksportuj wszędzie",
-    "feature4Body": "Pobierz gotowy szablon jako PDF, PNG lub skalowalny SVG.",
-    "howToBegin": "Jak zacząć",
-    "step1": "Przeciągnij i upuść obraz poniżej, kliknij, aby go znaleźć, lub wklej ze schowka.",
-    "step2": "Dostosuj rozmiar palety i inne ustawienia w lewym panelu.",
-    "step3": "Kliknij \"Generuj malowanie po numerach\", aby przetworzyć obraz.",
-    "step4": "Przejrzyj i dopracuj wynik, a następnie wyeksportuj szablon."
+  "cropRotate": {
+    "title": "Przytnij i obróć",
+    "apply": "Zastosuj",
+    "cancel": "Anuluj",
+    "reset": "Resetuj",
+    "rotateLeft": "Obróć o 90° w lewo",
+    "rotateRight": "Obróć o 90° w prawo",
+    "rotate180": "Obróć o 180°",
+    "cropActive": "Przycinanie aktywne",
+    "rotationActive": "Obrót o {{angle}}°",
+    "clearAll": "Wyczyść przycinanie i obrót",
+    "noCropApplied": "Pełny obraz · Brak przycięcia",
+    "dragHandles": "Przeciągnij uchwyty, aby przyciąć. Obrót resetuje ramkę przycinania."
   },
   "privacy": {
     "tagline": "Twoje obrazy są przetwarzane wyłącznie w Twojej przeglądarce — nic nie jest przesyłane ani przechowywane na żadnym serwerze.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Przetwarzanie obrazów.",
     "imagesBody": "Całe przetwarzanie obrazów odbywa się lokalnie w Twojej przeglądarce przy użyciu Web Workers. Twoje obrazy nigdy nie są wysyłane na serwer.",
     "copyrightTitle": "Twoja odpowiedzialność.",
-    "copyrightBody": "Jesteś odpowiedzialny za zapewnienie, że posiadasz niezbędne prawa do korzystania z przesyłanych obrazów. Nie przesyłaj obrazów, których nie jesteś właścicielem lub do których używania nie masz zgody."
+    "copyrightBody": "Jesteś odpowiedzialny za zapewnienie, że posiadasz niezbędne prawa do korzystania z przesyłanych obrazów. Nie przesyłaj obrazów, których nie jesteś właścicielem lub do których używania nie masz zgody.",
+    "analyticsBody": "Ta aplikacja używa Google Analytics do mierzenia użytkowania (np. wyświetleń stron, uruchomień przetwarzania i eksportów). Przesłane obrazy są nadal przetwarzane lokalnie w przeglądarce i nie są wysyłane na nasz serwer."
   },
   "panels": {
     "step": "Krok {{n}} z 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Jako uczestnik programu Amazon Associates zarabiamy na kwalifikujących się zakupach.",
     "exportHeroTitle": "Gotowy, aby zacząć malować?",
     "exportHeroBody": "Twój szablon jest oparty na {{set}} — zdobądź pasujący zestaw, aby Twoje kolory idealnie się zgadzały.",
-    "getTheseIn": "Zdobądź je w {{set}}"
+    "getTheseIn": "Zdobądź je w {{set}}",
+    "buyOnAmazonShort": "Kup na Amazon",
+    "buyTheSet": "Kup {{set}}"
+  },
+  "studio": {
+    "replay": "Powtórz odsłonięcie",
+    "pickYourColors": "Wybierz swoje kolory",
+    "pickYourColorsSub": "Dopasuj szablon do zestawu farb, który możesz trzymać w dłoni.",
+    "everyNumberMaps": "Każdy numer odpowiada rzeczywistemu kolorowi",
+    "biggerSetNote": "Duża paleta wymaga więcej niż mały zestaw w pudełku — dobraliśmy dla Ciebie większy zestaw.",
+    "paletteDrops": "Twoja paleta · {{count}} kropli",
+    "paletteCount": "Paleta · {{count}} kolorów",
+    "tapToIsolate": "dotknij, aby wyizolować"
   }
 }

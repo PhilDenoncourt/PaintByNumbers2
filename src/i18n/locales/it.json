@@ -22,6 +22,23 @@
     "lightMode": "Passa alla modalità chiara",
     "darkMode": "Passa alla modalità scura"
   },
+  "welcome": {
+    "tagline": "Trasforma qualsiasi foto in un capolavoro da dipingere per numeri",
+    "description": "Carica una foto e questo strumento analizzerà i colori, semplificherà l'immagine in regioni numerate e genererà un modello di pittura per numeri pronto per la stampa  tutto nel tuo browser, senza che alcun dato lasci il tuo dispositivo.",
+    "feature1Title": "Quantizzazione intelligente dei colori",
+    "feature1Body": "Scegli tra gli algoritmi K-Means o Median Cut per ridurre la foto al set di colori perfetto.",
+    "feature2Title": "Palette personalizzate",
+    "feature2Body": "Usa un preset di pastelli Crayola o crea la tua palette da zero.",
+    "feature3Title": "Modifica delle regioni",
+    "feature3Body": "Unisci o dividi le regioni di colore nel risultato per affinare la complessità del tuo dipinto.",
+    "feature4Title": "Esporta ovunque",
+    "feature4Body": "Scarica il modello finito come PDF, PNG o SVG scalabile.",
+    "howToBegin": "Come iniziare",
+    "step1": "Trascina e rilascia un'immagine qui sotto, fai clic per sfogliare o incolla dagli appunti.",
+    "step2": "Regola le dimensioni della palette e altre impostazioni nel pannello di sinistra.",
+    "step3": "Fai clic su \"Genera pittura per numeri\" per elaborare l'immagine.",
+    "step4": "Esamina e perfeziona il risultato, poi esporta il tuo modello."
+  },
   "uploader": {
     "title": "Carica Immagine",
     "dragDrop": "Trascina un'immagine o una sessione salvata qui, oppure fai clic per sfogliare",
@@ -140,7 +157,14 @@
     "browseDescription": "Sfoglia le regioni senza modifiche",
     "mergeDescription": "Fai clic sulle regioni per selezionarle e unirle",
     "reset": "Ripristina",
-    "resetAll": "Ripristina Tutto"
+    "resetAll": "Ripristina Tutto",
+    "brandPreset": "Preset del marchio",
+    "presetBrand": "Marchio creativo",
+    "presetSet": "Set",
+    "buyThisSet": "Acquista questo set",
+    "sharpness": "Nitidezza",
+    "blurry": "Sfocato",
+    "sharpened": "Nitido"
   },
   "processing": {
     "quantizing": "Quantizzazione dei colori",
@@ -232,7 +256,8 @@
     "failedImportSession": "Importazione sessione non riuscita: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Passa a {{name}}"
+    "switchToLanguage": "Passa a {{name}}",
+    "languages": "Lingue"
   },
   "palette": {
     "legend": "Legenda Tavolozza",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Scorciatoie da Tastiera",
     "toggleMerge": "Attiva/Disattiva Modalità Unione",
     "toggleSplit": "Attiva/Disattiva Modalità Divisione",
-    "returnBrowse": "Ritorna alla Modalità Sfoglia"
+    "returnBrowse": "Ritorna alla Modalità Sfoglia",
+    "pixels": "px"
   },
   "split": {
     "title": "Dividi Regioni",
@@ -305,22 +331,19 @@
     "split": "Dividi",
     "analyzing": "Analisi in corso..."
   },
-  "welcome": {
-    "tagline": "Trasforma qualsiasi foto in un capolavoro da dipingere per numeri",
-    "description": "Carica una foto e questo strumento analizzerà i colori, semplificherà l'immagine in regioni numerate e genererà un modello di pittura per numeri pronto per la stampa  tutto nel tuo browser, senza che alcun dato lasci il tuo dispositivo.",
-    "feature1Title": "Quantizzazione intelligente dei colori",
-    "feature1Body": "Scegli tra gli algoritmi K-Means o Median Cut per ridurre la foto al set di colori perfetto.",
-    "feature2Title": "Palette personalizzate",
-    "feature2Body": "Usa un preset di pastelli Crayola o crea la tua palette da zero.",
-    "feature3Title": "Modifica delle regioni",
-    "feature3Body": "Unisci o dividi le regioni di colore nel risultato per affinare la complessità del tuo dipinto.",
-    "feature4Title": "Esporta ovunque",
-    "feature4Body": "Scarica il modello finito come PDF, PNG o SVG scalabile.",
-    "howToBegin": "Come iniziare",
-    "step1": "Trascina e rilascia un'immagine qui sotto, fai clic per sfogliare o incolla dagli appunti.",
-    "step2": "Regola le dimensioni della palette e altre impostazioni nel pannello di sinistra.",
-    "step3": "Fai clic su \"Genera pittura per numeri\" per elaborare l'immagine.",
-    "step4": "Esamina e perfeziona il risultato, poi esporta il tuo modello."
+  "cropRotate": {
+    "title": "Ritaglia e Ruota",
+    "apply": "Applica",
+    "cancel": "Annulla",
+    "reset": "Ripristina",
+    "rotateLeft": "Ruota di 90° a sinistra",
+    "rotateRight": "Ruota di 90° a destra",
+    "rotate180": "Capovolgi di 180°",
+    "cropActive": "Ritaglio attivo",
+    "rotationActive": "Rotazione di {{angle}}°",
+    "clearAll": "Cancella ritaglio e rotazione",
+    "noCropApplied": "Immagine completa · Nessun ritaglio applicato",
+    "dragHandles": "Trascina le maniglie per ritagliare. La rotazione reimposta il riquadro di ritaglio."
   },
   "privacy": {
     "tagline": "Le tue immagini vengono elaborate interamente nel tuo browser  niente viene caricato o archiviato su alcun server.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Elaborazione delle immagini.",
     "imagesBody": "Tutta l'elaborazione delle immagini viene eseguita localmente nel tuo browser tramite Web Workers. Le tue immagini non vengono mai inviate a un server.",
     "copyrightTitle": "La tua responsabilità.",
-    "copyrightBody": "Sei responsabile di assicurarti di avere i diritti necessari per utilizzare le immagini che carichi. Non caricare immagini che non possiedi o per cui non hai il permesso di utilizzo."
+    "copyrightBody": "Sei responsabile di assicurarti di avere i diritti necessari per utilizzare le immagini che carichi. Non caricare immagini che non possiedi o per cui non hai il permesso di utilizzo.",
+    "analyticsBody": "Questa applicazione utilizza Google Analytics per misurare l'utilizzo (ad esempio visualizzazioni di pagina, elaborazioni eseguite e azioni di esportazione). Le immagini caricate vengono comunque elaborate localmente nel tuo browser e non vengono inviate al nostro server."
   },
   "panels": {
     "step": "Passo {{n}} di 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "In qualità di Affiliato Amazon riceviamo un guadagno dagli acquisti idonei.",
     "exportHeroTitle": "Pronto a iniziare a dipingere?",
     "exportHeroBody": "Il tuo modello è costruito da {{set}} — procurati il set corrispondente così i tuoi colori si allineano perfettamente.",
-    "getTheseIn": "Ottieni questi in {{set}}"
+    "getTheseIn": "Ottieni questi in {{set}}",
+    "buyOnAmazonShort": "Acquista su Amazon",
+    "buyTheSet": "Acquista {{set}}"
+  },
+  "studio": {
+    "replay": "Riproduci di nuovo la rivelazione",
+    "pickYourColors": "Scegli i tuoi colori",
+    "pickYourColorsSub": "Abbina il modello a un set di colori che puoi tenere in mano.",
+    "everyNumberMaps": "Ogni numero corrisponde a un colore reale",
+    "biggerSetNote": "Una tavolozza grande richiede più di un piccolo set in scatola: abbiamo trovato un set più ampio per te.",
+    "paletteDrops": "La tua tavolozza · {{count}} gocce",
+    "paletteCount": "Tavolozza · {{count}} colori",
+    "tapToIsolate": "tocca per isolare"
   }
 }

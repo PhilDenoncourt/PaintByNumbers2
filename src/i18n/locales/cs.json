@@ -22,6 +22,23 @@
     "lightMode": "Přepnout na světlý režim",
     "darkMode": "Přepnout na tmavý režim"
   },
+  "welcome": {
+    "tagline": "Proměňte jakoukoli fotografii v malování podle čísel",
+    "description": "Nahrajte fotografii a tento nástroj analyzuje barvy, zjednoduší obrázek do číslovaných oblastí a vygeneruje šablonu malování podle čísel připravenou k tisku  vše ve vašem prohlížeči, přičemž žádná data nikdy neopustí vaše zařízení.",
+    "feature1Title": "Inteligentní kvantizace barev",
+    "feature1Body": "Vyberte si z algoritmů K-Means nebo Median Cut pro redukci fotografie na dokonalou sadu barev.",
+    "feature2Title": "Vlastní palety",
+    "feature2Body": "Použijte předvolbu pastelek Crayola nebo si sestavte vlastní paletu od základu.",
+    "feature3Title": "Úprava oblastí",
+    "feature3Body": "Slučujte nebo rozdělujte barevné oblasti ve výsledku pro doladění složitosti vaší malby.",
+    "feature4Title": "Export kamkoli",
+    "feature4Body": "Stáhněte hotovou šablonu jako PDF, PNG nebo škálovatelné SVG.",
+    "howToBegin": "Jak začít",
+    "step1": "Přetáhněte obrázek dolů, klikněte pro procházení nebo vložte ze schránky.",
+    "step2": "Upravte velikost palety a další nastavení v levém panelu.",
+    "step3": "Klikněte na \"Vytvořit malování podle čísel\" pro zpracování obrázku.",
+    "step4": "Zkontrolujte a upřesněte výsledek, poté exportujte svou šablonu."
+  },
   "uploader": {
     "title": "Nahrát Obrázek",
     "dragDrop": "Přetáhněte obrázek nebo uloženou relaci sem nebo kliknutím procházejte",
@@ -140,7 +157,14 @@
     "browseDescription": "Procházejte oblasti bez úprav",
     "mergeDescription": "Kliknutím na oblasti je vyberte a sloučte",
     "reset": "Obnovit",
-    "resetAll": "Obnovit Vše"
+    "resetAll": "Obnovit Vše",
+    "brandPreset": "Předvolba značky",
+    "presetBrand": "Kreativní značka",
+    "presetSet": "Sada",
+    "buyThisSet": "Koupit tuto sadu",
+    "sharpness": "Ostrost",
+    "blurry": "Rozmazané",
+    "sharpened": "Zaostřené"
   },
   "processing": {
     "quantizing": "Kvantizace Barev",
@@ -232,7 +256,8 @@
     "failedImportSession": "Import relace se nezdařil: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Přepnout na {{name}}"
+    "switchToLanguage": "Přepnout na {{name}}",
+    "languages": "Jazyky"
   },
   "palette": {
     "legend": "Legenda Palety",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Klávesové Zkratky",
     "toggleMerge": "Přepnout Režim Sloučení",
     "toggleSplit": "Přepnout Režim Rozdělení",
-    "returnBrowse": "Vrátit se do Režimu Procházení"
+    "returnBrowse": "Vrátit se do Režimu Procházení",
+    "pixels": "px"
   },
   "split": {
     "title": "Rozdělit Oblasti",
@@ -305,22 +331,19 @@
     "split": "Rozdělit",
     "analyzing": "Analýza..."
   },
-  "welcome": {
-    "tagline": "Proměňte jakoukoli fotografii v malování podle čísel",
-    "description": "Nahrajte fotografii a tento nástroj analyzuje barvy, zjednoduší obrázek do číslovaných oblastí a vygeneruje šablonu malování podle čísel připravenou k tisku  vše ve vašem prohlížeči, přičemž žádná data nikdy neopustí vaše zařízení.",
-    "feature1Title": "Inteligentní kvantizace barev",
-    "feature1Body": "Vyberte si z algoritmů K-Means nebo Median Cut pro redukci fotografie na dokonalou sadu barev.",
-    "feature2Title": "Vlastní palety",
-    "feature2Body": "Použijte předvolbu pastelek Crayola nebo si sestavte vlastní paletu od základu.",
-    "feature3Title": "Úprava oblastí",
-    "feature3Body": "Slučujte nebo rozdělujte barevné oblasti ve výsledku pro doladění složitosti vaší malby.",
-    "feature4Title": "Export kamkoli",
-    "feature4Body": "Stáhněte hotovou šablonu jako PDF, PNG nebo škálovatelné SVG.",
-    "howToBegin": "Jak začít",
-    "step1": "Přetáhněte obrázek dolů, klikněte pro procházení nebo vložte ze schránky.",
-    "step2": "Upravte velikost palety a další nastavení v levém panelu.",
-    "step3": "Klikněte na \"Vytvořit malování podle čísel\" pro zpracování obrázku.",
-    "step4": "Zkontrolujte a upřesněte výsledek, poté exportujte svou šablonu."
+  "cropRotate": {
+    "title": "Oříznout a otočit",
+    "apply": "Použít",
+    "cancel": "Zrušit",
+    "reset": "Resetovat",
+    "rotateLeft": "Otočit o 90° vlevo",
+    "rotateRight": "Otočit o 90° vpravo",
+    "rotate180": "Otočit o 180°",
+    "cropActive": "Oříznutí aktivní",
+    "rotationActive": "Otočení o {{angle}}°",
+    "clearAll": "Vymazat oříznutí a otočení",
+    "noCropApplied": "Celý obrázek · Bez oříznutí",
+    "dragHandles": "Přetažením úchytů ořízněte obrázek. Otočení resetuje rámeček oříznutí."
   },
   "privacy": {
     "tagline": "Vaše obrázky jsou zpracovávány výhradně ve vašem prohlížeči  nic se nenahrává ani neukládá na žádný server.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Zpracování obrázků.",
     "imagesBody": "Veškeré zpracování obrázků probíhá lokálně ve vašem prohlížeči pomocí Web Workers. Vaše obrázky nejsou nikdy odeslány na server.",
     "copyrightTitle": "Vaše odpovědnost.",
-    "copyrightBody": "Jste zodpovědní za zajištění, že máte potřebná práva k používání jakýchkoli obrázků, které nahráváte. Nenahrávejte obrázky, které nevlastníte nebo k jejichž použití nemáte oprávnění."
+    "copyrightBody": "Jste zodpovědní za zajištění, že máte potřebná práva k používání jakýchkoli obrázků, které nahráváte. Nenahrávejte obrázky, které nevlastníte nebo k jejichž použití nemáte oprávnění.",
+    "analyticsBody": "Tato aplikace používá Google Analytics k měření používání (například zobrazení stránek, spuštění zpracování a exportní akce). Nahrané obrázky jsou nadále zpracovávány lokálně ve vašem prohlížeči a nejsou odesílány na náš server."
   },
   "panels": {
     "step": "Krok {{n}} ze 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Jako účastník programu Amazon Associates získáváme provizi z kvalifikovaných nákupů.",
     "exportHeroTitle": "Připraveni začít malovat?",
     "exportHeroBody": "Vaše šablona je vytvořena ze sady {{set}} — pořiďte si odpovídající sadu, aby vaše barvy dokonale ladily.",
-    "getTheseIn": "Získejte je v sadě {{set}}"
+    "getTheseIn": "Získejte je v sadě {{set}}",
+    "buyOnAmazonShort": "Koupit na Amazonu",
+    "buyTheSet": "Koupit {{set}}"
+  },
+  "studio": {
+    "replay": "Přehrát odhalení znovu",
+    "pickYourColors": "Vyberte si barvy",
+    "pickYourColorsSub": "Přiřaďte šablonu k sadě barev, kterou můžete držet v ruce.",
+    "everyNumberMaps": "Každé číslo odpovídá skutečné barvě",
+    "biggerSetNote": "Velká paleta potřebuje víc než malou krabičkovou sadu — našli jsme pro vás větší sadu.",
+    "paletteDrops": "Vaše paleta · {{count}} kapek",
+    "paletteCount": "Paleta · {{count}} barev",
+    "tapToIsolate": "klepnutím izolujte"
   }
 }

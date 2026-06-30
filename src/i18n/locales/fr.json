@@ -22,6 +22,23 @@
     "lightMode": "Passer au mode clair",
     "darkMode": "Passer au mode sombre"
   },
+  "welcome": {
+    "tagline": "Transformez n'importe quelle photo en un chef-d'œuvre de peinture par numéros",
+    "description": "Téléversez une photo et cet outil analysera les couleurs, simplifiera l'image en régions numérotées et générera un modèle de peinture par numéros prêt à imprimer  le tout dans votre navigateur, sans qu'aucune donnée ne quitte votre appareil.",
+    "feature1Title": "Quantification intelligente des couleurs",
+    "feature1Body": "Choisissez entre les algorithmes K-Means ou Median Cut pour réduire votre photo à l'ensemble de couleurs idéal.",
+    "feature2Title": "Palettes personnalisées",
+    "feature2Body": "Utilisez un préréglage de crayons Crayola ou créez votre propre palette à partir de rien.",
+    "feature3Title": "Édition de régions",
+    "feature3Body": "Fusionnez ou divisez des régions de couleur sur le résultat pour affiner la complexité de votre peinture.",
+    "feature4Title": "Exportation partout",
+    "feature4Body": "Téléchargez le modèle final en PDF, PNG ou SVG vectoriel.",
+    "howToBegin": "Comment commencer",
+    "step1": "Glissez-déposez une image ci-dessous, cliquez pour parcourir ou collez depuis le presse-papiers.",
+    "step2": "Ajustez la taille de la palette et les autres paramètres dans le panneau de gauche.",
+    "step3": "Cliquez sur  Générer la peinture par numéros  pour traiter l'image.",
+    "step4": "Vérifiez et affinez le résultat, puis exportez votre modèle."
+  },
   "uploader": {
     "title": "Charger une image",
     "dragDrop": "Déposez une image ou une session enregistrée ici, ou cliquez pour parcourir",
@@ -140,7 +157,14 @@
     "browseDescription": "Parcourir les régions sans modifications",
     "mergeDescription": "Cliquez sur les régions pour les sélectionner et les fusionner",
     "reset": "Réinitialiser",
-    "resetAll": "Réinitialiser tout"
+    "resetAll": "Réinitialiser tout",
+    "brandPreset": "Préréglage de marque",
+    "presetBrand": "Marque créative",
+    "presetSet": "Ensemble",
+    "buyThisSet": "Acheter cet ensemble",
+    "sharpness": "Netteté",
+    "blurry": "Flou",
+    "sharpened": "Net"
   },
   "processing": {
     "quantizing": "Quantification des couleurs",
@@ -232,7 +256,8 @@
     "failedImportSession": "Échec de l'importation de la session : {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Passer à {{name}}"
+    "switchToLanguage": "Passer à {{name}}",
+    "languages": "Langues"
   },
   "palette": {
     "legend": "Légende de la palette",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Raccourcis clavier",
     "toggleMerge": "Basculer le mode Fusion",
     "toggleSplit": "Basculer le mode Division",
-    "returnBrowse": "Retour en mode Parcourir"
+    "returnBrowse": "Retour en mode Parcourir",
+    "pixels": "px"
   },
   "split": {
     "title": "Diviser les régions",
@@ -305,22 +331,19 @@
     "split": "Diviser",
     "analyzing": "Analyse en cours..."
   },
-  "welcome": {
-    "tagline": "Transformez n'importe quelle photo en un chef-d'œuvre de peinture par numéros",
-    "description": "Téléversez une photo et cet outil analysera les couleurs, simplifiera l'image en régions numérotées et générera un modèle de peinture par numéros prêt à imprimer  le tout dans votre navigateur, sans qu'aucune donnée ne quitte votre appareil.",
-    "feature1Title": "Quantification intelligente des couleurs",
-    "feature1Body": "Choisissez entre les algorithmes K-Means ou Median Cut pour réduire votre photo à l'ensemble de couleurs idéal.",
-    "feature2Title": "Palettes personnalisées",
-    "feature2Body": "Utilisez un préréglage de crayons Crayola ou créez votre propre palette à partir de rien.",
-    "feature3Title": "Édition de régions",
-    "feature3Body": "Fusionnez ou divisez des régions de couleur sur le résultat pour affiner la complexité de votre peinture.",
-    "feature4Title": "Exportation partout",
-    "feature4Body": "Téléchargez le modèle final en PDF, PNG ou SVG vectoriel.",
-    "howToBegin": "Comment commencer",
-    "step1": "Glissez-déposez une image ci-dessous, cliquez pour parcourir ou collez depuis le presse-papiers.",
-    "step2": "Ajustez la taille de la palette et les autres paramètres dans le panneau de gauche.",
-    "step3": "Cliquez sur  Générer la peinture par numéros  pour traiter l'image.",
-    "step4": "Vérifiez et affinez le résultat, puis exportez votre modèle."
+  "cropRotate": {
+    "title": "Recadrer et pivoter",
+    "apply": "Appliquer",
+    "cancel": "Annuler",
+    "reset": "Réinitialiser",
+    "rotateLeft": "Pivoter de 90° à gauche",
+    "rotateRight": "Pivoter de 90° à droite",
+    "rotate180": "Retourner à 180°",
+    "cropActive": "Recadrage actif",
+    "rotationActive": "Rotation de {{angle}}°",
+    "clearAll": "Effacer le recadrage et la rotation",
+    "noCropApplied": "Image complète · Aucun recadrage appliqué",
+    "dragHandles": "Faites glisser les poignées pour recadrer. La rotation réinitialise le cadre de recadrage."
   },
   "privacy": {
     "tagline": "Vos images sont traitées entièrement dans votre navigateur  rien n'est téléversé ni stocké sur un serveur.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Traitement des images.",
     "imagesBody": "Tout le traitement des images est effectué localement dans votre navigateur via des Web Workers. Vos images ne sont jamais envoyées à un serveur.",
     "copyrightTitle": "Votre responsabilité.",
-    "copyrightBody": "Vous êtes responsable de vous assurer que vous disposez des droits nécessaires pour utiliser les images que vous téléversez. Ne téléversez pas d'images que vous ne possédez pas ou pour lesquelles vous n'avez pas l'autorisation de les utiliser."
+    "copyrightBody": "Vous êtes responsable de vous assurer que vous disposez des droits nécessaires pour utiliser les images que vous téléversez. Ne téléversez pas d'images que vous ne possédez pas ou pour lesquelles vous n'avez pas l'autorisation de les utiliser.",
+    "analyticsBody": "Cette application utilise Google Analytics pour mesurer l'utilisation (par exemple les pages vues, les traitements effectués et les actions d'exportation). Les images téléversées sont toujours traitées localement dans votre navigateur et ne sont pas envoyées à notre serveur."
   },
   "panels": {
     "step": "Étape {{n}} sur 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "En tant que Partenaire Amazon, nous réalisons un bénéfice sur les achats remplissant les conditions requises.",
     "exportHeroTitle": "Prêt à commencer à peindre ?",
     "exportHeroBody": "Votre modèle est construit à partir de {{set}} — procurez-vous l'ensemble correspondant pour que vos couleurs s'accordent parfaitement.",
-    "getTheseIn": "Obtenez ces couleurs dans {{set}}"
+    "getTheseIn": "Obtenez ces couleurs dans {{set}}",
+    "buyOnAmazonShort": "Acheter sur Amazon",
+    "buyTheSet": "Acheter {{set}}"
+  },
+  "studio": {
+    "replay": "Rejouer la révélation",
+    "pickYourColors": "Choisissez vos couleurs",
+    "pickYourColorsSub": "Associez le modèle à un ensemble de peinture que vous pouvez tenir dans vos mains.",
+    "everyNumberMaps": "Chaque numéro correspond à une couleur réelle",
+    "biggerSetNote": "Une grande palette nécessite plus qu'un petit coffret — nous avons trouvé un ensemble plus large pour vous.",
+    "paletteDrops": "Votre palette · {{count}} gouttes",
+    "paletteCount": "Palette · {{count}} couleurs",
+    "tapToIsolate": "touchez pour isoler"
   }
 }

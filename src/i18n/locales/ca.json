@@ -157,7 +157,14 @@
     "browseDescription": "Examina regions sense modificacions",
     "mergeDescription": "Fes clic a les regions per seleccionar-les i fusionar-les",
     "reset": "Reiniciar",
-    "resetAll": "Reiniciar Tot"
+    "resetAll": "Reiniciar Tot",
+    "brandPreset": "Preestablert de marca",
+    "presetBrand": "Marca creativa",
+    "presetSet": "Conjunt",
+    "buyThisSet": "Compra aquest conjunt",
+    "sharpness": "Nitidesa",
+    "blurry": "Borrós",
+    "sharpened": "Nítid"
   },
   "processing": {
     "quantizing": "Quantitzant colors",
@@ -249,7 +256,8 @@
     "failedImportSession": "Error en importar la sessió: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Canvia a {{name}}"
+    "switchToLanguage": "Canvia a {{name}}",
+    "languages": "Idiomes"
   },
   "palette": {
     "legend": "Llegenda de Paleta",
@@ -313,7 +321,8 @@
     "keyboardShortcuts": "Dreceres del teclat",
     "toggleMerge": "Commuta el mode de fusió",
     "toggleSplit": "Commuta el mode de divisió",
-    "returnBrowse": "Torna al mode d'examen"
+    "returnBrowse": "Torna al mode d'examen",
+    "pixels": "px"
   },
   "split": {
     "title": "Dividir Regions",
@@ -321,6 +330,20 @@
     "noSplitCandidates": "No s'han trobat candidats a divisió",
     "split": "Dividir",
     "analyzing": "Analitzant..."
+  },
+  "cropRotate": {
+    "title": "Retalla i gira",
+    "apply": "Aplica",
+    "cancel": "Cancel·la",
+    "reset": "Restableix",
+    "rotateLeft": "Gira 90° a l'esquerra",
+    "rotateRight": "Gira 90° a la dreta",
+    "rotate180": "Capgira 180°",
+    "cropActive": "Retall actiu",
+    "rotationActive": "Rotació de {{angle}}°",
+    "clearAll": "Esborra el retall i la rotació",
+    "noCropApplied": "Imatge completa · Cap retall aplicat",
+    "dragHandles": "Arrossega les nanses per retallar. Girar reinicia el marc de retall."
   },
   "privacy": {
     "tagline": "Les teves imatges es processen completament al teu navegador — res no es puja ni s'emmagatzema en cap servidor.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Processament d'imatges.",
     "imagesBody": "Tot el processament d'imatges es realitza localment al teu navegador usant Web Workers. Les teves imatges mai s'envien a un servidor.",
     "copyrightTitle": "La teva responsabilitat.",
-    "copyrightBody": "Ets responsable d'assegurar que tens els drets necessaris per usar qualsevol imatge que pujis. No pujis imatges que no posseeixis o de les quals no tinguis permís per usar."
+    "copyrightBody": "Ets responsable d'assegurar que tens els drets necessaris per usar qualsevol imatge que pujis. No pujis imatges que no posseeixis o de les quals no tinguis permís per usar.",
+    "analyticsBody": "Aquesta aplicació utilitza Google Analytics per mesurar l'ús (per exemple, visualitzacions de pàgina, processos executats i accions d'exportació). Les imatges pujades es continuen processant localment al teu navegador i no s'envien al nostre servidor."
   },
   "panels": {
     "step": "Pas {{n}} de 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Com a Associat d'Amazon, guanyem amb les compres que compleixen els requisits.",
     "exportHeroTitle": "A punt per començar a pintar?",
     "exportHeroBody": "La teva plantilla s'ha creat a partir de {{set}} — aconsegueix el conjunt corresponent perquè els teus colors encaixin perfectament.",
-    "getTheseIn": "Aconsegueix-los a {{set}}"
+    "getTheseIn": "Aconsegueix-los a {{set}}",
+    "buyOnAmazonShort": "Compra a Amazon",
+    "buyTheSet": "Compra {{set}}"
+  },
+  "studio": {
+    "replay": "Reprodueix de nou la revelació",
+    "pickYourColors": "Tria els teus colors",
+    "pickYourColorsSub": "Combina la plantilla amb un conjunt de pintura que puguis tenir a la mà.",
+    "everyNumberMaps": "Cada número correspon a un color real",
+    "biggerSetNote": "Una paleta gran necessita més que un petit conjunt en caixa — t'hem trobat un conjunt més ampli.",
+    "paletteDrops": "La teva paleta · {{count}} gotes",
+    "paletteCount": "Paleta · {{count}} colors",
+    "tapToIsolate": "toca per aïllar"
   }
 }

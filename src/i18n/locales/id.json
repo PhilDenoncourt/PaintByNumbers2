@@ -22,6 +22,23 @@
     "lightMode": "Beralih ke mode terang",
     "darkMode": "Beralih ke mode gelap"
   },
+  "welcome": {
+    "tagline": "Ubah foto apa pun menjadi karya mewarnai berdasarkan angka",
+    "description": "Unggah foto dan alat ini akan menganalisis warna, menyederhanakan gambar menjadi wilayah bernomor, dan menghasilkan templat mewarnai berdasarkan angka yang siap dicetak  semuanya di dalam browser Anda, tanpa data apa pun yang meninggalkan perangkat Anda.",
+    "feature1Title": "Kuantisasi warna cerdas",
+    "feature1Body": "Pilih dari algoritma K-Means atau Median Cut untuk mereduksi foto Anda ke kumpulan warna yang sempurna.",
+    "feature2Title": "Palet kustom",
+    "feature2Body": "Gunakan prasetel krayon Crayola atau buat palet Anda sendiri dari awal.",
+    "feature3Title": "Pengeditan wilayah",
+    "feature3Body": "Gabungkan atau pisahkan wilayah warna pada hasil untuk menyempurnakan kompleksitas lukisan Anda.",
+    "feature4Title": "Ekspor ke mana saja",
+    "feature4Body": "Unduh templat yang sudah selesai sebagai PDF, PNG, atau SVG yang dapat diskalakan.",
+    "howToBegin": "Cara memulai",
+    "step1": "Seret dan lepas gambar di bawah, klik untuk menelusuri, atau tempel dari clipboard.",
+    "step2": "Sesuaikan ukuran palet dan pengaturan lainnya di panel kiri.",
+    "step3": "Klik \"Buat Mewarnai Berdasarkan Angka\" untuk memproses gambar.",
+    "step4": "Tinjau dan sempurnakan hasilnya, lalu ekspor templat Anda."
+  },
   "uploader": {
     "title": "Unggah Gambar",
     "dragDrop": "Lepas gambar atau sesi tersimpan di sini, atau klik untuk telusuri",
@@ -140,7 +157,14 @@
     "browseDescription": "Telusuri wilayah tanpa modifikasi",
     "mergeDescription": "Klik wilayah untuk memilih dan menggabungkannya",
     "reset": "Setel Ulang",
-    "resetAll": "Setel Ulang Semua"
+    "resetAll": "Setel Ulang Semua",
+    "brandPreset": "Preset Merek",
+    "presetBrand": "Merek Kreatif",
+    "presetSet": "Set",
+    "buyThisSet": "Beli set ini",
+    "sharpness": "Ketajaman",
+    "blurry": "Buram",
+    "sharpened": "Dipertajam"
   },
   "processing": {
     "quantizing": "Mengkuantisasi warna",
@@ -232,7 +256,8 @@
     "failedImportSession": "Gagal mengimpor sesi: {{message}}"
   },
   "layout": {
-    "switchToLanguage": "Beralih ke {{name}}"
+    "switchToLanguage": "Beralih ke {{name}}",
+    "languages": "Bahasa"
   },
   "palette": {
     "legend": "Legenda Palet",
@@ -296,7 +321,8 @@
     "keyboardShortcuts": "Pintasan keyboard",
     "toggleMerge": "Alihkan mode gabung",
     "toggleSplit": "Alihkan mode pisah",
-    "returnBrowse": "Kembali ke mode telusuri"
+    "returnBrowse": "Kembali ke mode telusuri",
+    "pixels": "px"
   },
   "split": {
     "title": "Pisahkan Wilayah",
@@ -305,22 +331,19 @@
     "split": "Pisah",
     "analyzing": "Menganalisis..."
   },
-  "welcome": {
-    "tagline": "Ubah foto apa pun menjadi karya mewarnai berdasarkan angka",
-    "description": "Unggah foto dan alat ini akan menganalisis warna, menyederhanakan gambar menjadi wilayah bernomor, dan menghasilkan templat mewarnai berdasarkan angka yang siap dicetak  semuanya di dalam browser Anda, tanpa data apa pun yang meninggalkan perangkat Anda.",
-    "feature1Title": "Kuantisasi warna cerdas",
-    "feature1Body": "Pilih dari algoritma K-Means atau Median Cut untuk mereduksi foto Anda ke kumpulan warna yang sempurna.",
-    "feature2Title": "Palet kustom",
-    "feature2Body": "Gunakan prasetel krayon Crayola atau buat palet Anda sendiri dari awal.",
-    "feature3Title": "Pengeditan wilayah",
-    "feature3Body": "Gabungkan atau pisahkan wilayah warna pada hasil untuk menyempurnakan kompleksitas lukisan Anda.",
-    "feature4Title": "Ekspor ke mana saja",
-    "feature4Body": "Unduh templat yang sudah selesai sebagai PDF, PNG, atau SVG yang dapat diskalakan.",
-    "howToBegin": "Cara memulai",
-    "step1": "Seret dan lepas gambar di bawah, klik untuk menelusuri, atau tempel dari clipboard.",
-    "step2": "Sesuaikan ukuran palet dan pengaturan lainnya di panel kiri.",
-    "step3": "Klik \"Buat Mewarnai Berdasarkan Angka\" untuk memproses gambar.",
-    "step4": "Tinjau dan sempurnakan hasilnya, lalu ekspor templat Anda."
+  "cropRotate": {
+    "title": "Pangkas & Putar",
+    "apply": "Terapkan",
+    "cancel": "Batal",
+    "reset": "Reset",
+    "rotateLeft": "Putar 90° ke Kiri",
+    "rotateRight": "Putar 90° ke Kanan",
+    "rotate180": "Balik 180°",
+    "cropActive": "Pemangkasan aktif",
+    "rotationActive": "Rotasi {{angle}}°",
+    "clearAll": "Hapus pangkas & rotasi",
+    "noCropApplied": "Gambar penuh · Tidak ada pangkas yang diterapkan",
+    "dragHandles": "Seret gagang untuk memangkas. Memutar akan mengatur ulang bingkai pangkas."
   },
   "privacy": {
     "tagline": "Gambar Anda diproses sepenuhnya di browser Anda  tidak ada yang diunggah atau disimpan di server mana pun.",
@@ -334,7 +357,8 @@
     "imagesTitle": "Pemrosesan gambar.",
     "imagesBody": "Semua pemrosesan gambar dilakukan secara lokal di browser Anda menggunakan Web Workers. Gambar Anda tidak pernah dikirim ke server.",
     "copyrightTitle": "Tanggung jawab Anda.",
-    "copyrightBody": "Anda bertanggung jawab untuk memastikan bahwa Anda memiliki hak yang diperlukan untuk menggunakan gambar apa pun yang Anda unggah. Jangan unggah gambar yang tidak Anda miliki atau tidak memiliki izin untuk digunakan."
+    "copyrightBody": "Anda bertanggung jawab untuk memastikan bahwa Anda memiliki hak yang diperlukan untuk menggunakan gambar apa pun yang Anda unggah. Jangan unggah gambar yang tidak Anda miliki atau tidak memiliki izin untuk digunakan.",
+    "analyticsBody": "Aplikasi ini menggunakan Google Analytics untuk mengukur penggunaan (misalnya tampilan halaman, proses yang dijalankan, dan tindakan ekspor). Gambar yang diunggah tetap diproses secara lokal di browser Anda dan tidak dikirim ke server kami."
   },
   "panels": {
     "step": "Langkah {{n}} dari 4",
@@ -411,6 +435,18 @@
     "disclosureShort": "Sebagai Amazon Associate, kami memperoleh komisi dari pembelian yang memenuhi syarat.",
     "exportHeroTitle": "Siap mulai melukis?",
     "exportHeroBody": "Templat Anda dibuat dari {{set}} — dapatkan kumpulan yang cocok agar warna Anda selaras dengan sempurna.",
-    "getTheseIn": "Dapatkan ini di {{set}}"
+    "getTheseIn": "Dapatkan ini di {{set}}",
+    "buyOnAmazonShort": "Beli di Amazon",
+    "buyTheSet": "Beli {{set}}"
+  },
+  "studio": {
+    "replay": "Putar ulang pengungkapan",
+    "pickYourColors": "Pilih warnamu",
+    "pickYourColorsSub": "Cocokkan templat dengan set cat yang bisa kamu pegang langsung.",
+    "everyNumberMaps": "Setiap angka sesuai dengan warna asli",
+    "biggerSetNote": "Palet besar butuh lebih dari sekadar set kotak kecil — kami mencarikan set yang lebih besar untukmu.",
+    "paletteDrops": "Paletmu · {{count}} tetes",
+    "paletteCount": "Palet · {{count}} warna",
+    "tapToIsolate": "ketuk untuk mengisolasi"
   }
 }
