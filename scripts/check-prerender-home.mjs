@@ -10,6 +10,8 @@ const distIndexPath = path.join(projectRoot, 'dist', 'index.html');
 const requiredSnippets = [
   'Turn any photo into a paint-by-numbers masterpiece',
   'free paint-by-numbers generator turns any photo',
+  '100% private — your photo never leaves your browser',
+  'Instant download — nothing emailed, nothing uploaded',
   'Smart colour quantization',
   'How to get started',
   'Generate Paint by Numbers',

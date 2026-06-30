@@ -18,6 +18,10 @@ const prerenderMarkup = `
         <main>
           <section class="mx-auto max-w-2xl px-4 py-8 sm:px-6">
             <div class="text-center">
+              <div class="flex flex-wrap items-center justify-center gap-2 mb-3">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-[11px] font-semibold text-gray-700">🔒 100% private — your photo never leaves your browser</span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-[11px] font-semibold text-gray-700">⚡ Instant download — nothing emailed, nothing uploaded</span>
+              </div>
               <h2 class="text-2xl font-bold text-gray-800">Turn any photo into a paint-by-numbers masterpiece</h2>
               <p class="mt-3 text-sm leading-relaxed text-gray-500">This free paint-by-numbers generator turns any photo into a numbered, ready-to-print template. It analyses the colours, simplifies the image into numbered regions, and works entirely inside your browser — your photo is never uploaded and no data ever leaves your device. Export the finished template as a printable PDF, PNG, or scalable SVG.</p>
             </div>
@@ -30,16 +34,16 @@ const prerenderMarkup = `
                 <p class="mt-1 text-xs leading-relaxed text-gray-500">Choose from K-Means or Median Cut algorithms to reduce your photo to the perfect set of colours.</p>
               </article>
               <article class="rounded-lg border border-gray-200 bg-white p-4">
-                <h3 class="text-sm font-semibold text-gray-700">Custom palettes</h3>
-                <p class="mt-1 text-xs leading-relaxed text-gray-500">Use a Crayola crayon preset or build your own palette from scratch.</p>
+                <h3 class="text-sm font-semibold text-gray-700">Match your own paints</h3>
+                <p class="mt-1 text-xs leading-relaxed text-gray-500">Map every region to a Crayola crayon preset, or build your own custom palette from scratch.</p>
               </article>
               <article class="rounded-lg border border-gray-200 bg-white p-4">
                 <h3 class="text-sm font-semibold text-gray-700">Region editing</h3>
                 <p class="mt-1 text-xs leading-relaxed text-gray-500">Merge or split colour regions on the result to fine-tune the complexity of your painting.</p>
               </article>
               <article class="rounded-lg border border-gray-200 bg-white p-4">
-                <h3 class="text-sm font-semibold text-gray-700">Export anywhere</h3>
-                <p class="mt-1 text-xs leading-relaxed text-gray-500">Download the finished template as a PDF, PNG, or scalable SVG.</p>
+                <h3 class="text-sm font-semibold text-gray-700">Free vector SVG export</h3>
+                <p class="mt-1 text-xs leading-relaxed text-gray-500">Download the finished template as a scalable SVG, plus PDF and PNG — most free generators only give you a flat image.</p>
               </article>
             </div>
           </section>

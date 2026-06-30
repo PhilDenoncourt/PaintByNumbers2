@@ -79,6 +79,20 @@ export function AppShell() {
             </ErrorBoundary>
 
             <div className="text-center">
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+                <span
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
+                  style={{ color: tk.text, background: tk.dotIdleBg }}
+                >
+                  🔒 {t('welcome.privacyBadge')}
+                </span>
+                <span
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
+                  style={{ color: tk.text, background: tk.dotIdleBg }}
+                >
+                  ⚡ {t('welcome.instantBadge')}
+                </span>
+              </div>
               <h2 className="font-display text-2xl font-extrabold mb-3" style={{ color: tk.text }}>
                 {t('welcome.tagline')}
               </h2>
@@ -92,7 +106,7 @@ export function AppShell() {
                 { title: t('welcome.feature1Title'), body: t('welcome.feature1Body'), icon: '🎨' },
                 { title: t('welcome.feature2Title'), body: t('welcome.feature2Body'), icon: '🖍️' },
                 { title: t('welcome.feature3Title'), body: t('welcome.feature3Body'), icon: '✏️' },
-                { title: t('welcome.feature4Title'), body: t('welcome.feature4Body'), icon: '📄' },
+                { title: t('welcome.feature4Title'), body: t('welcome.feature4Body'), icon: '📐' },
               ] as const).map(({ title, body, icon }) => (
                 <div key={title} className="rounded-[16px] p-4" style={cardStyle}>
                   <div className="text-2xl mb-2">{icon}</div>
@@ -101,6 +115,13 @@ export function AppShell() {
                 </div>
               ))}
             </div>
+
+            <p className="text-xs text-center" style={{ color: tk.muted }}>
+              {t('welcome.comparePromptPrefix')}{' '}
+              <a href="/paint-by-numbers-vs-pbnify" className="font-semibold underline" style={{ color: tk.text }}>
+                {t('welcome.comparePromptLink')}
+              </a>
+            </p>
 
             <div className="rounded-[16px] p-5" style={cardStyle}>
               <h3 className="font-display text-sm font-bold mb-3" style={{ color: tk.text }}>
