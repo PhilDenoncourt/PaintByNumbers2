@@ -12,6 +12,15 @@ services:
         source: /paint-by-numbers-vs-pbnify
         destination: /paint-by-numbers-vs-pbnify/index.html
       - type: rewrite
+        source: /paint-by-numbers-generator-no-upload
+        destination: /paint-by-numbers-generator-no-upload/index.html
+      - type: rewrite
+        source: /photo-to-paint-by-numbers-svg
+        destination: /photo-to-paint-by-numbers-svg/index.html
+      - type: rewrite
+        source: /merge-split-paint-by-numbers-regions
+        destination: /merge-split-paint-by-numbers-regions/index.html
+      - type: rewrite
         source: /*
         destination: /index.html
     envVars:
