@@ -1,4 +1,4 @@
-name: Build and Deploy to Heroku
+name: CI
 
 on:
   push:
@@ -30,15 +30,3 @@ jobs:
 
       - name: Build project
         run: npm run build
-
-      - name: Install Heroku CLI
-        run: npm install -g heroku
-
-      - name: Deploy to Heroku
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: akhileshns/heroku-deploy@v3.13.15
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          branch: main
