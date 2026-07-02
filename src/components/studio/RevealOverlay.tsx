@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { PipelineResult, ContourData } from '../../state/types';
 import { rgbCss } from './studioColor';
 import type { StudioTokens } from './studioTokens';
@@ -60,15 +60,11 @@ export function RevealOverlay({
     return { ordered, labelByRegion, timing: { base, dur, stagger, total: base + count * stagger + dur } };
   }, [contours, labels, result.regions]);
 
-  const [visible, setVisible] = useState(true);
   useEffect(() => {
     if (reduced) {
-      setVisible(false);
       return;
     }
-    setVisible(true);
     const id = window.setTimeout(() => {
-      setVisible(false);
       onDone?.();
     }, timing.total * 1000 + 150);
     return () => window.clearTimeout(id);
@@ -76,7 +72,7 @@ export function RevealOverlay({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runId, reduced]);
 
-  if (reduced || !visible) return null;
+  if (reduced) return null;
 
   return (
     <svg
