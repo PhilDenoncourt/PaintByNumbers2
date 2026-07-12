@@ -1,13 +1,18 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadEnv } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '..');
 const distDir = path.join(projectRoot, 'dist');
 
-const SITE = 'https://www.paintbynumbers.build';
+const env = loadEnv('production', projectRoot, '');
+export const SITE = env.VITE_SITE_URL;
+if (!SITE) {
+  throw new Error('VITE_SITE_URL is not set — check .env.production');
+}
 
 const STYLE = `
 :root{color-scheme:light dark}
@@ -279,7 +284,7 @@ const mergeSplitStructuredData = {
   ],
 };
 
-const PAGES = [
+export const PAGES = [
   {
     slug: 'paint-by-numbers-vs-pbnify',
     title: 'Free PBNify Alternative – Paint by Numbers Generator Comparison',
@@ -324,7 +329,10 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const isMain = path.resolve(process.argv[1] ?? '') === __filename;
+if (isMain) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
