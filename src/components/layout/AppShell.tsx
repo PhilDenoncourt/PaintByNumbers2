@@ -84,18 +84,18 @@ export function AppShell() {
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
                   style={{ color: tk.text, background: tk.dotIdleBg }}
                 >
-                  🔒 {t('welcome.privacyBadge')}
+                  📐 {t('welcome.vectorBadge')}
                 </span>
                 <span
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
                   style={{ color: tk.text, background: tk.dotIdleBg }}
                 >
-                  ⚡ {t('welcome.instantBadge')}
+                  ✂️ {t('welcome.regionBadge')}
                 </span>
               </div>
-              <h2 className="font-display text-2xl font-extrabold mb-3" style={{ color: tk.text }}>
+              <h1 className="font-display text-2xl font-extrabold mb-3" style={{ color: tk.text }}>
                 {t('welcome.tagline')}
-              </h2>
+              </h1>
               <p className="text-sm leading-relaxed" style={{ color: tk.muted }}>
                 {t('welcome.description')}
               </p>

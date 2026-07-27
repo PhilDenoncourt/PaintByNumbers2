@@ -8,7 +8,9 @@
   "homepage": "https://www.linkedin.com/in/phildenoncourt/",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/prerender-home.mjs && node scripts/check-prerender-home.mjs && node scripts/build-content-pages.mjs && node scripts/build-sitemap.mjs",
+    "build": "tsc -b && vite build && node scripts/prerender-home.mjs && node scripts/check-prerender-home.mjs && node scripts/build-content-pages.mjs && node scripts/build-sitemap.mjs && node scripts/check-indexability.mjs",
+    "check:indexability": "node scripts/check-indexability.mjs",
+    "check:indexability:live": "node scripts/check-indexability.mjs --live",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",

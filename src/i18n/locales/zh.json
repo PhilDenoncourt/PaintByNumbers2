@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "将任何照片变成数字油画杰作",
     "description": "上传一张照片，这个工具将分析颜色，将图像简化为编号区域，并生成可打印的数字油画模板——全部在您的浏览器中完成，没有任何数据离开您的设备。",
-    "feature1Title": "智能颜色量化",
-    "feature1Body": "从 K-Means 或 Median Cut 算法中选择，将您的照片缩减为完美的颜色集合。",
+    "feature1Title": "灵活的色彩风格",
+    "feature1Body": "根据想要的效果，选择自然融合或轮廓分明的色块。",
     "feature2Title": "匹配你自己的颜料",
     "feature2Body": "将每个区域映射到 Crayola 蜡笔预设，或从头开始创建自己的调色板。",
     "feature3Title": "区域编辑",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "调色板大小",
     "paletteModeLabel": "调色板模式",
-    "algorithm": "色彩量化算法",
-    "kmeans": "K 均值",
-    "mediancut": "中位数切割",
+    "algorithm": "色彩风格",
+    "kmeans": "自然融合",
+    "mediancut": "清晰色块",
     "autoDetect": "自动检测",
     "crayolaPreset": "蜡笔预设",
     "customPalette": "自定义调色板",
@@ -379,7 +379,7 @@
       "autoDetect": "自动检测",
       "custom": "自定义",
       "fromSetHelp": "您的模板使用此套装中的 {{count}} 种颜色，因此每个编号区域都对应一个真实的 {{brand}} 颜色。",
-      "quantizationAlgorithm": "色彩量化算法"
+      "quantizationAlgorithm": "色彩风格"
     },
     "adjust": {
       "tab": "调整",

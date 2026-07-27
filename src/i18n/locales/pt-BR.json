@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Transforme qualquer foto em uma obra-prima de pintura por números",
     "description": "Carregue uma foto e esta ferramenta analisará as cores, simplificará a imagem em regiões numeradas e gerará um modelo de pintura por números pronto para impressão — tudo no seu navegador, sem que nenhum dado saia do seu dispositivo.",
-    "feature1Title": "Quantização inteligente de cores",
-    "feature1Body": "Escolha entre os algoritmos K-Means ou Median Cut para reduzir sua foto ao conjunto perfeito de cores.",
+    "feature1Title": "Estilos de cor flexíveis",
+    "feature1Body": "Escolha uma mistura natural ou blocos de cor definidos, de acordo com o resultado desejado.",
     "feature2Title": "Combine com suas próprias tintas",
     "feature2Body": "Associe cada região a uma predefinição de lápis de cor Crayola, ou crie sua própria paleta personalizada do zero.",
     "feature3Title": "Edição de regiões",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Tamanho da Paleta",
     "paletteModeLabel": "Modo de Paleta",
-    "algorithm": "Algoritmo de Quantização de Cor",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Estilo de cor",
+    "kmeans": "Mistura natural",
+    "mediancut": "Blocos de cor definidos",
     "autoDetect": "Detectar automaticamente",
     "crayolaPreset": "Predefinição Crayola",
     "customPalette": "Paleta Personalizada",
@@ -379,7 +379,7 @@
       "autoDetect": "Detectar automaticamente",
       "custom": "Personalizado",
       "fromSetHelp": "Seu modelo usa as {{count}} cores deste conjunto, então cada região numerada corresponde a uma cor real da {{brand}}.",
-      "quantizationAlgorithm": "Algoritmo de quantização"
+      "quantizationAlgorithm": "Estilo de cor"
     },
     "adjust": {
       "tab": "Ajustar",

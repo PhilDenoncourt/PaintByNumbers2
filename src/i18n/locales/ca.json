@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Converteix qualsevol foto en una meravella de paint-by-numbers",
     "description": "Puja una foto i aquesta eina analitzarà els colors, simplificarà la imatge en regions numerades i generarà una plantilla de paint-by-numbers llista per imprimir — tot dins del teu navegador, sense que cap dada abandoni el teu dispositiu.",
-    "feature1Title": "Quantització intel·ligent de colors",
-    "feature1Body": "Tria entre l'algoritme K-Means o Median Cut per reduir la teva foto al conjunt perfecte de colors.",
+    "feature1Title": "Estils de color flexibles",
+    "feature1Body": "Tria una barreja natural o blocs de color definits segons l'acabat que vulguis.",
     "feature2Title": "Combina amb les teves pròpies pintures",
     "feature2Body": "Assigna cada regió a un color preestablert de Crayola, o crea la teva pròpia paleta des de zero.",
     "feature3Title": "Edició de regions",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Mida de la Paleta",
     "paletteModeLabel": "Mode de Paleta",
-    "algorithm": "Algoritme de Quantització de Colors",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Estil de color",
+    "kmeans": "Barreja natural",
+    "mediancut": "Blocs de color definits",
     "autoDetect": "Detecció automàtica",
     "crayolaPreset": "Preset Crayola",
     "customPalette": "Paleta Personalitzada",
@@ -379,7 +379,7 @@
       "autoDetect": "Detecció automàtica",
       "custom": "Personalitzada",
       "fromSetHelp": "La teva plantilla utilitza els {{count}} colors d'aquest conjunt, de manera que cada regió numerada es correspon amb un color real de {{brand}}.",
-      "quantizationAlgorithm": "Algoritme de quantització"
+      "quantizationAlgorithm": "Estil de color"
     },
     "adjust": {
       "tab": "Ajustar",

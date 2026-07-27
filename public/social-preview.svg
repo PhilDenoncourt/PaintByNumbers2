@@ -1,6 +1,6 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Paint by Numbers social preview</title>
-  <desc id="desc">A social sharing card for Paint by Numbers showing a paint-by-numbers canvas, color palette, and app branding.</desc>
+  <title id="title">Paint by Numbers SVG editor social preview</title>
+  <desc id="desc">A social sharing card highlighting true vector SVG export and manual merge and split controls.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F8FAFC"/>
@@ -59,11 +59,11 @@
   <rect x="590" y="150" width="430" height="56" rx="16" fill="#4F46E5"/>
   <text x="622" y="186" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Paint by Numbers</text>
 
-  <text x="590" y="258" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">Turn any photo into a</text>
-  <text x="590" y="316" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">paint-by-numbers template</text>
+  <text x="590" y="258" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">True vector SVG</text>
+  <text x="590" y="316" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">Manual merge &amp; split</text>
 
-  <text x="590" y="380" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28">AI-powered image conversion, palette tuning,</text>
-  <text x="590" y="418" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28">region editing, and export to PDF, PNG, or SVG.</text>
+  <text x="590" y="380" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28">Edit individual regions before export.</text>
+  <text x="590" y="418" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="26">For Cricut, lasers, murals, and print.</text>
 
   <g transform="translate(590 460)">
     <rect width="96" height="96" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>

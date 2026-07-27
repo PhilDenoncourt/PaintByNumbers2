@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Ubah foto apa pun menjadi karya mewarnai berdasarkan angka",
     "description": "Unggah foto dan alat ini akan menganalisis warna, menyederhanakan gambar menjadi wilayah bernomor, dan menghasilkan templat mewarnai berdasarkan angka yang siap dicetak  semuanya di dalam browser Anda, tanpa data apa pun yang meninggalkan perangkat Anda.",
-    "feature1Title": "Kuantisasi warna cerdas",
-    "feature1Body": "Pilih dari algoritma K-Means atau Median Cut untuk mereduksi foto Anda ke kumpulan warna yang sempurna.",
+    "feature1Title": "Gaya warna fleksibel",
+    "feature1Body": "Pilih perpaduan alami atau blok warna tegas sesuai tampilan yang Anda inginkan.",
     "feature2Title": "Cocokkan dengan catmu sendiri",
     "feature2Body": "Petakan setiap area ke preset krayon Crayola, atau buat palet kustommu sendiri dari awal.",
     "feature3Title": "Pengeditan wilayah",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Ukuran Palet",
     "paletteModeLabel": "Mode Palet",
-    "algorithm": "Algoritma Kuantisasi Warna",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Gaya warna",
+    "kmeans": "Perpaduan alami",
+    "mediancut": "Blok warna tegas",
     "autoDetect": "Deteksi Otomatis",
     "crayolaPreset": "Preset Crayola",
     "customPalette": "Palet Kustom",
@@ -379,7 +379,7 @@
       "autoDetect": "Deteksi otomatis",
       "custom": "Kustom",
       "fromSetHelp": "Templat Anda menggunakan {{count}} warna dari kumpulan ini, sehingga setiap wilayah bernomor dipetakan ke warna {{brand}} yang sebenarnya.",
-      "quantizationAlgorithm": "Algoritma kuantisasi"
+      "quantizationAlgorithm": "Gaya warna"
     },
     "adjust": {
       "tab": "Sesuaikan",

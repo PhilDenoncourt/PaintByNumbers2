@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "どんな写真も数字で塗る名作に変えましょう",
     "description": "写真をアップロードすると、このツールが色を解析し、画像を番号付きの領域に簡略化して、印刷用の「数字で塗り絵」テンプレートを生成します  すべてブラウザ内で処理されるため、データがデバイスの外へ出ることは一切ありません。",
-    "feature1Title": "スマートな色量子化",
-    "feature1Body": "K-MeansまたはMedian Cutアルゴリズムから選択して、写真を最適な色のセットに縮減します。",
+    "feature1Title": "選べるカラースタイル",
+    "feature1Body": "好みの仕上がりに合わせて、自然な色合いまたは輪郭のはっきりした色面を選べます。",
     "feature2Title": "実際の絵の具と一致させる",
     "feature2Body": "各領域をCrayolaクレヨンのプリセットに対応させるか、ゼロから独自のパレットを作成できます。",
     "feature3Title": "領域の編集",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "パレットのサイズ",
     "paletteModeLabel": "パレットモード",
-    "algorithm": "色量子化アルゴリズム",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "カラースタイル",
+    "kmeans": "自然な色合い",
+    "mediancut": "はっきりした色面",
     "autoDetect": "自動検出",
     "crayolaPreset": "クレヨラプリセット",
     "customPalette": "カスタムパレット",
@@ -379,7 +379,7 @@
       "autoDetect": "自動検出",
       "custom": "カスタム",
       "fromSetHelp": "テンプレートはこのセットの{{count}}色を使用するため、番号付きの各領域は実際の{{brand}}の色に対応します。",
-      "quantizationAlgorithm": "色量子化アルゴリズム"
+      "quantizationAlgorithm": "カラースタイル"
     },
     "adjust": {
       "tab": "調整",

@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Turn any photo turn to paint-by-numbers something wey fine",
     "description": "Throw your photo for here, na dis tool go check all de colours, make de picture simple simple into regions wey get number, and make paint-by-numbers template wey ready print — all inside your browser, no data no go leave your phone o.",
-    "feature1Title": "Colour quantization wey smart",
-    "feature1Body": "Pick K-Means or Median Cut algorithm make you reduce your photo come right set of colours.",
+    "feature1Title": "Colour styles wey you fit choose",
+    "feature1Body": "Choose natural colour blend or clear colour blocks, depending on the style wey you want.",
     "feature2Title": "Match your own paint",
     "feature2Body": "Map every area to Crayola crayon preset, or make your own custom palette from zero.",
     "feature3Title": "Region editing",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Palette Size",
     "paletteModeLabel": "Palette Mode",
-    "algorithm": "Colour Quantization Algorithm",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Colour style",
+    "kmeans": "Natural colour blend",
+    "mediancut": "Clear colour blocks",
     "autoDetect": "Check-am-automatic",
     "crayolaPreset": "Crayola Preset",
     "customPalette": "Palette Wey You Design",
@@ -379,7 +379,7 @@
       "autoDetect": "Check-am-automatic",
       "custom": "Custom",
       "fromSetHelp": "Your template dey use di {{count}} colours from dis set, so every region wey get number go match real {{brand}} colour.",
-      "quantizationAlgorithm": "Quantization algorithm"
+      "quantizationAlgorithm": "Colour style"
     },
     "adjust": {
       "tab": "Adjust",

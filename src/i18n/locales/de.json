@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Verwandle jedes Foto in ein Malen-nach-Zahlen-Meisterwerk",
     "description": "Lade ein Foto hoch und dieses Tool analysiert die Farben, vereinfacht das Bild in nummerierte Bereiche und erstellt eine druckfertige Malen-nach-Zahlen-Vorlage  alles in deinem Browser, ohne dass Daten das Gerät verlassen.",
-    "feature1Title": "Intelligente Farbquantisierung",
-    "feature1Body": "Wähle zwischen den Algorithmen K-Means oder Median Cut, um dein Foto auf die perfekte Farbpalette zu reduzieren.",
+    "feature1Title": "Flexible Farbstile",
+    "feature1Body": "Wähle je nach gewünschtem Ergebnis zwischen natürlichen Farbübergängen und klar definierten Farbflächen.",
     "feature2Title": "Mit deinen eigenen Farben abgleichen",
     "feature2Body": "Ordne jede Region einer Crayola-Buntstift-Voreinstellung zu oder erstelle deine eigene Palette von Grund auf.",
     "feature3Title": "Bereiche bearbeiten",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Palettengröße",
     "paletteModeLabel": "Palettenmodus",
-    "algorithm": "Farbquantisierungsalgorithmus",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Farbstil",
+    "kmeans": "Natürliche Übergänge",
+    "mediancut": "Klare Farbflächen",
     "autoDetect": "Automatische Erkennung",
     "crayolaPreset": "Crayola-Voreinstellung",
     "customPalette": "Benutzerdefinierte Palette",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatische Erkennung",
       "custom": "Benutzerdefiniert",
       "fromSetHelp": "Deine Vorlage verwendet die {{count}} Farben aus diesem Set, sodass jede nummerierte Region einer echten {{brand}}-Farbe entspricht.",
-      "quantizationAlgorithm": "Quantisierungsalgorithmus"
+      "quantizationAlgorithm": "Farbstil"
     },
     "adjust": {
       "tab": "Anpassen",

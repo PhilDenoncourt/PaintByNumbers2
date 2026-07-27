@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Förvandla vilket foto som helst till ett mästerverk att måla efter siffror",
     "description": "Ladda upp ett foto så analyserar det här verktyget färgerna, förenklar bilden till numrerade regioner och genererar en utskriftsklar mall för måla-efter-siffror — allt i din webbläsare utan att någon data lämnar din enhet.",
-    "feature1Title": "Smart färgkvantisering",
-    "feature1Body": "Välj mellan K-Means eller Median Cut-algoritmer för att reducera ditt foto till den perfekta uppsättningen färger.",
+    "feature1Title": "Flexibla färgstilar",
+    "feature1Body": "Välj naturliga färgövergångar eller tydligt avgränsade färgfält beroende på vilket uttryck du vill ha.",
     "feature2Title": "Matcha dina egna färger",
     "feature2Body": "Koppla varje område till en förinställning för Crayola-kritor, eller skapa din egen palett från grunden.",
     "feature3Title": "Redigering av regioner",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Pallettstorlek",
     "paletteModeLabel": "Palettläge",
-    "algorithm": "Färgkvantiseringsalgoritm",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Färgstil",
+    "kmeans": "Naturliga övergångar",
+    "mediancut": "Tydliga färgfält",
     "autoDetect": "Automatisk detektering",
     "crayolaPreset": "Crayola-förinställning",
     "customPalette": "Anpassad palett",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatisk detektering",
       "custom": "Anpassad",
       "fromSetHelp": "Din mall använder de {{count}} färgerna från den här uppsättningen, så att varje numrerad region motsvarar en riktig {{brand}}-färg.",
-      "quantizationAlgorithm": "Kvantiseringsalgoritm"
+      "quantizationAlgorithm": "Färgstil"
     },
     "adjust": {
       "tab": "Justera",

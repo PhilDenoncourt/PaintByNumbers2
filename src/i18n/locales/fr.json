@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Transformez n'importe quelle photo en un chef-d'œuvre de peinture par numéros",
     "description": "Téléversez une photo et cet outil analysera les couleurs, simplifiera l'image en régions numérotées et générera un modèle de peinture par numéros prêt à imprimer  le tout dans votre navigateur, sans qu'aucune donnée ne quitte votre appareil.",
-    "feature1Title": "Quantification intelligente des couleurs",
-    "feature1Body": "Choisissez entre les algorithmes K-Means ou Median Cut pour réduire votre photo à l'ensemble de couleurs idéal.",
+    "feature1Title": "Styles de couleur flexibles",
+    "feature1Body": "Choisissez un rendu naturel ou des zones de couleur bien définies selon le résultat souhaité.",
     "feature2Title": "Associez vos propres peintures",
     "feature2Body": "Associez chaque région à un préréglage de crayon Crayola, ou créez votre propre palette personnalisée à partir de rien.",
     "feature3Title": "Édition de régions",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Taille de la palette",
     "paletteModeLabel": "Mode de palette",
-    "algorithm": "Algorithme de quantification des couleurs",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Style de couleur",
+    "kmeans": "Rendu naturel",
+    "mediancut": "Zones de couleur définies",
     "autoDetect": "Détection automatique",
     "crayolaPreset": "Préréglage Crayola",
     "customPalette": "Palette personnalisée",
@@ -379,7 +379,7 @@
       "autoDetect": "Détection automatique",
       "custom": "Personnalisé",
       "fromSetHelp": "Votre modèle utilise les {{count}} couleurs de cet ensemble, de sorte que chaque région numérotée correspond à une véritable couleur {{brand}}.",
-      "quantizationAlgorithm": "Algorithme de quantification"
+      "quantizationAlgorithm": "Style de couleur"
     },
     "adjust": {
       "tab": "Ajuster",

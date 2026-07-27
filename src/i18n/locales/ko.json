@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "어떤 사진이든 숫자로 칠하는 걸작으로 변환하세요",
     "description": "사진을 업로드하면 이 도구가 색상을 분석하고, 이미지를 번호가 매겨진 영역으로 단순화하며, 인쇄 가능한 숫자 칠하기 템플릿을 생성합니다  모두 브라우저 내에서 처리되며, 어떤 데이터도 기기를 벗어나지 않습니다.",
-    "feature1Title": "스마트 색상 양자화",
-    "feature1Body": "K-Means 또는 Median Cut 알고리즘 중에서 선택하여 사진을 완벽한 색상 세트로 줄이세요.",
+    "feature1Title": "유연한 색상 스타일",
+    "feature1Body": "원하는 결과에 따라 자연스러운 색감이나 선명하게 구분된 색상 영역을 선택하세요.",
     "feature2Title": "실제 물감과 매칭",
     "feature2Body": "각 영역을 Crayola 크레용 프리셋에 매핑하거나 처음부터 직접 팔레트를 만드세요.",
     "feature3Title": "영역 편집",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "팔레트 크기",
     "paletteModeLabel": "팔레트 모드",
-    "algorithm": "색상 양자화 알고리즘",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "색상 스타일",
+    "kmeans": "자연스러운 색감",
+    "mediancut": "선명한 색상 영역",
     "autoDetect": "자동 감지",
     "crayolaPreset": "크레용 프리셋",
     "customPalette": "사용자 정의 팔레트",
@@ -379,7 +379,7 @@
       "autoDetect": "자동 감지",
       "custom": "사용자 정의",
       "fromSetHelp": "템플릿은 이 세트의 {{count}}개 색상을 사용하므로, 번호가 매겨진 모든 지역이 실제 {{brand}} 색상에 대응됩니다.",
-      "quantizationAlgorithm": "양자화 알고리즘"
+      "quantizationAlgorithm": "색상 스타일"
     },
     "adjust": {
       "tab": "조정",

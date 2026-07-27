@@ -92,7 +92,7 @@ export function PalettePanel() {
         )}
       </div>
 
-      {/* C. Quantization algorithm */}
+      {/* C. Color style */}
       <div>
         <label className="block text-[13px] font-semibold text-[#334155] dark:text-gray-200 mb-2">
           {t('panels.palette.quantizationAlgorithm')}

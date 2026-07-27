@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Verander elke foto in een schilderen-op-nummer meesterwerk",
     "description": "Upload een foto en dit hulpmiddel analyseert de kleuren, vereenvoudigt de afbeelding tot genummerde gebieden en genereert een printklaar schilderen-op-nummer sjabloon  alles in je browser, zonder dat er ooit gegevens je apparaat verlaten.",
-    "feature1Title": "Slimme kleurkwantisatie",
-    "feature1Body": "Kies uit K-Means of Median Cut algoritmen om je foto te reduceren tot de perfecte set kleuren.",
+    "feature1Title": "Flexibele kleurstijlen",
+    "feature1Body": "Kies natuurlijke kleurovergangen of duidelijk afgebakende kleurvlakken, afhankelijk van het gewenste resultaat.",
     "feature2Title": "Koppel aan je eigen verf",
     "feature2Body": "Koppel elke regio aan een Crayola kleurpotlood voorinstelling, of maak je eigen aangepaste palet van nul.",
     "feature3Title": "Gebieden bewerken",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Paletgrootte",
     "paletteModeLabel": "Paletmodus",
-    "algorithm": "Kleurquantisatie-algoritme",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Kleurstijl",
+    "kmeans": "Natuurlijke overgangen",
+    "mediancut": "Duidelijke kleurvlakken",
     "autoDetect": "Automatische detectie",
     "crayolaPreset": "Crayola-voorinstelling",
     "customPalette": "Aangepast Palet",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatisch detecteren",
       "custom": "Aangepast",
       "fromSetHelp": "Je sjabloon gebruikt de {{count}} kleuren uit deze set, zodat elke genummerde regio overeenkomt met een echte {{brand}}-kleur.",
-      "quantizationAlgorithm": "Quantisatie-algoritme"
+      "quantizationAlgorithm": "Kleurstijl"
     },
     "adjust": {
       "tab": "Aanpassen",

@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Proměňte jakoukoli fotografii v malování podle čísel",
     "description": "Nahrajte fotografii a tento nástroj analyzuje barvy, zjednoduší obrázek do číslovaných oblastí a vygeneruje šablonu malování podle čísel připravenou k tisku  vše ve vašem prohlížeči, přičemž žádná data nikdy neopustí vaše zařízení.",
-    "feature1Title": "Inteligentní kvantizace barev",
-    "feature1Body": "Vyberte si z algoritmů K-Means nebo Median Cut pro redukci fotografie na dokonalou sadu barev.",
+    "feature1Title": "Flexibilní styl barev",
+    "feature1Body": "Podle požadovaného vzhledu zvolte přirozené prolínání nebo výrazné barevné plochy.",
     "feature2Title": "Přiřaďte vlastní barvy",
     "feature2Body": "Přiřaďte každou oblast k předvolbě pastelky Crayola, nebo si vytvořte vlastní paletu od základu.",
     "feature3Title": "Úprava oblastí",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Velikost Palety",
     "paletteModeLabel": "Režim Palety",
-    "algorithm": "Algoritmus Kvantizace Barev",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Styl barev",
+    "kmeans": "Přirozené prolínání",
+    "mediancut": "Výrazné barevné plochy",
     "autoDetect": "Automatické Zjišťování",
     "crayolaPreset": "Předvolba Crayola",
     "customPalette": "Vlastní Paleta",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatické zjišťování",
       "custom": "Vlastní",
       "fromSetHelp": "Vaše šablona používá {{count}} barev z této sady, takže každá číslovaná oblast odpovídá skutečné barvě {{brand}}.",
-      "quantizationAlgorithm": "Algoritmus kvantizace"
+      "quantizationAlgorithm": "Styl barev"
     },
     "adjust": {
       "tab": "Upravit",

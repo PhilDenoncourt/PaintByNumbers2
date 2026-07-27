@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Herhangi bir fotoğrafı sayılarla boyama şaheserine dönüştürün",
     "description": "Bir fotoğraf yükleyin; bu araç renkleri analiz edecek, görüntüyü numaralı bölgelere basitleştirecek ve yazdırmaya hazır bir sayılarla boyama şablonu oluşturacak — tüm bunlar tarayıcınızda, hiçbir veri cihazınızı terk etmeden.",
-    "feature1Title": "Akıllı renk niceleme",
-    "feature1Body": "Fotoğrafınızı mükemmel renk setine indirgemek için K-Means veya Median Cut algoritmalarından birini seçin.",
+    "feature1Title": "Esnek renk stilleri",
+    "feature1Body": "İstediğiniz görünüme göre doğal renk geçişlerini veya belirgin renk alanlarını seçin.",
     "feature2Title": "Kendi boyalarınla eşleştir",
     "feature2Body": "Her bölgeyi bir Crayola boya kalemi ön ayarıyla eşleştir veya sıfırdan kendi paletini oluştur.",
     "feature3Title": "Bölge düzenleme",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Palet Boyutu",
     "paletteModeLabel": "Palet Modu",
-    "algorithm": "Renk Nicelemesi Algoritması",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Renk stili",
+    "kmeans": "Doğal geçişler",
+    "mediancut": "Belirgin renk alanları",
     "autoDetect": "Otomatik Algılama",
     "crayolaPreset": "Crayola Ön Ayarı",
     "customPalette": "Özel Palet",
@@ -379,7 +379,7 @@
       "autoDetect": "Otomatik algıla",
       "custom": "Özel",
       "fromSetHelp": "Şablonunuz bu setteki {{count}} rengi kullanır, bu nedenle her numaralı bölge gerçek bir {{brand}} rengine karşılık gelir.",
-      "quantizationAlgorithm": "Niceleme algoritması"
+      "quantizationAlgorithm": "Renk stili"
     },
     "adjust": {
       "tab": "Ayarla",

@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Trasforma qualsiasi foto in un capolavoro da dipingere per numeri",
     "description": "Carica una foto e questo strumento analizzerà i colori, semplificherà l'immagine in regioni numerate e genererà un modello di pittura per numeri pronto per la stampa  tutto nel tuo browser, senza che alcun dato lasci il tuo dispositivo.",
-    "feature1Title": "Quantizzazione intelligente dei colori",
-    "feature1Body": "Scegli tra gli algoritmi K-Means o Median Cut per ridurre la foto al set di colori perfetto.",
+    "feature1Title": "Stili colore flessibili",
+    "feature1Body": "Scegli una resa naturale o blocchi di colore definiti in base all'effetto che desideri.",
     "feature2Title": "Abbina i tuoi colori reali",
     "feature2Body": "Associa ogni regione a un preset di pastelli Crayola, oppure crea la tua palette personalizzata da zero.",
     "feature3Title": "Modifica delle regioni",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Dimensione Tavolozza",
     "paletteModeLabel": "Modalità Tavolozza",
-    "algorithm": "Algoritmo di Quantizzazione del Colore",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Stile colore",
+    "kmeans": "Resa naturale",
+    "mediancut": "Blocchi di colore definiti",
     "autoDetect": "Rilevamento Automatico",
     "crayolaPreset": "Preset Crayola",
     "customPalette": "Tavolozza Personalizzata",
@@ -379,7 +379,7 @@
       "autoDetect": "Rilevamento automatico",
       "custom": "Personalizzato",
       "fromSetHelp": "Il tuo modello usa i {{count}} colori di questo set, quindi ogni regione numerata corrisponde a un vero colore {{brand}}.",
-      "quantizationAlgorithm": "Algoritmo di quantizzazione"
+      "quantizationAlgorithm": "Stile colore"
     },
     "adjust": {
       "tab": "Regola",

@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Alakíts bármilyen fotót számok szerint festendő remekművé",
     "description": "Tölts fel egy fotót, és ez az eszköz elemzi a színeket, egyszerűsíti a képet sorszámozott területekre, és létrehoz egy nyomtatásra kész számozósablon-sablont  mindezt a böngésződben, anélkül, hogy bármilyen adat elhagyná az eszközödet.",
-    "feature1Title": "Intelligens színkvantálás",
-    "feature1Body": "Válassz a K-Means vagy Median Cut algoritmusok közül, hogy a fényképedet a tökéletes színkészletre csökkentsd.",
+    "feature1Title": "Rugalmas színstílusok",
+    "feature1Body": "Válassz természetes átmenetet vagy határozott színfoltokat a kívánt megjelenésnek megfelelően.",
     "feature2Title": "Illeszd a saját festékeidhez",
     "feature2Body": "Rendelj minden régióhoz egy Crayola zsírkréta előbeállítást, vagy hozz létre saját egyéni palettát a nulláról.",
     "feature3Title": "Területek szerkesztése",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Paletta mérete",
     "paletteModeLabel": "Paletta mód",
-    "algorithm": "Szín kvantálási algoritmus",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Színstílus",
+    "kmeans": "Természetes átmenet",
+    "mediancut": "Határozott színfoltok",
     "autoDetect": "Automatikus felismerés",
     "crayolaPreset": "Crayola előbeállítás",
     "customPalette": "Egyéni paletta",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatikus felismerés",
       "custom": "Egyéni",
       "fromSetHelp": "A sablonod ennek a készletnek a {{count}} színét használja, így minden számozott régió valódi {{brand}} színhez tartozik.",
-      "quantizationAlgorithm": "Kvantálási algoritmus"
+      "quantizationAlgorithm": "Színstílus"
     },
     "adjust": {
       "tab": "Módosítás",

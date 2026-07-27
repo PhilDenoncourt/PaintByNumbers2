@@ -25,8 +25,8 @@
   "welcome": {
     "tagline": "Zamień dowolne zdjęcie w arcydzieło malowania po numerach",
     "description": "Prześlij zdjęcie, a to narzędzie przeanalizuje kolory, uprości obraz do numerowanych obszarów i wygeneruje gotowy do wydruku szablon malowania po numerach  wszystko w Twojej przeglądarce, bez wysyłania jakichkolwiek danych poza urządzenie.",
-    "feature1Title": "Inteligentna kwantyzacja kolorów",
-    "feature1Body": "Wybierz algorytm K-Means lub Median Cut, aby zredukować zdjęcie do idealnego zestawu kolorów.",
+    "feature1Title": "Elastyczne style kolorów",
+    "feature1Body": "Wybierz naturalne przejścia lub wyraźne pola koloru, zależnie od oczekiwanego efektu.",
     "feature2Title": "Dopasuj do własnych farb",
     "feature2Body": "Przypisz każdy obszar do predefiniowanej kredki Crayola lub stwórz własną paletę od podstaw.",
     "feature3Title": "Edycja obszarów",
@@ -85,9 +85,9 @@
   "controls": {
     "paletteSize": "Rozmiar Palety",
     "paletteModeLabel": "Tryb Palety",
-    "algorithm": "Algorytm Kwantyzacji Koloru",
-    "kmeans": "K-Means",
-    "mediancut": "Median Cut",
+    "algorithm": "Styl kolorów",
+    "kmeans": "Naturalne przejścia",
+    "mediancut": "Wyraźne pola koloru",
     "autoDetect": "Automatyczne Wykrywanie",
     "crayolaPreset": "Ustawienie Predefiniowane Crayola",
     "customPalette": "Niestandardowa Paleta",
@@ -379,7 +379,7 @@
       "autoDetect": "Automatyczne wykrywanie",
       "custom": "Niestandardowe",
       "fromSetHelp": "Twój szablon używa {{count}} kolorów z tego zestawu, więc każdy numerowany region odpowiada rzeczywistemu kolorowi {{brand}}.",
-      "quantizationAlgorithm": "Algorytm kwantyzacji"
+      "quantizationAlgorithm": "Styl kolorów"
     },
     "adjust": {
       "tab": "Dostosuj",
