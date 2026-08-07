@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
+import { useRenderLabels } from '../../state/useRenderLabels';
 
 /**
  * PROTOTYPE — Interactive "Paint Mode" companion.
@@ -37,6 +38,7 @@ function textColorFor(r: number, g: number, b: number): string {
 export function PaintMode({ onClose }: PaintModeProps) {
   const { t } = useTranslation();
   const result = useAppStore((s) => s.result);
+  const renderLabels = useRenderLabels();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,7 +85,7 @@ export function PaintMode({ onClose }: PaintModeProps) {
     if (!ctx) return;
 
     const { scale, offsetX, offsetY } = viewRef.current;
-    const { palette, contours, labels, width, height } = result;
+    const { palette, contours, width, height } = result;
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -135,17 +137,16 @@ export function PaintMode({ onClose }: PaintModeProps) {
     }
 
     // Numbers — only on unpainted regions (painted ones show clean color).
-    for (const label of labels) {
+    for (const label of renderLabels) {
       if (painted.has(label.regionId)) continue;
       const isActive = activeColor !== null && label.colorIndex === activeColor;
-      const fontSize = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
-      ctx.font = `${isActive ? 'bold ' : ''}${fontSize}px Arial, Helvetica, sans-serif`;
+      ctx.font = `${isActive ? 'bold ' : ''}${label.fontSize}px ${label.font.css}`;
       ctx.fillStyle = isActive ? '#1d4ed8' : '#475569';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(String(label.colorIndex + 1), label.x, label.y);
     }
-  }, [result, painted, activeColor]);
+  }, [result, painted, activeColor, renderLabels]);
 
   // Fit the image to the canvas and size the backing store to the container.
   const fitToContainer = useCallback(() => {

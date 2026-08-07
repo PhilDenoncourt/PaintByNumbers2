@@ -1,12 +1,16 @@
 import type { PipelineResult } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
 import { findPresetPalette } from '../data/paletteRegistry';
+import { computeRenderLabels, type RenderLabel } from '../utils/labels';
 
 export function generatePngCanvas(
   result: PipelineResult,
-  includeColor: boolean = false
+  includeColor: boolean = false,
+  renderLabels?: RenderLabel[]
 ): HTMLCanvasElement {
-  const { width, height, contours, labels, palette } = result;
+  const { width, height, contours, palette } = result;
+  const labels =
+    renderLabels ?? computeRenderLabels(result.labels, { numberScale: 1, numberMinSize: 0 });
 
   const canvas = document.createElement('canvas');
   canvas.width = width;
@@ -84,8 +88,7 @@ export function generatePngCanvas(
   ctx.textBaseline = 'middle';
 
   for (const label of labels) {
-    const fontSize = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
-    ctx.font = `${fontSize}px Arial`;
+    ctx.font = `${label.fontSize}px ${label.font.css}`;
     const num = label.colorIndex + 1;
     ctx.fillText(num.toString(), label.x, label.y);
   }
@@ -96,9 +99,10 @@ export function generatePngCanvas(
 export function downloadPng(
   result: PipelineResult,
   includeColor: boolean = false,
-  filename: string = 'paint-by-numbers.png'
+  filename: string = 'paint-by-numbers.png',
+  renderLabels?: RenderLabel[]
 ) {
-  const canvas = generatePngCanvas(result, includeColor);
+  const canvas = generatePngCanvas(result, includeColor, renderLabels);
   canvas.toBlob((blob) => {
     if (!blob) return;
     const url = URL.createObjectURL(blob);

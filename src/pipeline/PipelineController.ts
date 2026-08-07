@@ -109,7 +109,7 @@ export async function runPipeline(
   onProgress('label', 0);
   const labeled = await runWorker<unknown, LabelOutput>(
     LabelWorker,
-    { contours: contoured.contours },
+    { contours: contoured.contours, keepInside: settings.keepNumbersInside ?? true },
     [],
     (pct) => onProgress('label', pct)
   );

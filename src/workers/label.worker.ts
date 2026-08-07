@@ -10,7 +10,8 @@ self.onmessage = (e: MessageEvent) => {
       input.contours,
       (percent) => {
         self.postMessage({ type: 'progress', percent, message: 'Placing labels...' });
-      }
+      },
+      { keepInside: input.keepInside ?? true }
     );
 
     const output: LabelOutput = { labels };

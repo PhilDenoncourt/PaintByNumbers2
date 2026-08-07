@@ -1,5 +1,5 @@
 import type { Point, LabelPlacement, ContourData } from '../state/types';
-import { pointToPolygonDist, polygonCentroid } from '../utils/geometry';
+import { pointToPolygonDist, pointToPolygonDistWithHoles, polygonCentroid } from '../utils/geometry';
 
 interface Cell {
   x: number;
@@ -9,12 +9,22 @@ interface Cell {
   max: number; // upper bound
 }
 
-function createCell(x: number, y: number, h: number, polygon: Point[]): Cell {
-  const d = pointToPolygonDist(x, y, polygon);
+function createCell(x: number, y: number, h: number, polygon: Point[], holes: Point[][]): Cell {
+  const d = holes.length > 0
+    ? pointToPolygonDistWithHoles(x, y, polygon, holes)
+    : pointToPolygonDist(x, y, polygon);
   return { x, y, h, d, max: d + h * Math.SQRT2 };
 }
 
-export function polylabel(polygon: Point[], precision: number = 1.0): { x: number; y: number; distance: number } {
+/**
+ * Pole of inaccessibility. Pass `holes` to treat them as barriers, which keeps the number
+ * out of a ring-shaped region's hole; pass `[]` for the outer-ring-only behavior.
+ */
+export function polylabel(
+  polygon: Point[],
+  holes: Point[][] = [],
+  precision: number = 1.0
+): { x: number; y: number; distance: number } {
   if (polygon.length === 0) return { x: 0, y: 0, distance: 0 };
 
   // Bounding box
@@ -53,13 +63,14 @@ export function polylabel(polygon: Point[], precision: number = 1.0): { x: numbe
   // Cover bbox with initial cells
   for (let x = minX; x < maxX; x += cellSize) {
     for (let y = minY; y < maxY; y += cellSize) {
-      queuePush(createCell(x + h, y + h, h, polygon));
+      queuePush(createCell(x + h, y + h, h, polygon, holes));
     }
   }
 
-  // Best cell — start with centroid
+  // Best cell — start with centroid. With holes this seed can land in a hole and score
+  // negative; that's fine, any real cell beats it.
   const cent = polygonCentroid(polygon);
-  let bestCell = createCell(cent.x, cent.y, 0, polygon);
+  let bestCell = createCell(cent.x, cent.y, 0, polygon, holes);
 
   while (queue.length > 0) {
     const cell = queue.shift()!; // highest max
@@ -73,26 +84,33 @@ export function polylabel(polygon: Point[], precision: number = 1.0): { x: numbe
 
     // Subdivide
     h = cell.h / 2;
-    queuePush(createCell(cell.x - h, cell.y - h, h, polygon));
-    queuePush(createCell(cell.x + h, cell.y - h, h, polygon));
-    queuePush(createCell(cell.x - h, cell.y + h, h, polygon));
-    queuePush(createCell(cell.x + h, cell.y + h, h, polygon));
+    queuePush(createCell(cell.x - h, cell.y - h, h, polygon, holes));
+    queuePush(createCell(cell.x + h, cell.y - h, h, polygon, holes));
+    queuePush(createCell(cell.x - h, cell.y + h, h, polygon, holes));
+    queuePush(createCell(cell.x + h, cell.y + h, h, polygon, holes));
   }
 
   return { x: bestCell.x, y: bestCell.y, distance: bestCell.d };
 }
 
+export interface PlaceLabelsOptions {
+  /** Treat holes as barriers so a number can't land inside a ring's hole. */
+  keepInside?: boolean;
+}
+
 export function placeAllLabels(
   contours: ContourData[],
-  onProgress?: (percent: number) => void
+  onProgress?: (percent: number) => void,
+  options: PlaceLabelsOptions = {}
 ): LabelPlacement[] {
+  const keepInside = options.keepInside ?? true;
   const labels: LabelPlacement[] = [];
 
   for (let i = 0; i < contours.length; i++) {
     const c = contours[i];
     if (c.outerRing.length < 3) continue;
 
-    const { x, y, distance } = polylabel(c.outerRing, 1.0);
+    const { x, y, distance } = polylabel(c.outerRing, keepInside ? c.holes : [], 1.0);
     labels.push({
       regionId: c.regionId,
       colorIndex: c.colorIndex,

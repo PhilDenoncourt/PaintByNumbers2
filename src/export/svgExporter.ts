@@ -1,6 +1,17 @@
 import type { PipelineResult } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
 import { findPresetPalette } from '../data/paletteRegistry';
+import {
+  computeRenderLabels,
+  NUMBER_FONTS,
+  DEFAULT_NUMBER_FONT,
+  type RenderLabel,
+} from '../utils/labels';
+
+/** Font stacks contain double quotes (e.g. "Courier New") — they must not break the attribute. */
+function escapeXml(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 
 function polygonToPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return '';
@@ -12,8 +23,16 @@ function polygonToPath(points: { x: number; y: number }[]): string {
   return parts.join(' ');
 }
 
-export function generateSvg(result: PipelineResult, includeColor: boolean = false, presetPaletteId: string | null = null): string {
-  const { width, height, contours, labels, palette } = result;
+export function generateSvg(
+  result: PipelineResult,
+  includeColor: boolean = false,
+  presetPaletteId: string | null = null,
+  renderLabels?: RenderLabel[]
+): string {
+  const { width, height, contours, palette } = result;
+  // Fall back to unscaled defaults so the exporter still works standalone (tests, scripts).
+  const labels =
+    renderLabels ?? computeRenderLabels(result.labels, { numberScale: 1, numberMinSize: 0 });
 
   const legendHeight = palette.length * 25 + 40;
   const totalHeight = height + legendHeight;
@@ -48,13 +67,13 @@ export function generateSvg(result: PipelineResult, includeColor: boolean = fals
   }
   lines.push(`  </g>`);
 
-  // Number labels
-  lines.push(`  <g id="labels" font-family="Arial,Helvetica,sans-serif" fill="black" text-anchor="middle" dominant-baseline="central">`);
+  // Number labels — the family is uniform, so it lives on the group
+  const labelFont = (labels[0]?.font ?? NUMBER_FONTS[DEFAULT_NUMBER_FONT]).css;
+  lines.push(`  <g id="labels" font-family="${escapeXml(labelFont)}" fill="black" text-anchor="middle" dominant-baseline="central">`);
   for (const label of labels) {
-    const fontSize = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
     // Display 1-based color numbers
     const num = label.colorIndex + 1;
-    lines.push(`    <text x="${label.x.toFixed(1)}" y="${label.y.toFixed(1)}" font-size="${fontSize.toFixed(1)}">${num}</text>`);
+    lines.push(`    <text x="${label.x.toFixed(1)}" y="${label.y.toFixed(1)}" font-size="${label.fontSize.toFixed(1)}">${num}</text>`);
   }
   lines.push(`  </g>`);
 

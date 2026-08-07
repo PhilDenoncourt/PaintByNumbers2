@@ -26,6 +26,10 @@ describe('sessionStorage', () => {
     preserveCorners: false,
     cropRect: null,
     rotation: 0 as (0 | 90 | 180 | 270),
+    numberFont: 'sans',
+    numberScale: 1,
+    numberMinSize: 0,
+    keepNumbersInside: true,
   };
 
   const mockResult: PipelineResult = {

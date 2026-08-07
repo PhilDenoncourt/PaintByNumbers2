@@ -6,6 +6,7 @@ import { downloadPdf, downloadColorLegendPdf } from '../../export/pdfExporter';
 import { downloadPng, downloadColorLegendPng } from '../../export/pngExporter';
 import { trackEvent } from '../../utils/analytics';
 import { sessionStorage } from '../../utils/sessionStorage';
+import { useRenderLabels } from '../../state/useRenderLabels';
 import { AffiliateExportHero } from '../affiliate/AffiliateExportHero';
 
 type Format = 'svg' | 'png' | 'pdf';
@@ -22,6 +23,9 @@ export function ExportPanel() {
   const presetPaletteId = useAppStore((s) => s.settings.presetPaletteId);
   const settings = useAppStore((s) => s.settings);
   const sourceImageUrl = useAppStore((s) => s.sourceImageUrl);
+  const labelOverrides = useAppStore((s) => s.labelOverrides);
+  // Exports must match what's on screen: same scale, same manual positions
+  const renderLabels = useRenderLabels();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!result) return null;
@@ -29,11 +33,14 @@ export function ExportPanel() {
   const exportTemplate = (format: Format, includeColor: boolean) => {
     const suffix = includeColor ? 'colored' : 'outline';
     if (format === 'svg') {
-      downloadSvg(generateSvg(result, includeColor, presetPaletteId), `paint-by-numbers-${suffix}.svg`);
+      downloadSvg(
+        generateSvg(result, includeColor, presetPaletteId, renderLabels),
+        `paint-by-numbers-${suffix}.svg`
+      );
     } else if (format === 'png') {
-      downloadPng(result, includeColor, `paint-by-numbers-${suffix}.png`);
+      downloadPng(result, includeColor, `paint-by-numbers-${suffix}.png`, renderLabels);
     } else {
-      downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`, presetPaletteId);
+      downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`, presetPaletteId, renderLabels);
     }
     trackEvent('export', { format, variant: suffix });
   };
@@ -45,13 +52,19 @@ export function ExportPanel() {
   };
 
   const handleSaveToBrowser = () => {
-    sessionStorage.autoSave(settings, result, sourceImageUrl);
+    sessionStorage.autoSave(settings, result, sourceImageUrl, labelOverrides);
     alert(t('export.autoSaveMessage'));
   };
 
   const handleExportJson = () => {
     const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
-    sessionStorage.exportToFile(settings, result, sourceImageUrl, `pbn-session-${timestamp}.json`);
+    sessionStorage.exportToFile(
+      settings,
+      result,
+      sourceImageUrl,
+      `pbn-session-${timestamp}.json`,
+      labelOverrides
+    );
   };
 
   const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +88,7 @@ export function ExportPanel() {
           processedHeight: imageData.height,
           settings: session.settings,
           result: session.result,
+          labelOverrides: session.labelOverrides ?? {},
         });
         alert(t('export.sessionLoaded'));
       };

@@ -1,7 +1,8 @@
 import jsPDF from 'jspdf';
-import type { PipelineResult, ContourData, LabelPlacement } from '../state/types';
+import type { PipelineResult, ContourData } from '../state/types';
 import { rgbToHex } from '../algorithms/colorUtils';
 import { findPresetPalette } from '../data/paletteRegistry';
+import { computeRenderLabels, type RenderLabel } from '../utils/labels';
 
 // --- Layout constants ---
 const MARGIN_MM = 10;
@@ -110,7 +111,7 @@ function drawRegions(
 
 function drawLabels(
   doc: jsPDF,
-  labels: LabelPlacement[],
+  labels: RenderLabel[],
   palette: [number, number, number][],
   includeColor: boolean,
   layout: Layout,
@@ -119,9 +120,7 @@ function drawLabels(
   const MM_PER_PT = 0.3528;
 
   for (const label of labels) {
-    // Same sizing formula as SVG exporter
-    const fontSizePx = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
-    const fontSizeMm = fontSizePx * scale;
+    const fontSizeMm = label.fontSize * scale;
     const fontSizePt = Math.max(3, fontSizeMm / MM_PER_PT);
 
     // Pick text color for readability in colored mode
@@ -133,7 +132,7 @@ function drawLabels(
       doc.setTextColor(0, 0, 0);
     }
 
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(label.font.pdf, 'normal');
     doc.setFontSize(fontSizePt);
 
     const xMm = offsetX + label.x * scale;
@@ -220,8 +219,15 @@ function drawLegend(
 
 // --- Public API ---
 
-export function generatePdf(result: PipelineResult, includeColor: boolean, presetPaletteId: string | null = null): jsPDF {
+export function generatePdf(
+  result: PipelineResult,
+  includeColor: boolean,
+  presetPaletteId: string | null = null,
+  renderLabels?: RenderLabel[]
+): jsPDF {
   const layout = calculateLayout(result.width, result.height, result.palette.length);
+  const labels =
+    renderLabels ?? computeRenderLabels(result.labels, { numberScale: 1, numberMinSize: 0 });
 
   const doc = new jsPDF({
     orientation: layout.orientation,
@@ -234,7 +240,7 @@ export function generatePdf(result: PipelineResult, includeColor: boolean, prese
   doc.rect(0, 0, layout.pageW, layout.pageH, 'F');
 
   drawRegions(doc, result.contours, result.palette, includeColor, layout);
-  drawLabels(doc, result.labels, result.palette, includeColor, layout);
+  drawLabels(doc, labels, result.palette, includeColor, layout);
   drawLegend(doc, result.palette, layout, presetPaletteId);
 
   return doc;
@@ -245,8 +251,9 @@ export function downloadPdf(
   includeColor: boolean,
   filename: string = 'paint-by-numbers.pdf',
   presetPaletteId: string | null = null,
+  renderLabels?: RenderLabel[]
 ): void {
-  const doc = generatePdf(result, includeColor, presetPaletteId);
+  const doc = generatePdf(result, includeColor, presetPaletteId, renderLabels);
   doc.save(filename);
 }
 export function generateColorLegendPdf(

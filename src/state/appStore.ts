@@ -4,10 +4,12 @@ import type {
   PipelineState,
   PipelineResult,
   PipelineStage,
+  LabelPlacement,
   UIState,
   ViewMode,
   MergeMode,
   ActivePanel,
+  LabelOverride,
 } from './types';
 import { loadImageFromFile, imageToImageData, applyCropRotate } from '../utils/imageLoader';
 import { runPipeline } from '../pipeline/PipelineController';
@@ -34,7 +36,62 @@ import { trackEvent } from '../utils/analytics';
 interface HistoryEntry {
   settings: PipelineSettings;
   result: PipelineResult | null;
+  labelOverrides: Record<number, LabelOverride>;
   timestamp: number;
+}
+
+/**
+ * Carry manual number positions across a pipeline re-run.
+ *
+ * Region ids come from the connected-components raster scan, so they reshuffle on every
+ * run. Instead of trusting the id, look up the override's anchor point (the old automatic
+ * placement, deep inside the region) in the new labelMap and keep the override only if
+ * the region found there still carries the same palette color. Anything else is dropped —
+ * better to lose a nudge than to move a number the user never touched.
+ */
+function reanchorOverrides(
+  overrides: Record<number, LabelOverride>,
+  result: PipelineResult
+): { overrides: Record<number, LabelOverride>; kept: number; dropped: number } {
+  const entries = Object.values(overrides);
+  if (entries.length === 0) return { overrides: {}, kept: 0, dropped: 0 };
+
+  const labelsById = new Map(result.labels.map((l) => [l.regionId, l]));
+  const next: Record<number, LabelOverride> = {};
+  let kept = 0;
+
+  for (const ov of entries) {
+    const ix = Math.round(ov.anchorX);
+    const iy = Math.round(ov.anchorY);
+    if (ix < 0 || iy < 0 || ix >= result.width || iy >= result.height) continue;
+
+    const newRegionId = result.labelMap[iy * result.width + ix];
+    const label = labelsById.get(newRegionId);
+    if (!label || label.colorIndex !== ov.colorIndex) continue;
+
+    // Re-anchor to the new automatic placement so drift doesn't accumulate across runs.
+    next[newRegionId] = { ...ov, anchorX: label.x, anchorY: label.y };
+    kept++;
+  }
+
+  return { overrides: next, kept, dropped: entries.length - kept };
+}
+
+/**
+ * Drop overrides whose region no longer exists. Merge and split rewrite region ids in
+ * place, so without this the "moved numbers" count would keep counting ghosts.
+ */
+function pruneOverrides(
+  overrides: Record<number, LabelOverride>,
+  labels: LabelPlacement[]
+): Record<number, LabelOverride> {
+  const live = new Set(labels.map((l) => l.regionId));
+  const next: Record<number, LabelOverride> = {};
+  for (const [key, ov] of Object.entries(overrides)) {
+    const id = Number(key);
+    if (live.has(id)) next[id] = ov;
+  }
+  return next;
 }
 
 interface AppState {
@@ -52,6 +109,8 @@ interface AppState {
   history: HistoryEntry[];
   historyIndex: number;
   paletteColorOrder: number[] | null; // null = original order, else: [newIndex0, newIndex1, ...]
+  labelOverrides: Record<number, LabelOverride>; // manual number positions, keyed by regionId
+  labelOverrideNotice: string | null; // set after a re-run when overrides were dropped
 
   loadImage: (file: File) => Promise<void>;
   updateSettings: (partial: Partial<PipelineSettings>) => void;
@@ -73,6 +132,12 @@ interface AppState {
   performMerge: (regionAId: number, regionBId: number) => Promise<void>;
   analyzeSplitCandidates: (regionId: number) => Promise<void>;
   performSplit: (regionId: number, splitX: number, splitY: number) => Promise<void>;
+  setLabelOverride: (regionId: number, x: number, y: number) => void;
+  clearLabelOverride: (regionId: number) => void;
+  clearAllLabelOverrides: () => void;
+  setDraggingLabel: (regionId: number | null) => void;
+  replaceLabels: () => Promise<void>;
+  dismissLabelOverrideNotice: () => void;
   reset: () => void;
 }
 
@@ -95,6 +160,10 @@ const defaultSettings: PipelineSettings = {
   preserveCorners: false,
   cropRect: null,
   rotation: 0 as (0 | 90 | 180 | 270),
+  numberFont: 'sans',
+  numberScale: 1,
+  numberMinSize: 0,
+  keepNumbersInside: true,
 };
 
 const defaultPipeline: PipelineState = {
@@ -115,6 +184,7 @@ const defaultUI: UIState = {
   darkMode: localStorage.getItem('darkMode') !== null
     ? localStorage.getItem('darkMode') === 'true'
     : window.matchMedia('(prefers-color-scheme: dark)').matches,
+  draggingLabelId: null,
   mergeMode: 'browse',
   selectedRegions: [],
   mergeSuggestions: [],
@@ -136,6 +206,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   history: [],
   historyIndex: -1,
   paletteColorOrder: null,
+  labelOverrides: {},
+  labelOverrideNotice: null,
 
   loadImage: async (file: File) => {
     const oldUrl = get().sourceImageUrl;
@@ -154,6 +226,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       result: null,
       pipeline: { ...defaultPipeline },
       ui: { ...defaultUI },
+      // A new image shares no regions with the old one — manual number moves can't carry over
+      labelOverrides: {},
+      labelOverrideNotice: null,
       // Reset crop/rotation when a new image is loaded
       settings: { ...s.settings, cropRect: null, rotation: 0 as (0 | 90 | 180 | 270) },
     }));
@@ -171,7 +246,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   startPipeline: async () => {
-    const { sourceImage, settings } = get();
+    const { sourceImage, settings, labelOverrides: prevOverrides } = get();
     if (!sourceImage) return;
 
     trackEvent('pipeline_start', {
@@ -208,15 +283,28 @@ export const useAppStore = create<AppState>((set, get) => ({
         output_width: result.width,
         output_height: result.height,
       });
+      // Best-effort carry-over of manual number positions
+      const reanchored = reanchorOverrides(prevOverrides, result);
+
       set((s) => {
         // Add to history after successful pipeline
         const newHistory = s.history.slice(0, s.historyIndex + 1);
-        newHistory.push({ settings: { ...settings }, result, timestamp: Date.now() });
+        newHistory.push({
+          settings: { ...settings },
+          result,
+          labelOverrides: reanchored.overrides,
+          timestamp: Date.now(),
+        });
         return {
           pipeline: { status: 'complete', currentStage: null, stageProgress: 100, error: null },
           result,
           history: newHistory,
           historyIndex: newHistory.length - 1,
+          labelOverrides: reanchored.overrides,
+          labelOverrideNotice:
+            reanchored.dropped > 0
+              ? `${reanchored.dropped} moved number${reanchored.dropped === 1 ? '' : 's'} could not be kept — ${reanchored.kept} restored.`
+              : null,
         };
       });
     } catch (err: unknown) {
@@ -245,6 +333,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         historyIndex: newIndex,
         settings: { ...entry.settings },
         result: entry.result,
+        labelOverrides: { ...(entry.labelOverrides ?? {}) },
       };
     });
   },
@@ -258,6 +347,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         historyIndex: newIndex,
         settings: { ...entry.settings },
         result: entry.result,
+        labelOverrides: { ...(entry.labelOverrides ?? {}) },
       };
     });
   },
@@ -408,7 +498,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Recompute label placements so the merged region gets a correctly positioned number
       const labelOutput = await runWorker<LabelInput, LabelOutput>(
         LabelWorker,
-        { contours: contourOutput.contours },
+        { contours: contourOutput.contours, keepInside: settings.keepNumbersInside ?? true },
         [],
         () => {}
       );
@@ -425,16 +515,21 @@ export const useAppStore = create<AppState>((set, get) => ({
           labels: labelOutput.labels,
         };
 
+        // The absorbed region's id is gone — drop any manual number position it had
+        const overrides = pruneOverrides(s.labelOverrides, labelOutput.labels);
+
         // Add to history
         const newHistory = s.history.slice(0, s.historyIndex + 1);
         newHistory.push({
           settings: { ...s.settings },
           result: newResult,
+          labelOverrides: overrides,
           timestamp: Date.now(),
         });
 
         return {
           result: newResult,
+          labelOverrides: overrides,
           history: newHistory,
           historyIndex: newHistory.length - 1,
           ui: {
@@ -529,7 +624,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Recompute label placements for both the split region and the new region
       const labelOutput = await runWorker<LabelInput, LabelOutput>(
         LabelWorker,
-        { contours: contourOutput.contours },
+        { contours: contourOutput.contours, keepInside: settings.keepNumbersInside ?? true },
         [],
         () => {}
       );
@@ -545,16 +640,24 @@ export const useAppStore = create<AppState>((set, get) => ({
           labels: labelOutput.labels,
         };
 
+        // The split region's geometry changed underneath any manual position it had, so
+        // reset it along with any override whose region no longer exists.
+        const rest = { ...s.labelOverrides };
+        delete rest[regionId];
+        const overrides = pruneOverrides(rest, labelOutput.labels);
+
         // Add to history
         const newHistory = s.history.slice(0, s.historyIndex + 1);
         newHistory.push({
           settings: { ...s.settings },
           result: newResult,
+          labelOverrides: overrides,
           timestamp: Date.now(),
         });
 
         return {
           result: newResult,
+          labelOverrides: overrides,
           history: newHistory,
           historyIndex: newHistory.length - 1,
           ui: {
@@ -566,6 +669,69 @@ export const useAppStore = create<AppState>((set, get) => ({
       });
     } catch (err) {
       console.error('Failed to perform split:', err);
+    }
+  },
+
+  setLabelOverride: (regionId, x, y) => {
+    set((s) => {
+      if (!s.result) return {};
+      const label = s.result.labels.find((l) => l.regionId === regionId);
+      if (!label) return {};
+
+      // Anchor on the automatic placement, not on x/y — see reanchorOverrides.
+      const existing = s.labelOverrides[regionId];
+      return {
+        labelOverrides: {
+          ...s.labelOverrides,
+          [regionId]: {
+            x,
+            y,
+            anchorX: existing ? existing.anchorX : label.x,
+            anchorY: existing ? existing.anchorY : label.y,
+            colorIndex: label.colorIndex,
+          },
+        },
+      };
+    });
+  },
+
+  clearLabelOverride: (regionId) => {
+    set((s) => {
+      if (!(regionId in s.labelOverrides)) return {};
+      const rest = { ...s.labelOverrides };
+      delete rest[regionId];
+      return { labelOverrides: rest };
+    });
+  },
+
+  clearAllLabelOverrides: () => set({ labelOverrides: {}, labelOverrideNotice: null }),
+
+  setDraggingLabel: (regionId) => set((s) => ({ ui: { ...s.ui, draggingLabelId: regionId } })),
+
+  dismissLabelOverrideNotice: () => set({ labelOverrideNotice: null }),
+
+  /**
+   * Re-run only the label worker against the existing contours. Placement is the last and
+   * cheapest stage, so toggling how numbers are placed doesn't need a full Generate.
+   */
+  replaceLabels: async () => {
+    const { result, settings } = get();
+    if (!result) return;
+
+    try {
+      const labelOutput = await runWorker<LabelInput, LabelOutput>(
+        LabelWorker,
+        { contours: result.contours, keepInside: settings.keepNumbersInside ?? true },
+        [],
+        () => {}
+      );
+
+      set((s) => {
+        if (!s.result) return {};
+        return { result: { ...s.result, labels: labelOutput.labels } };
+      });
+    } catch (err) {
+      console.error('Failed to re-place labels:', err);
     }
   },
 
@@ -585,6 +751,8 @@ export const useAppStore = create<AppState>((set, get) => ({
       history: [],
       historyIndex: -1,
       paletteColorOrder: null,
+      labelOverrides: {},
+      labelOverrideNotice: null,
     });
   },
 }));

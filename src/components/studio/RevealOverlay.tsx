@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import type { PipelineResult, ContourData } from '../../state/types';
+import { useRenderLabels } from '../../state/useRenderLabels';
 import { rgbCss } from './studioColor';
 import type { StudioTokens } from './studioTokens';
 
@@ -41,7 +42,9 @@ export function RevealOverlay({
     typeof window !== 'undefined' &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  const { width, height, palette, contours, labels } = result;
+  const { width, height, palette, contours } = result;
+  // Same sizing/positioning the canvas and exports use — including manual moves.
+  const labels = useRenderLabels();
 
   const { ordered, labelByRegion, timing } = useMemo(() => {
     const bboxById = new Map(result.regions.map((r) => [r.id, r.boundingBox]));
@@ -102,7 +105,6 @@ export function RevealOverlay({
       <g>
         {ordered.map((c, i) => {
           const label = labelByRegion.get(c.regionId);
-          const fontSize = label ? Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14)) : 9;
           return (
             <g
               key={`o${c.regionId}`}
@@ -123,8 +125,8 @@ export function RevealOverlay({
                 <text
                   x={label.x}
                   y={label.y}
-                  fontSize={fontSize}
-                  fontFamily="'Spectral', serif"
+                  fontSize={label.fontSize}
+                  fontFamily={label.font.css}
                   fontWeight={600}
                   fill={tokens.revealNum}
                   textAnchor="middle"

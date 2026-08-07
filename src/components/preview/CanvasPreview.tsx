@@ -1,9 +1,12 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { useAppStore } from '../../state/appStore';
+import { useRenderLabels } from '../../state/useRenderLabels';
 
 export function CanvasPreview() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const result = useAppStore((s) => s.result);
+  const renderLabels = useRenderLabels();
+  const draggingLabelId = useAppStore((s) => s.ui.draggingLabelId);
   const viewMode = useAppStore((s) => s.ui.viewMode);
   const selectedColor = useAppStore((s) => s.ui.selectedColor);
   const hoveredRegion = useAppStore((s) => s.ui.hoveredRegion);
@@ -17,7 +20,7 @@ export function CanvasPreview() {
     if (!canvas || !result) return;
 
     const ctx = canvas.getContext('2d')!;
-    const { width, height, palette, contours, labels } = result;
+    const { width, height, palette, contours } = result;
 
     canvas.width = width;
     canvas.height = height;
@@ -112,17 +115,28 @@ export function CanvasPreview() {
     }
 
     // Draw labels
-    for (const label of labels) {
-      const fontSize = Math.max(5, Math.min(label.maxInscribedRadius * 0.8, 14));
-      ctx.font = `${fontSize}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (const label of renderLabels) {
+      // The number being dragged is drawn as a DOM ghost by the overlay instead, so the
+      // canvas doesn't have to repaint every contour on every pointer move.
+      if (label.regionId === draggingLabelId) continue;
+
+      // A moved number leaves a faint marker where it was placed automatically.
+      if (label.moved) {
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.35)';
+        ctx.beginPath();
+        ctx.arc(label.autoX, label.autoY, 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.font = `${label.fontSize}px ${label.font.css}`;
       ctx.fillStyle = '#000';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
       ctx.fillText(String(label.colorIndex + 1), label.x, label.y);
     }
 
     ctx.restore();
-  }, [result, viewMode, selectedColor, hoveredRegion, borderWidth]);
+  }, [result, viewMode, selectedColor, hoveredRegion, borderWidth, renderLabels, draggingLabelId]);
 
   useEffect(() => {
     draw();

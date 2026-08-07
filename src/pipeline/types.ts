@@ -55,6 +55,8 @@ export interface ContourOutput {
 
 export interface LabelInput {
   contours: ContourData[];
+  /** Treat holes as barriers when placing numbers. Defaults to true in the worker. */
+  keepInside?: boolean;
 }
 
 export interface LabelOutput {

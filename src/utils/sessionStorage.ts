@@ -1,8 +1,10 @@
-import type { PipelineSettings, PipelineResult } from '../state/types';
+import type { PipelineSettings, PipelineResult, LabelOverride } from '../state/types';
 
 export interface Session {
   settings: PipelineSettings;
   result: PipelineResult | null;
+  /** Manual number positions. Absent in sessions saved before this existed. */
+  labelOverrides?: Record<number, LabelOverride>;
   sourceImageBase64: string;
   timestamp: number;
   name: string;
@@ -17,7 +19,8 @@ export const sessionStorage = {
   autoSave: (
     settings: PipelineSettings,
     result: PipelineResult | null,
-    imageUrl: string | null
+    imageUrl: string | null,
+    labelOverrides: Record<number, LabelOverride> = {}
   ): void => {
     if (!imageUrl) return;
 
@@ -35,6 +38,7 @@ export const sessionStorage = {
       const session: Session = {
         settings: { ...settings },
         result,
+        labelOverrides,
         sourceImageBase64: base64,
         timestamp: Date.now(),
         name: `Auto-save ${new Date().toLocaleTimeString()}`,
@@ -69,7 +73,8 @@ export const sessionStorage = {
     settings: PipelineSettings,
     result: PipelineResult | null,
     imageUrl: string | null,
-    filename: string = 'paint-by-numbers-session.json'
+    filename: string = 'paint-by-numbers-session.json',
+    labelOverrides: Record<number, LabelOverride> = {}
   ): void => {
     if (!imageUrl) return;
 
@@ -87,6 +92,7 @@ export const sessionStorage = {
       const session: Session = {
         settings: { ...settings },
         result,
+        labelOverrides,
         sourceImageBase64: base64,
         timestamp: Date.now(),
         name: filename.replace('.json', ''),

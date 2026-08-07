@@ -2,6 +2,15 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { CropRotateModal } from '../controls/CropRotateModal';
+import { Segmented } from './Segmented';
+import { NUMBER_FONTS } from '../../utils/labels';
+import type { NumberFont } from '../../state/types';
+
+const NUMBER_FONT_OPTIONS: { value: NumberFont; labelKey: string; fallback: string }[] = [
+  { value: 'sans', labelKey: 'controls.fontSans', fallback: 'Sans' },
+  { value: 'serif', labelKey: 'controls.fontSerif', fallback: 'Serif' },
+  { value: 'mono', labelKey: 'controls.fontMono', fallback: 'Mono' },
+];
 
 const DIFFICULTY_PRESETS = {
   simple: { detailLevel: 0, minRegionSize: 510 },
@@ -20,9 +29,21 @@ export function AdjustPanel() {
   const settings = useAppStore((s) => s.settings);
   const updateSettings = useAppStore((s) => s.updateSettings);
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
+  const labelOverrides = useAppStore((s) => s.labelOverrides);
+  const clearAllLabelOverrides = useAppStore((s) => s.clearAllLabelOverrides);
+  const replaceLabels = useAppStore((s) => s.replaceLabels);
+  const hasResult = useAppStore((s) => s.result !== null);
   const [showCropModal, setShowCropModal] = useState(false);
 
   const disabled = pipelineStatus === 'running';
+  const movedCount = Object.keys(labelOverrides).length;
+
+  // Placement changes, unlike size, need the numbers re-computed — but only the last
+  // pipeline stage, so it's near-instant and doesn't require a Generate.
+  const toggleKeepInside = (keepNumbersInside: boolean) => {
+    updateSettings({ keepNumbersInside });
+    if (hasResult) void replaceLabels();
+  };
 
   const currentDifficulty: Difficulty =
     settings.detailLevel <= 15 ? 'simple' : settings.detailLevel >= 85 ? 'complex' : 'medium';
@@ -196,6 +217,100 @@ export function AdjustPanel() {
               <span>{t('controls.sharpEdges')}</span>
               <span>{t('controls.smoothCurves')}</span>
             </div>
+          </div>
+
+          {/* Numbers — font, size & min-size apply instantly, no Generate needed */}
+          <div className="border-t border-gray-100 dark:border-gray-700 pt-4 flex flex-col gap-[18px]">
+            <div>
+              <label className="block text-[13px] font-semibold text-[#334155] dark:text-gray-200 mb-[7px]">
+                {t('controls.numberFont', { defaultValue: 'Number Font' })}
+              </label>
+              <Segmented<NumberFont>
+                value={settings.numberFont ?? 'sans'}
+                onChange={(numberFont) => updateSettings({ numberFont })}
+                options={NUMBER_FONT_OPTIONS.map(({ value, labelKey, fallback }) => ({
+                  value,
+                  // Preview each choice in its own face.
+                  label: (
+                    <span style={{ fontFamily: NUMBER_FONTS[value].css }}>
+                      {t(labelKey, { defaultValue: fallback })}
+                    </span>
+                  ),
+                }))}
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-[7px]">
+                <label className="text-[13px] font-semibold text-[#334155] dark:text-gray-200">
+                  {t('controls.numberSize', { defaultValue: 'Number Size' })}
+                </label>
+                <span className="text-xs font-bold text-[#64748b] dark:text-gray-400 tabular-nums">
+                  {settings.numberScale.toFixed(1)}×
+                </span>
+              </div>
+              <input
+                type="range"
+                min={0.5}
+                max={2}
+                step={0.1}
+                value={settings.numberScale}
+                onChange={(e) => updateSettings({ numberScale: Number(e.target.value) })}
+                className="w-full accent-blue-600"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-[7px]">
+                <label className="text-[13px] font-semibold text-[#334155] dark:text-gray-200">
+                  {t('controls.hideNumbersBelow', { defaultValue: 'Hide Numbers Below' })}
+                </label>
+                <span className="text-xs font-bold text-[#64748b] dark:text-gray-400 tabular-nums">
+                  {settings.numberMinSize === 0
+                    ? t('controls.showAll', { defaultValue: 'Show all' })
+                    : `${settings.numberMinSize}px`}
+                </span>
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={12}
+                step={1}
+                value={settings.numberMinSize}
+                onChange={(e) => updateSettings({ numberMinSize: Number(e.target.value) })}
+                className="w-full accent-blue-600"
+              />
+              <div className="flex justify-between text-[11px] text-[#94a3b8] dark:text-gray-500 mt-0.5">
+                <span>{t('controls.showAll', { defaultValue: 'Show all' })}</span>
+                <span>{t('controls.onlyLarge', { defaultValue: 'Only large regions' })}</span>
+              </div>
+            </div>
+
+            <label className="flex items-center gap-2 text-[13px] font-semibold text-[#334155] dark:text-gray-200 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={settings.keepNumbersInside}
+                onChange={(e) => toggleKeepInside(e.target.checked)}
+                disabled={disabled}
+                className="accent-blue-600"
+              />
+              {t('controls.keepNumbersInside', { defaultValue: 'Keep numbers inside regions' })}
+            </label>
+
+            {movedCount > 0 && (
+              <button
+                onClick={clearAllLabelOverrides}
+                className="w-full py-[9px] rounded-[9px] border border-gray-200 dark:border-gray-600 bg-[#f8fafc] dark:bg-gray-700/50 text-[#334155] dark:text-gray-200 text-[12.5px] font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                ↺ {t('controls.resetMovedNumbers', { defaultValue: 'Reset moved numbers' })} ({movedCount})
+              </button>
+            )}
+
+            <p className="text-[11px] text-[#94a3b8] dark:text-gray-500 -mt-2">
+              {t('controls.numberDragHint', {
+                defaultValue: 'Drag a number on the canvas to move it. Double-click to reset it.',
+              })}
+            </p>
           </div>
 
           <button

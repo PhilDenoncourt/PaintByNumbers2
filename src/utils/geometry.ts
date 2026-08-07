@@ -81,3 +81,29 @@ export function pointToPolygonDist(x: number, y: number, polygon: Point[]): numb
   }
   return (inside ? 1 : -1) * Math.sqrt(minDistSq);
 }
+
+/**
+ * Signed distance to a polygon with holes: positive inside the filled area, negative
+ * outside it (including inside a hole). Magnitude is the distance to the nearest edge,
+ * counting hole edges — so a ring's widest point is in the ring, not in the hole.
+ */
+export function pointToPolygonDistWithHoles(
+  x: number,
+  y: number,
+  outer: Point[],
+  holes: Point[][]
+): number {
+  const outerDist = pointToPolygonDist(x, y, outer);
+  if (outerDist <= 0) return outerDist; // outside the region entirely
+
+  let dist = outerDist;
+  for (const hole of holes) {
+    if (hole.length < 3) continue;
+    const holeDist = pointToPolygonDist(x, y, hole);
+    // Inside a hole means outside the region; report distance to that hole's edge.
+    if (holeDist > 0) return -holeDist;
+    // Outside the hole: its boundary is a wall that caps the inscribed radius.
+    dist = Math.min(dist, -holeDist);
+  }
+  return dist;
+}

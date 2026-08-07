@@ -10,6 +10,13 @@ export type Algorithm = 'kmeans' | 'mediancut';
 
 export type RotationAngle = 0 | 90 | 180 | 270;
 
+/**
+ * Font family for the region numbers. Deliberately a small set: PDF export runs through
+ * jsPDF, which only ships the three standard PostScript families, so anything else would
+ * render on screen but silently fall back in the printable output.
+ */
+export type NumberFont = 'sans' | 'serif' | 'mono';
+
 export interface BBox {
   x: number;
   y: number;
@@ -44,6 +51,24 @@ export interface LabelPlacement {
   maxInscribedRadius: number;
 }
 
+/**
+ * A user-authored position for a region's number, keyed by regionId.
+ *
+ * `anchorX/anchorY` record the *automatic* placement at the time of the edit, not the
+ * dragged position. The auto placement is the pole of inaccessibility — deep inside the
+ * region — so looking it up in a freshly generated `labelMap` is far more likely to land
+ * on the same region than the user's chosen spot, which is often near an edge.
+ * `colorIndex` guards the re-anchor: if the region under the anchor changed color, the
+ * override is dropped rather than applied to something the user never moved.
+ */
+export interface LabelOverride {
+  x: number;
+  y: number;
+  anchorX: number;
+  anchorY: number;
+  colorIndex: number;
+}
+
 export interface PipelineSettings {
   paletteSize: number;
   algorithm: Algorithm;
@@ -65,6 +90,11 @@ export interface PipelineSettings {
   // Contour smoothing options
   smoothingPasses: number; // 0-3, additional smoothing iterations
   preserveCorners: boolean; // preserve sharp corners during simplification
+  // Number labels
+  numberFont: NumberFont;
+  numberScale: number; // 0.5 to 2.0, multiplies the automatic font size
+  numberMinSize: number; // 0 to 12 px, numbers smaller than this are not drawn
+  keepNumbersInside: boolean; // treat holes as barriers when placing numbers
 }
 
 export interface PipelineState {
@@ -93,6 +123,8 @@ export interface UIState {
   panX: number;
   panY: number;
   darkMode: boolean;
+  // Number label being dragged — the canvas omits it so the DOM ghost can stand in
+  draggingLabelId: number | null;
   // Region merge/split state
   mergeMode: MergeMode;
   selectedRegions: number[]; // regions selected for merge

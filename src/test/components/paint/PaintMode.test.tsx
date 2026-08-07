@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PaintMode } from '../../../components/paint/PaintMode';
 import { useAppStore } from '../../../state/appStore';
-import type { PipelineResult } from '../../../state/types';
+import type { PipelineResult, PipelineSettings, LabelOverride } from '../../../state/types';
 
 vi.mock('../../../state/appStore', () => ({
   useAppStore: vi.fn(),
@@ -10,6 +10,9 @@ vi.mock('../../../state/appStore', () => ({
 
 type StoreState = {
   result: PipelineResult | null;
+  // PaintMode reads these through useRenderLabels.
+  settings: Pick<PipelineSettings, 'numberScale' | 'numberMinSize' | 'numberFont'>;
+  labelOverrides: Record<number, LabelOverride>;
 };
 
 type StoreSelector = (state: StoreState) => unknown;
@@ -35,7 +38,11 @@ function makeResult(): PipelineResult {
 
 function mockStore(result: PipelineResult | null) {
   (useAppStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector: StoreSelector) =>
-    selector({ result }),
+    selector({
+      result,
+      settings: { numberScale: 1, numberMinSize: 0, numberFont: 'sans' },
+      labelOverrides: {},
+    }),
   );
 }
 
