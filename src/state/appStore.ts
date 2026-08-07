@@ -32,6 +32,7 @@ import RegionOpsWorker from '../workers/regionOps.worker?worker';
 import ContourWorker from '../workers/contour.worker?worker';
 import LabelWorker from '../workers/label.worker?worker';
 import { trackEvent } from '../utils/analytics';
+import { rgbToLab } from '../algorithms/colorUtils';
 
 interface HistoryEntry {
   settings: PipelineSettings;
@@ -432,7 +433,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         regions: result.regions,
         labelMap: result.labelMap,
         palette: result.palette,
-        labPalette: result.palette, // Would need separate LAB palette in real implementation
+        // Sessions saved before labPalette existed lack it — derive from RGB
+        labPalette: result.labPalette ?? result.palette.map(([r, g, b]) => rgbToLab(r, g, b)),
         width: result.width,
         height: result.height,
         topN: 5,

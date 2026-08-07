@@ -32,13 +32,15 @@ export async function runPipeline(
   // Make a copy of pixel data since we transfer ownership
   const pixelsCopy = new Uint8ClampedArray(imageData.data);
 
-  // Resolve preset palette if selected
+  // Resolve preset palette if selected, falling back to a user-supplied custom palette
   let fixedPalette: [number, number, number][] | undefined;
   if (settings.presetPaletteId) {
     const preset = findPresetPalette(settings.presetPaletteId);
     if (preset) {
       fixedPalette = preset.colors.map((c) => c.rgb);
     }
+  } else if (settings.customPalette && settings.customPalette.length > 0) {
+    fixedPalette = settings.customPalette;
   }
 
   // Stage 1: Quantize
@@ -59,8 +61,6 @@ export async function runPipeline(
 
   // Stage 2: Segment
   onProgress('segment', 0);
-  // Copy indexMap before transferring since we need it for merge
-  const indexMapCopy = new Uint8Array(quantized.indexMap);
   const segmented = await runWorker<unknown, SegmentOutput>(
     SegmentWorker,
     { indexMap: quantized.indexMap, width, height },
@@ -74,7 +74,6 @@ export async function runPipeline(
     MergeWorker,
     {
       labelMap: segmented.labelMap,
-      indexMap: indexMapCopy,
       regions: segmented.regions,
       width,
       height,
@@ -82,7 +81,7 @@ export async function runPipeline(
       palette: quantized.palette,
       labPalette: quantized.labPalette,
     },
-    [segmented.labelMap.buffer, indexMapCopy.buffer],
+    [segmented.labelMap.buffer],
     (pct) => onProgress('merge', pct)
   );
 
@@ -116,6 +115,7 @@ export async function runPipeline(
 
   return {
     palette: quantized.palette,
+    labPalette: quantized.labPalette,
     labelMap: labelMapForResult,
     regions: merged.regions,
     contours: contoured.contours,

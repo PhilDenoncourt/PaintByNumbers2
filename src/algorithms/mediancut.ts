@@ -1,4 +1,4 @@
-import { rgbToLab, labDistanceSq } from './colorUtils';
+import { rgbToLab, deltaE2000 } from './colorUtils';
 
 interface MedianCutResult {
   indexMap: Uint8Array;
@@ -186,7 +186,9 @@ export function medianCutQuantize(
         let bestDist = Infinity;
         let bestC = 0;
         for (let c = 0; c < labPalette.length; c++) {
-          const d = labDistanceSq(l, a, b_, labPalette[c][0], labPalette[c][1], labPalette[c][2]);
+          // ΔE2000 here (not ΔE76): hue-aware ranking prevents low-chroma
+          // colors like skin from snapping to greenish palette entries.
+          const d = deltaE2000(l, a, b_, labPalette[c][0], labPalette[c][1], labPalette[c][2]);
           if (d < bestDist) {
             bestDist = d;
             bestC = c;

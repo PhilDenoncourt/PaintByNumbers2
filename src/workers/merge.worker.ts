@@ -11,7 +11,6 @@ self.onmessage = (e: MessageEvent) => {
   try {
     const { labelMap, regions } = mergeSmallRegions(
       input.labelMap,
-      input.indexMap,
       input.regions,
       input.width,
       input.height,

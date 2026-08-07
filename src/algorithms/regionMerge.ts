@@ -1,9 +1,8 @@
 import type { RegionInfo } from '../state/types';
-import { labDistanceSq } from './colorUtils';
+import { deltaE2000 } from './colorUtils';
 
 export function mergeSmallRegions(
   labelMap: Int32Array,
-  indexMap: Uint8Array,
   regions: RegionInfo[],
   width: number,
   height: number,
@@ -100,7 +99,7 @@ export function mergeSmallRegions(
       if (!neighbor) continue;
 
       const nLab = labPalette[neighbor.colorIndex];
-      const d = labDistanceSq(myLab[0], myLab[1], myLab[2], nLab[0], nLab[1], nLab[2]);
+      const d = deltaE2000(myLab[0], myLab[1], myLab[2], nLab[0], nLab[1], nLab[2]);
       if (d < bestDist) {
         bestDist = d;
         bestNeighbor = resolvedId;
@@ -165,7 +164,10 @@ export function mergeSmallRegions(
       if (!survivingRegions.has(label)) {
         survivingRegions.set(label, {
           id: label,
-          colorIndex: indexMap[idx],
+          // Surviving labels are always pre-merge region IDs, which are
+          // color-uniform by construction — absorbed pixels must adopt the
+          // target's color, not whichever quantized index they carried.
+          colorIndex: regionById[label]!.colorIndex,
           pixelCount: 0,
           boundingBox: { x, y, w: 1, h: 1 },
         });

@@ -106,6 +106,8 @@ export interface PipelineState {
 
 export interface PipelineResult {
   palette: [number, number, number][];
+  /** LAB version of palette. Optional: sessions saved before this field existed lack it. */
+  labPalette?: [number, number, number][];
   labelMap: Int32Array;
   regions: RegionInfo[];
   contours: ContourData[];

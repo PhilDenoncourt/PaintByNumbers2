@@ -27,7 +27,6 @@ export interface SegmentOutput {
 
 export interface MergeInput {
   labelMap: Int32Array;
-  indexMap: Uint8Array;
   regions: RegionInfo[];
   width: number;
   height: number;

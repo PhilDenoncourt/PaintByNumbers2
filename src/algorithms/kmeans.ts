@@ -1,4 +1,4 @@
-import { rgbToLab, labDistanceSq } from './colorUtils';
+import { rgbToLab, labToRgb, labDistanceSq, deltaE2000 } from './colorUtils';
 
 interface KMeansResult {
   indexMap: Uint8Array;
@@ -148,7 +148,9 @@ export function kmeansQuantize(
         let bestDist = Infinity;
         let bestC = 0;
         for (let c = 0; c < k; c++) {
-          const d = labDistanceSq(l, a, bv, centL[c], centA[c], centB[c]);
+          // ΔE2000 here (not ΔE76): hue-aware ranking prevents low-chroma
+          // colors like skin from snapping to greenish palette entries.
+          const d = deltaE2000(l, a, bv, centL[c], centA[c], centB[c]);
           if (d < bestDist) {
             bestDist = d;
             bestC = c;
@@ -181,28 +183,7 @@ export function kmeansQuantize(
   for (let c = 0; c < k; c++) {
     const L = centL[c], a = centA[c], b = centB[c];
     labPalette.push([L, a, b]);
-    // Convert LAB back to RGB
-    const fy = (L + 16) / 116;
-    const fx = a / 500 + fy;
-    const fz = fy - b / 200;
-
-    const Xn = 0.95047, Yn = 1.0, Zn = 1.08883;
-    const labFInv = (t: number) => t > 0.206893 ? t * t * t : (t - 16 / 116) / 7.787;
-
-    const x = Xn * labFInv(fx);
-    const y = Yn * labFInv(fy);
-    const z = Zn * labFInv(fz);
-
-    const rl = 3.2404542 * x - 1.5371385 * y - 0.4985314 * z;
-    const gl = -0.9692660 * x + 1.8760108 * y + 0.0415560 * z;
-    const bl = 0.0556434 * x - 0.2040259 * y + 1.0572252 * z;
-
-    const toSrgb = (c: number) => {
-      const v = c <= 0.0031308 ? c * 12.92 : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
-      return Math.round(Math.max(0, Math.min(255, v * 255)));
-    };
-
-    palette.push([toSrgb(rl), toSrgb(gl), toSrgb(bl)]);
+    palette.push(labToRgb(L, a, b));
   }
 
   onProgress?.(100);
@@ -256,7 +237,9 @@ export function fixedPaletteQuantize(
         let bestDist = Infinity;
         let bestC = 0;
         for (let c = 0; c < k; c++) {
-          const d = labDistanceSq(l, a, bv, centL[c], centA[c], centB[c]);
+          // ΔE2000 here (not ΔE76): hue-aware ranking prevents low-chroma
+          // colors like skin from snapping to greenish palette entries.
+          const d = deltaE2000(l, a, bv, centL[c], centA[c], centB[c]);
           if (d < bestDist) {
             bestDist = d;
             bestC = c;

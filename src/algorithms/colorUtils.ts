@@ -77,6 +77,82 @@ export function labDistance(
   return Math.sqrt(labDistanceSq(l1, a1, b1, l2, a2, b2));
 }
 
+// CIEDE2000 (Sharma, Wu & Dalal 2005). Unlike labDistanceSq/labDistance (ΔE76),
+// this weights chroma and hue differences by local chroma, which matters for
+// low-chroma colors (e.g. skin) where ΔE76 mis-ranks hue. Roughly 10× the cost
+// of labDistanceSq — use for palette assignment and ranking, not inner k-means loops.
+const DEG2RAD = Math.PI / 180;
+const RAD2DEG = 180 / Math.PI;
+const POW25_7 = 6103515625; // 25^7
+
+export function deltaE2000(
+  l1: number, a1: number, b1: number,
+  l2: number, a2: number, b2: number
+): number {
+  const c1 = Math.sqrt(a1 * a1 + b1 * b1);
+  const c2 = Math.sqrt(a2 * a2 + b2 * b2);
+  const cBar = (c1 + c2) / 2;
+  const cBar7 = Math.pow(cBar, 7);
+  const g = 0.5 * (1 - Math.sqrt(cBar7 / (cBar7 + POW25_7)));
+
+  const a1p = (1 + g) * a1;
+  const a2p = (1 + g) * a2;
+  const c1p = Math.sqrt(a1p * a1p + b1 * b1);
+  const c2p = Math.sqrt(a2p * a2p + b2 * b2);
+
+  let h1p = a1p === 0 && b1 === 0 ? 0 : Math.atan2(b1, a1p) * RAD2DEG;
+  if (h1p < 0) h1p += 360;
+  let h2p = a2p === 0 && b2 === 0 ? 0 : Math.atan2(b2, a2p) * RAD2DEG;
+  if (h2p < 0) h2p += 360;
+
+  const dLp = l2 - l1;
+  const dCp = c2p - c1p;
+
+  let dhp = 0;
+  if (c1p * c2p !== 0) {
+    dhp = h2p - h1p;
+    if (dhp > 180) dhp -= 360;
+    else if (dhp < -180) dhp += 360;
+  }
+  const dHp = 2 * Math.sqrt(c1p * c2p) * Math.sin((dhp / 2) * DEG2RAD);
+
+  const lBarP = (l1 + l2) / 2;
+  const cBarP = (c1p + c2p) / 2;
+
+  let hBarP: number;
+  if (c1p * c2p === 0) {
+    hBarP = h1p + h2p;
+  } else if (Math.abs(h1p - h2p) <= 180) {
+    hBarP = (h1p + h2p) / 2;
+  } else if (h1p + h2p < 360) {
+    hBarP = (h1p + h2p + 360) / 2;
+  } else {
+    hBarP = (h1p + h2p - 360) / 2;
+  }
+
+  const t =
+    1 -
+    0.17 * Math.cos((hBarP - 30) * DEG2RAD) +
+    0.24 * Math.cos(2 * hBarP * DEG2RAD) +
+    0.32 * Math.cos((3 * hBarP + 6) * DEG2RAD) -
+    0.20 * Math.cos((4 * hBarP - 63) * DEG2RAD);
+
+  const dTheta = 30 * Math.exp(-Math.pow((hBarP - 275) / 25, 2));
+  const cBarP7 = Math.pow(cBarP, 7);
+  const rc = 2 * Math.sqrt(cBarP7 / (cBarP7 + POW25_7));
+  const lm50sq = (lBarP - 50) * (lBarP - 50);
+  const sl = 1 + (0.015 * lm50sq) / Math.sqrt(20 + lm50sq);
+  const sc = 1 + 0.045 * cBarP;
+  const sh = 1 + 0.015 * cBarP * t;
+  const rt = -Math.sin(2 * dTheta * DEG2RAD) * rc;
+
+  const dl = dLp / sl;
+  const dc = dCp / sc;
+  const dh = dHp / sh;
+
+  return Math.sqrt(dl * dl + dc * dc + dh * dh + rt * dc * dh);
+}
+
 export function rgbToHex(r: number, g: number, b: number): string {
   return '#' + [r, g, b].map(c => c.toString(16).padStart(2, '0')).join('');
 }
