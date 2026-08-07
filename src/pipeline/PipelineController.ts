@@ -78,6 +78,7 @@ export async function runPipeline(
       width,
       height,
       minRegionSize: settings.minRegionSize,
+      minRegionThickness: settings.minRegionThickness,
       palette: quantized.palette,
       labPalette: quantized.labPalette,
     },

@@ -31,6 +31,7 @@ export interface MergeInput {
   width: number;
   height: number;
   minRegionSize: number;
+  minRegionThickness: number;
 }
 
 export interface MergeOutput {

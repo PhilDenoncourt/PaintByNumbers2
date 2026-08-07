@@ -73,6 +73,12 @@ export interface PipelineSettings {
   paletteSize: number;
   algorithm: Algorithm;
   minRegionSize: number;
+  /**
+   * Minimum paintable width in pixels. Regions thinner than this — measured as the
+   * widest brush that fits inside them, so slivers at any angle count — are absorbed
+   * by a neighbour. 1 disables the check.
+   */
+  minRegionThickness: number;
   detailLevel: number;
   simplificationEpsilon: number;
   presetPaletteId: string | null; // e.g. 'crayola-8', null = auto

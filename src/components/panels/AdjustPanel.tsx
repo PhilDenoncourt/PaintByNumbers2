@@ -128,6 +128,40 @@ export function AdjustPanel() {
           </div>
         </div>
 
+        {/* Minimum shape width — kills slivers the pixel-count floor lets through */}
+        <div>
+          <div className="flex items-center justify-between mb-[7px]">
+            <label className="text-[13px] font-semibold text-[#334155] dark:text-gray-200">
+              {t('controls.minRegionWidth', { defaultValue: 'Minimum Shape Width' })}
+            </label>
+            <span className="text-xs font-bold text-[#64748b] dark:text-gray-400 tabular-nums">
+              {settings.minRegionThickness <= 1
+                ? t('controls.minRegionWidthOff', { defaultValue: 'Off' })
+                : `${settings.minRegionThickness}px`}
+            </span>
+          </div>
+          <input
+            type="range"
+            min={1}
+            max={20}
+            step={1}
+            value={settings.minRegionThickness}
+            onChange={(e) => updateSettings({ minRegionThickness: Number(e.target.value) })}
+            disabled={disabled}
+            className="w-full accent-blue-600"
+          />
+          <div className="flex justify-between text-[11px] text-[#94a3b8] dark:text-gray-500 mt-0.5">
+            <span>{t('controls.allowSlivers', { defaultValue: 'Allow slivers' })}</span>
+            <span>{t('controls.chunkyShapes', { defaultValue: 'Chunky shapes' })}</span>
+          </div>
+          <p className="text-[11px] text-[#94a3b8] dark:text-gray-500 mt-1.5">
+            {t('controls.minRegionWidthHint', {
+              defaultValue:
+                'Merges away shapes narrower than this — at any angle — so there are no slivers too thin to paint.',
+            })}
+          </p>
+        </div>
+
         {/* Image tone */}
         <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
           <div className="flex items-center justify-between mb-[13px]">

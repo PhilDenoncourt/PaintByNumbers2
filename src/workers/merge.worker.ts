@@ -17,8 +17,11 @@ self.onmessage = (e: MessageEvent) => {
       input.minRegionSize,
       input.palette,
       input.labPalette,
-      (percent) => {
-        self.postMessage({ type: 'progress', percent, message: 'Merging small regions...' });
+      {
+        minThickness: input.minRegionThickness,
+        onProgress: (percent) => {
+          self.postMessage({ type: 'progress', percent, message: 'Merging small regions...' });
+        },
       }
     );
 

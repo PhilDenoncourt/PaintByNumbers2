@@ -13,6 +13,7 @@ describe('sessionStorage', () => {
     paletteSize: 16,
     algorithm: 'kmeans',
     minRegionSize: 50,
+    minRegionThickness: 1,
     detailLevel: 50,
     simplificationEpsilon: 1.5,
     presetPaletteId: null,

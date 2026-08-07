@@ -148,6 +148,7 @@ const defaultSettings: PipelineSettings = {
   paletteSize: 12,
   algorithm: 'kmeans',
   minRegionSize: 50,
+  minRegionThickness: 1,
   detailLevel: 30,
   simplificationEpsilon: 1.5,
   // Default to a real paint set (the revenue path): every region maps to a
@@ -294,6 +295,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       algorithm: settings.algorithm,
       palette_size: settings.paletteSize,
       min_region_size: settings.minRegionSize,
+      min_region_thickness: settings.minRegionThickness,
       detail_level: settings.detailLevel,
     });
 
