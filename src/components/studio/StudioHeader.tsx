@@ -37,7 +37,7 @@ export function StudioHeader() {
           className="hidden sm:flex items-center gap-1.5 px-[11px] py-[5px] rounded-full font-display text-[11px] font-semibold transition-opacity hover:opacity-80"
           style={{ color: tk.muted, background: tk.dotIdleBg }}
         >
-          {darkMode ? '🌙 Dark' : '☀️ Light'}
+          {darkMode ? `🌙 ${t('header.darkShort')}` : `☀️ ${t('header.lightShort')}`}
         </button>
 
         {result && (

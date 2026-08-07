@@ -20,7 +20,9 @@
     "color": "Color",
     "regionInfo": "{{width}}x{{height}} · {{count}} regions",
     "lightMode": "Switch to light mode",
-    "darkMode": "Switch to dark mode"
+    "darkMode": "Switch to dark mode",
+    "lightShort": "Light",
+    "darkShort": "Dark"
   },
   "welcome": {
     "vectorBadge": "True vector SVG — crisp at any size",
@@ -384,7 +386,6 @@
     "step": "Step {{n}} of 4",
     "generate": "Generate paint by numbers",
     "autoRegenerate": "Auto-regenerate when options change",
-
     "generateCaption": "Re-runs with your current settings · ~3s",
     "new": "New",
     "lockedHint": "Generate a template first to unlock this step",
@@ -457,7 +458,9 @@
     "buyTheSet": "Buy the {{set}}",
     "exportHeroTitle": "Ready to start painting?",
     "exportHeroBody": "Your template is built from {{set}} — grab the matching set so your colors line up perfectly.",
-    "getTheseIn": "Get these in {{set}}"
+    "getTheseIn": "Get these in {{set}}",
+    "disclosure": "As an Amazon Associate, we earn a commission on qualifying purchases — at no extra cost to you.",
+    "disclosureShort": "As an Amazon Associate, we earn a commission on qualifying purchases."
   },
   "studio": {
     "replay": "Replay reveal",

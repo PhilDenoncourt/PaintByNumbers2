@@ -24,6 +24,8 @@ const languages = [
   { code: 'hu', name: 'Magyar' },
   { code: 'sv', name: 'Svenska' },
   { code: 'el', name: 'Ελληνικά' },
+  { code: 'ca', name: 'Català' },
+  { code: 'pcm', name: 'Naijá' },
 ];
 
 export function LanguageSelector() {
