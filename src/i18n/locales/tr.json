@@ -367,6 +367,7 @@
   "panels": {
     "step": "4 adımdan {{n}}. adım",
     "generate": "Numaralara göre boyama oluştur",
+    "autoRegenerate": "Seçenekler değişince otomatik olarak yeniden oluştur",
     "generateCaption": "Mevcut ayarlarınızla yeniden çalıştırır · ~3sn",
     "new": "Yeni",
     "lockedHint": "Bu adımın kilidini açmak için önce bir şablon oluşturun",

@@ -367,6 +367,7 @@
   "panels": {
     "step": "Krok {{n}} z 4",
     "generate": "Wygeneruj malowanie po numerach",
+    "autoRegenerate": "Automatycznie generuj ponownie po zmianie opcji",
     "generateCaption": "Uruchamia ponownie z bieżącymi ustawieniami · ~3s",
     "new": "Nowy",
     "lockedHint": "Najpierw wygeneruj szablon, aby odblokować ten krok",

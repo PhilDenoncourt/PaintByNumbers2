@@ -367,6 +367,7 @@
   "panels": {
     "step": "Étape {{n}} sur 4",
     "generate": "Générer la peinture par numéros",
+    "autoRegenerate": "Régénérer automatiquement quand les options changent",
     "generateCaption": "Relance avec vos paramètres actuels · ~3 s",
     "new": "Nouveau",
     "lockedHint": "Générez d'abord un modèle pour déverrouiller cette étape",

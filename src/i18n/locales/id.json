@@ -367,6 +367,7 @@
   "panels": {
     "step": "Langkah {{n}} dari 4",
     "generate": "Hasilkan paint by numbers",
+    "autoRegenerate": "Otomatis buat ulang saat opsi berubah",
     "generateCaption": "Jalankan ulang dengan pengaturan Anda saat ini · ~3 dtk",
     "new": "Baru",
     "lockedHint": "Hasilkan templat terlebih dahulu untuk membuka langkah ini",

@@ -367,6 +367,7 @@
   "panels": {
     "step": "第 {{n}} 步，共 4 步",
     "generate": "生成按数字绘画",
+    "autoRegenerate": "选项更改时自动重新生成",
     "generateCaption": "使用当前设置重新运行 · 约 3 秒",
     "new": "新建",
     "lockedHint": "请先生成模板以解锁此步骤",

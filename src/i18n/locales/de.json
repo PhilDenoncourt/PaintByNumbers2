@@ -367,6 +367,7 @@
   "panels": {
     "step": "Schritt {{n}} von 4",
     "generate": "Malen nach Zahlen generieren",
+    "autoRegenerate": "Bei Änderungen automatisch neu generieren",
     "generateCaption": "Wird mit deinen aktuellen Einstellungen erneut ausgeführt · ~3 Sek.",
     "new": "Neu",
     "lockedHint": "Generiere zuerst eine Vorlage, um diesen Schritt freizuschalten",

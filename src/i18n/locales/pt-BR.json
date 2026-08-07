@@ -367,6 +367,7 @@
   "panels": {
     "step": "Etapa {{n}} de 4",
     "generate": "Gerar pintar pelos números",
+    "autoRegenerate": "Regenerar automaticamente ao alterar as opções",
     "generateCaption": "Reexecuta com suas configurações atuais · ~3s",
     "new": "Novo",
     "lockedHint": "Gere um modelo primeiro para desbloquear esta etapa",

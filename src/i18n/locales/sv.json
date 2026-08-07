@@ -367,6 +367,7 @@
   "panels": {
     "step": "Steg {{n}} av 4",
     "generate": "Generera måla efter siffror",
+    "autoRegenerate": "Generera om automatiskt när alternativen ändras",
     "generateCaption": "Kör om med dina nuvarande inställningar · ~3s",
     "new": "Ny",
     "lockedHint": "Generera en mall först för att låsa upp det här steget",

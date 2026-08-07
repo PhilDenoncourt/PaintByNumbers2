@@ -367,6 +367,7 @@
   "panels": {
     "step": "Pas {{n}} de 4",
     "generate": "Genera el paint by numbers",
+    "autoRegenerate": "Regenera automàticament quan canviïn les opcions",
     "generateCaption": "Es torna a executar amb la teva configuració actual · ~3s",
     "new": "Nou",
     "lockedHint": "Genera primer una plantilla per desbloquejar aquest pas",

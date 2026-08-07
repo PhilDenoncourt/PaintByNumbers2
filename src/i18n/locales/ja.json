@@ -367,6 +367,7 @@
   "panels": {
     "step": "ステップ {{n}} / 4",
     "generate": "数字でお絵かきを生成",
+    "autoRegenerate": "オプション変更時に自動で再生成",
     "generateCaption": "現在の設定で再実行します · 約3秒",
     "new": "新規",
     "lockedHint": "このステップを解除するには、まずテンプレートを生成してください",

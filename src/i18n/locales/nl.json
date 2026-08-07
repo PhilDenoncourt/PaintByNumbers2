@@ -367,6 +367,7 @@
   "panels": {
     "step": "Stap {{n}} van 4",
     "generate": "Schilderen op nummers genereren",
+    "autoRegenerate": "Automatisch opnieuw genereren bij gewijzigde opties",
     "generateCaption": "Voert opnieuw uit met je huidige instellingen · ~3s",
     "new": "Nieuw",
     "lockedHint": "Genereer eerst een sjabloon om deze stap te ontgrendelen",

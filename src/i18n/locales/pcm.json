@@ -367,6 +367,7 @@
   "panels": {
     "step": "Step {{n}} of 4",
     "generate": "Generate paint by numbers",
+    "autoRegenerate": "Auto-generate am again when you change options",
     "generateCaption": "E go run again with your current settings · ~3s",
     "new": "New",
     "lockedHint": "Generate template first make you unlock dis step",

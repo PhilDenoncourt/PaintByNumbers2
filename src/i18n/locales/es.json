@@ -367,6 +367,7 @@
   "panels": {
     "step": "Paso {{n}} de 4",
     "generate": "Generar colorea por números",
+    "autoRegenerate": "Regenerar automáticamente al cambiar las opciones",
     "generateCaption": "Se regenera con tu configuración actual · ~3s",
     "new": "Nuevo",
     "lockedHint": "Genera primero una plantilla para desbloquear este paso",

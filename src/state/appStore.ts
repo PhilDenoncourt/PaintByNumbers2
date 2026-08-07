@@ -106,6 +106,7 @@ interface AppState {
   pipeline: PipelineState;
   result: PipelineResult | null;
   ui: UIState;
+  autoRegenerate: boolean; // re-run the pipeline automatically when settings change
 
   history: HistoryEntry[];
   historyIndex: number;
@@ -115,6 +116,7 @@ interface AppState {
 
   loadImage: (file: File) => Promise<void>;
   updateSettings: (partial: Partial<PipelineSettings>) => void;
+  setAutoRegenerate: (value: boolean) => void;
   startPipeline: () => Promise<void>;
   setHoveredRegion: (id: number | null) => void;
   setSelectedColor: (idx: number | null) => void;
@@ -192,6 +194,20 @@ const defaultUI: UIState = {
   splitAnalysis: null,
 };
 
+// Settings that only affect rendering/export — the pipeline never reads them,
+// so changing them shouldn't trigger an auto-regenerate.
+const RENDER_ONLY_SETTINGS = new Set<string>([
+  'borderWidth',
+  'numberFont',
+  'numberScale',
+  'numberMinSize',
+  'detailLevel', // UI-side alias; AdjustPanel always pairs it with minRegionSize
+]);
+
+// Debounce so slider drags coalesce into one pipeline run.
+const AUTO_REGEN_DEBOUNCE_MS = 600;
+let autoRegenTimer: ReturnType<typeof setTimeout> | null = null;
+
 export const useAppStore = create<AppState>((set, get) => ({
   sourceImage: null,
   sourceImageUrl: null,
@@ -203,6 +219,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   pipeline: { ...defaultPipeline },
   result: null,
   ui: { ...defaultUI },
+  autoRegenerate: true,
 
   history: [],
   historyIndex: -1,
@@ -244,6 +261,29 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   updateSettings: (partial) => {
     set((s) => ({ settings: { ...s.settings, ...partial } }));
+
+    if (!Object.keys(partial).some((k) => !RENDER_ONLY_SETTINGS.has(k))) return;
+
+    if (autoRegenTimer !== null) clearTimeout(autoRegenTimer);
+    autoRegenTimer = setTimeout(function fire() {
+      autoRegenTimer = null;
+      const s = get();
+      if (!s.autoRegenerate || !s.sourceImage) return;
+      if (s.pipeline.status === 'running') {
+        // A run is in flight — retry once it settles so the latest settings win.
+        autoRegenTimer = setTimeout(fire, 300);
+        return;
+      }
+      void s.startPipeline();
+    }, AUTO_REGEN_DEBOUNCE_MS);
+  },
+
+  setAutoRegenerate: (value) => {
+    if (!value && autoRegenTimer !== null) {
+      clearTimeout(autoRegenTimer);
+      autoRegenTimer = null;
+    }
+    set({ autoRegenerate: value });
   },
 
   startPipeline: async () => {

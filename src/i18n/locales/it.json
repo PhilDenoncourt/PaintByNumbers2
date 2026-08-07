@@ -367,6 +367,7 @@
   "panels": {
     "step": "Passo {{n}} di 4",
     "generate": "Genera dipingi per numeri",
+    "autoRegenerate": "Rigenera automaticamente quando cambiano le opzioni",
     "generateCaption": "Riesegue con le tue impostazioni attuali · ~3s",
     "new": "Nuovo",
     "lockedHint": "Genera prima un modello per sbloccare questo passo",

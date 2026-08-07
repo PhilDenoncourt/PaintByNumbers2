@@ -367,6 +367,7 @@
   "panels": {
     "step": "{{n}}. lépés a 4-ből",
     "generate": "Paint by Numbers generálása",
+    "autoRegenerate": "Automatikus újragenerálás a beállítások módosításakor",
     "generateCaption": "Újrafuttatás a jelenlegi beállításokkal · ~3 mp",
     "new": "Új",
     "lockedHint": "Előbb generálj egy sablont a lépés feloldásához",

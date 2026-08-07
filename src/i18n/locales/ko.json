@@ -367,6 +367,7 @@
   "panels": {
     "step": "4단계 중 {{n}}단계",
     "generate": "색칠하기 숫자 생성",
+    "autoRegenerate": "옵션 변경 시 자동으로 다시 생성",
     "generateCaption": "현재 설정으로 다시 실행 · 약 3초",
     "new": "새로 만들기",
     "lockedHint": "이 단계를 잠금 해제하려면 먼저 템플릿을 생성하세요",

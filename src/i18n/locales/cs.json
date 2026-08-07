@@ -367,6 +367,7 @@
   "panels": {
     "step": "Krok {{n}} ze 4",
     "generate": "Vytvořit malování podle čísel",
+    "autoRegenerate": "Automaticky přegenerovat při změně nastavení",
     "generateCaption": "Znovu spustí s vaším aktuálním nastavením · ~3 s",
     "new": "Nový",
     "lockedHint": "Nejprve vytvořte šablonu, abyste odemkli tento krok",

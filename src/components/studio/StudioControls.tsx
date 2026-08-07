@@ -32,6 +32,8 @@ export function StudioControls() {
   const pipelineStatus = useAppStore((s) => s.pipeline.status);
   const pipelineError = useAppStore((s) => s.pipeline.error);
   const startPipeline = useAppStore((s) => s.startPipeline);
+  const autoRegenerate = useAppStore((s) => s.autoRegenerate);
+  const setAutoRegenerate = useAppStore((s) => s.setAutoRegenerate);
   const { preset } = useAffiliatePreset();
 
   const running = pipelineStatus === 'running';
@@ -167,6 +169,18 @@ export function StudioControls() {
         >
           {running ? t('sidebar.stop') : `✨ ${t('panels.generate')}`}
         </button>
+        <label
+          className="mt-2 flex items-center justify-center gap-2 text-[12px] cursor-pointer select-none"
+          style={{ color: tk.muted }}
+        >
+          <input
+            type="checkbox"
+            checked={autoRegenerate}
+            onChange={(e) => setAutoRegenerate(e.target.checked)}
+            style={{ accentColor: '#ffd814' }}
+          />
+          {t('panels.autoRegenerate')}
+        </label>
         {pipelineError ? (
           <p className="mt-2 text-[11px] text-red-600 dark:text-red-400 text-center">{pipelineError}</p>
         ) : (
