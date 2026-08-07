@@ -53,7 +53,7 @@ export function StudioCanvasCard() {
 
   return (
     <div
-      className="rounded-[24px] p-4 sm:p-6 flex flex-col min-h-0"
+      className="rounded-[24px] p-4 sm:p-6 flex flex-col min-h-0 flex-1"
       style={{ background: tk.cardBg, border: `1px solid ${tk.border}`, boxShadow: tk.dropShadow }}
     >
       {/* Toolbar */}
