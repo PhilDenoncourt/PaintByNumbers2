@@ -110,6 +110,39 @@ const COMPARISON_ROWS = [
 
 const cell = ([cls, text]) => `<td class="${cls}">${text}</td>`;
 
+// ---- Cross-linking: every content page links to the other three -------------
+
+const GUIDES = [
+  {
+    slug: 'paint-by-numbers-vs-pbnify',
+    title: 'Paint by numbers generator comparison',
+    blurb: 'how this editor stacks up against PBNify and custom kit sites.',
+  },
+  {
+    slug: 'paint-by-numbers-generator-no-upload',
+    title: 'How browser-only processing works',
+    blurb: 'why your photo never leaves your device.',
+  },
+  {
+    slug: 'photo-to-paint-by-numbers-svg',
+    title: 'Photo to paint by numbers SVG',
+    blurb: 'export a true vector template for Cricut, lasers, and murals.',
+  },
+  {
+    slug: 'merge-split-paint-by-numbers-regions',
+    title: 'Merge & split paint-by-numbers regions',
+    blurb: 'manually clean up auto-generated regions.',
+  },
+];
+
+const relatedGuidesBlock = (currentSlug) => `
+      <h2>Related guides</h2>
+      <ul>
+${GUIDES.filter((g) => g.slug !== currentSlug)
+  .map((g) => `        <li><a href="/${g.slug}">${g.title}</a> — ${g.blurb}</li>`)
+  .join('\n')}
+      </ul>`;
+
 const comparisonTable = `
       <table>
         <thead>
@@ -146,7 +179,7 @@ ${comparisonTable}
       <h2>When PBNify or a kit might suit you better</h2>
       <p>We think it's only fair to say: <strong>PBNify</strong> is open source, so if you want to read or self-host the code, it's a great choice. And if you'd rather not paint from your own printout at all, a <strong>custom kit site</strong> will print your image on canvas and ship it with matched paints and brushes — a finished product, for a price.</p>
       <p>But if you want true vector output and direct control over the generated regions, this editor is built for that workflow.</p>
-
+${relatedGuidesBlock('paint-by-numbers-vs-pbnify')}
       <a class="cta" href="/">Create and edit your SVG template →</a>`;
 
 const comparisonStructuredData = {
@@ -184,7 +217,7 @@ const noUploadBody = `
       </ul>
 
       <p>Explore the editor's <a href="/photo-to-paint-by-numbers-svg">scalable SVG export</a> and <a href="/merge-split-paint-by-numbers-regions">manual region controls</a>, or read the full <a href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
-
+${relatedGuidesBlock('paint-by-numbers-generator-no-upload')}
       <a class="cta" href="/">Create an editable SVG template →</a>`;
 
 const noUploadStructuredData = {
@@ -224,7 +257,7 @@ const svgBody = `
       </ol>
 
       <p>Raster-first paint-by-numbers tools cannot preserve editable paths at mural or cutting-machine scale. See the full breakdown in our <a href="/paint-by-numbers-vs-pbnify">generator comparison</a>.</p>
-
+${relatedGuidesBlock('photo-to-paint-by-numbers-svg')}
       <a class="cta" href="/">Create your paint by numbers SVG →</a>`;
 
 const svgStructuredData = {
@@ -265,7 +298,7 @@ const mergeSplitBody = `
       </ol>
 
       <p>Pair region editing with a <a href="/photo-to-paint-by-numbers-svg">vector SVG export</a> so your edits stay crisp at any print size.</p>
-
+${relatedGuidesBlock('merge-split-paint-by-numbers-regions')}
       <a class="cta" href="/">Try the region editor →</a>`;
 
 const mergeSplitStructuredData = {

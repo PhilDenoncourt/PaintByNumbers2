@@ -125,6 +125,27 @@ export function AppShell() {
 
             <div className="rounded-[16px] p-5" style={cardStyle}>
               <h3 className="font-display text-sm font-bold mb-3" style={{ color: tk.text }}>
+                {t('welcome.guidesTitle')}
+              </h3>
+              <ul className="space-y-2">
+                {([
+                  { href: '/paint-by-numbers-vs-pbnify', title: t('welcome.guideVsPbnifyTitle'), body: t('welcome.guideVsPbnifyBody') },
+                  { href: '/photo-to-paint-by-numbers-svg', title: t('welcome.guideSvgTitle'), body: t('welcome.guideSvgBody') },
+                  { href: '/merge-split-paint-by-numbers-regions', title: t('welcome.guideMergeSplitTitle'), body: t('welcome.guideMergeSplitBody') },
+                  { href: '/paint-by-numbers-generator-no-upload', title: t('welcome.guideNoUploadTitle'), body: t('welcome.guideNoUploadBody') },
+                ] as const).map(({ href, title, body }) => (
+                  <li key={href} className="text-xs leading-relaxed">
+                    <a href={href} className="font-semibold underline" style={{ color: tk.text }}>
+                      {title}
+                    </a>{' '}
+                    <span style={{ color: tk.muted }}>— {body}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-[16px] p-5" style={cardStyle}>
+              <h3 className="font-display text-sm font-bold mb-3" style={{ color: tk.text }}>
                 {t('welcome.howToBegin')}
               </h3>
               <ol className="space-y-2">

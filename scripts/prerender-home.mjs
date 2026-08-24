@@ -89,7 +89,15 @@ const prerenderMarkup = `
           </section>
 
           <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6">
-            <p class="text-center text-xs text-gray-500">Comparing editors? See how SVG export and manual region controls stack up in our <a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
+            <div class="rounded-lg border border-gray-200 bg-white p-5">
+              <h3 class="text-sm font-semibold text-gray-700">Guides &amp; comparisons</h3>
+              <ul class="mt-3 space-y-2 text-xs">
+                <li><a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-vs-pbnify">Paint by numbers generator comparison</a> <span class="text-gray-500">— how this editor stacks up against PBNify and custom kit sites.</span></li>
+                <li><a class="font-semibold text-blue-600 underline" href="/photo-to-paint-by-numbers-svg">Photo to paint by numbers SVG</a> <span class="text-gray-500">— export a true vector template for Cricut, lasers, and murals.</span></li>
+                <li><a class="font-semibold text-blue-600 underline" href="/merge-split-paint-by-numbers-regions">Merge &amp; split paint-by-numbers regions</a> <span class="text-gray-500">— manually clean up auto-generated regions.</span></li>
+                <li><a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-generator-no-upload">How browser-only processing works</a> <span class="text-gray-500">— why your photo never leaves your device.</span></li>
+              </ul>
+            </div>
           </section>
         </main>
       </div>
