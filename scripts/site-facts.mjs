@@ -44,7 +44,7 @@ export const PAPER_SIZE_SENTENCE =
 export const EXPORT_FORMATS = [
   'SVG (true vector paths — outline or coloured)',
   'SVG (laser-ready, with cut and engrave lines on separate layers)',
-  'PDF (single sheet A4–A0, or tiled across smaller sheets)',
+  'PDF (single sheet at any of the sizes above, or tiled across smaller sheets)',
   'PNG (outline or coloured)',
   'PDF/PNG colour guide with the palette and region counts',
 ];
@@ -56,7 +56,8 @@ export const CAPABILITIES = [
   'Exports true vector SVG, so the template stays crisp at mural, Cricut or laser-cutter scale.',
   'Exports a laser-ready SVG with cut lines and engrave lines on separate layers.',
   'Matches the palette to paints you actually own — Crayola, Prismacolor, Winsor & Newton Cotman and Tombow sets, or your own colour list.',
-  'Prints at A4 through A0, or tiles a large template across smaller sheets.',
+  'Prints at A4 through A0, US Letter or US Tabloid, or tiles a large template across smaller sheets.',
+  'Saves a work-in-progress template in the browser, or to a project file you can reload later.',
   'Runs entirely in your browser: the photo is read locally and is never uploaded to any server.',
   'Free, with no account, no watermark and no trial period.',
 ];

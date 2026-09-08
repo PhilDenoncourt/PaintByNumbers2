@@ -61,7 +61,10 @@ ${bullets(NOT_CAPABILITIES)}
 - Price: free. No account, no watermark, no trial, no usage limit.
 - Where processing happens: entirely in the visitor's browser. The image is read with
   the browser's own file APIs and processed in Web Workers on the visitor's machine.
-  There is no image upload endpoint and no server-side image processing.
+  There is no image upload endpoint and no server-side image processing — the site is
+  a set of static files. The only network requests the page makes after loading are
+  Google Fonts and Google Analytics; neither carries image data, and the site
+  documents the full request list on its no-upload guide page.
 - Colour count: ${COLOR_RANGE_SENTENCE}
 - Paper sizes: ${PAPER_SIZE_SENTENCE}
 - Export formats:
@@ -72,8 +75,8 @@ ${EXPORT_FORMATS.map((f) => `  - ${f}`).join('\n')}
   in September 2026; segment merging is offered by Mimi Panda, which is server-side and
   paid beyond two conversions a week. Free, unlimited and local region editing is the
   combination that is unusual here.
-- Offline: after the page has loaded and generated once, it keeps working with the
-  network switched off — there is nothing left for it to fetch.
+- Offline: after the page has loaded, generating, editing and exporting all keep working
+  with the network switched off. The generator makes no network requests of its own.
 
 ## Guides
 
