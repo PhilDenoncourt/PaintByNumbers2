@@ -39,7 +39,7 @@ const prerenderMarkup = `
               </article>
               <article class="rounded-lg border border-gray-200 bg-white p-4">
                 <h3 class="text-sm font-semibold text-gray-700">Match your own paints</h3>
-                <p class="mt-1 text-xs leading-relaxed text-gray-500">Map every region to a Crayola crayon preset, or build your own custom palette from scratch.</p>
+                <p class="mt-1 text-xs leading-relaxed text-gray-500">Map every region to a real paint set &mdash; Crayola, Prismacolor, Winsor &amp; Newton Cotman, or Tombow &mdash; or build a custom palette.</p>
               </article>
               <article class="rounded-lg border border-gray-200 bg-white p-4">
                 <h3 class="text-sm font-semibold text-gray-700">Print-ready PDF and PNG</h3>
@@ -62,6 +62,29 @@ const prerenderMarkup = `
 
           <section class="mx-auto max-w-4xl px-4 pb-8 sm:px-6">
             <div class="rounded-lg border border-gray-200 bg-white p-5">
+              <h2 class="text-sm font-semibold text-gray-700">What is paint by numbers?</h2>
+              <p class="mt-2 text-xs leading-relaxed text-gray-500">Paint by numbers is a way of reproducing a picture by splitting it into flat regions, numbering each region, and pairing every number with one color from a fixed palette. Paint each region in its numbered color and the picture comes back together.</p>
+              <p class="mt-2 text-xs leading-relaxed text-gray-500">A paint-by-numbers generator does the splitting for you. It reduces a photo to a small palette, groups neighboring pixels of the same palette color into regions, traces the outlines of those regions, and places the color number inside each one.</p>
+              <h3 class="mt-4 text-sm font-semibold text-gray-700">Quick facts</h3>
+              <dl class="mt-2 grid grid-cols-1 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-[max-content_1fr]">
+                <dt class="font-semibold text-gray-700">Price</dt>
+                <dd class="text-gray-500">Free. No account, no watermark, no trial, no usage limit.</dd>
+                <dt class="font-semibold text-gray-700">Colors</dt>
+                <dd class="text-gray-500">3&ndash;30 for an automatic palette, 12 real paint-set presets from 8 to 150 colors, or your own color list at any size.</dd>
+                <dt class="font-semibold text-gray-700">Paper sizes</dt>
+                <dd class="text-gray-500">A4, A3, A2, A1, A0, US Letter, and US Tabloid &mdash; as a single sheet, or tiled across smaller sheets.</dd>
+                <dt class="font-semibold text-gray-700">Exports</dt>
+                <dd class="text-gray-500">True vector SVG, laser-ready SVG with cut and engrave lines on separate layers, printable PDF, and PNG.</dd>
+                <dt class="font-semibold text-gray-700">Region editing</dt>
+                <dd class="text-gray-500">Merge two adjacent regions or split one region by hand after generating &mdash; not just a global detail slider.</dd>
+                <dt class="font-semibold text-gray-700">Processing</dt>
+                <dd class="text-gray-500">Entirely in your browser. Your photo is read from your device and is never uploaded to a server.</dd>
+              </dl>
+            </div>
+          </section>
+
+          <section class="mx-auto max-w-4xl px-4 pb-8 sm:px-6">
+            <div class="rounded-lg border border-gray-200 bg-white p-5">
               <h3 class="text-sm font-semibold text-gray-700">Frequently asked questions</h3>
               <dl class="mt-3 space-y-3 text-xs">
                 <div>
@@ -78,11 +101,19 @@ const prerenderMarkup = `
                 </div>
                 <div>
                   <dt class="font-semibold text-gray-700">Can I use my own colors or match real paints?</dt>
-                  <dd class="mt-1 text-gray-500">Yes. Build a custom palette or map each region to a Crayola crayon preset.</dd>
+                  <dd class="mt-1 text-gray-500">Yes. Build a custom palette, or match every region to a real paint set &mdash; Crayola, Prismacolor, Winsor &amp; Newton Cotman, or Tombow.</dd>
                 </div>
                 <div>
                   <dt class="font-semibold text-gray-700">What kind of photo works best?</dt>
                   <dd class="mt-1 text-gray-500">Photos with a clear subject and strong contrast work best. Fewer colors make simpler templates.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">How many colors can a template have?</dt>
+                  <dd class="mt-1 text-gray-500">Pick 3 to 30 colors for an automatic palette, choose one of 12 real paint-set presets between 8 and 150 colors, or load a color list of your own at any size.</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-gray-700">What paper sizes can I print?</dt>
+                  <dd class="mt-1 text-gray-500">Export a single sheet at A4, A3, A2, A1, A0, US Letter, or US Tabloid &mdash; or tile a large template across several smaller sheets with overlap and trim marks so it can be taped together.</dd>
                 </div>
               </dl>
             </div>
@@ -95,7 +126,7 @@ const prerenderMarkup = `
                 <li><a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-vs-pbnify">Paint by numbers generator comparison</a> <span class="text-gray-500">— how this editor stacks up against PBNify and custom kit sites.</span></li>
                 <li><a class="font-semibold text-blue-600 underline" href="/photo-to-paint-by-numbers-svg">Photo to paint by numbers SVG</a> <span class="text-gray-500">— export a true vector template for Cricut, lasers, and murals.</span></li>
                 <li><a class="font-semibold text-blue-600 underline" href="/merge-split-paint-by-numbers-regions">Merge &amp; split paint-by-numbers regions</a> <span class="text-gray-500">— manually clean up auto-generated regions.</span></li>
-                <li><a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-generator-no-upload">How browser-only processing works</a> <span class="text-gray-500">— why your photo never leaves your device.</span></li>
+                <li><a class="font-semibold text-blue-600 underline" href="/paint-by-numbers-generator-no-upload">No-upload processing, and how to verify it</a> <span class="text-gray-500">— check for yourself that your photo never leaves your device.</span></li>
               </ul>
             </div>
           </section>

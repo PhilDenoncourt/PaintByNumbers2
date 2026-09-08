@@ -101,6 +101,76 @@ export function generateSvg(
   return lines.join('\n');
 }
 
+/**
+ * Laser/CNC variant of the template: geometry only, split into a red cut layer
+ * and a blue engrave layer.
+ *
+ * Laser software (Glowforge, xTool, LightBurn, Epilog, Trotec) assigns an
+ * operation per stroke colour, so the convention is red = cut through,
+ * blue = engrave. Everything is unfilled hairline stroke — a filled path would
+ * be interpreted as a raster engrave of the whole region.
+ *
+ * The colour legend is deliberately left out: it belongs on the printed guide,
+ * not burned into the workpiece. Export the colour guide separately for that.
+ */
+export function generateLaserSvg(
+  result: PipelineResult,
+  renderLabels?: RenderLabel[],
+  includeNumbers: boolean = true
+): string {
+  const { width, height, contours } = result;
+  const labels =
+    renderLabels ?? computeRenderLabels(result.labels, { numberScale: 1, numberMinSize: 0 });
+
+  const CUT_COLOR = '#FF0000';
+  const ENGRAVE_COLOR = '#0000FF';
+  const STROKE = 0.1; // hairline — cutters read the colour, not the width
+
+  const lines: string[] = [];
+  lines.push(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">`
+  );
+
+  // Cut layer: the outline of the workpiece itself.
+  lines.push(
+    `  <g id="cut" fill="none" stroke="${CUT_COLOR}" stroke-width="${STROKE}" data-operation="cut">`
+  );
+  lines.push(`    <rect x="0" y="0" width="${width}" height="${height}"/>`);
+  lines.push(`  </g>`);
+
+  // Engrave layer: every interior region boundary.
+  lines.push(
+    `  <g id="engrave" fill="none" stroke="${ENGRAVE_COLOR}" stroke-width="${STROKE}" stroke-linejoin="round" data-operation="engrave">`
+  );
+  for (const c of contours) {
+    let d = polygonToPath(c.outerRing);
+    for (const hole of c.holes) {
+      d += ' ' + polygonToPath(hole);
+    }
+    lines.push(`    <path d="${d}"/>`);
+  }
+  lines.push(`  </g>`);
+
+  if (includeNumbers) {
+    // Kept in its own group so it can be switched off without touching the
+    // outlines. Most laser software wants text converted to paths first.
+    const labelFont = (labels[0]?.font ?? NUMBER_FONTS[DEFAULT_NUMBER_FONT]).css;
+    lines.push(
+      `  <g id="engrave-numbers" font-family="${escapeXml(labelFont)}" fill="none" stroke="${ENGRAVE_COLOR}" stroke-width="${STROKE}" text-anchor="middle" dominant-baseline="central" data-operation="engrave">`
+    );
+    for (const label of labels) {
+      const num = label.colorIndex + 1;
+      lines.push(
+        `    <text x="${label.x.toFixed(1)}" y="${label.y.toFixed(1)}" font-size="${label.fontSize.toFixed(1)}">${num}</text>`
+      );
+    }
+    lines.push(`  </g>`);
+  }
+
+  lines.push(`</svg>`);
+  return lines.join('\n');
+}
+
 export function downloadSvg(svgContent: string, filename: string = 'paint-by-numbers.svg') {
   const blob = new Blob([svgContent], { type: 'image/svg+xml' });
   const url = URL.createObjectURL(blob);

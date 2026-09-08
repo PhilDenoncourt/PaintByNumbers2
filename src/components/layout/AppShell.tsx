@@ -6,6 +6,7 @@ import { ProcessingProgress } from '../progress/ProcessingProgress';
 import { PreprocessedImagePreview } from '../preview/PreprocessedImagePreview';
 import { ErrorBoundary } from './ErrorBoundary';
 import { PrivacyFooter } from './PrivacyFooter';
+import { AboutSection } from '../seo/AboutSection';
 import { FaqSection } from '../seo/FaqSection';
 import { StudioHeader } from '../studio/StudioHeader';
 import { StudioStepper } from '../studio/StudioStepper';
@@ -162,6 +163,8 @@ export function AppShell() {
                 ))}
               </ol>
             </div>
+
+            <AboutSection />
 
             <FaqSection />
           </div>

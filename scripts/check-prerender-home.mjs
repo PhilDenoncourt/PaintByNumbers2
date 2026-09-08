@@ -18,6 +18,13 @@ const requiredSnippets = [
   'Frequently asked questions',
   'Can I export a true vector SVG?',
   'Can I merge or split individual regions?',
+  // Definition + quick-facts block: the surface AI assistants quote, and the
+  // published specs (colour range, paper sizes) competitors already publish.
+  'What is paint by numbers?',
+  'Quick facts',
+  '3&ndash;30 for an automatic palette',
+  'A4, A3, A2, A1, A0, US Letter, and US Tabloid',
+  'cut and engrave lines on separate layers',
 ];
 
 const forbiddenSnippets = [

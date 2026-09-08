@@ -25,7 +25,9 @@ function buildSitemap() {
 }
 
 function buildRobots() {
-  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`;
+  // The llms.txt pointer is a comment: it is not part of the robots.txt grammar,
+  // but it is where several assistant crawlers look for one.
+  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n\n# llms.txt: ${SITE}/llms.txt\n`;
 }
 
 async function main() {

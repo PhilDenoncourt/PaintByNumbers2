@@ -120,8 +120,8 @@ const GUIDES = [
   },
   {
     slug: 'paint-by-numbers-generator-no-upload',
-    title: 'How browser-only processing works',
-    blurb: 'why your photo never leaves your device.',
+    title: 'No-upload processing, and how to verify it',
+    blurb: 'check for yourself that your photo never leaves your device.',
   },
   {
     slug: 'photo-to-paint-by-numbers-svg',
@@ -199,26 +199,79 @@ const comparisonStructuredData = {
 // ---- Page: No-upload / offline generator ------------------------------------
 
 const noUploadBody = `
-      <h1>How browser-only paint-by-numbers processing works</h1>
-      <p class="lead"><strong>paintbynumbers.build</strong> performs image analysis and region generation inside your browser. This page explains the processing model; the editor's primary advantages are true vector SVG export and manual merge and split controls.</p>
+      <h1>No-upload paint by numbers: how to verify it yourself</h1>
+      <p class="lead">"Runs locally in your browser" has become a standard line — several free generators now print it. It is an easy claim to make and a hard one to check, so this page does not ask you to take our word for it. Here is how to confirm it, in about thirty seconds, with tools already built into your browser.</p>
 
-      <h2>Why "no upload" matters</h2>
-      <p>Most free paint-by-numbers tools send your photo to a server to do the colour processing, then send a result back. That means a copy of your photo — often a picture of your kid, your pet, or your home — sits on someone else's machine. paintbynumbers.build never does that: every step (colour quantization, region detection, contour tracing, labelling) runs as JavaScript in your own browser tab.</p>
+      <h2>Check 1 &mdash; watch the network while it works</h2>
+      <ol>
+        <li>Open your browser's developer tools (<strong>F12</strong>, or <strong>&#8984;&#8997;I</strong> on a Mac) and choose the <strong>Network</strong> tab.</li>
+        <li>Go to <a href="/">the editor</a>, let it finish loading, then clear the request list.</li>
+        <li>Load a photo and click Generate. Merge a few regions. Export the SVG.</li>
+        <li>Sort the list by <strong>Size</strong>.</li>
+      </ol>
+      <p>Two things to look at. First, <strong>nothing leaving the page is bigger than a few kilobytes</strong> &mdash; your photo is megabytes, so it plainly is not among them. Second, <strong>not one request goes to paintbynumbers.build</strong> after the page has loaded: there is no upload endpoint to send a photo to, because there is no server behind this site. It is a set of static files.</p>
+      <p>You will see a handful of small pings to Google Analytics, a few hundred bytes each. Those are visit counts, and every request the site makes is listed in full below. Everything else is silence.</p>
+      <p class="muted">If you would rather read the source than the traffic: the application code contains no <code>fetch()</code> call, no <code>XMLHttpRequest</code>, and no form submission anywhere.</p>
 
-      <h2>It works offline, too</h2>
-      <p>Because nothing is sent to a server, the generator keeps working without an internet connection once the page and its assets have loaded. Open it, load your photo from local storage, and you can generate and export a template on a plane, on a train, or anywhere else without signal.</p>
+      <h2>Check 2 — turn your network off</h2>
+      <ol>
+        <li>Load the editor, generate one template and export it once, so every part of the app has loaded.</li>
+        <li>Switch your network off — <strong>Network &rarr; Offline</strong> in developer tools, or just turn off Wi-Fi.</li>
+        <li>Load a different photo and generate again. Merge some regions. Export the SVG.</li>
+      </ol>
+      <p>All of it still works, with no connection at all. That is only possible if the processing is happening on your machine.</p>
 
-      <h2>What happens on your device</h2>
+      <h2>Every request this site makes, and what it is for</h2>
+      <p>The strongest version of a privacy claim is a complete list, so here is ours. This is every network request the site makes, and none of them carries your photo.</p>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">What it is for</th>
+            <th scope="col">Sees your photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">paintbynumbers.build</th>
+            <td>The page itself, plus its JavaScript, CSS, and icons. Static files.</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <th scope="row">fonts.googleapis.com, fonts.gstatic.com</th>
+            <td>Web fonts.</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <th scope="row">googletagmanager.com</th>
+            <td>Google Analytics, with IP anonymisation on. Counts visits and which export buttons get used. No photo, no image data, no account.</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <th scope="row">amazon.com</th>
+            <td>Only if you click a paint-set link. These are affiliate links; nothing loads from Amazon unless you choose to follow one.</td>
+            <td class="no">No</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>That is the entire list. We would rather disclose the analytics than claim a purity we do not have — the point that matters is the one you can check: <strong>no request carries your image, because no request is ever made with it.</strong></p>
+
+      <h2>What actually happens to your photo</h2>
       <ul>
-        <li>Your browser reads the photo and builds the colour palette.</li>
-        <li>Region detection, contour tracing, and number placement happen locally.</li>
-        <li>Manual region edits stay in the current browser session.</li>
-        <li>SVG, PDF, and PNG files are generated directly from the edited result.</li>
+        <li>Your browser's file picker hands the page a local file reference. Nothing is transferred anywhere.</li>
+        <li>The file is decoded into a canvas and read as raw pixel data, in your tab's memory.</li>
+        <li>Palette reduction, region detection, contour tracing, and number placement run in Web Workers — background threads inside your own browser, on your own processor.</li>
+        <li>Merging and splitting regions recomputes the affected outlines locally.</li>
+        <li>The SVG, PDF, and PNG files are assembled in the page and handed straight to your browser's download mechanism.</li>
       </ul>
+      <p>Close the tab and every trace of the image is gone. There is nothing to delete from a server, because nothing ever reached one.</p>
 
-      <p>Explore the editor's <a href="/photo-to-paint-by-numbers-svg">scalable SVG export</a> and <a href="/merge-split-paint-by-numbers-regions">manual region controls</a>, or read the full <a href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
+      <h2>Why this is worth checking at all</h2>
+      <p>Most free paint-by-numbers tools do send your photo to a server, process it there, and send a result back — which means a copy of a picture of your kid, your pet, or your home sits on someone else's machine. Increasingly, tools that <em>do</em> work that way describe themselves in language that sounds local. The two checks above take under a minute and settle it either way, for this site or any other.</p>
+
+      <p>The processing model is the floor, not the reason to use this editor. The reasons are <a href="/merge-split-paint-by-numbers-regions">manual control over individual regions</a> and <a href="/photo-to-paint-by-numbers-svg">true vector SVG export</a>. See the full <a href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
 ${relatedGuidesBlock('paint-by-numbers-generator-no-upload')}
-      <a class="cta" href="/">Create an editable SVG template →</a>`;
+      <a class="cta" href="/">Create an editable SVG template &rarr;</a>`;
 
 const noUploadStructuredData = {
   '@context': 'https://schema.org',
@@ -281,7 +334,8 @@ const mergeSplitBody = `
       <p class="lead">Auto-generated colour regions aren't always exactly what you want. <strong>Merge</strong> small or unwanted regions, <strong>split</strong> areas that are too broad, then preserve those edits in a true vector SVG.</p>
 
       <h2>Why region editing matters</h2>
-      <p>Automatic processing sometimes leaves tiny flecks of colour in a smooth area, or lumps two visually distinct areas into one region. No competitor we've found offers manual region clean-up — you either accept the automatic result or start over with different settings. Region editing lets you fix it directly instead.</p>
+      <p>Automatic processing sometimes leaves tiny flecks of colour in a smooth area, or lumps two visually distinct areas into one region. Most generators give you a detail slider and nothing else: you either accept the automatic result or start over with different settings. Region editing lets you fix it directly instead.</p>
+      <p class="muted">To be accurate about it: we are not the only tool that can merge segments &mdash; Mimi Panda has a segment editor too, though it processes on a server and is paid beyond a couple of conversions a week. What we have not found anywhere else is <strong>splitting</strong> a region, and free, unlimited region editing that runs on your own machine. Checked September 2026.</p>
 
       <h2>How to merge regions</h2>
       <ol>
@@ -326,9 +380,9 @@ export const PAGES = [
   },
   {
     slug: 'paint-by-numbers-generator-no-upload',
-    title: 'How Browser-Only Paint by Numbers Processing Works',
+    title: 'No-Upload Paint by Numbers Generator — And How to Verify It',
     description:
-      'See how paint-by-numbers image processing, region editing, and SVG generation run inside the browser from source photo to final export.',
+      'Every generator now claims local processing. Check this one in 30 seconds: an empty network tab, an offline test, and the full list of requests the site makes.',
     bodyHtml: noUploadBody,
     structuredData: noUploadStructuredData,
   },

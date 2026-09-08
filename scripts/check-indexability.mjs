@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PAGES, SITE } from './build-content-pages.mjs';
+import { COLOR_COUNTS } from './site-facts.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -101,6 +102,25 @@ async function assertLocaleCopy() {
   }
 }
 
+function assertLlmsTxt(llms) {
+  assert(/^#\s+Paint by Numbers/im.test(llms), 'llms.txt is missing its H1 title');
+  assert(/^>\s+\S/m.test(llms), 'llms.txt is missing the blockquote summary llmstxt.org expects');
+
+  for (const expectedUrl of expectedUrls) {
+    assert(llms.includes(expectedUrl), `llms.txt does not mention ${expectedUrl}`);
+  }
+
+  // The colour-count range is a spec competitors publish and this site did not.
+  // If it drops out of llms.txt the comparison is lost by default again.
+  assert(
+    llms.includes(`${COLOR_COUNTS.autoMin}–${COLOR_COUNTS.autoMax}`),
+    'llms.txt does not publish the automatic colour-count range',
+  );
+  // Region editing is the position the site is built on, so llms.txt has to
+  // state both halves of it — merging alone is offered by at least one rival.
+  assert(/merge/i.test(llms) && /split/i.test(llms), 'llms.txt does not state the region-editing capability');
+}
+
 function assertRobots(robots) {
   assert(/^User-agent:\s*\*$/im.test(robots), 'robots.txt is missing the wildcard user agent');
   assert(/^Allow:\s*\/\s*$/im.test(robots), 'robots.txt does not explicitly allow crawling');
@@ -140,10 +160,11 @@ async function fetchText(url, expectedContentType) {
 }
 
 async function auditDist() {
-  const [homeHtml, robots, sitemap, verification] = await Promise.all([
+  const [homeHtml, robots, sitemap, llms, verification] = await Promise.all([
     fs.readFile(path.join(distDir, 'index.html'), 'utf8'),
     fs.readFile(path.join(distDir, 'robots.txt'), 'utf8'),
     fs.readFile(path.join(distDir, 'sitemap.xml'), 'utf8'),
+    fs.readFile(path.join(distDir, 'llms.txt'), 'utf8'),
     fs.readFile(path.join(distDir, verificationFile), 'utf8'),
   ]);
 
@@ -152,6 +173,7 @@ async function auditDist() {
   await assertLocaleCopy();
   assertRobots(robots);
   assertSitemap(sitemap);
+  assertLlmsTxt(llms);
   assert(verification.trim() === verificationBody, `${verificationFile} does not contain the expected verification token`);
 
   for (const page of PAGES) {
@@ -163,10 +185,11 @@ async function auditDist() {
 }
 
 async function auditLive() {
-  const [homeHtml, robots, sitemap, verification] = await Promise.all([
+  const [homeHtml, robots, sitemap, llms, verification] = await Promise.all([
     fetchText(homeUrl, 'text/html'),
     fetchText(`${SITE}/robots.txt`, 'text/plain'),
     fetchText(`${SITE}/sitemap.xml`, 'application/xml'),
+    fetchText(`${SITE}/llms.txt`, 'text/plain'),
     fetchText(`${SITE}/${verificationFile}`, 'text/html'),
   ]);
 
@@ -174,6 +197,7 @@ async function auditLive() {
   assertHomepagePositioning(homeHtml, 'Live homepage');
   assertRobots(robots);
   assertSitemap(sitemap);
+  assertLlmsTxt(llms);
   assert(verification.trim() === verificationBody, `Live ${verificationFile} does not contain the expected token`);
 
   for (const page of PAGES) {

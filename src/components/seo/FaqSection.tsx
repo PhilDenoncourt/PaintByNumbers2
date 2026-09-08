@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 export function FaqSection() {
   const { t } = useTranslation();
 
-  const items = [1, 2, 3, 4, 5].map((n) => ({
+  const items = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
     q: t(`faq.q${n}`),
     a: t(`faq.a${n}`),
   }));

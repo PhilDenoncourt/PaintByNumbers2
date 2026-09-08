@@ -1,8 +1,14 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
-import { generateSvg, downloadSvg } from '../../export/svgExporter';
+import { generateSvg, generateLaserSvg, downloadSvg } from '../../export/svgExporter';
 import { downloadPdf, downloadColorLegendPdf } from '../../export/pdfExporter';
+import {
+  DEFAULT_PAPER_SIZE,
+  PAPER_SIZES,
+  TILE_TARGET_SIZES,
+  type PaperSizeId,
+} from '../../export/paperSizes';
 import { downloadPng, downloadColorLegendPng } from '../../export/pngExporter';
 import { trackEvent } from '../../utils/analytics';
 import { sessionStorage } from '../../utils/sessionStorage';
@@ -27,6 +33,9 @@ export function ExportPanel() {
   // Exports must match what's on screen: same scale, same manual positions
   const renderLabels = useRenderLabels();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pageSize, setPageSize] = useState<PaperSizeId>(DEFAULT_PAPER_SIZE);
+  // '' means print on one sheet at the chosen size rather than tiling.
+  const [tileOnto, setTileOnto] = useState<PaperSizeId | ''>('');
 
   if (!result) return null;
 
@@ -40,9 +49,24 @@ export function ExportPanel() {
     } else if (format === 'png') {
       downloadPng(result, includeColor, `paint-by-numbers-${suffix}.png`, renderLabels);
     } else {
-      downloadPdf(result, includeColor, `paint-by-numbers-${suffix}.pdf`, presetPaletteId, renderLabels);
+      const tiled = tileOnto !== '' && tileOnto !== pageSize;
+      downloadPdf(
+        result,
+        includeColor,
+        `paint-by-numbers-${suffix}-${pageSize}${tiled ? `-on-${tileOnto}` : ''}.pdf`,
+        presetPaletteId,
+        renderLabels,
+        { pageSize, tileOnto: tiled ? tileOnto : null },
+      );
+      trackEvent('export', { format, variant: suffix, pageSize, tileOnto: tiled ? tileOnto : 'none' });
+      return;
     }
     trackEvent('export', { format, variant: suffix });
+  };
+
+  const exportLaserSvg = () => {
+    downloadSvg(generateLaserSvg(result, renderLabels), 'paint-by-numbers-laser.svg');
+    trackEvent('export', { format: 'svg', variant: 'laser' });
   };
 
   const exportColorGuide = (format: 'pdf' | 'png') => {
@@ -132,6 +156,46 @@ export function ExportPanel() {
                   <div className="text-[11px] text-[#94a3b8] dark:text-gray-500">{desc}</div>
                 </div>
               </div>
+              {format === 'pdf' && (
+                <div className="mb-[9px] flex flex-col gap-1.5">
+                  <div className="flex gap-2">
+                    <label className="flex-1 text-[11px] font-semibold text-[#64748b] dark:text-gray-400">
+                      {t('panels.export.paperSize')}
+                      <select
+                        value={pageSize}
+                        onChange={(e) => setPageSize(e.target.value as PaperSizeId)}
+                        className="mt-1 w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-2 py-1.5 text-xs font-medium text-[#334155] dark:text-gray-200"
+                      >
+                        {PAPER_SIZES.map((size) => (
+                          <option key={size.id} value={size.id}>
+                            {size.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label className="flex-1 text-[11px] font-semibold text-[#64748b] dark:text-gray-400">
+                      {t('panels.export.tileAcross')}
+                      <select
+                        value={tileOnto}
+                        onChange={(e) => setTileOnto(e.target.value as PaperSizeId | '')}
+                        className="mt-1 w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-2 py-1.5 text-xs font-medium text-[#334155] dark:text-gray-200"
+                      >
+                        <option value="">{t('panels.export.tileNone')}</option>
+                        {PAPER_SIZES.filter((size) => TILE_TARGET_SIZES.includes(size.id)).map((size) => (
+                          <option key={size.id} value={size.id}>
+                            {size.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  {tileOnto !== '' && tileOnto !== pageSize && (
+                    <p className="text-[11px] text-[#94a3b8] dark:text-gray-500">
+                      {t('panels.export.tileHint')}
+                    </p>
+                  )}
+                </div>
+              )}
               <div className="flex gap-[7px]">
                 <button
                   onClick={() => exportTemplate(format, false)}
@@ -146,6 +210,15 @@ export function ExportPanel() {
                   {t('panels.export.colored')}
                 </button>
               </div>
+              {format === 'svg' && (
+                <button
+                  onClick={exportLaserSvg}
+                  title={t('panels.export.laserDesc')}
+                  className="mt-[7px] w-full py-[7px] rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-[#475569] dark:text-gray-200 text-xs font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  🔦 {t('panels.export.laserButton')}
+                </button>
+              )}
             </div>
           ))}
         </div>
