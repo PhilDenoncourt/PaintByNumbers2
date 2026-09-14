@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { findPresetPalette } from '../../data/paletteRegistry';
 import { CustomPaletteControls } from '../controls/CustomPaletteControls';
+import { AlgorithmControls } from '../controls/AlgorithmControls';
+import automaticPaletteLimits from '../../data/automaticPaletteLimits.json';
 import { AffiliatePaletteHero } from '../affiliate/AffiliatePaletteHero';
 import { Segmented } from './Segmented';
 import { useAffiliatePreset } from '../../hooks/useAffiliatePreset';
@@ -71,16 +73,17 @@ export function PalettePanel() {
             </label>
             <input
               type="range"
-              min={3}
-              max={30}
+              aria-label={t('controls.paletteSize')}
+              min={automaticPaletteLimits.min}
+              max={automaticPaletteLimits.max}
               value={settings.paletteSize}
               onChange={(e) => updateSettings({ paletteSize: Number(e.target.value) })}
               disabled={disabled}
               className="w-full accent-blue-600"
             />
             <div className="flex justify-between text-[11px] text-[#94a3b8] dark:text-gray-500 mt-0.5">
-              <span>3</span>
-              <span>30</span>
+              <span>{automaticPaletteLimits.min}</span>
+              <span>{automaticPaletteLimits.max}</span>
             </div>
           </div>
         )}
@@ -92,21 +95,7 @@ export function PalettePanel() {
         )}
       </div>
 
-      {/* C. Color style */}
-      <div>
-        <label className="block text-[13px] font-semibold text-[#334155] dark:text-gray-200 mb-2">
-          {t('panels.palette.quantizationAlgorithm')}
-        </label>
-        <Segmented<'kmeans' | 'mediancut'>
-          size="md"
-          value={settings.algorithm}
-          onChange={(v) => updateSettings({ algorithm: v })}
-          options={[
-            { value: 'kmeans', label: t('controls.kmeans'), disabled },
-            { value: 'mediancut', label: t('controls.mediancut'), disabled },
-          ]}
-        />
-      </div>
+      <AlgorithmControls />
     </div>
   );
 }

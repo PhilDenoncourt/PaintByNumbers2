@@ -2,6 +2,7 @@ import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
 import { allPresetPalettes, presetBrands, palettesForBrand, findPresetPalette } from '../../data/paletteRegistry';
 import { CustomPaletteControls } from './CustomPaletteControls';
+import automaticPaletteLimits from '../../data/automaticPaletteLimits.json';
 
 export function PaletteControls() {
   const { t } = useTranslation();
@@ -129,16 +130,17 @@ export function PaletteControls() {
           </label>
           <input
             type="range"
-            min={3}
-            max={30}
+            aria-label={t('controls.paletteSize')}
+            min={automaticPaletteLimits.min}
+            max={automaticPaletteLimits.max}
             value={settings.paletteSize}
             onChange={(e) => updateSettings({ paletteSize: Number(e.target.value) })}
             disabled={disabled}
             className="w-full mt-1 accent-blue-600"
           />
           <div className="flex justify-between text-xs text-gray-400">
-            <span>3</span>
-            <span>30</span>
+            <span>{automaticPaletteLimits.min}</span>
+            <span>{automaticPaletteLimits.max}</span>
           </div>
         </div>
       )}

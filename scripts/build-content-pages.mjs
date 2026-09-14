@@ -100,7 +100,7 @@ const COMPARISON_ROWS = [
   ['Instant download — nothing emailed to you', ['yes', 'Yes'], ['no', 'Emails you the PDF'], ['no', 'N/A']],
   ['Vector SVG export', ['yes', 'Yes'], ['no', 'No'], ['no', 'N/A']],
   ['Printable PDF &amp; PNG export', ['yes', 'Yes'], ['no', 'Image only'], ['no', 'Ships physical canvas']],
-  ['Color style controls', ['yes', 'Natural blend or defined blocks'], ['no', 'No'], ['no', 'No']],
+  ['Color style controls', ['yes', 'K-Means or Median-Cut'], ['no', 'No'], ['no', 'No']],
   ['Match colours to Crayola paints', ['yes', 'Yes'], ['no', 'No'], ['no', 'Varies']],
   ['Merge &amp; split regions', ['yes', 'Yes'], ['no', 'No'], ['no', 'No']],
   ['Crop, rotate &amp; colour adjustments', ['yes', 'Yes'], ['no', 'Limited'], ['no', 'N/A']],

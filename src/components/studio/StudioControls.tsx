@@ -4,6 +4,8 @@ import { findPresetPalette } from '../../data/paletteRegistry';
 import { useAffiliatePreset } from '../../hooks/useAffiliatePreset';
 import { Segmented } from '../panels/Segmented';
 import { CustomPaletteControls } from '../controls/CustomPaletteControls';
+import { AlgorithmControls } from '../controls/AlgorithmControls';
+import automaticPaletteLimits from '../../data/automaticPaletteLimits.json';
 import { AdjustPanel } from '../panels/AdjustPanel';
 import { RefinePanel } from '../panels/RefinePanel';
 import { ExportPanel } from '../panels/ExportPanel';
@@ -132,14 +134,20 @@ export function StudioControls() {
                 </label>
                 <input
                   type="range"
-                  min={3}
-                  max={30}
+                  aria-label={t('controls.paletteSize')}
+                  min={automaticPaletteLimits.min}
+                  max={automaticPaletteLimits.max}
                   value={settings.paletteSize}
                   onChange={(e) => updateSettings({ paletteSize: Number(e.target.value) })}
                   disabled={disabled}
                   className="w-full"
                   style={{ accentColor: '#ffd814' }}
                 />
+                <div className="flex justify-between text-xs mb-4" style={{ color: tk.muted }}>
+                  <span>{automaticPaletteLimits.min}</span>
+                  <span>{automaticPaletteLimits.max}</span>
+                </div>
+                <AlgorithmControls textColor={tk.muted} />
               </div>
             )}
 

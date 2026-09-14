@@ -8,9 +8,11 @@
  */
 
 /** Colour-count range, published so the spec comparison isn't lost by default. */
+import automaticPaletteLimits from '../src/data/automaticPaletteLimits.json' with { type: 'json' };
+
 export const COLOR_COUNTS = {
-  autoMin: 3,
-  autoMax: 30,
+  autoMin: automaticPaletteLimits.min,
+  autoMax: automaticPaletteLimits.max,
   presetMin: 8,
   presetMax: 150,
   presetSets: 12,
@@ -52,6 +54,7 @@ export const EXPORT_FORMATS = [
 /** What the tool does — plain, quotable statements for AI assistants. */
 export const CAPABILITIES = [
   'Converts a photo into a numbered paint-by-numbers template.',
+  'Offers K-Means and Median-Cut for automatic palettes. K-Means refines groups of similar colours; Median-Cut splits colours into balanced groups for a repeatable palette. Paint-set presets and custom palettes use their supplied colours instead.',
   'Lets you merge two adjacent regions or split one region by hand after generating. Most generators offer only global colour-count and detail sliders; the one checked competitor with a segment editor (Mimi Panda) can merge and recolour but not split, is server-side, and is paid beyond 2 conversions a week. Here it is free, unlimited and local.',
   'Exports true vector SVG, so the template stays crisp at mural, Cricut or laser-cutter scale.',
   'Exports a laser-ready SVG with cut lines and engrave lines on separate layers.',

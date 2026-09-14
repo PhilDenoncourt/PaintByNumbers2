@@ -70,7 +70,7 @@ const prerenderMarkup = `
                 <dt class="font-semibold text-gray-700">Price</dt>
                 <dd class="text-gray-500">Free. No account, no watermark, no trial, no usage limit.</dd>
                 <dt class="font-semibold text-gray-700">Colors</dt>
-                <dd class="text-gray-500">3&ndash;30 for an automatic palette, 12 real paint-set presets from 8 to 150 colors, or your own color list at any size.</dd>
+                <dd class="text-gray-500">3&ndash;100 for an automatic palette, 12 real paint-set presets from 8 to 150 colors, or your own color list at any size.</dd>
                 <dt class="font-semibold text-gray-700">Paper sizes</dt>
                 <dd class="text-gray-500">A4, A3, A2, A1, A0, US Letter, and US Tabloid &mdash; as a single sheet, or tiled across smaller sheets.</dd>
                 <dt class="font-semibold text-gray-700">Exports</dt>
@@ -109,7 +109,7 @@ const prerenderMarkup = `
                 </div>
                 <div>
                   <dt class="font-semibold text-gray-700">How many colors can a template have?</dt>
-                  <dd class="mt-1 text-gray-500">Pick 3 to 30 colors for an automatic palette, choose one of 12 real paint-set presets between 8 and 150 colors, or load a color list of your own at any size.</dd>
+                  <dd class="mt-1 text-gray-500">Pick 3 to 100 colors for an automatic palette, choose one of 12 real paint-set presets between 8 and 150 colors, or load a color list of your own at any size.</dd>
                 </div>
                 <div>
                   <dt class="font-semibold text-gray-700">What paper sizes can I print?</dt>

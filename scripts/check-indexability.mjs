@@ -49,10 +49,6 @@ function assertIndexableHtml(html, expectedCanonical, label) {
   );
   assert(!html.includes('%VITE_'), `${label} contains an unresolved Vite environment placeholder`);
   assert(/<h1\b[^>]*>[\s\S]*?<\/h1>/i.test(html), `${label} does not contain an H1`);
-  assert(
-    !/\bk[- ]?means\b|\bmedian[- ]?cut\b/i.test(html),
-    `${label} exposes implementation-specific color algorithm names`,
-  );
 }
 
 function assertHomepagePositioning(html, label) {
@@ -83,21 +79,18 @@ async function assertLocaleCopy() {
 
   for (const localeFile of localeFiles) {
     const locale = JSON.parse(await fs.readFile(path.join(localeDir, localeFile), 'utf8'));
-    const values = [];
-    const collectValues = (value) => {
-      if (typeof value === 'string') {
-        values.push(value);
-      } else if (Array.isArray(value)) {
-        value.forEach(collectValues);
-      } else if (value && typeof value === 'object') {
-        Object.values(value).forEach(collectValues);
-      }
-    };
-
-    collectValues(locale);
     assert(
-      !values.some((value) => /\bk[- ]?means\b|\bmedian[- ]?cut\b/i.test(value)),
-      `${localeFile} exposes implementation-specific color algorithm names`,
+      locale.controls.kmeans === 'K-Means' && locale.controls.mediancut === 'Median-Cut',
+      `${localeFile} must name both automatic palette algorithms`,
+    );
+    assert(
+      locale.controls.kmeansHelp?.length > 0 && locale.controls.mediancutHelp?.length > 0,
+      `${localeFile} must explain both automatic palette algorithms`,
+    );
+    assert(
+      locale.faq.a6.includes(String(COLOR_COUNTS.autoMax)) &&
+        locale.about.factColorsValue.includes(String(COLOR_COUNTS.autoMax)),
+      `${localeFile} must publish the automatic colour ceiling`,
     );
   }
 }

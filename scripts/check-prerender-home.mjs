@@ -22,7 +22,7 @@ const requiredSnippets = [
   // published specs (colour range, paper sizes) competitors already publish.
   'What is paint by numbers?',
   'Quick facts',
-  '3&ndash;30 for an automatic palette',
+  '3&ndash;100 for an automatic palette',
   'A4, A3, A2, A1, A0, US Letter, and US Tabloid',
   'cut and engrave lines on separate layers',
 ];
@@ -31,9 +31,6 @@ const forbiddenSnippets = [
   'free paint-by-numbers generator turns any photo',
   '100% private — your photo never leaves your browser',
   'No sign-up or watermark',
-  'K-Means',
-  'Median Cut',
-  'Median-Cut',
 ];
 
 async function main() {
