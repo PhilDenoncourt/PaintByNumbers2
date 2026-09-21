@@ -25,7 +25,7 @@
     "darkShort": "Sombre"
   },
   "welcome": {
-    "tagline": "Créez un modèle SVG de peinture par numéros avec un contrôle manuel de fusion et de division",
+    "tagline": "Divisez les zones de peinture par numéros, fusionnez les petites surfaces et exportez en SVG",
     "description": "Façonnez chaque région numérotée avant l'export : fusionnez les petites zones, divisez les grandes, puis téléchargez un véritable SVG vectoriel pour Cricut, découpe laser, fresques murales ou tout format d'impression.",
     "feature1Title": "Export SVG vectoriel réel",
     "feature1Body": "Téléchargez des tracés vectoriels modifiables pour Cricut, découpe laser, vinyle, fresques murales ou tout format d'impression.",

@@ -8,11 +8,13 @@ const projectRoot = path.resolve(__dirname, '..');
 const distIndexPath = path.join(projectRoot, 'dist', 'index.html');
 
 const requiredSnippets = [
-  'Create an SVG paint-by-numbers template with manual merge and split controls',
+  'Split paint by numbers regions, merge small areas, and export SVG',
   'True vector SVG — crisp at any size',
-  'Manual region control — merge and split',
+  'Split regions by hand — merge small areas',
   'Download editable vector paths for Cricut',
-  'Click individual regions to combine unwanted fragments or split broad areas',
+  'Split broad regions to separate details',
+  'Verify that your photo stays on your device',
+  'Inspect network requests and try generating offline',
   'How to get started',
   'Generate Paint by Numbers',
   'Frequently asked questions',

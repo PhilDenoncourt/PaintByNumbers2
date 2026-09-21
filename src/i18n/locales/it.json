@@ -25,7 +25,7 @@
     "darkShort": "Scuro"
   },
   "welcome": {
-    "tagline": "Crea un modello SVG per la pittura numerica con controllo manuale di unione e divisione",
+    "tagline": "Dividi le regioni della pittura con i numeri, unisci le aree piccole ed esporta SVG",
     "description": "Dai forma a ogni regione numerata prima di esportare: unisci le aree piccole, dividi quelle ampie e scarica un vero SVG vettoriale per Cricut, taglio laser, murales o qualsiasi formato di stampa.",
     "feature1Title": "Esportazione SVG vettoriale reale",
     "feature1Body": "Scarica tracciati vettoriali modificabili per Cricut, taglio laser, vinile, murales o qualsiasi formato di stampa.",

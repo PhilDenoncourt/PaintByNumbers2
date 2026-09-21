@@ -25,7 +25,7 @@
     "darkShort": "Sötét"
   },
   "welcome": {
-    "tagline": "Készíts SVG számfestő sablont kézi összevonási és felosztási vezérléssel",
+    "tagline": "Oszd fel a számfestő régiókat, egyesítsd a kis területeket, és exportálj SVG-t",
     "description": "Alakíts ki minden számozott régiót exportálás előtt: vonj össze apró területeket, oszd fel a nagyokat, és tölts le egy valódi vektoros SVG-t Cricuthoz, lézervágáshoz, falfestményhez vagy bármilyen nyomtatási mérethez.",
     "feature1Title": "Valódi vektoros SVG-exportálás",
     "feature1Body": "Tölts le szerkeszthető vektoros útvonalakat Cricuthoz, lézervágáshoz, vinilhez, falfestményhez vagy bármilyen nyomtatási mérethez.",

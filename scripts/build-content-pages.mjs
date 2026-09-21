@@ -200,18 +200,17 @@ const comparisonStructuredData = {
 
 const noUploadBody = `
       <h1>No-upload paint by numbers: how to verify it yourself</h1>
-      <p class="lead">"Runs locally in your browser" has become a standard line — several free generators now print it. It is an easy claim to make and a hard one to check, so this page does not ask you to take our word for it. Here is how to confirm it, in about thirty seconds, with tools already built into your browser.</p>
+      <p class="lead">Check what happens to your photo with tools already built into your browser. Inspect outgoing requests while you generate and edit a template, then try the same workflow offline. These checks let you verify local processing for yourself.</p>
 
       <h2>Check 1 &mdash; watch the network while it works</h2>
       <ol>
         <li>Open your browser's developer tools (<strong>F12</strong>, or <strong>&#8984;&#8997;I</strong> on a Mac) and choose the <strong>Network</strong> tab.</li>
         <li>Go to <a href="/">the editor</a>, let it finish loading, then clear the request list.</li>
         <li>Load a photo and click Generate. Merge a few regions. Export the SVG.</li>
-        <li>Sort the list by <strong>Size</strong>.</li>
+        <li>Keep <strong>All</strong> request types visible. Inspect each request's URL, query parameters, and <strong>Payload</strong> (request body), including analytics requests. Look for image data, file attachments, or encoded copies of the photo.</li>
       </ol>
-      <p>Two things to look at. First, <strong>nothing leaving the page is bigger than a few kilobytes</strong> &mdash; your photo is megabytes, so it plainly is not among them. Second, <strong>not one request goes to paintbynumbers.build</strong> after the page has loaded: there is no upload endpoint to send a photo to, because there is no server behind this site. It is a set of static files.</p>
-      <p>You will see a handful of small pings to Google Analytics, a few hundred bytes each. Those are visit counts, and every request the site makes is listed in full below. Everything else is silence.</p>
-      <p class="muted">If you would rather read the source than the traffic: the application code contains no <code>fetch()</code> call, no <code>XMLHttpRequest</code>, and no form submission anywhere.</p>
+      <p>The expected result is <strong>no outgoing request containing your image</strong>. The Network Size column measures downloaded response data; small responses or an empty Fetch/XHR filter do not prove that nothing was uploaded. Inspect the outgoing data across all request types.</p>
+      <p>Static scripts or worker files may load when a feature is first used. Google Analytics may send page views and usage events. Those requests are separate from image processing; inspect their contents instead of expecting an empty request list.</p>
 
       <h2>Check 2 — turn your network off</h2>
       <ol>
@@ -219,10 +218,10 @@ const noUploadBody = `
         <li>Switch your network off — <strong>Network &rarr; Offline</strong> in developer tools, or just turn off Wi-Fi.</li>
         <li>Load a different photo and generate again. Merge some regions. Export the SVG.</li>
       </ol>
-      <p>All of it still works, with no connection at all. That is only possible if the processing is happening on your machine.</p>
+      <p>Generating, editing and exporting should still work. This demonstrates that those steps can run locally. Offline operation alone does not establish what a page sends while connected, so use it together with the request inspection above.</p>
 
-      <h2>Every request this site makes, and what it is for</h2>
-      <p>The strongest version of a privacy claim is a complete list, so here is ours. This is every network request the site makes, and none of them carries your photo.</p>
+      <h2>Expected network requests, and what they are for</h2>
+      <p>Use this list to understand the services used by the app. Exact hosts can vary with analytics configuration; check the requests your browser actually sends. The app does not include your photo in these requests.</p>
       <table>
         <thead>
           <tr>
@@ -234,7 +233,7 @@ const noUploadBody = `
         <tbody>
           <tr>
             <th scope="row">paintbynumbers.build</th>
-            <td>The page itself, plus its JavaScript, CSS, and icons. Static files.</td>
+            <td>The page itself, plus JavaScript, worker files, CSS, and icons. Some static files may load when a feature is first used.</td>
             <td class="no">No</td>
           </tr>
           <tr>
@@ -243,8 +242,8 @@ const noUploadBody = `
             <td class="no">No</td>
           </tr>
           <tr>
-            <th scope="row">googletagmanager.com</th>
-            <td>Google Analytics, with IP anonymisation on. Counts visits and which export buttons get used. No photo, no image data, no account.</td>
+            <th scope="row">googletagmanager.com; google-analytics.com and its subdomains</th>
+            <td>Google Analytics scripts and collection requests for page views and usage events, such as generation and export actions. The app does not attach photos or image data to those events.</td>
             <td class="no">No</td>
           </tr>
           <tr>
@@ -254,7 +253,7 @@ const noUploadBody = `
           </tr>
         </tbody>
       </table>
-      <p>That is the entire list. We would rather disclose the analytics than claim a purity we do not have — the point that matters is the one you can check: <strong>no request carries your image, because no request is ever made with it.</strong></p>
+      <p>Local image processing coexists with usage analytics. Verify both by inspecting the outgoing requests during the workflow you use.</p>
 
       <h2>What actually happens to your photo</h2>
       <ul>
@@ -264,10 +263,10 @@ const noUploadBody = `
         <li>Merging and splitting regions recomputes the affected outlines locally.</li>
         <li>The SVG, PDF, and PNG files are assembled in the page and handed straight to your browser's download mechanism.</li>
       </ul>
-      <p>Close the tab and every trace of the image is gone. There is nothing to delete from a server, because nothing ever reached one.</p>
+      <p>Saved sessions can retain your image and template in this browser's local storage after you close the tab. Clear this site's browser storage to remove locally saved sessions. Exported images and project files remain wherever you saved them on your device.</p>
 
       <h2>Why this is worth checking at all</h2>
-      <p>Most free paint-by-numbers tools do send your photo to a server, process it there, and send a result back — which means a copy of a picture of your kid, your pet, or your home sits on someone else's machine. Increasingly, tools that <em>do</em> work that way describe themselves in language that sounds local. The two checks above take under a minute and settle it either way, for this site or any other.</p>
+      <p>A photo can contain personal details about your family, pets or home. Checking where processing happens helps you choose a tool based on observed behavior. These checks describe the workflow you inspected; they are not a guarantee about every version or every possible action on a site.</p>
 
       <p>The processing model is the floor, not the reason to use this editor. The reasons are <a href="/merge-split-paint-by-numbers-regions">manual control over individual regions</a> and <a href="/photo-to-paint-by-numbers-svg">true vector SVG export</a>. See the full <a href="/paint-by-numbers-vs-pbnify">paint by numbers generator comparison</a>.</p>
 ${relatedGuidesBlock('paint-by-numbers-generator-no-upload')}
@@ -382,7 +381,7 @@ export const PAGES = [
     slug: 'paint-by-numbers-generator-no-upload',
     title: 'No-Upload Paint by Numbers Generator — And How to Verify It',
     description:
-      'Every generator now claims local processing. Check this one in 30 seconds: an empty network tab, an offline test, and the full list of requests the site makes.',
+      'Verify local paint by numbers processing: inspect outgoing request payloads, generate a template offline, and understand analytics and locally saved sessions.',
     bodyHtml: noUploadBody,
     structuredData: noUploadStructuredData,
   },

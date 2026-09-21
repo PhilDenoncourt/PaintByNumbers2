@@ -64,9 +64,10 @@ function assertHomepagePositioning(html, label) {
     ['meta description', description],
     ['H1', h1],
   ]) {
-    assert(/\bsvg\b/i.test(value), `${label} ${field} must lead with SVG/vector export`);
+    assert(/\bsvg\b/i.test(value), `${label} ${field} must mention SVG export`);
     assert(/\bmerge\b/i.test(value), `${label} ${field} must mention manual region merging`);
     assert(/\bsplit\b/i.test(value), `${label} ${field} must mention manual region splitting`);
+    assert(/^Split\b/.test(value), `${label} ${field} must lead with region splitting`);
     assert(
       !/\b(?:free|private|no[- ]?sign[- ]?up|no[- ]?watermark)\b/i.test(value),
       `${label} ${field} still leads with an old parity claim`,

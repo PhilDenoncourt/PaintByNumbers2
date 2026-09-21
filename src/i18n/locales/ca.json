@@ -25,7 +25,7 @@
     "darkShort": "Fosc"
   },
   "welcome": {
-    "tagline": "Crea una plantilla SVG de pintura per números amb control manual de fusió i divisió",
+    "tagline": "Divideix regions de pintura per números, fusiona zones petites i exporta en SVG",
     "description": "Dona forma a cada regió numerada abans d'exportar: fusiona àrees petites, divideix les més grans i descarrega un SVG vectorial real per a Cricut, tall làser, murals o qualsevol mida d'impressió.",
     "feature1Title": "Exportació SVG vectorial real",
     "feature1Body": "Descarrega traçats vectorials editables per a Cricut, tall làser, vinil, murals o qualsevol mida d'impressió.",

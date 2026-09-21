@@ -85,13 +85,13 @@ export function AppShell() {
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
                   style={{ color: tk.text, background: tk.dotIdleBg }}
                 >
-                  📐 {t('welcome.vectorBadge')}
+                  ✂️ {t('welcome.regionBadge')}
                 </span>
                 <span
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-display text-[11px] font-semibold"
                   style={{ color: tk.text, background: tk.dotIdleBg }}
                 >
-                  ✂️ {t('welcome.regionBadge')}
+                  📐 {t('welcome.vectorBadge')}
                 </span>
               </div>
               <h1 className="font-display text-2xl font-extrabold mb-3" style={{ color: tk.text }}>
@@ -100,12 +100,18 @@ export function AppShell() {
               <p className="text-sm leading-relaxed" style={{ color: tk.muted }}>
                 {t('welcome.description')}
               </p>
+              <p className="mt-3 text-xs leading-relaxed" style={{ color: tk.muted }}>
+                <a href="/paint-by-numbers-generator-no-upload" className="font-semibold underline" style={{ color: tk.text }}>
+                  {t('welcome.guideNoUploadTitle')}
+                </a>{' '}
+                {t('welcome.guideNoUploadBody')}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {([
-                { title: t('welcome.feature1Title'), body: t('welcome.feature1Body'), icon: '🎨' },
                 { title: t('welcome.feature2Title'), body: t('welcome.feature2Body'), icon: '🖍️' },
+                { title: t('welcome.feature1Title'), body: t('welcome.feature1Body'), icon: '🎨' },
                 { title: t('welcome.feature3Title'), body: t('welcome.feature3Body'), icon: '✏️' },
                 { title: t('welcome.feature4Title'), body: t('welcome.feature4Body'), icon: '📐' },
               ] as const).map(({ title, body, icon }) => (

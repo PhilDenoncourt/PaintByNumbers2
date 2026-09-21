@@ -10,6 +10,9 @@ export function PrivacyFooter() {
     <footer className="shrink-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-2 text-xs text-gray-400 dark:text-gray-500">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <span>{t('privacy.tagline')}</span>
+        <a href="/paint-by-numbers-generator-no-upload" className="underline hover:text-gray-600 dark:hover:text-gray-300">
+          {t('welcome.guideNoUploadTitle')}
+        </a>
         <button
           onClick={() => setExpanded((v) => !v)}
           className="underline hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none"

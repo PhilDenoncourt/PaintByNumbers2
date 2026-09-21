@@ -32,10 +32,10 @@ const bullets = (items) => items.map((item) => `- ${item}`).join('\n');
 export function buildLlmsTxt() {
   return `# Paint by Numbers (paintbynumbers.build)
 
-> A free, browser-based paint-by-numbers generator. It turns a photo into a numbered
-> template, lets you merge and split individual regions by hand, and exports a true
-> vector SVG, a printable PDF (A4 through A0, or tiled), or a PNG. Every step runs in
-> the browser — the photo is never uploaded.
+> Split paint by numbers regions by hand, merge small areas, and export true vector
+> SVG with this free template maker. It also exports PDF (A4 through A0, or tiled)
+> and PNG. Processing runs in the browser; the no-upload guide explains how to
+> verify it by inspecting outgoing requests and generating offline.
 
 ## What paint by numbers is
 
@@ -62,9 +62,9 @@ ${bullets(NOT_CAPABILITIES)}
 - Where processing happens: entirely in the visitor's browser. The image is read with
   the browser's own file APIs and processed in Web Workers on the visitor's machine.
   There is no image upload endpoint and no server-side image processing — the site is
-  a set of static files. The only network requests the page makes after loading are
-  Google Fonts and Google Analytics; neither carries image data, and the site
-  documents the full request list on its no-upload guide page.
+  a set of static files. Static assets may load when features are first used;
+  fonts and analytics also use the network. The no-upload guide explains how to
+  inspect outgoing payloads, try generation offline and clear locally saved sessions.
 - Colour count: ${COLOR_RANGE_SENTENCE}
 - Paper sizes: ${PAPER_SIZE_SENTENCE}
 - Export formats:

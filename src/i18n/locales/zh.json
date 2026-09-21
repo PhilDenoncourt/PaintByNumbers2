@@ -25,7 +25,7 @@
     "darkShort": "深色"
   },
   "welcome": {
-    "tagline": "创建具有手动合并与拆分控制的 SVG 数字油画模板",
+    "tagline": "拆分数字油画区域、合并小区域并导出 SVG",
     "description": "在导出之前调整每个编号区域的形状：合并细小区域，拆分大块区域，然后下载适用于 Cricut、激光切割、壁画或任意打印尺寸的真正矢量 SVG。",
     "feature1Title": "真正的矢量 SVG 导出",
     "feature1Body": "下载适用于 Cricut、激光切割、乙烯基、壁画或任意打印尺寸的可编辑矢量路径。",

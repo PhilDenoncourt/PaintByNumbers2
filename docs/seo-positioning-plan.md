@@ -1,6 +1,32 @@
 # Positioning & SEO Plan — paintbynumbers.build
 
-_Last updated: 2026-07-27_
+_Last updated: 2026-09-21_
+
+## September 21 action-item update
+
+The September 21 competitive report supersedes the historical landscape and priorities
+below. Its open items 4, 5, 6, 9 and 11 have been addressed in local source/configuration;
+deployment has not been performed or verified.
+
+- **4:** Region splitting now leads the homepage title, social metadata, localized H1,
+  badges and feature cards. SVG and merging remain supporting capabilities.
+- **5:** The homepage and footer link directly to privacy verification. The guide explains
+  outgoing request inspection and an offline workflow, discloses analytics and local
+  session storage, and no longer treats small responses as proof of no uploads.
+- **6:** `C:/work/DDAStatus/sites.json` now records www redirecting to the apex, based on
+  the supplied report's verification.
+- **9:** Already implemented: choose **Palette > Auto-detect > Color style** to select
+  K-Means or Median-Cut and read its explanation. Fixed paint sets/custom palettes use
+  their supplied colors instead. Existing control and algorithm tests pass (23 tests).
+- **11:** The reporting keyword list now prioritizes `edit paint by numbers regions`,
+  `paint by numbers template maker`, `paint by numbers SVG`, `split paint by numbers regions`,
+  and `paint by numbers generator no upload`, in that order. `paint by numbers generator`
+  is a stretch target. `photo to paint by numbers` and `paint by numbers from photo` remain
+  content themes, but are removed as ranking targets.
+
+Validation: production build, prerender and indexability checks for all five URLs, ESLint,
+and 23 existing algorithm/control tests passed. Browser preview was unavailable in this
+session. The earlier report observations below are historical, not fresh competitor checks.
 
 ## Context
 
@@ -30,7 +56,7 @@ The homepage and four supporting routes are prerendered, canonicalized, included
 submitted sitemap, and visible in Search Console. The remaining challenge is positioning:
 free use, no watermark, no sign-up, and browser-only processing are now category parity.
 
-## Positioning
+## Historical July positioning (superseded above)
 
 **One-liner:** _The paint-by-numbers editor that exports true vector SVG and gives you
 manual control over every generated region._
