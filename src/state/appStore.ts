@@ -33,13 +33,47 @@ import ContourWorker from '../workers/contour.worker?worker';
 import LabelWorker from '../workers/label.worker?worker';
 import { trackEvent } from '../utils/analytics';
 import { rgbToLab } from '../algorithms/colorUtils';
+import { applyPreprocessing } from '../utils/preprocessImage';
+import type { LocalProject, ProjectCheckpoint } from '../projects/types';
 
-interface HistoryEntry {
-  settings: PipelineSettings;
-  result: PipelineResult | null;
-  labelOverrides: Record<number, LabelOverride>;
-  timestamp: number;
+type HistoryEntry = ProjectCheckpoint;
+
+function checkpoint(s: AppState, result: PipelineResult | null = s.result): HistoryEntry {
+  const id = crypto.randomUUID();
+  return { id, resultId: result ? s.history.find((entry) => entry.result === result)?.resultId ?? id : null,
+    settings: { ...s.settings }, result,
+    resultSettings: s.resultSettings ? { ...s.resultSettings } : null,
+    labelOverrides: { ...s.labelOverrides }, paletteColorOrder: s.paletteColorOrder ? [...s.paletteColorOrder] : null,
+    timestamp: Date.now() };
 }
+
+function appendHistory(s: AppState, entry: HistoryEntry): Pick<AppState, 'history' | 'historyIndex' | 'historyTruncated'> {
+  const history = [...s.history.slice(0, s.historyIndex + 1), entry];
+  // Keep the in-memory and durable history window identical. Results shared by
+  // display-only checkpoints are counted once.
+  const bytes = () => {
+    const seen = new Set<PipelineResult>();
+    return history.reduce((sum, item) => {
+      if (!item.result || seen.has(item.result)) return sum;
+      seen.add(item.result);
+      return sum + item.result.labelMap.byteLength;
+    }, 0);
+  };
+  let truncated = s.historyTruncated;
+  while (history.length > 1 && (history.length > 20 || bytes() > 128 * 1024 * 1024)) { history.shift(); truncated = true; }
+  return { history, historyIndex: history.length - 1, historyTruncated: truncated };
+}
+
+function imageDataForResult(img: HTMLImageElement, settings: PipelineSettings): ImageData {
+  const imageData = applyCropRotate(img, settings.cropRect, settings.rotation).imageData;
+  if (settings.brightness || settings.contrast || settings.saturation || settings.sharpness) {
+    applyPreprocessing(imageData, settings);
+  }
+  return imageData;
+}
+
+let generationToken = 0;
+let loadRequestToken = 0;
 
 /**
  * Carry manual number positions across a pipeline re-run.
@@ -98,6 +132,11 @@ function pruneOverrides(
 interface AppState {
   sourceImage: HTMLImageElement | null;
   sourceImageUrl: string | null;
+  sourceBlob: Blob | null;
+  projectId: string | null;
+  projectCreatedAt: number;
+  resultSettings: PipelineSettings | null;
+  durableRevision: number;
   sourceImageData: ImageData | null;
   processedWidth: number;
   processedHeight: number;
@@ -110,11 +149,13 @@ interface AppState {
 
   history: HistoryEntry[];
   historyIndex: number;
+  historyTruncated: boolean;
   paletteColorOrder: number[] | null; // null = original order, else: [newIndex0, newIndex1, ...]
   labelOverrides: Record<number, LabelOverride>; // manual number positions, keyed by regionId
   labelOverrideNotice: string | null; // set after a re-run when overrides were dropped
 
   loadImage: (file: File) => Promise<void>;
+  restoreProject: (project: LocalProject) => Promise<void>;
   updateSettings: (partial: Partial<PipelineSettings>) => void;
   setAutoRegenerate: (value: boolean) => void;
   startPipeline: () => Promise<void>;
@@ -144,7 +185,7 @@ interface AppState {
   reset: () => void;
 }
 
-const defaultSettings: PipelineSettings = {
+export const defaultSettings: PipelineSettings = {
   paletteSize: 12,
   algorithm: 'kmeans',
   minRegionSize: 50,
@@ -177,6 +218,14 @@ const defaultPipeline: PipelineState = {
   error: null,
 };
 
+function initialDarkMode(): boolean {
+  try {
+    const saved = localStorage.getItem('darkMode');
+    if (saved !== null) return saved === 'true';
+  } catch { /* Storage may be disabled. */ }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 const defaultUI: UIState = {
   viewMode: 'colored',
   activePanel: 'palette',
@@ -185,9 +234,7 @@ const defaultUI: UIState = {
   zoom: 1,
   panX: 0,
   panY: 0,
-  darkMode: localStorage.getItem('darkMode') !== null
-    ? localStorage.getItem('darkMode') === 'true'
-    : window.matchMedia('(prefers-color-scheme: dark)').matches,
+  darkMode: initialDarkMode(),
   draggingLabelId: null,
   mergeMode: 'browse',
   selectedRegions: [],
@@ -208,10 +255,20 @@ const RENDER_ONLY_SETTINGS = new Set<string>([
 // Debounce so slider drags coalesce into one pipeline run.
 const AUTO_REGEN_DEBOUNCE_MS = 600;
 let autoRegenTimer: ReturnType<typeof setTimeout> | null = null;
+let settingsHistoryTimer: ReturnType<typeof setTimeout> | null = null;
+function cancelSettingsHistory() {
+  if (settingsHistoryTimer) clearTimeout(settingsHistoryTimer);
+  settingsHistoryTimer = null;
+}
 
 export const useAppStore = create<AppState>((set, get) => ({
   sourceImage: null,
   sourceImageUrl: null,
+  sourceBlob: null,
+  projectId: null,
+  projectCreatedAt: 0,
+  resultSettings: null,
+  durableRevision: 0,
   sourceImageData: null,
   processedWidth: 0,
   processedHeight: 0,
@@ -224,25 +281,41 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   history: [],
   historyIndex: -1,
+  historyTruncated: false,
   paletteColorOrder: null,
   labelOverrides: {},
   labelOverrideNotice: null,
 
   loadImage: async (file: File) => {
-    const oldUrl = get().sourceImageUrl;
-    if (oldUrl) URL.revokeObjectURL(oldUrl);
-
+    const token = ++loadRequestToken;
     const img = await loadImageFromFile(file);
+    if (token !== loadRequestToken) { URL.revokeObjectURL(img.src); return; }
     const url = img.src;
-    const { imageData } = imageToImageData(img);
+    let imageData: ImageData;
+    try { imageData = imageToImageData(img).imageData; }
+    catch (error) { URL.revokeObjectURL(url); throw error; }
+    generationToken++;
+    if (autoRegenTimer) { clearTimeout(autoRegenTimer); autoRegenTimer = null; }
+    cancelSettingsHistory();
+    const oldUrl = get().sourceImageUrl;
+    if (oldUrl?.startsWith('blob:')) URL.revokeObjectURL(oldUrl);
 
     set((s) => ({
       sourceImage: img,
       sourceImageUrl: url,
+      sourceBlob: file,
+      projectId: crypto.randomUUID(),
+      projectCreatedAt: Date.now(),
+      durableRevision: s.durableRevision + 1,
+      resultSettings: null,
       sourceImageData: imageData,
       processedWidth: imageData.width,
       processedHeight: imageData.height,
       result: null,
+      history: [],
+      historyIndex: -1,
+      historyTruncated: false,
+      paletteColorOrder: null,
       pipeline: { ...defaultPipeline },
       ui: { ...defaultUI },
       // A new image shares no regions with the old one — manual number moves can't carry over
@@ -260,8 +333,56 @@ export const useAppStore = create<AppState>((set, get) => ({
     });
   },
 
+  restoreProject: async (project) => {
+    const token = ++loadRequestToken;
+    const file = new File([project.source], 'project-image', { type: project.source.type });
+    const img = await loadImageFromFile(file);
+    if (token !== loadRequestToken) { URL.revokeObjectURL(img.src); throw new Error('Project load was superseded'); }
+    let imageData: ImageData;
+    try {
+      imageData = project.result && project.resultSettings
+        ? imageDataForResult(img, project.resultSettings)
+        : imageToImageData(img).imageData;
+    } catch (error) { URL.revokeObjectURL(img.src); throw error; }
+    if (project.result && (imageData.width !== project.result.width || imageData.height !== project.result.height)) {
+      URL.revokeObjectURL(img.src);
+      throw new Error('Source image and saved result dimensions do not match');
+    }
+    generationToken++;
+    if (autoRegenTimer) { clearTimeout(autoRegenTimer); autoRegenTimer = null; }
+    cancelSettingsHistory();
+    const oldUrl = get().sourceImageUrl;
+    if (oldUrl?.startsWith('blob:')) URL.revokeObjectURL(oldUrl);
+    set((s) => ({ sourceImage: img, sourceImageUrl: img.src, sourceBlob: project.source,
+      projectId: project.id, projectCreatedAt: project.createdAt, durableRevision: s.durableRevision + 1,
+      sourceImageData: imageData, processedWidth: imageData.width, processedHeight: imageData.height,
+      settings: project.settings, resultSettings: project.resultSettings, result: project.result,
+      pipeline: { ...defaultPipeline, status: project.result ? 'complete' : 'idle' },
+      history: project.history, historyIndex: project.historyIndex,
+      historyTruncated: project.historyTruncated,
+      paletteColorOrder: project.paletteColorOrder, labelOverrides: project.labelOverrides,
+      labelOverrideNotice: null,
+      ui: { ...defaultUI, darkMode: s.ui.darkMode, viewMode: project.viewMode, activePanel: project.activePanel },
+    }));
+  },
+
   updateSettings: (partial) => {
-    set((s) => ({ settings: { ...s.settings, ...partial } }));
+    set((s) => ({ settings: { ...s.settings, ...partial }, durableRevision: s.durableRevision + 1,
+      history: s.history.slice(0, s.historyIndex + 1) }));
+    cancelSettingsHistory();
+    settingsHistoryTimer = setTimeout(function commitSettings() {
+      settingsHistoryTimer = null;
+      if (get().pipeline.status === 'running') {
+        settingsHistoryTimer = setTimeout(commitSettings, 300);
+        return;
+      }
+      set((s) => {
+        if (!s.result) return {};
+        const previous = s.history[s.historyIndex];
+        if (previous?.result === s.result && JSON.stringify(previous.settings) === JSON.stringify(s.settings)) return {};
+        return { durableRevision: s.durableRevision + 1, ...appendHistory(s, checkpoint(s)) };
+      });
+    }, 900);
 
     if (!Object.keys(partial).some((k) => !RENDER_ONLY_SETTINGS.has(k))) return;
 
@@ -290,6 +411,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   startPipeline: async () => {
     const { sourceImage, settings, labelOverrides: prevOverrides } = get();
     if (!sourceImage) return;
+    const token = ++generationToken;
 
     trackEvent('pipeline_start', {
       algorithm: settings.algorithm,
@@ -311,15 +433,16 @@ export const useAppStore = create<AppState>((set, get) => ({
       processedWidth: imageData.width,
       processedHeight: imageData.height,
       pipeline: { status: 'running', currentStage: 'quantize', stageProgress: 0, error: null },
-      result: null,
     });
 
     const onProgress = (stage: PipelineStage, percent: number) => {
+      if (token !== generationToken) return;
       set({ pipeline: { status: 'running', currentStage: stage, stageProgress: percent, error: null } });
     };
 
     try {
       const result = await runPipeline(imageData, settings, onProgress);
+      if (token !== generationToken) return;
       trackEvent('pipeline_complete', {
         regions: result.regions.length,
         palette_size: result.palette.length,
@@ -330,19 +453,15 @@ export const useAppStore = create<AppState>((set, get) => ({
       const reanchored = reanchorOverrides(prevOverrides, result);
 
       set((s) => {
-        // Add to history after successful pipeline
-        const newHistory = s.history.slice(0, s.historyIndex + 1);
-        newHistory.push({
-          settings: { ...settings },
-          result,
-          labelOverrides: reanchored.overrides,
-          timestamp: Date.now(),
-        });
+        const entry = { ...checkpoint(s, result), settings: { ...settings }, resultSettings: { ...settings },
+          labelOverrides: reanchored.overrides, paletteColorOrder: null };
         return {
           pipeline: { status: 'complete', currentStage: null, stageProgress: 100, error: null },
           result,
-          history: newHistory,
-          historyIndex: newHistory.length - 1,
+          resultSettings: { ...settings },
+          paletteColorOrder: null,
+          durableRevision: s.durableRevision + 1,
+          ...appendHistory(s, entry),
           labelOverrides: reanchored.overrides,
           labelOverrideNotice:
             reanchored.dropped > 0
@@ -351,23 +470,31 @@ export const useAppStore = create<AppState>((set, get) => ({
         };
       });
     } catch (err: unknown) {
+      if (token !== generationToken) return;
       const message = err instanceof Error ? err.message : 'Pipeline failed';
       trackEvent('pipeline_error', {
         message,
       });
-      set({
-        pipeline: { status: 'error', currentStage: null, stageProgress: 0, error: message },
+      set((s) => {
+        const previous = s.result && s.resultSettings ? imageDataForResult(sourceImage, s.resultSettings) : null;
+        return {
+          pipeline: { status: previous ? 'complete' : 'error', currentStage: null, stageProgress: 0, error: message },
+          ...(previous ? { sourceImageData: previous, processedWidth: previous.width, processedHeight: previous.height } : {}),
+        };
       });
     }
   },
 
   setHoveredRegion: (id) => set((s) => ({ ui: { ...s.ui, hoveredRegion: id } })),
   setSelectedColor: (idx) => set((s) => ({ ui: { ...s.ui, selectedColor: idx } })),
-  setViewMode: (mode) => set((s) => ({ ui: { ...s.ui, viewMode: mode } })),
-  setActivePanel: (panel) => set((s) => ({ ui: { ...s.ui, activePanel: panel } })),
+  setViewMode: (mode) => set((s) => ({ ui: { ...s.ui, viewMode: mode }, durableRevision: s.durableRevision + 1 })),
+  setActivePanel: (panel) => set((s) => ({ ui: { ...s.ui, activePanel: panel }, durableRevision: s.durableRevision + 1 })),
   setZoomPan: (zoom, panX, panY) => set((s) => ({ ui: { ...s.ui, zoom, panX, panY } })),
 
   undo: () => {
+    generationToken++;
+    if (autoRegenTimer) { clearTimeout(autoRegenTimer); autoRegenTimer = null; }
+    cancelSettingsHistory();
     set((s) => {
       if (s.historyIndex <= 0) return {};
       const newIndex = s.historyIndex - 1;
@@ -376,12 +503,23 @@ export const useAppStore = create<AppState>((set, get) => ({
         historyIndex: newIndex,
         settings: { ...entry.settings },
         result: entry.result,
+        pipeline: { ...defaultPipeline, status: entry.result ? 'complete' : 'idle' },
+        resultSettings: entry.resultSettings,
         labelOverrides: { ...(entry.labelOverrides ?? {}) },
+        paletteColorOrder: entry.paletteColorOrder,
+        durableRevision: s.durableRevision + 1,
+        ...(s.sourceImage && entry.resultSettings ? (() => {
+          const data = imageDataForResult(s.sourceImage, entry.resultSettings);
+          return { sourceImageData: data, processedWidth: data.width, processedHeight: data.height };
+        })() : {}),
       };
     });
   },
 
   redo: () => {
+    generationToken++;
+    if (autoRegenTimer) { clearTimeout(autoRegenTimer); autoRegenTimer = null; }
+    cancelSettingsHistory();
     set((s) => {
       if (s.historyIndex >= s.history.length - 1) return {};
       const newIndex = s.historyIndex + 1;
@@ -390,14 +528,22 @@ export const useAppStore = create<AppState>((set, get) => ({
         historyIndex: newIndex,
         settings: { ...entry.settings },
         result: entry.result,
+        pipeline: { ...defaultPipeline, status: entry.result ? 'complete' : 'idle' },
+        resultSettings: entry.resultSettings,
         labelOverrides: { ...(entry.labelOverrides ?? {}) },
+        paletteColorOrder: entry.paletteColorOrder,
+        durableRevision: s.durableRevision + 1,
+        ...(s.sourceImage && entry.resultSettings ? (() => {
+          const data = imageDataForResult(s.sourceImage, entry.resultSettings);
+          return { sourceImageData: data, processedWidth: data.width, processedHeight: data.height };
+        })() : {}),
       };
     });
   },
 
   reorderPalette: (oldIndex: number, newIndex: number) => {
     set((s) => {
-      if (!s.result) return {};
+      if (!s.result || oldIndex < 0 || newIndex < 0 || oldIndex >= s.result.palette.length || newIndex >= s.result.palette.length || oldIndex === newIndex) return {};
       
       // Create new color order or use existing
       const order = s.paletteColorOrder ? [...s.paletteColorOrder] : Array.from({ length: s.result.palette.length }, (_, i) => i);
@@ -406,13 +552,15 @@ export const useAppStore = create<AppState>((set, get) => ({
       const [moved] = order.splice(oldIndex, 1);
       order.splice(newIndex, 0, moved);
       
-      return { paletteColorOrder: order };
+      return { paletteColorOrder: order, durableRevision: s.durableRevision + 1,
+        ...appendHistory(s, { ...checkpoint(s), paletteColorOrder: order }) };
     });
   },
 
   changeRegionColor: (regionId: number, newColorIndex: number) => {
     set((s) => {
-      if (!s.result) return {};
+      if (!s.result || newColorIndex < 0 || newColorIndex >= s.result.palette.length ||
+          !s.result.regions.some((region) => region.id === regionId && region.colorIndex !== newColorIndex)) return {};
 
       const newResult = { ...s.result };
 
@@ -437,14 +585,18 @@ export const useAppStore = create<AppState>((set, get) => ({
           : region
       );
 
-      return { result: newResult };
+      const nextOverrides = s.labelOverrides[regionId]
+        ? { ...s.labelOverrides, [regionId]: { ...s.labelOverrides[regionId], colorIndex: newColorIndex } }
+        : s.labelOverrides;
+      return { result: newResult, labelOverrides: nextOverrides, durableRevision: s.durableRevision + 1,
+        ...appendHistory(s, { ...checkpoint(s, newResult), labelOverrides: nextOverrides }) };
     });
   },
 
   setMergeMode: (mode) => set((s) => ({ ui: { ...s.ui, mergeMode: mode, selectedRegions: [] } })),
   toggleDarkMode: () => set((s) => {
     const next = !s.ui.darkMode;
-    localStorage.setItem('darkMode', String(next)); // explicit user choice
+    try { localStorage.setItem('darkMode', String(next)); } catch { /* Keep the in-memory choice. */ }
     return { ui: { ...s.ui, darkMode: next } };
   }),
 
@@ -468,12 +620,13 @@ export const useAppStore = create<AppState>((set, get) => ({
   suggestMergeTargets: async (sourceRegionId) => {
     const { result } = get();
     if (!result) return;
+    const token = generationToken;
 
     try {
       const input: SuggestMergeInput = {
         sourceRegionId,
         regions: result.regions,
-        labelMap: result.labelMap,
+        labelMap: new Int32Array(result.labelMap),
         palette: result.palette,
         // Sessions saved before labPalette existed lack it — derive from RGB
         labPalette: result.labPalette ?? result.palette.map(([r, g, b]) => rgbToLab(r, g, b)),
@@ -490,10 +643,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       );
 
       set((s) => ({
+        ...(token !== generationToken || s.result !== result ? {} : {
         ui: {
           ...s.ui,
           mergeSuggestions: output.suggestions,
         },
+        }),
       }));
     } catch (err) {
       console.error('Failed to suggest merge targets:', err);
@@ -501,14 +656,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   performMerge: async (regionAId, regionBId) => {
-    const { result, settings } = get();
+    const { result } = get();
     if (!result) return;
+    const token = generationToken;
+    const settings = get().resultSettings ?? get().settings;
 
     try {
       const input: PerformMergeInput = {
         regionAId,
         regionBId,
-        labelMap: result.labelMap,
+        labelMap: new Int32Array(result.labelMap),
         regions: result.regions,
       };
 
@@ -548,7 +705,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       );
 
       set((s) => {
-        if (!s.result) return {};
+        if (!s.result || token !== generationToken || s.result !== result) return {};
 
         // Update result with new labelMap, regions, recomputed contours and labels
         const newResult = {
@@ -563,19 +720,13 @@ export const useAppStore = create<AppState>((set, get) => ({
         const overrides = pruneOverrides(s.labelOverrides, labelOutput.labels);
 
         // Add to history
-        const newHistory = s.history.slice(0, s.historyIndex + 1);
-        newHistory.push({
-          settings: { ...s.settings },
-          result: newResult,
-          labelOverrides: overrides,
-          timestamp: Date.now(),
-        });
+        const entry = { ...checkpoint(s, newResult), labelOverrides: overrides };
 
         return {
           result: newResult,
           labelOverrides: overrides,
-          history: newHistory,
-          historyIndex: newHistory.length - 1,
+          durableRevision: s.durableRevision + 1,
+          ...appendHistory(s, entry),
           ui: {
             ...s.ui,
             selectedRegions: [],
@@ -591,6 +742,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   analyzeSplitCandidates: async (regionId) => {
     const { result, sourceImageData } = get();
     if (!result || !sourceImageData) return;
+    const token = generationToken;
 
     try {
       const input: SplitCandidatesInput = {
@@ -610,10 +762,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       );
 
       set((s) => ({
+        ...(token !== generationToken || s.result !== result ? {} : {
         ui: {
           ...s.ui,
           splitAnalysis: output.analysis,
         },
+        }),
       }));
     } catch (err) {
       console.error('Failed to analyze split candidates:', err);
@@ -621,15 +775,17 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   performSplit: async (regionId, splitX, splitY) => {
-    const { result, sourceImageData, settings } = get();
+    const { result, sourceImageData } = get();
     if (!result || !sourceImageData) return;
+    const token = generationToken;
+    const settings = get().resultSettings ?? get().settings;
 
     try {
       const input: PerformSplitInput = {
         regionId,
         splitX,
         splitY,
-        labelMap: result.labelMap,
+        labelMap: new Int32Array(result.labelMap),
         regions: result.regions,
         imageData: sourceImageData,
         colorThreshold: 30,
@@ -674,7 +830,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       );
 
       set((s) => {
-        if (!s.result) return {};
+        if (!s.result || token !== generationToken || s.result !== result) return {};
 
         const newResult = {
           ...s.result,
@@ -691,19 +847,13 @@ export const useAppStore = create<AppState>((set, get) => ({
         const overrides = pruneOverrides(rest, labelOutput.labels);
 
         // Add to history
-        const newHistory = s.history.slice(0, s.historyIndex + 1);
-        newHistory.push({
-          settings: { ...s.settings },
-          result: newResult,
-          labelOverrides: overrides,
-          timestamp: Date.now(),
-        });
+        const entry = { ...checkpoint(s, newResult), labelOverrides: overrides };
 
         return {
           result: newResult,
           labelOverrides: overrides,
-          history: newHistory,
-          historyIndex: newHistory.length - 1,
+          durableRevision: s.durableRevision + 1,
+          ...appendHistory(s, entry),
           ui: {
             ...s.ui,
             splitAnalysis: null,
@@ -724,17 +874,17 @@ export const useAppStore = create<AppState>((set, get) => ({
 
       // Anchor on the automatic placement, not on x/y — see reanchorOverrides.
       const existing = s.labelOverrides[regionId];
-      return {
-        labelOverrides: {
-          ...s.labelOverrides,
-          [regionId]: {
-            x,
-            y,
-            anchorX: existing ? existing.anchorX : label.x,
-            anchorY: existing ? existing.anchorY : label.y,
-            colorIndex: label.colorIndex,
-          },
+      const next = {
+        ...s.labelOverrides,
+        [regionId]: {
+          x, y, anchorX: existing ? existing.anchorX : label.x,
+          anchorY: existing ? existing.anchorY : label.y, colorIndex: label.colorIndex,
         },
+      };
+      return {
+        labelOverrides: next,
+        durableRevision: s.durableRevision + 1,
+        ...appendHistory(s, { ...checkpoint(s), labelOverrides: next }),
       };
     });
   },
@@ -744,11 +894,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       if (!(regionId in s.labelOverrides)) return {};
       const rest = { ...s.labelOverrides };
       delete rest[regionId];
-      return { labelOverrides: rest };
+      return { labelOverrides: rest, durableRevision: s.durableRevision + 1,
+        ...appendHistory(s, { ...checkpoint(s), labelOverrides: rest }) };
     });
   },
 
-  clearAllLabelOverrides: () => set({ labelOverrides: {}, labelOverrideNotice: null }),
+  clearAllLabelOverrides: () => set((s) => ({ labelOverrides: {}, labelOverrideNotice: null,
+    durableRevision: s.durableRevision + 1, ...appendHistory(s, { ...checkpoint(s), labelOverrides: {} }) })),
 
   setDraggingLabel: (regionId) => set((s) => ({ ui: { ...s.ui, draggingLabelId: regionId } })),
 
@@ -761,6 +913,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   replaceLabels: async () => {
     const { result, settings } = get();
     if (!result) return;
+    const token = generationToken;
 
     try {
       const labelOutput = await runWorker<LabelInput, LabelOutput>(
@@ -771,8 +924,10 @@ export const useAppStore = create<AppState>((set, get) => ({
       );
 
       set((s) => {
-        if (!s.result) return {};
-        return { result: { ...s.result, labels: labelOutput.labels } };
+        if (!s.result || token !== generationToken || s.result !== result) return {};
+        const next = { ...s.result, labels: labelOutput.labels };
+        return { result: next, durableRevision: s.durableRevision + 1,
+          ...appendHistory(s, checkpoint(s, next)) };
       });
     } catch (err) {
       console.error('Failed to re-place labels:', err);
@@ -780,11 +935,20 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   reset: () => {
+    generationToken++;
+    loadRequestToken++;
+    if (autoRegenTimer) { clearTimeout(autoRegenTimer); autoRegenTimer = null; }
+    cancelSettingsHistory();
     const oldUrl = get().sourceImageUrl;
-    if (oldUrl) URL.revokeObjectURL(oldUrl);
+    if (oldUrl?.startsWith('blob:')) URL.revokeObjectURL(oldUrl);
     set({
       sourceImage: null,
       sourceImageUrl: null,
+      sourceBlob: null,
+      projectId: null,
+      projectCreatedAt: 0,
+      resultSettings: null,
+      durableRevision: get().durableRevision + 1,
       sourceImageData: null,
       processedWidth: 0,
       processedHeight: 0,
@@ -794,6 +958,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       ui: { ...defaultUI },
       history: [],
       historyIndex: -1,
+      historyTruncated: false,
       paletteColorOrder: null,
       labelOverrides: {},
       labelOverrideNotice: null,

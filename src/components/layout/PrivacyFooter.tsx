@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { analyticsEnabled } from '../../utils/analytics';
+import { useProjectMessage } from '../../projects/projectMessages';
 
 export function PrivacyFooter() {
   const { t } = useTranslation();
+  const projectMessage = useProjectMessage();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -43,7 +45,7 @@ export function PrivacyFooter() {
           )}
           <p>
             <strong className="text-gray-600 dark:text-gray-300">{t('privacy.localStorageTitle')}</strong>{' '}
-            {t('privacy.localStorageBody')}
+            {projectMessage('deviceNotice')}
           </p>
           <p>
             <strong className="text-gray-600 dark:text-gray-300">{t('privacy.imagesTitle')}</strong>{' '}

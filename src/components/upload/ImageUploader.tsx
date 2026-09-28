@@ -1,53 +1,41 @@
 import { useCallback, useRef, useState } from 'react';
 import { useAppStore } from '../../state/appStore';
 import { useTranslation } from 'react-i18next';
-import { sessionStorage } from '../../utils/sessionStorage';
+import { projectPersistence, useProjectPersistence } from '../../projects/projectPersistence';
+import { useProjectMessage } from '../../projects/projectMessages';
 
 export function ImageUploader() {
   const { t } = useTranslation();
+  const message = useProjectMessage();
   const loadImage = useAppStore((s) => s.loadImage);
   const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { metadata, status } = useProjectPersistence();
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const openFile = useCallback(async (file: File) => {
+    try {
+      setLoadError(null);
+      if (file.type.startsWith('image/')) await loadImage(file);
+      else if (file.name.endsWith('.json') || file.type === 'application/json') await projectPersistence.importFile(file);
+    } catch (err) { setLoadError(err instanceof Error ? err.message : t('uploader.errorLoadingSession')); }
+  }, [loadImage, t]);
 
   const handleImageFile = useCallback(
     async (file: File) => {
-      await loadImage(file);
+      if (status === 'loading') return;
+      if (metadata) setPendingFile(file);
+      else await openFile(file);
     },
-    [loadImage]
+    [metadata, status, openFile]
   );
 
   const handleSessionFile = useCallback(async (file: File) => {
-    try {
-      const session = await sessionStorage.importFromFile(file);
-
-      // Load image from base64
-      const img = new Image();
-      img.onload = async () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) throw new Error('Failed to create canvas');
-
-        ctx.drawImage(img, 0, 0);
-        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-
-        // Set state
-        const url = canvas.toDataURL('image/png');
-        useAppStore.setState({
-          sourceImageUrl: url,
-          sourceImageData: imageData,
-          processedWidth: imageData.width,
-          processedHeight: imageData.height,
-          settings: session.settings,
-          result: session.result,
-        });
-      };
-      img.src = session.sourceImageBase64;
-    } catch (err) {
-      alert(`${t('uploader.errorLoadingSession')}: ${err instanceof Error ? err.message : t('common.unknownError')}`);
-    }
-  }, [t]);
+    if (status === 'loading') return;
+    if (metadata) setPendingFile(file);
+    else await openFile(file);
+  }, [metadata, status, openFile]);
 
   const handleFile = useCallback(
     async (file: File) => {
@@ -95,6 +83,7 @@ export function ImageUploader() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (file) handleFile(file);
+      e.target.value = '';
     },
     [handleFile]
   );
@@ -110,7 +99,8 @@ export function ImageUploader() {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onPaste={onPaste}
-      onClick={() => inputRef.current?.click()}
+      onClick={() => { if (status !== 'loading') inputRef.current?.click(); }}
+      aria-busy={status === 'loading'}
       tabIndex={0}
     >
       <svg
@@ -135,10 +125,20 @@ export function ImageUploader() {
       <input
         ref={inputRef}
         type="file"
+        disabled={status === 'loading'}
         accept="image/*,.json"
         className="hidden"
         onChange={onChange}
       />
+      {loadError && <p role="alert" className="text-sm text-red-600 mt-2">{loadError}</p>}
+      {pendingFile && metadata && <div className="mt-3 p-3 rounded border bg-white dark:bg-gray-900" onClick={(e) => e.stopPropagation()}>
+        <p className="text-sm mb-2">{message('replacePrompt')}</p>
+        <div className="flex flex-wrap gap-2">
+          <button className="text-sm underline" onClick={() => void projectPersistence.downloadSaved()}>{message('downloadBackup')}</button>
+          <button className="text-sm underline" onClick={() => { const file = pendingFile; setPendingFile(null); void openFile(file); }}>{message('replace')}</button>
+          <button className="text-sm underline" onClick={() => setPendingFile(null)}>{message('cancel')}</button>
+        </div>
+      </div>}
     </div>
   );
 }

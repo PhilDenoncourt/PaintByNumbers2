@@ -13,6 +13,9 @@ import { StudioStepper } from '../studio/StudioStepper';
 import { StudioControls } from '../studio/StudioControls';
 import { StudioCanvasCard } from '../studio/StudioCanvasCard';
 import { useStudioTokens } from '../studio/studioTokens';
+import { projectPersistence } from '../../projects/projectPersistence';
+import { ResumeProjectCard } from '../projects/ResumeProjectCard';
+import { ProjectSaveStatus } from '../projects/ProjectSaveStatus';
 
 export function AppShell() {
   const { t } = useTranslation();
@@ -26,6 +29,7 @@ export function AppShell() {
   const setMergeMode = useAppStore((s) => s.setMergeMode);
 
   // Sync the `dark` class on <html> so Tailwind `dark:` and the .dark scrollbar apply.
+  useEffect(() => { void projectPersistence.initialize(); }, []);
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
@@ -34,7 +38,9 @@ export function AppShell() {
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const handler = (e: MediaQueryListEvent) => {
-      if (localStorage.getItem('darkMode') === null) {
+      let pinned = false;
+      try { pinned = localStorage.getItem('darkMode') !== null; } catch { /* Storage may be disabled. */ }
+      if (!pinned) {
         useAppStore.setState((s) => ({ ui: { ...s.ui, darkMode: e.matches } }));
       }
     };
@@ -62,6 +68,7 @@ export function AppShell() {
   return (
     <div className="h-full flex flex-col" style={{ background: tk.pageBg, color: tk.text }}>
       <StudioHeader />
+      <ProjectSaveStatus />
       {sourceImageData && <StudioStepper />}
 
       {!sourceImageData ? (
@@ -78,6 +85,7 @@ export function AppShell() {
             >
               <ImageUploader />
             </ErrorBoundary>
+            <ResumeProjectCard />
 
             <div className="text-center">
               <div className="flex flex-wrap items-center justify-center gap-2 mb-3">

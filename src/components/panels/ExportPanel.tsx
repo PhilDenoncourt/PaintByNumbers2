@@ -11,7 +11,8 @@ import {
 } from '../../export/paperSizes';
 import { downloadPng, downloadColorLegendPng } from '../../export/pngExporter';
 import { trackEvent } from '../../utils/analytics';
-import { sessionStorage } from '../../utils/sessionStorage';
+import { projectPersistence, useProjectPersistence } from '../../projects/projectPersistence';
+import { useProjectMessage } from '../../projects/projectMessages';
 import { useRenderLabels } from '../../state/useRenderLabels';
 import { AffiliateExportHero } from '../affiliate/AffiliateExportHero';
 
@@ -25,11 +26,10 @@ const FORMAT_BADGES: Record<Format, { tint: string; fg: string }> = {
 
 export function ExportPanel() {
   const { t } = useTranslation();
+  const message = useProjectMessage();
   const result = useAppStore((s) => s.result);
   const presetPaletteId = useAppStore((s) => s.settings.presetPaletteId);
-  const settings = useAppStore((s) => s.settings);
-  const sourceImageUrl = useAppStore((s) => s.sourceImageUrl);
-  const labelOverrides = useAppStore((s) => s.labelOverrides);
+  const { metadata } = useProjectPersistence();
   // Exports must match what's on screen: same scale, same manual positions
   const renderLabels = useRenderLabels();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -75,48 +75,18 @@ export function ExportPanel() {
     trackEvent('export', { format, variant: 'color-guide' });
   };
 
-  const handleSaveToBrowser = () => {
-    sessionStorage.autoSave(settings, result, sourceImageUrl, labelOverrides);
-    alert(t('export.autoSaveMessage'));
-  };
+  const handleSaveToBrowser = () => { void projectPersistence.saveNow(); };
 
   const handleExportJson = () => {
-    const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
-    sessionStorage.exportToFile(
-      settings,
-      result,
-      sourceImageUrl,
-      `pbn-session-${timestamp}.json`,
-      labelOverrides
-    );
+    void projectPersistence.downloadCurrent();
   };
 
   const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     try {
-      const session = await sessionStorage.importFromFile(file);
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) throw new Error('Failed to create canvas');
-        ctx.drawImage(img, 0, 0);
-        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-        useAppStore.setState({
-          sourceImageUrl: canvas.toDataURL('image/png'),
-          sourceImageData: imageData,
-          processedWidth: imageData.width,
-          processedHeight: imageData.height,
-          settings: session.settings,
-          result: session.result,
-          labelOverrides: session.labelOverrides ?? {},
-        });
-        alert(t('export.sessionLoaded'));
-      };
-      img.src = session.sourceImageBase64;
+      if (metadata && !window.confirm(message('replacePrompt'))) return;
+      await projectPersistence.importFile(file);
     } catch (err) {
       alert(t('export.failedImportSession', { message: err instanceof Error ? err.message : t('common.unknownError') }));
     }
@@ -252,6 +222,7 @@ export function ExportPanel() {
         </label>
         <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
         <div className="flex flex-col gap-2">
+          {metadata && <button onClick={() => void projectPersistence.downloadSaved()} className="text-xs underline self-start">{message('downloadBackup')}</button>}
           <button
             onClick={handleSaveToBrowser}
             className="w-full py-[9px] rounded-[9px] border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-[#334155] dark:text-gray-200 text-[12.5px] font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"

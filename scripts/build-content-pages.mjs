@@ -263,7 +263,7 @@ const noUploadBody = `
         <li>Merging and splitting regions recomputes the affected outlines locally.</li>
         <li>The SVG, PDF, and PNG files are assembled in the page and handed straight to your browser's download mechanism.</li>
       </ul>
-      <p>Saved sessions can retain your image and template in this browser's local storage after you close the tab. Clear this site's browser storage to remove locally saved sessions. Exported images and project files remain wherever you saved them on your device.</p>
+      <p>After you choose an image, the editor automatically saves one local project, including the original image, edited template and recent undo history, in this browser's IndexedDB. The home screen lets you resume it, download a project-file backup or delete it. Clearing this site's data can also remove the local project. You can turn off "Remember this project on this device" to stop new saves; use "Delete saved project" to remove an existing copy. Exported images and project files remain wherever you saved them on your device.</p>
 
       <h2>Why this is worth checking at all</h2>
       <p>A photo can contain personal details about your family, pets or home. Checking where processing happens helps you choose a tool based on observed behavior. These checks describe the workflow you inspected; they are not a guarantee about every version or every possible action on a site.</p>
