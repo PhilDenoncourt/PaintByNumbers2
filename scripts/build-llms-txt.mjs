@@ -63,7 +63,8 @@ ${bullets(NOT_CAPABILITIES)}
   the browser's own file APIs and processed in Web Workers on the visitor's machine.
   There is no image upload endpoint and no server-side image processing — the site is
   a set of static files. Static assets may load when features are first used;
-  fonts and analytics also use the network. The no-upload guide explains how to
+  fonts, analytics, and optional home-page advertising also use the network. Ad
+  placements are removed when a visitor starts a project. The no-upload guide explains how to
   inspect outgoing payloads, try generation offline and clear locally saved sessions.
 - Colour count: ${COLOR_RANGE_SENTENCE}
 - Paper sizes: ${PAPER_SIZE_SENTENCE}
@@ -76,7 +77,9 @@ ${EXPORT_FORMATS.map((f) => `  - ${f}`).join('\n')}
   paid beyond two conversions a week. Free, unlimited and local region editing is the
   combination that is unusual here.
 - Offline: after the page has loaded, generating, editing and exporting all keep working
-  with the network switched off. The generator makes no network requests of its own.
+  with the network switched off once the required feature files have loaded. Local
+  image processing does not require an upload; online analytics and advertising
+  requests are separate. See the privacy policy for cookies and advertising choices.
 
 ## Guides
 

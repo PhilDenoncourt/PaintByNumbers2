@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { projectPersistence, useProjectPersistence } from '../../projects/projectPersistence';
 import { useProjectMessage } from '../../projects/projectMessages';
 
-export function ResumeProjectCard() {
+export function ResumeProjectCard({ onProjectStart }: { onProjectStart?: () => void }) {
   const message = useProjectMessage();
   const { metadata, status, error } = useProjectPersistence();
   const [busy, setBusy] = useState(false);
@@ -25,7 +25,7 @@ export function ResumeProjectCard() {
         </div>
       </div>
       <div className="flex flex-wrap gap-2 mt-3">
-        <button disabled={busy} onClick={() => void run(() => projectPersistence.resume())} className="px-3 py-2 rounded bg-blue-600 text-white text-sm">{message('resume')}</button>
+        <button disabled={busy} onClick={() => { onProjectStart?.(); void run(() => projectPersistence.resume()); }} className="px-3 py-2 rounded bg-blue-600 text-white text-sm">{message('resume')}</button>
         <button disabled={busy} onClick={() => void run(() => projectPersistence.downloadSaved())} className="px-3 py-2 rounded border text-sm">{message('downloadBackup')}</button>
         <button disabled={busy} onClick={() => void run(() => projectPersistence.deleteSaved())} className="px-3 py-2 rounded border text-sm">{message('delete')}</button>
       </div>

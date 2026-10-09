@@ -83,6 +83,7 @@ function layout({ slug, title, description, bodyHtml, structuredData }) {
     <main class="wrap">
 ${bodyHtml}
       <footer>
+        <p><a href="/privacy">Privacy policy</a></p>
         <p><a href="/">← Back to the paint-by-numbers editor</a></p>
         <p class="muted">Export true vector SVGs and refine individual regions with manual merge and split controls.</p>
       </footer>
@@ -210,7 +211,7 @@ const noUploadBody = `
         <li>Keep <strong>All</strong> request types visible. Inspect each request's URL, query parameters, and <strong>Payload</strong> (request body), including analytics requests. Look for image data, file attachments, or encoded copies of the photo.</li>
       </ol>
       <p>The expected result is <strong>no outgoing request containing your image</strong>. The Network Size column measures downloaded response data; small responses or an empty Fetch/XHR filter do not prove that nothing was uploaded. Inspect the outgoing data across all request types.</p>
-      <p>Static scripts or worker files may load when a feature is first used. Google Analytics may send page views and usage events. Those requests are separate from image processing; inspect their contents instead of expecting an empty request list.</p>
+      <p>Static scripts or worker files may load when a feature is first used. Google Analytics may send page views and usage events. When home-page advertising is enabled, Google AdSense and its partners may also make advertising, measurement, and consent-related requests. Those requests are separate from image processing; inspect their contents instead of expecting an empty request list.</p>
 
       <h2>Check 2 — turn your network off</h2>
       <ol>
@@ -221,7 +222,7 @@ const noUploadBody = `
       <p>Generating, editing and exporting should still work. This demonstrates that those steps can run locally. Offline operation alone does not establish what a page sends while connected, so use it together with the request inspection above.</p>
 
       <h2>Expected network requests, and what they are for</h2>
-      <p>Use this list to understand the services used by the app. Exact hosts can vary with analytics configuration; check the requests your browser actually sends. The app does not include your photo in these requests.</p>
+      <p>Use this list to understand the services used by the app. Exact hosts can vary with analytics and advertising configuration; check the requests your browser actually sends. The app does not include your photo in these requests.</p>
       <table>
         <thead>
           <tr>
@@ -247,13 +248,18 @@ const noUploadBody = `
             <td class="no">No</td>
           </tr>
           <tr>
+            <th scope="row">googlesyndication.com, doubleclick.net, and advertising or consent partners</th>
+            <td>When enabled, Google AdSense loads a home-page ad and may use cookies and device information for ad delivery and measurement. The ad placement is removed when you start a project. Removing it does not unload scripts already executed or erase cookies. Hosts vary by the ad and consent configuration.</td>
+            <td class="no">The app does not send image data</td>
+          </tr>
+          <tr>
             <th scope="row">amazon.com</th>
             <td>Only if you click a paint-set link. These are affiliate links; nothing loads from Amazon unless you choose to follow one.</td>
             <td class="no">No</td>
           </tr>
         </tbody>
       </table>
-      <p>Local image processing coexists with usage analytics. Verify both by inspecting the outgoing requests during the workflow you use.</p>
+      <p>Local image processing coexists with usage analytics and optional home-page advertising. See our <a href="/privacy">privacy policy</a> for cookies and advertising choices. Verify the requests during the workflow you use.</p>
 
       <h2>What actually happens to your photo</h2>
       <ul>
@@ -368,7 +374,42 @@ const mergeSplitStructuredData = {
   ],
 };
 
+const privacyBody = `
+      <h1>Privacy policy</h1>
+      <p class="muted">Last updated: October 9, 2026</p>
+      <p class="lead">Paint by Numbers processes your images in your browser. This policy explains local project storage and the separate network services used to deliver the site, measure usage, and support home-page advertising.</p>
+
+      <h2>Your images and saved projects</h2>
+      <p>The app reads and processes selected images on your device; it does not upload your images or project files to our server or attach them to analytics or advertising requests. Image processing, editing, and exports run locally.</p>
+      <p>When you remember a project, the app saves the source image, settings, generated template, and recent undo history in this browser's IndexedDB. You can stop new saves with "Remember this project on this device" and remove the saved copy with "Delete saved project" on the home page. Clearing this site's browser data also removes local storage. Downloaded exports and backups remain wherever you saved them. The app also stores preferences, such as your display theme, locally.</p>
+
+      <h2>Site delivery and usage analytics</h2>
+      <p>Loading the site, its files, and web fonts makes network requests. The services handling those requests receive connection information such as your IP address and browser headers.</p>
+      <p>When Google Analytics is enabled, it measures page views and actions such as image selection, generation, exports, and affiliate-link clicks. Google may receive browser and device information and use cookies or similar storage. The app does not include your images in analytics events. Learn more about <a href="https://policies.google.com/technologies/partner-sites">Google's use of information from partner sites</a> and the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out browser add-on</a>.</p>
+
+      <h2>Home-page advertising</h2>
+      <p>The home page may display Google AdSense ads when advertising is enabled. Ad placements are removed when you begin opening an image or saved project; the creator has no ad placements. Removing a placement does not erase advertising cookies or unload scripts already executed during the visit.</p>
+      <p>Third-party advertising vendors, including Google, may use cookies to select ads based on earlier visits to this site and other websites. Google and its partners may use those cookies and device information to personalize, deliver, and measure advertising. Other participating ad networks may also use cookies. See <a href="https://policies.google.com/technologies/ads">Google's advertising information</a>; the consent message, where presented, identifies participating advertising partners and their policies.</p>
+
+      <h2>Your advertising and cookie choices</h2>
+      <p>You can manage Google's personalized advertising in <a href="https://myadcenter.google.com/">My Ad Center</a> and opt out of participating third-party personalized advertising through <a href="https://optout.aboutads.info/">YourAdChoices</a>. These choices do not necessarily remove ads. Where a consent message is presented, use it to accept, decline, or manage the available purposes and partners.</p>
+      <p>Your browser settings also let you block or delete cookies and site data. Clearing site data may remove your saved project and preferences as well as consent choices, so download a project backup first if you want to keep it.</p>
+
+      <h2>Affiliate links and other websites</h2>
+      <p>Paint-set links may be Amazon affiliate links, and we may earn a commission from qualifying purchases. Following a link opens another website, whose privacy policy applies there. The app does not send your image with these links.</p>
+
+      <h2>Questions and updates</h2>
+      <p>This site is maintained by Phil Denoncourt III. You can reach the maintainer through <a href="https://www.linkedin.com/in/phildenoncourt/">his LinkedIn profile</a>. We update this page when the site's privacy practices change.</p>
+      <p>For a practical check of local processing, see <a href="/paint-by-numbers-generator-no-upload">how to inspect requests and generate a template offline</a>.</p>`;
+
 export const PAGES = [
+  {
+    slug: 'privacy',
+    title: 'Privacy Policy | Paint by Numbers',
+    description: 'How Paint by Numbers handles local images and projects, analytics, home-page advertising, cookies, and privacy choices.',
+    bodyHtml: privacyBody,
+    structuredData: { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Privacy policy', url: `${SITE}/privacy` },
+  },
   {
     slug: 'paint-by-numbers-vs-pbnify',
     title: 'PBNify Alternative with SVG Export & Manual Region Editing',

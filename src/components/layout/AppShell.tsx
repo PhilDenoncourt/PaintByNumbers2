@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../state/appStore';
 import { ImageUploader } from '../upload/ImageUploader';
@@ -16,6 +16,7 @@ import { useStudioTokens } from '../studio/studioTokens';
 import { projectPersistence } from '../../projects/projectPersistence';
 import { ResumeProjectCard } from '../projects/ResumeProjectCard';
 import { ProjectSaveStatus } from '../projects/ProjectSaveStatus';
+import { HomeAd } from '../ads/HomeAd';
 
 export function AppShell() {
   const { t } = useTranslation();
@@ -27,6 +28,10 @@ export function AppShell() {
   const darkMode = useAppStore((s) => s.ui.darkMode);
   const mergeMode = useAppStore((s) => s.ui.mergeMode);
   const setMergeMode = useAppStore((s) => s.setMergeMode);
+  // Once creation begins, keep ads off for this visit, including failed imports
+  // and returning to the uploader to start another project.
+  const [creationStarted, setCreationStarted] = useState(Boolean(sourceImageData));
+  const startCreating = () => setCreationStarted(true);
 
   // Sync the `dark` class on <html> so Tailwind `dark:` and the .dark scrollbar apply.
   useEffect(() => { void projectPersistence.initialize(); }, []);
@@ -83,9 +88,9 @@ export function AppShell() {
                 </div>
               }
             >
-              <ImageUploader />
+              <ImageUploader onProjectStart={startCreating} />
             </ErrorBoundary>
-            <ResumeProjectCard />
+            <ResumeProjectCard onProjectStart={startCreating} />
 
             <div className="text-center">
               <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
@@ -130,6 +135,8 @@ export function AppShell() {
                 </div>
               ))}
             </div>
+
+            {!creationStarted && <HomeAd />}
 
             <p className="text-xs text-center" style={{ color: tk.muted }}>
               {t('welcome.comparePromptPrefix')}{' '}

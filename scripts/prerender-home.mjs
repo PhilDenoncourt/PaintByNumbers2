@@ -135,6 +135,7 @@ const prerenderMarkup = `
             </div>
           </section>
         </main>
+        <footer class="mx-auto max-w-4xl px-4 pb-8 text-xs text-gray-600"><a class="underline" href="/privacy">Privacy policy</a></footer>
       </div>
     </div>`;
 

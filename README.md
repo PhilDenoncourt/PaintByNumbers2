@@ -47,6 +47,52 @@ When `VITE_GA_MEASUREMENT_ID` is present, the app tracks:
 
 When `VITE_GA_MEASUREMENT_ID` is not set, no analytics scripts are loaded.
 
+## Google AdSense (home page only)
+
+The home page supports one manual responsive display ad below the feature cards.
+It is removed when someone opens the file picker, drops/pastes an image, imports
+a project, or resumes a saved project. It stays off for the rest of that visit.
+The editor and static guide pages do not mount ad units. The AdSense script loads
+only when the configured home-page unit mounts; removing the unit does not unload
+JavaScript that Google has already executed.
+
+### Verify this site first
+
+The publisher `ca-pub-8829035634388232` is configured in `.env.production`.
+`index.html` includes its verification meta tag and `public/ads.txt` authorizes
+the same publisher. Neither verification method loads ads.
+
+1. Deploy these changes.
+2. In AdSense, add the site under **Sites**, select **Meta tag**, then **Verify**
+   and **Request review**. The tag is included in the built HTML before JavaScript
+   runs. You can also verify using the published `/ads.txt` file.
+3. Wait for the site's status to become **Ready**.
+
+### Enable the home-page placement
+
+1. Keep **Auto ads off** for this site in AdSense. This is required to keep the
+   creator free of automatically inserted ads and overlays: it shares `/` with
+   the landing page, so URL exclusions cannot distinguish the two screens.
+2. Create a unit under **Ads → By ad unit → Display ads**, choose **Responsive**,
+   and copy the numeric `data-ad-slot` from **Save and get code**.
+3. Set `VITE_ADSENSE_HOME_SLOT` in the hosting environment or `.env.production`.
+   Set up the applicable consent message in AdSense **Privacy & messaging** before
+   enabling live ads. Use the published `/privacy` URL in the message. Google's
+   certified CMP is available through **Privacy & messaging → European regulations**;
+   configure the applicable regional messages and verify the consent choices before
+   launch. The privacy page and footer disclosures are not a consent management platform.
+4. Rebuild and deploy. Both a valid `VITE_ADSENSE_CLIENT_ID` and slot are required;
+   a blank slot leaves the page unchanged and loads no AdSense script.
+
+For local testing, set both IDs and `VITE_ADSENSE_TEST_MODE=true` in `.env.local`.
+This requests test ads (`data-adtest="on"`). Development otherwise loads no ads.
+Do not click live ads to test them. To disable the integration, clear the slot
+and rebuild. If changing publishers, also update the verification tag and ads.txt.
+
+Google's documentation: [site verification](https://support.google.com/adsense/answer/7584263?hl=en),
+[display ad units](https://support.google.com/adsense/answer/9274025?hl=en), and
+[Auto ads settings](https://support.google.com/adsense/answer/9261307?hl=en).
+
 ## Bundle splitting
 
 To reduce the size of the main entry bundle:

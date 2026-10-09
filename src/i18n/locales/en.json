@@ -400,13 +400,19 @@
     "noCropApplied": "Full image · No crop applied",
     "dragHandles": "Drag handles to crop. Rotating resets the crop frame."
   },
+  "ads": {
+    "advertisement": "Advertisement"
+  },
   "privacy": {
+    "policyLink": "Privacy policy",
+    "dataUsageTitle": "Usage analytics.",
+    "adsTitle": "Home-page advertising.",
+    "adsBody": "We use Google AdSense to display ads on the home page. Google and other advertising partners may use cookies and device information to serve and measure ads, including personalized ads based on visits to this and other sites. Ad placements are removed when you start a project. See our privacy policy for advertising choices. Your images are processed locally in your browser.",
+    "googleAdsLink": "How Google uses information for advertising",
     "tagline": "Your images are processed entirely in your browser — nothing is uploaded or stored on any server.",
     "learnMore": "Privacy & Legal",
     "seeLess": "Close",
     "author": "Phil Denoncourt III",
-    "noDataTitle": "No data collection.",
-    "noDataBody": "This application does not collect, transmit, or share any personal data. No analytics, no tracking, no cookies.",
     "analyticsBody": "This application uses Google Analytics to measure usage (for example page views, processing runs, and export actions). Uploaded images are still processed locally in your browser and are not sent to our server.",
     "localStorageTitle": "Browser storage.",
     "localStorageBody": "Your current session (settings and image) may be saved to your browser's localStorage for convenience. This data never leaves your device and can be cleared at any time through your browser settings.",

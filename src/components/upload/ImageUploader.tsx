@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { projectPersistence, useProjectPersistence } from '../../projects/projectPersistence';
 import { useProjectMessage } from '../../projects/projectMessages';
 
-export function ImageUploader() {
+export function ImageUploader({ onProjectStart }: { onProjectStart?: () => void }) {
   const { t } = useTranslation();
   const message = useProjectMessage();
   const loadImage = useAppStore((s) => s.loadImage);
@@ -25,17 +25,19 @@ export function ImageUploader() {
   const handleImageFile = useCallback(
     async (file: File) => {
       if (status === 'loading') return;
+      onProjectStart?.();
       if (metadata) setPendingFile(file);
       else await openFile(file);
     },
-    [metadata, status, openFile]
+    [metadata, status, openFile, onProjectStart]
   );
 
   const handleSessionFile = useCallback(async (file: File) => {
     if (status === 'loading') return;
+    onProjectStart?.();
     if (metadata) setPendingFile(file);
     else await openFile(file);
-  }, [metadata, status, openFile]);
+  }, [metadata, status, openFile, onProjectStart]);
 
   const handleFile = useCallback(
     async (file: File) => {
@@ -99,7 +101,12 @@ export function ImageUploader() {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onPaste={onPaste}
-      onClick={() => { if (status !== 'loading') inputRef.current?.click(); }}
+      onClick={() => {
+        if (status !== 'loading') {
+          onProjectStart?.();
+          inputRef.current?.click();
+        }
+      }}
       aria-busy={status === 'loading'}
       tabIndex={0}
     >
