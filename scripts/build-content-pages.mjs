@@ -95,18 +95,19 @@ ${bodyHtml}
 // ---- Page: PBNify alternative / comparison ---------------------------------
 
 const COMPARISON_ROWS = [
-  ['Price', ['yes', 'Free'], ['yes', 'Free'], ['no', 'Paid (physical kit)']],
-  ['Runs in your browser (no upload)', ['yes', 'Yes'], ['yes', 'Yes'], ['no', 'No — server-side']],
-  ['Your photo stays private', ['yes', 'Yes'], ['yes', 'Yes'], ['no', 'Uploaded to order']],
-  ['Instant download — nothing emailed to you', ['yes', 'Yes'], ['no', 'Emails you the PDF'], ['no', 'N/A']],
-  ['Vector SVG export', ['yes', 'Yes'], ['no', 'No'], ['no', 'N/A']],
-  ['Printable PDF &amp; PNG export', ['yes', 'Yes'], ['no', 'Image only'], ['no', 'Ships physical canvas']],
-  ['Color style controls', ['yes', 'K-Means or Median-Cut'], ['no', 'No'], ['no', 'No']],
-  ['Match colours to Crayola paints', ['yes', 'Yes'], ['no', 'No'], ['no', 'Varies']],
-  ['Merge &amp; split regions', ['yes', 'Yes'], ['no', 'No'], ['no', 'No']],
-  ['Crop, rotate &amp; colour adjustments', ['yes', 'Yes'], ['no', 'Limited'], ['no', 'N/A']],
-  ['No sign-up or watermark', ['yes', 'Yes'], ['yes', 'Yes'], ['no', 'Account &amp; checkout']],
-  ['Open source', ['no', 'No'], ['yes', 'Yes'], ['no', 'No']],
+  ['Price', ['yes', 'Free'], ['', 'Free preview &amp; printables; paid kits'], ['', 'Paid physical kit']],
+  ['Photo processing', ['yes', 'Local in your browser; no photo upload'], ['', 'Uploaded to cloud providers, per privacy policy'], ['', 'Photo supplied to the seller']],
+  ['Printable files &amp; delivery', ['yes', 'PDF &amp; PNG downloaded directly'], ['', 'Printable PDF &amp; color guide delivered by email'], ['', 'Physical canvas; digital files vary']],
+  ['Vector SVG export', ['yes', 'Yes'], ['', 'Not advertised'], ['', 'Varies by seller']],
+  ['Color style controls', ['yes', 'K-Means or Median-Cut'], ['', 'No algorithm selector documented'], ['', 'Varies by seller']],
+  ['Match colours to Crayola paints', ['yes', 'Yes'], ['', 'Not advertised'], ['', 'Varies by seller']],
+  ['Manual merge &amp; split regions', ['yes', 'Yes'], ['', 'Not advertised'], ['', 'Varies by seller']],
+  ['Photo adjustments', ['yes', 'Crop, rotate &amp; colour adjustments'], ['yes', 'Multiple crop options'], ['', 'Varies by seller']],
+  ['Automatic background removal', ['no', 'No'], ['yes', 'Yes'], ['', 'Varies by seller']],
+  ['Saved designs', ['yes', 'Local browser project &amp; project-file backup'], ['yes', 'My Designs: reopen recent designs'], ['', 'Varies by seller']],
+  ['Account or email requirement', ['yes', 'No account or email required'], ['', 'No account to preview; email for free files'], ['', 'Checkout requirements vary']],
+  ['Open source', ['no', 'No'], ['', 'Classic version only; see below'], ['', 'Varies by seller']],
+  ['Physical kit', ['no', 'No; print your template and supply paints'], ['yes', 'Optional canvas, paints &amp; brushes'], ['yes', 'Yes']],
 ];
 
 const cell = ([cls, text]) => `<td class="${cls}">${text}</td>`;
@@ -150,8 +151,8 @@ const comparisonTable = `
           <tr>
             <th scope="col">Feature</th>
             <th scope="col">paintbynumbers.build</th>
-            <th scope="col">PBNify</th>
-            <th scope="col">Custom kit sites</th>
+            <th scope="col">PBNify (current service)</th>
+            <th scope="col">Other custom kit sites</th>
           </tr>
         </thead>
         <tbody>
@@ -165,10 +166,15 @@ ${COMPARISON_ROWS.map(
 const comparisonBody = `
       <h1>PBNify alternative with SVG export and manual region editing</h1>
       <p class="lead">Need an editable vector template instead of a flat preview? Here's how <strong>paintbynumbers.build</strong> compares with PBNify and custom kit sites on SVG output and direct control over individual regions.</p>
+      <p><strong>PBNify has relaunched:</strong> the current <a href="https://pbnify.com/paint-by-number-generator">PBNify generator</a> offers free previews and printables alongside paid physical kits. The older browser-based tool is linked separately as <a href="https://legacy.pbnify.com/">Classic PBNify</a>. The table below describes the current service.</p>
 
       <h2>Feature comparison</h2>
 ${comparisonTable}
-      <p class="muted">Comparison based on publicly available features as of June 2026. Competitor features change over time — if something here is out of date, we'd genuinely like to fix it.</p>
+      <p class="muted">Last checked <time datetime="2026-10-12">October 12, 2026</time> against PBNify's public pages. “Not advertised” means we found no description of the feature in those pages, not that we tested every workflow. Other kit sellers vary.</p>
+
+      <h2>Where does PBNify process your photo?</h2>
+      <p>The current service is not a no-upload tool. Its <a href="https://pbnify.com/privacy">privacy policy</a> says images are sent to third-party cloud computing and machine learning providers to create designs, and may be retained for redownloads and support. This is based on PBNify's published policy, not a network trace of its generator.</p>
+      <p>paintbynumbers.build generates, edits and exports locally. Your photo stays on your device; the site also uses analytics and may show home-page advertising. See <a href="/paint-by-numbers-generator-no-upload">how to verify local image processing</a> and our <a href="/privacy">privacy policy</a>.</p>
 
       <h2>Where paintbynumbers.build stands out</h2>
       <ul>
@@ -178,8 +184,10 @@ ${comparisonTable}
       <p>Paint matching, browser processing, and direct downloads remain useful supporting capabilities. They are included in the table for completeness, but SVG output and manual region editing are the reasons to choose this editor.</p>
 
       <h2>When PBNify or a kit might suit you better</h2>
-      <p>We think it's only fair to say: <strong>PBNify</strong> is open source, so if you want to read or self-host the code, it's a great choice. And if you'd rather not paint from your own printout at all, a <strong>custom kit site</strong> will print your image on canvas and ship it with matched paints and brushes — a finished product, for a price.</p>
+      <p><strong>Current PBNify</strong> offers background removal, crop choices and My Designs for reopening recent designs. It also sells a complete canvas, paint and brush kit if you prefer that to printing your own template and sourcing materials.</p>
+      <p><strong>Classic PBNify</strong> is the older browser-based option. Its <a href="https://github.com/daniel-munro/pbnify">original source code is available under the MIT license</a> for reading or self-hosting. That open-source description does not apply to the relaunched kit service. The current service advertises emailed printables; that delivery method should not be attributed to Classic.</p>
       <p>But if you want true vector output and direct control over the generated regions, this editor is built for that workflow.</p>
+      <p class="muted">Sources checked: <a href="https://pbnify.com/">PBNify features and file delivery</a>, <a href="https://pbnify.com/paint-by-number-generator">generator</a>, <a href="https://pbnify.com/faq">FAQ (including Saved Designs)</a>, <a href="https://pbnify.com/privacy">privacy policy</a>, and <a href="https://github.com/daniel-munro/pbnify">Classic source repository</a>.</p>
 ${relatedGuidesBlock('paint-by-numbers-vs-pbnify')}
       <a class="cta" href="/">Create and edit your SVG template →</a>`;
 
@@ -414,7 +422,7 @@ export const PAGES = [
     slug: 'paint-by-numbers-vs-pbnify',
     title: 'PBNify Alternative with SVG Export & Manual Region Editing',
     description:
-      'Compare paintbynumbers.build with PBNify on true vector SVG export and manual merge and split controls for individual paint-by-numbers regions.',
+      'Compare paintbynumbers.build with current PBNify and Classic: SVG export, region editing, photo processing, background removal, saved designs and kits.',
     bodyHtml: comparisonBody,
     structuredData: comparisonStructuredData,
   },
